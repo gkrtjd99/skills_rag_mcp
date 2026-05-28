@@ -12,13 +12,28 @@ Response shapes (mirrored in bootstrap-skill/using-skill-rag/SKILL.md):
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from mcp.server.fastmcp import FastMCP
 
-from . import corpus as corpus_mod
+from . import index as index_mod
 from . import retrieve
 from . import sync as sync_mod
 
 server = FastMCP("skill-rag")
+
+
+def _path_for_name(name: str) -> Path | None:
+    """Look up the indexed SKILL.md path by frontmatter `name`.
+
+    Skill `name` (from frontmatter) does not always equal the directory name —
+    e.g. Vercel skills live in ``react-best-practices/`` but their name is
+    ``vercel-react-best-practices``. The index is the authoritative mapping.
+    """
+    for row in index_mod.list_indexed():
+        if row["name"] == name:
+            return Path(row["path"])
+    return None
 
 
 @server.tool()
@@ -43,12 +58,13 @@ def get_skill(name: str) -> dict:
       - {"status": "ok", "body": "..."}
       - {"status": "not_found", "message": "..."}
     """
-    path = corpus_mod.CORPUS_PATH / name / "SKILL.md"
-    if path.exists():
+    path = _path_for_name(name)
+    if path is not None and path.exists():
         return {"status": "ok", "body": path.read_text(encoding="utf-8")}
-    # File not found — force a sync in case the index is ahead of disk, retry.
+    # Not found or path stale — force a sync, retry.
     sync_mod.sync_if_stale(ttl=0)
-    if path.exists():
+    path = _path_for_name(name)
+    if path is not None and path.exists():
         return {"status": "ok", "body": path.read_text(encoding="utf-8")}
     return {
         "status": "not_found",

@@ -66,3 +66,17 @@ def test_get_skill_recovers_via_force_sync(tmp_path, monkeypatch):
     res = mcp_server.get_skill("foo")
     assert res["status"] == "ok"
     assert "hi" in res["body"]
+
+
+def test_get_skill_works_when_dir_name_differs_from_skill_name(tmp_path):
+    """Vercel-style: dir is `react-best-practices/` but frontmatter name is `vercel-react-best-practices`."""
+    corpus_root = tmp_path / "skills"
+    d = corpus_root / "react-best-practices"
+    d.mkdir(parents=True)
+    (d / "SKILL.md").write_text(
+        "---\nname: vercel-react-best-practices\ndescription: react perf\n---\nhello\n",
+        encoding="utf-8",
+    )
+    res = mcp_server.get_skill("vercel-react-best-practices")
+    assert res["status"] == "ok"
+    assert "hello" in res["body"]
