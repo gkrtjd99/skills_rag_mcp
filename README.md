@@ -1,30 +1,33 @@
 # skill_rag
 
-`~/.skills/` 에 모아둔 스킬들을 자연어로 검색해서 필요한 것만 에이전트 컨텍스트에 올리는 로컬 RAG.
+**English** | [한국어](README.ko.md)
 
-세션 시작 시 메타-스킬 1개만 자동 로드되고, 나머지 N개는 매 사용자 메시지마다
-MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든 스킬을 읽느라 컨텍스트
-소모하지 않음.
+A local RAG that searches the skills collected under `~/.skills/` in natural
+language and loads only the relevant ones into the agent's context.
 
-## 핵심 동작
+At session start only a single meta-skill is auto-loaded; the remaining N
+skills are searched per user message via MCP, and only the matching bodies
+are fetched. This avoids burning context by reading every skill up front.
+
+## How it works
 
 ```
-사용자 메시지
+user message
    │
    ▼
-에이전트 → search_skills(query)  ─→ top-k 메타 (name, desc, score)
+agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
                                        │
-                                       ▼ 적합한 것만
-                                  get_skill(name) ─→ SKILL.md 본문
+                                       ▼ only the relevant ones
+                                  get_skill(name) ─→ SKILL.md body
 ```
 
-- 임베딩: `all-MiniLM-L6-v2` 로컬 모델 (외부 API 호출 없음)
-- 벡터 DB: LanceDB
-- 인덱스: `search_skills` 호출 시 TTL 30s 캐시로 자동 sync
+- Embeddings: `all-MiniLM-L6-v2` running locally (no external API calls)
+- Vector DB: LanceDB
+- Index: auto-synced with a 30s TTL cache on each `search_skills` call
 
-## 설치
+## Install
 
-### 1) 코드 + 부트스트랩 스킬
+### 1) Code + bootstrap skill
 
 ```bash
 git clone git@github.com:gkrtjd99/agent_skills_rag.git
@@ -33,15 +36,16 @@ uv sync
 bash scripts/install.sh
 ```
 
-`install.sh`가 하는 일:
-1. `~/.skills/` 디렉토리 생성
-2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치
-3. 각 하네스(`~/.claude/skills/`, `~/.codex/skills/`)에 심볼릭 링크
-4. 아래 MCP 등록 가이드를 콘솔에 출력
+What `install.sh` does:
+1. Creates the `~/.skills/` directory
+2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/`
+3. Symlinks it into each harness (`~/.claude/skills/`, `~/.codex/skills/`)
+4. Prints the MCP registration guide below to the console
 
-### 2) MCP 서버 등록
+### 2) Register the MCP server
 
-리포 경로 (`$REPO`)는 `pwd` 결과로 치환. 모든 하네스에서 MCP 실행 커맨드는 동일:
+Substitute the repo path (`$REPO`) with the output of `pwd`. The MCP launch
+command is the same across every harness:
 
 ```
 uv --directory $REPO run skill-rag mcp
@@ -49,13 +53,13 @@ uv --directory $REPO run skill-rag mcp
 
 #### Claude Code
 
-CLI로 한 줄 등록 (사용자 스코프, 전역):
+One-line CLI registration (user scope, global):
 
 ```bash
 claude mcp add skill-rag --scope user -- uv --directory "$(pwd)" run skill-rag mcp
 ```
 
-또는 `~/.claude.json`의 `mcpServers`에 직접 추가:
+Or add it directly to `mcpServers` in `~/.claude.json`:
 
 ```json
 {
@@ -70,7 +74,7 @@ claude mcp add skill-rag --scope user -- uv --directory "$(pwd)" run skill-rag m
 
 #### Codex
 
-`~/.codex/config.toml`에 추가:
+Add to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.skill-rag]
@@ -78,65 +82,65 @@ command = "uv"
 args = ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
 ```
 
-#### 기타 MCP 호환 클라이언트 (Cursor, Windsurf 등)
+#### Other MCP-compatible clients (Cursor, Windsurf, etc.)
 
-각 클라이언트의 MCP 설정에 동일한 `command` / `args`를 등록.
+Register the same `command` / `args` in each client's MCP settings.
 
-### 3) 재시작 + 동작 확인
+### 3) Restart + sanity check
 
-하네스를 재시작한 뒤 새 세션에서:
+After restarting the harness, in a fresh session:
 
-- 시작 시 `using-skill-rag` 메타-스킬이 자동 로드되는지 확인
-- 아무 메시지에서나 `mcp__skill-rag__search_skills` 도구가 보이는지 확인
-- 직접 호출해 보기: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
+- Confirm the `using-skill-rag` meta-skill auto-loads at start
+- Confirm the `mcp__skill-rag__search_skills` tool is visible in any message
+- Try it directly: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
 
-CLI에서도 같은 검색이 동작하는지 빠르게 확인:
+You can also verify the same search from the CLI:
 
 ```bash
 uv run skill-rag query "deploy to vercel"
 ```
 
-## 스킬 추가
+## Adding a skill
 
-`~/.skills/<name>/SKILL.md` 형식으로 파일 작성:
+Write a file at `~/.skills/<name>/SKILL.md`:
 
 ```markdown
 ---
 name: my-skill
-description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
+description: One-line description. Search accuracy depends on this.
 ---
 
-# 본문
-스킬 사용법을 자세히 적음.
+# Body
+Detailed usage of the skill.
 ```
 
-다음 `search_skills` 호출 시 30초 이내에 자동 인덱싱됨.
+It is auto-indexed within 30s on the next `search_skills` call.
 
 ## CLI
 
-| 명령 | 설명 |
+| Command | Description |
 | --- | --- |
-| `uv run skill-rag sync` | 인덱스 수동 동기화 |
-| `uv run skill-rag query "<text>"` | 검색 결과 확인 |
-| `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
-| `uv run skill-rag eval` | 평가셋으로 recall@5 측정 |
-| `uv run skill-rag reset` | 인덱스 초기화 |
-| `uv run skill-rag mcp` | MCP 서버 실행 |
+| `uv run skill-rag sync` | Manually sync the index |
+| `uv run skill-rag query "<text>"` | Inspect search results |
+| `uv run skill-rag list-skills` | List indexed skills |
+| `uv run skill-rag eval` | Measure recall@5 against the eval set |
+| `uv run skill-rag reset` | Reset the index |
+| `uv run skill-rag mcp` | Run the MCP server |
 
-## 환경 변수
+## Environment variables
 
-| 변수 | 기본 | 설명 |
+| Variable | Default | Description |
 | --- | --- | --- |
-| `SKILL_RAG_CORPUS_PATH` | `~/.skills` | corpus 경로 |
-| `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
-| `SKILL_RAG_MODEL` | `all-MiniLM-L6-v2` | 임베딩 모델 |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.25` | 매칭 임계값 (eval 셋 기준 calibration) |
-| `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
+| `SKILL_RAG_CORPUS_PATH` | `~/.skills` | Corpus path |
+| `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
+| `SKILL_RAG_MODEL` | `all-MiniLM-L6-v2` | Embedding model |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.25` | Match threshold (calibrated against the eval set) |
+| `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
-## 문서
+## Docs
 
-- `AGENTS.md` — 에이전트가 첫 작업 전 읽을 순서
-- `ARCHITECTURE.md` — 모듈 구조
-- `docs/product-specs/skill-rag.md` — 무엇을, 왜
-- `docs/design-docs/` — 설계 결정 로그
-- `docs/superpowers/specs/` — 기능별 설계 스펙
+- `AGENTS.md` — reading order before an agent's first task
+- `ARCHITECTURE.md` — module structure
+- `docs/product-specs/skill-rag.md` — what and why
+- `docs/design-docs/` — design decision log
+- `docs/superpowers/specs/` — per-feature design specs
