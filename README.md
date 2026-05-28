@@ -24,9 +24,11 @@ MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든
 
 ## 설치
 
+### 1) 코드 + 부트스트랩 스킬
+
 ```bash
-git clone <this repo>
-cd skill_rag
+git clone git@github.com:gkrtjd99/agent_skills_rag.git
+cd agent_skills_rag
 uv sync
 bash scripts/install.sh
 ```
@@ -35,9 +37,64 @@ bash scripts/install.sh
 1. `~/.skills/` 디렉토리 생성
 2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치
 3. 각 하네스(`~/.claude/skills/`, `~/.codex/skills/`)에 심볼릭 링크
-4. MCP 서버 등록 가이드 출력
+4. 아래 MCP 등록 가이드를 콘솔에 출력
 
-각 하네스 설정에 MCP 서버 추가 (안내 메시지 참고) 후 재시작.
+### 2) MCP 서버 등록
+
+리포 경로 (`$REPO`)는 `pwd` 결과로 치환. 모든 하네스에서 MCP 실행 커맨드는 동일:
+
+```
+uv --directory $REPO run skill-rag mcp
+```
+
+#### Claude Code
+
+CLI로 한 줄 등록 (사용자 스코프, 전역):
+
+```bash
+claude mcp add skill-rag --scope user -- uv --directory "$(pwd)" run skill-rag mcp
+```
+
+또는 `~/.claude.json`의 `mcpServers`에 직접 추가:
+
+```json
+{
+  "mcpServers": {
+    "skill-rag": {
+      "command": "uv",
+      "args": ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
+    }
+  }
+}
+```
+
+#### Codex
+
+`~/.codex/config.toml`에 추가:
+
+```toml
+[mcp_servers.skill-rag]
+command = "uv"
+args = ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
+```
+
+#### 기타 MCP 호환 클라이언트 (Cursor, Windsurf 등)
+
+각 클라이언트의 MCP 설정에 동일한 `command` / `args`를 등록.
+
+### 3) 재시작 + 동작 확인
+
+하네스를 재시작한 뒤 새 세션에서:
+
+- 시작 시 `using-skill-rag` 메타-스킬이 자동 로드되는지 확인
+- 아무 메시지에서나 `mcp__skill-rag__search_skills` 도구가 보이는지 확인
+- 직접 호출해 보기: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
+
+CLI에서도 같은 검색이 동작하는지 빠르게 확인:
+
+```bash
+uv run skill-rag query "deploy to vercel"
+```
 
 ## 스킬 추가
 
