@@ -1,0 +1,37 @@
+# mcp (Python SDK) — quick reference
+
+Repo: https://github.com/modelcontextprotocol/python-sdk
+PyPI: mcp>=1.20.0
+
+## FastMCP server
+
+from mcp.server.fastmcp import FastMCP
+
+server = FastMCP("my-server")
+
+@server.tool()
+def my_tool(arg: str) -> dict:
+    """Docstring becomes the tool description shown to the agent."""
+    return {"status": "ok", "result": arg}
+
+server.run()  # stdio transport
+
+## Tool conventions
+
+- Return JSON-serializable dicts.
+- Use explicit "status" field for success vs. error states; agents read it
+  to decide next action.
+- Keep docstrings short and action-oriented — they appear in the agent's
+  prompt as the tool description.
+
+## Registering an MCP server in Claude Code
+
+~/.claude.json
+  "mcpServers": {
+    "my-server": {
+      "command": "uv",
+      "args": ["--directory", "/path/to/repo", "run", "my-server", "mcp"]
+    }
+  }
+
+Restart Claude Code to pick up changes.
