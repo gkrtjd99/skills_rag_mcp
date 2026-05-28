@@ -79,5 +79,35 @@ def mcp():
     run()
 
 
+from pathlib import Path as _Path
+
+
+@app.command()
+def eval(
+    dataset: _Path = typer.Option(_Path("eval/queries.jsonl"), "--dataset", "-d"),
+    k: int = typer.Option(5, "--k", "-k"),
+    json_out: bool = typer.Option(False, "--json"),
+):
+    """Run the evaluation harness."""
+    from .evaluator import evaluate as _eval, load_cases
+
+    cases = load_cases(dataset)
+    report = _eval(cases, k=k)
+    if json_out:
+        typer.echo(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+        return
+    typer.echo(f"n            = {report.n}")
+    typer.echo(f"recall@{report.k:<5} = {report.recall_at_k:.3f}")
+    typer.echo(f"mrr          = {report.mrr:.3f}")
+    typer.echo(f"latency p50  = {report.p50_ms:.1f} ms")
+    typer.echo(f"latency p95  = {report.p95_ms:.1f} ms")
+    if report.misses:
+        typer.echo(f"\nmisses ({len(report.misses)}):")
+        for m in report.misses:
+            typer.echo(f"  q={m['query']!r}")
+            typer.echo(f"    expected={m['expected']}")
+            typer.echo(f"    got={m['got']}")
+
+
 if __name__ == "__main__":
     app()
