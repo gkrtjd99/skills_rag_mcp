@@ -140,7 +140,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | --- | --- | --- |
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | corpus 경로 |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
-| `SKILL_RAG_MODEL` | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` | 임베딩 모델 |
+| `SKILL_RAG_MODEL` | `BAAI/bge-m3` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩 모델 로드 |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.25` | 매칭 임계값 (eval 셋 기준 calibration) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |

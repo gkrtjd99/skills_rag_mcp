@@ -7,13 +7,20 @@ import numpy as np
 
 DEFAULT_MODEL = os.environ.get(
     "SKILL_RAG_MODEL",
-    "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    # bge-m3: strong cross-lingual retrieval so Korean queries match English
+    # skill descriptions (MiniLM underweighted those cross-lingual pairs).
+    "BAAI/bge-m3",
 )
 LOCAL_FILES_ONLY = os.environ.get("SKILL_RAG_LOCAL_FILES_ONLY", "1").lower() not in {
     "0",
     "false",
     "no",
 }
+# Hard cap on input length. bge-m3 ships with max_seq_length=8192; a long skill
+# body then makes the O(seq^2) attention buffer explode (a 33k-char skill tried
+# to allocate 128 GiB on MPS). 512 tokens covers name+description+the body's
+# leading trigger text, which is what carries the retrieval signal anyway.
+MAX_SEQ_LENGTH = int(os.environ.get("SKILL_RAG_MAX_SEQ_LENGTH", "512"))
 
 
 @lru_cache(maxsize=4)
@@ -21,7 +28,11 @@ def _load_model(name: str):
     # Imported lazily so importing this module is cheap (helps tests).
     from sentence_transformers import SentenceTransformer
 
-    return SentenceTransformer(name, local_files_only=LOCAL_FILES_ONLY)
+    model = SentenceTransformer(name, local_files_only=LOCAL_FILES_ONLY)
+    # Guard against models whose default max_seq_length is very large.
+    if model.max_seq_length is None or model.max_seq_length > MAX_SEQ_LENGTH:
+        model.max_seq_length = MAX_SEQ_LENGTH
+    return model
 
 
 def model_dim(name: str = DEFAULT_MODEL) -> int:

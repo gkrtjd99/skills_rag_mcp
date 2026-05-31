@@ -21,8 +21,8 @@ agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
                                   get_skill(name) ─→ SKILL.md body
 ```
 
-- Embeddings: `paraphrase-multilingual-MiniLM-L12-v2` running locally (no
-  external API calls). Multilingual — Korean / English queries both work.
+- Embeddings: `BAAI/bge-m3` running locally (no external API calls). Strong
+  cross-lingual retrieval — Korean queries match English skill descriptions.
 - Vector DB: LanceDB
 - Index: auto-synced with a 30s TTL cache on each `search_skills` call
 
@@ -143,9 +143,9 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | --- | --- | --- |
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | Corpus path |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
-| `SKILL_RAG_MODEL` | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` | Embedding model |
+| `SKILL_RAG_MODEL` | `BAAI/bge-m3` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load the embedding model from local cache only |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.25` | Match threshold (calibrated against the eval set) |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (calibrated for bge-m3) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
 `skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`
