@@ -21,26 +21,34 @@ agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
                                   get_skill(name) ─→ SKILL.md body
 ```
 
-- Embeddings: `all-MiniLM-L6-v2` running locally (no external API calls)
+- Embeddings: `paraphrase-multilingual-MiniLM-L12-v2` running locally (no
+  external API calls). Multilingual — Korean / English queries both work.
 - Vector DB: LanceDB
 - Index: auto-synced with a 30s TTL cache on each `search_skills` call
 
 ## Install
 
-### 1) Code + bootstrap skill
+### 1) Clone + one-shot setup
 
 ```bash
 git clone <repo-url>
 cd skill_rag
-uv sync
 bash scripts/install.sh
 ```
 
-What `install.sh` does:
-1. Creates the `~/.skills/` directory
-2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/`
-3. Symlinks it into each harness (`~/.claude/skills/`, `~/.codex/skills/`)
-4. Prints the MCP registration guide below to the console
+`install.sh` is idempotent and does, in order:
+
+1. `uv sync`
+2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/` and
+   symlinks it into `~/.claude/skills/` and `~/.codex/skills/`
+3. `skill-rag collect` — symlinks every harness skill it finds
+   (`~/.claude/skills`, `~/.claude/plugins/**/skills`, `~/.codex/skills`,
+   `~/.codex/plugins/**/skills`) into `~/.skills/`. On name collisions the
+   first source wins; on multiple plugin versions the newest mtime wins.
+   Anything you already placed at `~/.skills/<name>` is left untouched.
+4. `skill-rag sync` — downloads the embedding model on first run, then
+   builds the LanceDB index
+5. Prints the MCP registration snippet for each harness
 
 ### 2) Register the MCP server
 
@@ -120,6 +128,8 @@ It is auto-indexed within 30s on the next `search_skills` call.
 
 | Command | Description |
 | --- | --- |
+| `uv run skill-rag status` | Show corpus path, model, index size, threshold |
+| `uv run skill-rag collect [--dry-run]` | Symlink harness skills into `~/.skills/` |
 | `uv run skill-rag sync` | Manually sync the index |
 | `uv run skill-rag query "<text>"` | Inspect search results |
 | `uv run skill-rag list-skills` | List indexed skills |
@@ -133,7 +143,7 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | --- | --- | --- |
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | Corpus path |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
-| `SKILL_RAG_MODEL` | `all-MiniLM-L6-v2` | Embedding model |
+| `SKILL_RAG_MODEL` | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load the embedding model from local cache only |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.25` | Match threshold (calibrated against the eval set) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |

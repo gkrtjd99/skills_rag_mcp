@@ -5,7 +5,10 @@ from functools import lru_cache
 
 import numpy as np
 
-DEFAULT_MODEL = os.environ.get("SKILL_RAG_MODEL", "all-MiniLM-L6-v2")
+DEFAULT_MODEL = os.environ.get(
+    "SKILL_RAG_MODEL",
+    "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+)
 LOCAL_FILES_ONLY = os.environ.get("SKILL_RAG_LOCAL_FILES_ONLY", "1").lower() not in {
     "0",
     "false",

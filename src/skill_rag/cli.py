@@ -7,10 +7,12 @@ from pathlib import Path as _Path
 
 import typer
 
+from . import collect as collect_mod
 from . import corpus as corpus_mod
 from . import index as index_mod
 from . import retrieve
 from . import sync as sync_mod
+from .embed import DEFAULT_MODEL
 
 app = typer.Typer(no_args_is_help=True, help="skill_rag — local RAG over ~/.skills.")
 PROJECT_ROOT = _Path(__file__).resolve().parents[2]
@@ -68,6 +70,66 @@ def list_skills(json_out: bool = typer.Option(False, "--json")):
         return
     for r in rows:
         typer.echo(f"- {r['name']}  ({r['path']})")
+
+
+@app.command()
+def collect(
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="Show what would be linked without writing."
+    ),
+    json_out: bool = typer.Option(False, "--json"),
+):
+    """Symlink skills from Claude/Codex installations into ~/.skills/."""
+    report = collect_mod.apply(dry_run=dry_run)
+    if json_out:
+        typer.echo(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+        return
+    typer.echo(f"target       = {corpus_mod.CORPUS_PATH}")
+    typer.echo("sources:")
+    for s in report.sources_scanned:
+        marker = "·" if s.exists() else "✗"
+        typer.echo(f"  {marker} {s}")
+    verb = "would link" if dry_run else "linked"
+    typer.echo(f"{verb}: {len(report.linked)}")
+    for n in report.linked:
+        typer.echo(f"  + {n}")
+    if report.already_present:
+        typer.echo(f"already present (skipped): {len(report.already_present)}")
+        for n in report.already_present:
+            typer.echo(f"  = {n}")
+    if report.collisions:
+        typer.echo(f"name collisions (kept first): {len(report.collisions)}")
+        for name, kept, rejected in report.collisions:
+            typer.echo(f"  ! {name}")
+            typer.echo(f"      kept     {kept}")
+            typer.echo(f"      rejected {rejected}")
+    if dry_run:
+        typer.echo("\n(dry-run — no symlinks created)")
+
+
+@app.command()
+def status(json_out: bool = typer.Option(False, "--json")):
+    """Show corpus path, model, index size, and threshold at a glance."""
+    rows = index_mod.list_indexed()
+    payload = {
+        "corpus_path": str(corpus_mod.CORPUS_PATH),
+        "corpus_exists": corpus_mod.CORPUS_PATH.exists(),
+        "index_path": str(index_mod.index_path()),
+        "indexed_count": len(rows),
+        "model": DEFAULT_MODEL,
+        "score_threshold": corpus_mod.SCORE_THRESHOLD,
+        "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
+    }
+    if json_out:
+        typer.echo(json.dumps(payload, ensure_ascii=False, indent=2))
+        return
+    typer.echo(f"corpus path     : {payload['corpus_path']}")
+    typer.echo(f"corpus exists   : {payload['corpus_exists']}")
+    typer.echo(f"index path      : {payload['index_path']}")
+    typer.echo(f"indexed skills  : {payload['indexed_count']}")
+    typer.echo(f"embedding model : {payload['model']}")
+    typer.echo(f"score threshold : {payload['score_threshold']}")
+    typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")
 
 
 @app.command()

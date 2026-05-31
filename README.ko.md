@@ -20,26 +20,33 @@ MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든
                                   get_skill(name) ─→ SKILL.md 본문
 ```
 
-- 임베딩: `all-MiniLM-L6-v2` 로컬 모델 (외부 API 호출 없음)
+- 임베딩: `paraphrase-multilingual-MiniLM-L12-v2` 로컬 모델 (외부 API 호출 없음).
+  다국어 — 한국어/영어 쿼리 둘 다 동작.
 - 벡터 DB: LanceDB
 - 인덱스: `search_skills` 호출 시 TTL 30s 캐시로 자동 sync
 
 ## 설치
 
-### 1) 코드 + 부트스트랩 스킬
+### 1) clone 후 원샷 셋업
 
 ```bash
 git clone <repo-url>
 cd skill_rag
-uv sync
 bash scripts/install.sh
 ```
 
-`install.sh`가 하는 일:
-1. `~/.skills/` 디렉토리 생성
-2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치
-3. 각 하네스(`~/.claude/skills/`, `~/.codex/skills/`)에 심볼릭 링크
-4. 아래 MCP 등록 가이드를 콘솔에 출력
+`install.sh`는 idempotent하며 다음 순서로 동작:
+
+1. `uv sync`
+2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치 후
+   `~/.claude/skills/`, `~/.codex/skills/`에 심볼릭 링크
+3. `skill-rag collect` — 하네스의 모든 스킬
+   (`~/.claude/skills`, `~/.claude/plugins/**/skills`, `~/.codex/skills`,
+   `~/.codex/plugins/**/skills`)을 `~/.skills/`에 심볼릭으로 모음.
+   이름 충돌 시 먼저 본 소스가 이김, 같은 플러그인의 여러 버전이 있으면
+   mtime이 최신인 버전이 이김. `~/.skills/<name>`에 이미 직접 둔 항목은 건드리지 않음.
+4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 LanceDB 인덱스 빌드
+5. 각 하네스용 MCP 등록 스니펫 출력
 
 ### 2) MCP 서버 등록
 
@@ -118,6 +125,8 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 
 | 명령 | 설명 |
 | --- | --- |
+| `uv run skill-rag status` | 코퍼스 경로/모델/인덱스 수/임계값 한눈에 |
+| `uv run skill-rag collect [--dry-run]` | 하네스 스킬을 `~/.skills/`로 심볼릭 수집 |
 | `uv run skill-rag sync` | 인덱스 수동 동기화 |
 | `uv run skill-rag query "<text>"` | 검색 결과 확인 |
 | `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
@@ -131,7 +140,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | --- | --- | --- |
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | corpus 경로 |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
-| `SKILL_RAG_MODEL` | `all-MiniLM-L6-v2` | 임베딩 모델 |
+| `SKILL_RAG_MODEL` | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩 모델 로드 |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.25` | 매칭 임계값 (eval 셋 기준 calibration) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
