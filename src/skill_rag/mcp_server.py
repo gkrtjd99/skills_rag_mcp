@@ -37,17 +37,21 @@ def _path_for_name(name: str) -> Path | None:
 
 
 @server.tool()
-def search_skills(query: str, k: int = 5) -> dict:
+def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     """Find skills relevant to ``query``. Call BEFORE responding to any user
     message. Returns metadata only — call ``get_skill`` to fetch the body of
     any skill that fits the task.
 
+    Pass ``agent`` as your own harness name (e.g. "claude-code", "codex") so
+    each hit can be attributed to its source. Each hit reports the ``agent``
+    that owns that skill.
+
     Response:
-      - {"status": "ok", "hits": [{"name", "description", "score"}, ...]}
+      - {"status": "ok", "hits": [{"name", "description", "score", "agent"}, ...]}
       - {"status": "no_match", "hits": [], "message": "..."}
     """
     sync_mod.sync_if_stale()
-    return retrieve.search(query, k=k)
+    return retrieve.search(query, k=k, agent=agent)
 
 
 @server.tool()

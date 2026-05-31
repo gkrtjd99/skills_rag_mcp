@@ -12,11 +12,30 @@ import math
 import re
 from collections import Counter
 
-_TOKEN = re.compile(r"\w+", re.UNICODE)
+_WORD = re.compile(r"\w+", re.UNICODE)
+# Precomposed Hangul syllables. Particles glue to stems here (vercel에, 코드리뷰),
+# so a whitespace tokenizer never recovers the stem. We split each \w run into
+# Hangul / non-Hangul segments and char-bigram the Hangul so partial overlap
+# ('코드리뷰' vs '코드 리뷰') still matches under BM25.
+_SEGMENT = re.compile(r"[가-힣]+|[^가-힣]+")
+_IS_HANGUL = re.compile(r"[가-힣]")
+
+
+def _bigrams(run: str) -> list[str]:
+    if len(run) <= 2:
+        return [run]
+    return [run[i : i + 2] for i in range(len(run) - 1)]
 
 
 def tokenize(text: str) -> list[str]:
-    return _TOKEN.findall(text.lower())
+    out: list[str] = []
+    for match in _WORD.finditer(text.lower()):
+        for seg in _SEGMENT.findall(match.group()):
+            if _IS_HANGUL.match(seg):
+                out.extend(_bigrams(seg))
+            else:
+                out.append(seg)
+    return out
 
 
 class BM25:

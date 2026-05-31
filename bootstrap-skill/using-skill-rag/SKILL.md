@@ -11,7 +11,10 @@ your context by default. You must search for them per turn.
 ## Required behavior
 
 **Parent agent**: BEFORE responding to any user message (including clarifying
-questions), call `mcp__skill-rag__search_skills(query=<user's message>, k=5)`.
+questions), call `mcp__skill-rag__search_skills(query=<user's message>, k=5,
+agent=<your harness name>)`. Pass your own harness as `agent` — e.g.
+`"claude-code"`, `"codex"`, `"antigravity"` — so each hit can be attributed to
+its source. Queries work in any language (Korean and English both).
 
 **Subagent**: When invoked, inspect the parent context you were given. If it
 describes a substantive task (coding, design, debugging, etc.), call

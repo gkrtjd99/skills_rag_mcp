@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .normalize import normalize_for_dense
+
 
 @dataclass(slots=True)
 class SkillRecord:
@@ -10,6 +12,7 @@ class SkillRecord:
     path: str
     body: str
     content_hash: str
+    agent: str = "unknown"  # source harness: claude-code, codex, local, ...
 
     def embed_text(self) -> str:
         # Stable string we embed AND index for lexical (BM25) search.
@@ -21,7 +24,7 @@ class SkillRecord:
         parts = [self.name, self.description]
         if self.body.strip():
             parts.append(self.body.strip())
-        return "\n".join(parts)
+        return normalize_for_dense("\n".join(parts))
 
 
 @dataclass(slots=True)

@@ -23,6 +23,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from . import corpus as corpus_mod
+from .agents import agent_for_path  # re-exported for the public/CLI surface
+
+__all__ = ["agent_for_path", "plan", "apply", "default_sources"]
 
 
 @dataclass

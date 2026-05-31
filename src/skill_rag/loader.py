@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from .agents import agent_for_path
 from .corpus import BOOTSTRAP_SKILL_NAME
 from .models import SkillRecord
 from .parser import parse_skill_file
@@ -26,5 +27,8 @@ def scan(root: Path) -> list[SkillRecord]:
             continue
         record = parse_skill_file(skill_md)
         if record is not None:
+            # Classify by the symlink target: a corpus entry is usually a
+            # symlink into a harness install, so resolve before classifying.
+            record.agent = agent_for_path(skill_md.resolve())
             records.append(record)
     return records

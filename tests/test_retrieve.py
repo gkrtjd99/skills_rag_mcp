@@ -108,3 +108,27 @@ def test_no_match_when_neither_signal_passes(monkeypatch):
     res = retrieve.search("zzz qwerty asdf nonexistent tokens", k=5)
     assert res["status"] == "no_match"
     assert res["hits"] == []
+
+
+def test_hits_include_agent_field(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
+    _seed()
+    res = retrieve.search("explore design ideas")
+    assert res["status"] == "ok"
+    assert "agent" in res["hits"][0]
+
+
+def test_query_is_normalized_before_encoding(monkeypatch):
+    # The glued Korean query must reach the encoder spaced at the boundary.
+    seen = {}
+
+    def fake_encode_one(text, name=None):
+        seen["text"] = text
+        import numpy as np
+        from skill_rag.embed import model_dim
+        return np.zeros(model_dim(), dtype="float32")
+
+    _seed()
+    monkeypatch.setattr(retrieve, "encode_one", fake_encode_one)
+    retrieve.search("vercel에 배포", k=5)
+    assert seen["text"] == "vercel 에 배포"

@@ -75,6 +75,14 @@ def test_upsert_stores_full_text_for_lexical_search():
     assert "trigger phrase here" in text
 
 
+def test_upsert_stores_agent():
+    rec = _record("foo")
+    rec.agent = "codex"
+    index_mod.upsert([rec])
+    rows = index_mod.list_indexed()
+    assert rows[0]["agent"] == "codex"
+
+
 def test_open_table_migrates_legacy_schema(tmp_path):
     import lancedb
     import pyarrow as pa

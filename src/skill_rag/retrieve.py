@@ -4,17 +4,24 @@ from .corpus import BM25_THRESHOLD, RRF_K, SCORE_THRESHOLD
 from .embed import DEFAULT_MODEL, encode_one
 from .index import list_indexed as _list_indexed
 from .index import search as _index_search
+from .normalize import normalize_for_dense
 from .sparse import BM25, tokenize
 
 _NO_MATCH = "No skill matched this query. Proceed without using a skill."
 
 
-def search(query: str, k: int = 5, model_name: str = DEFAULT_MODEL) -> dict:
+def search(
+    query: str, k: int = 5, model_name: str = DEFAULT_MODEL, agent: str | None = None
+) -> dict:
     """Hybrid search over the skill corpus: dense cosine + BM25, fused by RRF.
 
     A candidate is kept if its dense cosine clears ``SCORE_THRESHOLD`` OR its
     BM25 score (normalized by the top BM25 score) clears ``BM25_THRESHOLD``.
     Kept candidates are ordered by reciprocal rank fusion of the two rankings.
+
+    ``agent`` names the calling harness. It is currently informational (each
+    hit already reports its own source ``agent``); reserved for future
+    filtering of skills the caller already loads natively.
 
     status:
       - "ok": at least one candidate passes either threshold
@@ -29,11 +36,13 @@ def search(query: str, k: int = 5, model_name: str = DEFAULT_MODEL) -> dict:
         return {"status": "no_match", "hits": [], "message": _NO_MATCH}
 
     # --- dense: cosine over the whole corpus so every candidate has a score ---
-    vec = encode_one(query, name=model_name)
+    # Same Hangul/Latin spacing the indexed text got, so both sides encode alike.
+    vec = encode_one(normalize_for_dense(query), name=model_name)
     dense = _index_search(vec, k=len(rows))
     cosine = {h.name: h.score for h in dense}
     dense_rank = {h.name: i for i, h in enumerate(dense)}
     description = {h.name: h.description for h in dense}
+    agent_by_name = {r["name"]: r.get("agent", "unknown") for r in rows}
     for r in rows:  # fall back to indexed metadata for anything dense dropped
         description.setdefault(r["name"], r["description"])
 
@@ -76,6 +85,7 @@ def search(query: str, k: int = 5, model_name: str = DEFAULT_MODEL) -> dict:
             "name": n,
             "description": description.get(n, ""),
             "score": round(cosine.get(n, 0.0), 4),
+            "agent": agent_by_name.get(n, "unknown"),
         }
         for n in kept[:k]
     ]

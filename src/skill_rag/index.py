@@ -1,10 +1,11 @@
 """LanceDB-backed index for skill records.
 
-Schema version: 4
+Schema version: 5
 - v1: pk=name
 - v2: pk=path; added `source` column
 - v3: pk=path; removed `source`, `allowed_tools` (single-corpus design)
 - v4: added `text` column (name+description+body) for BM25 lexical search
+- v5: added `agent` column (source harness: claude-code, codex, local, ...)
 """
 
 from __future__ import annotations
@@ -33,6 +34,7 @@ def _schema(dim: int) -> pa.Schema:
             pa.field("description", pa.string()),
             pa.field("content_hash", pa.string()),
             pa.field("text", pa.string()),
+            pa.field("agent", pa.string()),
             pa.field("vector", pa.list_(pa.float32(), dim)),
         ]
     )
@@ -62,7 +64,7 @@ def list_indexed() -> list[dict]:
     tbl = open_table()
     if tbl.count_rows() == 0:
         return []
-    cols = ["path", "name", "description", "content_hash", "text"]
+    cols = ["path", "name", "description", "content_hash", "text", "agent"]
     return tbl.to_arrow().select(cols).to_pylist()
 
 
@@ -79,6 +81,7 @@ def upsert(records: list[SkillRecord], model_name: str = DEFAULT_MODEL) -> None:
             "description": r.description,
             "content_hash": r.content_hash,
             "text": text,
+            "agent": r.agent,
             "vector": vec.tolist(),
         }
         for r, text, vec in zip(records, texts, vectors)
