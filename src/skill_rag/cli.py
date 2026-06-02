@@ -183,7 +183,7 @@ def uninstall(
         return
     c = report["corpus"]
     typer.echo(f"mcp                 : {report['mcp']}")
-    typer.echo(f"harness links removed: {len(report['harness_links_removed'])}")
+    typer.echo(f"harness links rm    : {len(report['harness_links_removed'])}")
     typer.echo(f"index dropped       : {report['index_dropped']}")
     typer.echo(f"corpus symlinks     : {len(c['removed_links'])}")
     typer.echo(f"corpus dirs removed : {len(c['removed_dirs'])}")
