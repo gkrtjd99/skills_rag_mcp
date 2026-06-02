@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import tomlkit
@@ -71,3 +72,70 @@ def test_register_codex_rejects_malformed_toml(tmp_path):
     cfg.write_text("this is = = not valid toml [[[", encoding="utf-8")
     with pytest.raises(ValueError):
         mcp_config.register_codex(tmp_path / "repo", path=cfg)
+
+
+def test_register_claude_file_fallback(tmp_path):
+    cfg = tmp_path / ".claude.json"
+    repo = tmp_path / "repo"
+
+    # which() returns None -> no CLI -> file path
+    mode = mcp_config.register_claude(
+        repo, json_path=cfg, which=lambda _: None
+    )
+
+    assert mode == "file"
+    data = json.loads(cfg.read_text())
+    assert data["mcpServers"]["skill-rag"]["command"] == "uv"
+    assert data["mcpServers"]["skill-rag"]["args"] == [
+        "--directory", str(repo), "run", "skill-rag", "mcp",
+    ]
+
+
+def test_register_claude_file_preserves_other_servers(tmp_path):
+    cfg = tmp_path / ".claude.json"
+    cfg.write_text(json.dumps({"mcpServers": {"other": {"command": "x"}}, "foo": 1}))
+    repo = tmp_path / "repo"
+
+    mcp_config.register_claude(repo, json_path=cfg, which=lambda _: None)
+
+    data = json.loads(cfg.read_text())
+    assert data["mcpServers"]["other"] == {"command": "x"}
+    assert data["foo"] == 1
+    assert "skill-rag" in data["mcpServers"]
+
+
+def test_register_claude_uses_cli_when_available(tmp_path):
+    calls = []
+    repo = tmp_path / "repo"
+
+    mode = mcp_config.register_claude(
+        repo,
+        json_path=tmp_path / ".claude.json",
+        which=lambda name: "/usr/bin/claude",
+        run=lambda argv, **kw: calls.append(argv),
+    )
+
+    assert mode == "cli"
+    assert calls and calls[0][:4] == ["claude", "mcp", "add", "skill-rag"]
+    assert not (tmp_path / ".claude.json").exists()  # file not touched
+
+
+def test_unregister_claude_file(tmp_path):
+    cfg = tmp_path / ".claude.json"
+    cfg.write_text(json.dumps({"mcpServers": {"skill-rag": {"command": "uv"}}}))
+
+    mode = mcp_config.unregister_claude(json_path=cfg, which=lambda _: None)
+
+    assert mode == "file"
+    assert "skill-rag" not in json.loads(cfg.read_text()).get("mcpServers", {})
+
+
+def test_unregister_claude_cli(tmp_path):
+    calls = []
+    mode = mcp_config.unregister_claude(
+        json_path=tmp_path / ".claude.json",
+        which=lambda _: "/usr/bin/claude",
+        run=lambda argv, **kw: calls.append(argv),
+    )
+    assert mode == "cli"
+    assert calls[0][:4] == ["claude", "mcp", "remove", "skill-rag"]

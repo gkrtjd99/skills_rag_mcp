@@ -7,7 +7,10 @@ TOML config is edited directly via tomlkit (format-preserving).
 
 from __future__ import annotations
 
+import json
 import os
+import shutil
+import subprocess
 from pathlib import Path
 
 import tomlkit
@@ -36,6 +39,57 @@ def _backup(path: Path) -> None:
     # enough for a dev tool; do not "fix" this into versioned backups.
     if path.exists():
         _atomic_write(path.with_name(path.name + ".bak"), path.read_text(encoding="utf-8"))
+
+
+# ----- Claude (~/.claude.json) ------------------------------------------
+
+def claude_json_path() -> Path:
+    return Path.home() / ".claude.json"
+
+
+def _claude_cli_add(repo: Path, run) -> None:
+    run(
+        ["claude", "mcp", "add", MCP_NAME, "--scope", "user", "--", "uv", *launch_args(repo)],
+        check=True,
+    )
+
+
+def _claude_cli_remove(run) -> None:
+    run(["claude", "mcp", "remove", MCP_NAME, "--scope", "user"], check=False)
+
+
+def register_claude(repo: Path, json_path: Path | None = None, which=shutil.which, run=subprocess.run) -> str:
+    """Returns 'cli' | 'file' | 'noop'."""
+    if which("claude"):
+        _claude_cli_add(repo, run)
+        return "cli"
+    json_path = json_path or claude_json_path()
+    data = json.loads(json_path.read_text(encoding="utf-8")) if json_path.exists() else {}
+    servers = data.setdefault("mcpServers", {})
+    desired = {"command": "uv", "args": launch_args(repo)}
+    if servers.get(MCP_NAME) == desired:
+        return "noop"
+    servers[MCP_NAME] = desired
+    _backup(json_path)
+    _atomic_write(json_path, json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+    return "file"
+
+
+def unregister_claude(json_path: Path | None = None, which=shutil.which, run=subprocess.run) -> str:
+    """Returns 'cli' | 'file' | 'noop'."""
+    if which("claude"):
+        _claude_cli_remove(run)
+        return "cli"
+    json_path = json_path or claude_json_path()
+    if not json_path.exists():
+        return "noop"
+    data = json.loads(json_path.read_text(encoding="utf-8"))
+    if MCP_NAME not in data.get("mcpServers", {}):
+        return "noop"
+    del data["mcpServers"][MCP_NAME]
+    _backup(json_path)
+    _atomic_write(json_path, json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+    return "file"
 
 
 # ----- Codex (~/.codex/config.toml) -------------------------------------
