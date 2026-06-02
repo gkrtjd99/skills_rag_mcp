@@ -37,7 +37,8 @@ Read documents in the order below before writing code.
 
 ## Operating Rules
 
-- README is the only document allowed in Korean. Everything else stays in English.
+- `README.md` is Korean (canonical); `README.en.md` is the English translation.
+  READMEs are the only documents allowed in Korean — everything else stays in English.
 - Do not commit the corpus. Treat `~/.skills/` as a user-managed directory.
 - Do not add cloud embedding providers. Local-only is a hard constraint (see `core-beliefs.md`).
 - When adding a new dependency, update both `pyproject.toml` and `docs/references/<tool>-llms.txt`.

@@ -1,32 +1,31 @@
 # skill_rag
 
-**English** | [한국어](README.ko.md)
+**한국어** | [English](README.en.md)
 
-A local RAG that searches the skills collected under `~/.skills/` in natural
-language and loads only the relevant ones into the agent's context.
+`~/.skills/` 에 모아둔 스킬들을 자연어로 검색해서 필요한 것만 에이전트 컨텍스트에 올리는 로컬 RAG.
 
-At session start only a single meta-skill is auto-loaded; the remaining N
-skills are searched per user message via MCP, and only the matching bodies
-are fetched. This avoids burning context by reading every skill up front.
+세션 시작 시 메타-스킬 1개만 자동 로드되고, 나머지 N개는 매 사용자 메시지마다
+MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든 스킬을 읽느라 컨텍스트
+소모하지 않음.
 
-## How it works
+## 핵심 동작
 
 ```
-user message
+사용자 메시지
    │
    ▼
-agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
+에이전트 → search_skills(query)  ─→ top-k 메타 (name, desc, score)
                                        │
-                                       ▼ only the relevant ones
-                                  get_skill(name) ─→ SKILL.md body
+                                       ▼ 적합한 것만
+                                  get_skill(name) ─→ SKILL.md 본문
 ```
 
-- Embeddings: `BAAI/bge-m3` running locally (no external API calls). Strong
-  cross-lingual retrieval — Korean queries match English skill descriptions.
-- Vector DB: LanceDB
-- Index: auto-synced with a 30s TTL cache on each `search_skills` call
+- 임베딩: `BAAI/bge-m3` 로컬 모델 (외부 API 호출 없음). 강력한 교차언어 검색 —
+  한국어 쿼리가 영어 스킬 설명과도 매칭됨.
+- 벡터 DB: LanceDB
+- 인덱스: `search_skills` 호출 시 TTL 30s 캐시로 자동 sync
 
-## Install
+## 설치
 
 ```bash
 git clone <repo-url>
@@ -34,107 +33,107 @@ cd skill_rag
 make install
 ```
 
-`make install` is idempotent and does, in order:
+`make install`은 idempotent하며 다음 순서로 동작:
 
 1. `uv sync`
-2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/` and
-   symlinks it into `~/.claude/skills/` and `~/.codex/skills/`
-3. `skill-rag collect` — symlinks discovered harness skills into `~/.skills/`
-4. `skill-rag sync` — downloads the embedding model on first run, builds the index
-5. Registers the MCP server (Claude Code via `claude mcp add`; Codex via
+2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치 후
+   `~/.claude/skills/`, `~/.codex/skills/`에 심볼릭 링크
+3. `skill-rag collect` — 발견된 하네스 스킬을 `~/.skills/`에 심볼릭으로 모음
+4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 인덱스 빌드
+5. MCP 서버 등록 (Claude Code는 `claude mcp add`; Codex는
    `~/.codex/config.toml`)
 
-Restart the harness afterward.
+이후 하네스를 재시작.
 
-### Sanity check
+### 동작 확인
 
-After restarting the harness, in a fresh session:
+하네스를 재시작한 뒤 새 세션에서:
 
-- Confirm the `using-skill-rag` meta-skill auto-loads at start
-- Confirm the `mcp__skill-rag__search_skills` tool is visible in any message
-- Try it directly: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
+- 시작 시 `using-skill-rag` 메타-스킬이 자동 로드되는지 확인
+- 아무 메시지에서나 `mcp__skill-rag__search_skills` 도구가 보이는지 확인
+- 직접 호출해 보기: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
 
-You can also verify the same search from the CLI:
+CLI에서도 같은 검색이 동작하는지 빠르게 확인:
 
 ```bash
 uv run skill-rag query "deploy to vercel"
 ```
 
-### Other MCP-compatible clients (Cursor, Windsurf, etc.)
+### 기타 MCP 호환 클라이언트 (Cursor, Windsurf 등)
 
-`make install` auto-registers Claude Code and Codex only. For other clients,
-register the MCP server manually using:
+`make install`은 Claude Code와 Codex만 자동 등록. 다른 클라이언트는
+아래 커맨드로 수동 등록:
 
 ```
 uv --directory <repo> run skill-rag mcp
 ```
 
-## Uninstall
+## 제거
 
 ```bash
-make uninstall   # removes skill-rag's footprint; keeps hand-placed skills
-make purge       # also empties ~/.skills entirely
+make uninstall   # skill-rag 설치 내용 제거; 직접 둔 스킬은 보존
+make purge       # ~/.skills 전체도 비움
 ```
 
-`uninstall` reverses install: unregisters the MCP server, removes the harness
-bootstrap symlinks and the index, and removes collected symlinks + the bootstrap
-skill. Hand-placed real skill directories under `~/.skills` are preserved unless
-you use `purge`.
+`uninstall`은 install을 역순으로 실행: MCP 서버 등록 해제, 하네스 부트스트랩
+심볼릭 링크 및 인덱스 제거, 수집된 심볼릭 링크 및 부트스트랩 스킬 제거.
+`~/.skills` 아래 직접 둔 실제 스킬 디렉터리는 `purge`를 쓰지 않는 한 보존됨.
 
-## Adding a skill
+## 스킬 추가
 
-Write a file at `~/.skills/<name>/SKILL.md`:
+`~/.skills/<name>/SKILL.md` 형식으로 파일 작성:
 
 ```markdown
 ---
 name: my-skill
-description: One-line description. Search accuracy depends on this.
+description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 ---
 
-# Body
-Detailed usage of the skill.
+# 본문
+스킬 사용법을 자세히 적음.
 ```
 
-It is auto-indexed within 30s on the next `search_skills` call.
+다음 `search_skills` 호출 시 30초 이내에 자동 인덱싱됨.
 
 ## CLI
 
-| Command | Description |
+| 명령 | 설명 |
 | --- | --- |
-| `uv run skill-rag status` | Show corpus path, model, index size, threshold |
-| `uv run skill-rag collect [--dry-run]` | Symlink harness skills into `~/.skills/` |
-| `uv run skill-rag sync` | Manually sync the index |
-| `uv run skill-rag query "<text>"` | Inspect search results |
-| `uv run skill-rag list-skills` | List indexed skills |
-| `uv run skill-rag eval` | Measure recall@5 against the public fixture eval |
-| `uv run skill-rag reset` | Reset the index |
-| `uv run skill-rag mcp` | Run the MCP server |
-| `uv run skill-rag install` | Install bootstrap + collect/index + register MCP (use `make install`) |
-| `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | Reverse install; `--purge` empties `~/.skills` |
+| `uv run skill-rag status` | 코퍼스 경로/모델/인덱스 수/임계값 한눈에 |
+| `uv run skill-rag collect [--dry-run]` | 하네스 스킬을 `~/.skills/`로 심볼릭 수집 |
+| `uv run skill-rag sync` | 인덱스 수동 동기화 |
+| `uv run skill-rag query "<text>"` | 검색 결과 확인 |
+| `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
+| `uv run skill-rag eval` | 공개 fixture 평가셋으로 recall@5 측정 |
+| `uv run skill-rag reset` | 인덱스 초기화 |
+| `uv run skill-rag mcp` | MCP 서버 실행 |
+| `uv run skill-rag install` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장) |
+| `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | install 역순; `--purge`는 `~/.skills` 통째 비움 |
 
-## Environment variables
+## 환경 변수
 
-| Variable | Default | Description |
+| 변수 | 기본 | 설명 |
 | --- | --- | --- |
-| `SKILL_RAG_CORPUS_PATH` | `~/.skills` | Corpus path |
-| `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
-| `SKILL_RAG_MODEL` | `BAAI/bge-m3` | Embedding model |
-| `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load the embedding model from local cache only |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (calibrated for bge-m3) |
-| `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
+| `SKILL_RAG_CORPUS_PATH` | `~/.skills` | corpus 경로 |
+| `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
+| `SKILL_RAG_MODEL` | `BAAI/bge-m3` | 임베딩 모델 |
+| `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩 모델 로드 |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (bge-m3 기준 calibration) |
+| `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
 
-`skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`
-so GitHub users get the same benchmark. To inspect your personal corpus, pass
-both paths explicitly:
+`skill-rag eval`은 기본적으로 `eval/fixtures/` 아래의 공개 fixture를 사용하므로
+GitHub에서 받은 사용자도 같은 기준으로 검증할 수 있음. 개인 코퍼스를 점검하려면
+경로를 명시:
 
 ```bash
 uv run skill-rag eval --corpus ~/.skills --dataset eval/queries.jsonl
 ```
 
-## Docs
+## 문서
 
-- `AGENTS.md` — reading order before an agent's first task
-- `ARCHITECTURE.md` — module structure
-- `docs/product-specs/skill-rag.md` — what and why
-- `docs/design-docs/` — design decision log
-- `docs/superpowers/specs/` — per-feature design specs
+- `AGENTS.md` — 에이전트가 첫 작업 전 읽을 순서
+- `ARCHITECTURE.md` — 모듈 구조
+- `docs/product-specs/skill-rag.md` — 무엇을, 왜
+- `docs/design-docs/` — 설계 결정 로그
+- `docs/superpowers/specs/` — 기능별 설계 스펙
+```
