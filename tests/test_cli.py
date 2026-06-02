@@ -5,6 +5,7 @@ from typer.testing import CliRunner
 from skill_rag import index as index_mod
 from skill_rag import sync as sync_mod
 from skill_rag.cli import app
+from skill_rag import lifecycle as lifecycle_mod
 
 
 @pytest.fixture(autouse=True)
@@ -81,6 +82,40 @@ def test_reset_command(tmp_path):
     result = runner.invoke(app, ["reset"])
     assert result.exit_code == 0
     assert index_mod.list_indexed() == []
+
+
+def test_uninstall_command_dry_run(tmp_path, monkeypatch):
+    runner = CliRunner()
+    captured = {}
+    def fake(**kwargs):
+        captured.update(kwargs)
+        return {"mcp": {}, "harness_links_removed": [], "index_dropped": False,
+                "corpus": {"removed_links": [], "removed_dirs": [], "kept": []},
+                "dry_run": True, "purge": False}
+    monkeypatch.setattr(lifecycle_mod, "uninstall", fake)
+    result = runner.invoke(app, ["uninstall", "--dry-run"])
+    assert result.exit_code == 0
+    assert captured["dry_run"] is True
+
+
+def test_uninstall_command_confirm_decline_aborts(tmp_path, monkeypatch):
+    runner = CliRunner()
+    monkeypatch.setattr(lifecycle_mod, "uninstall", lambda **k: pytest.fail("should not run"))
+    result = runner.invoke(app, ["uninstall"], input="n\n")
+    assert result.exit_code == 1
+
+
+def test_install_command_invokes_lifecycle(tmp_path, monkeypatch):
+    runner = CliRunner()
+    called = {}
+    monkeypatch.setattr(
+        lifecycle_mod, "install",
+        lambda **k: called.setdefault("ran", True) and {"bootstrap_installed": True,
+            "harness_links": [], "collect_ran": True, "sync_ran": True, "mcp": {}, "dry_run": False},
+    )
+    result = runner.invoke(app, ["install"])
+    assert result.exit_code == 0
+    assert called["ran"] is True
 
 
 def test_eval_command_uses_explicit_corpus_and_dataset(tmp_path):
