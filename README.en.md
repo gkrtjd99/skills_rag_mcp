@@ -121,6 +121,7 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `SKILL_RAG_MODEL` | `BAAI/bge-m3` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load the embedding model from local cache only |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (calibrated for bge-m3) |
+| `SKILL_RAG_TRANSLATE` | `1` | Auto-translate each description ko↔en at index time (`0` disables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
 `skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`

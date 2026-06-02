@@ -119,6 +119,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `SKILL_RAG_MODEL` | `BAAI/bge-m3` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩 모델 로드 |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (bge-m3 기준 calibration) |
+| `SKILL_RAG_TRANSLATE` | `1` | 인덱스 시 description 한↔영 자동 번역 (`0`이면 끔) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
 
 `skill-rag eval`은 기본적으로 `eval/fixtures/` 아래의 공개 fixture를 사용하므로

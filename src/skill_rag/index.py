@@ -6,6 +6,8 @@ Schema version: 5
 - v3: pk=path; removed `source`, `allowed_tools` (single-corpus design)
 - v4: added `text` column (name+description+body) for BM25 lexical search
 - v5: added `agent` column (source harness: claude-code, codex, local, ...)
+  (the `text`/vector content also includes a ko↔en translation of the
+   description via translate.py; changing embed_text requires `reset && sync`)
 """
 
 from __future__ import annotations
