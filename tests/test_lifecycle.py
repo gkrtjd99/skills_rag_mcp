@@ -92,3 +92,30 @@ def test_uninstall_leaves_real_dir_harness_link_untouched(tmp_path):
 
     assert real.exists()                        # real dir not removed
     assert report["harness_links_removed"] == []
+
+
+class _FakeCollect:
+    def apply(self, **kwargs):
+        return None
+
+
+class _FakeSync:
+    def run_sync(self):
+        return {"added": [], "updated": [], "removed": [], "unchanged": 0}
+
+
+def test_install_copies_bootstrap_and_links_harness(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    harness = tmp_path / "claude" / "skills"
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    report = lifecycle.install(
+        repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[harness]
+    )
+
+    assert (corpus / "using-skill-rag" / "SKILL.md").exists()  # bootstrap copied
+    assert (harness / "using-skill-rag").is_symlink()          # harness link
+    assert report["bootstrap_installed"] is True
+    assert report["collect_ran"] is True
+    assert report["sync_ran"] is True

@@ -5,10 +5,11 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
+from . import collect
 from . import corpus as corpus_mod
 from . import index as index_mod
 from . import mcp_config
-from . import sync as sync_mod
+from . import sync
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 BOOTSTRAP_SRC = PROJECT_ROOT / "bootstrap-skill" / corpus_mod.BOOTSTRAP_SKILL_NAME  # used by install()
@@ -71,7 +72,7 @@ def uninstall(
 
     if not dry_run:
         index_mod.reset()
-        sync_mod.reset_cache()
+        sync.reset_cache()
 
     corpus_report = _clean_corpus(corpus_path, purge=purge, dry_run=dry_run)
     return {
@@ -81,4 +82,69 @@ def uninstall(
         "corpus": corpus_report,
         "dry_run": dry_run,
         "purge": purge,
+    }
+
+
+def _copy_bootstrap(corpus_path: Path, dry_run: bool) -> bool:
+    dest = corpus_path / corpus_mod.BOOTSTRAP_SKILL_NAME
+    if dest.exists():
+        return False
+    if not dry_run:
+        corpus_path.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(BOOTSTRAP_SRC, dest)
+    return True
+
+
+def _link_bootstrap(harness_skill_dirs: list[Path], corpus_path: Path, dry_run: bool) -> list[str]:
+    target = corpus_path / corpus_mod.BOOTSTRAP_SKILL_NAME
+    linked: list[str] = []
+    for d in harness_skill_dirs:
+        link = d / corpus_mod.BOOTSTRAP_SKILL_NAME
+        if link.is_symlink() and link.resolve() == target.resolve():
+            continue
+        if not dry_run:
+            d.mkdir(parents=True, exist_ok=True)
+            if link.is_symlink() or link.exists():
+                if link.is_dir() and not link.is_symlink():
+                    shutil.rmtree(link)
+                else:
+                    link.unlink()
+            link.symlink_to(target, target_is_directory=True)
+        linked.append(str(link))
+    return linked
+
+
+def install(
+    *,
+    repo: Path | None = None,
+    corpus_path: Path | None = None,
+    harness_skill_dirs: list[Path] | None = None,
+    dry_run: bool = False,
+) -> dict:
+    repo = (repo or PROJECT_ROOT).expanduser()
+    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    harness_skill_dirs = (
+        harness_skill_dirs if harness_skill_dirs is not None else default_harness_skill_dirs()
+    )
+
+    bootstrap_installed = _copy_bootstrap(corpus_path, dry_run)
+    links = _link_bootstrap(harness_skill_dirs, corpus_path, dry_run)
+
+    collect_ran = sync_ran = False
+    mcp = {}
+    if not dry_run:
+        collect.apply(target=corpus_path)
+        collect_ran = True
+        sync.run_sync()
+        sync_ran = True
+        mcp["claude"] = mcp_config.register_claude(repo)
+        mcp["codex"] = mcp_config.register_codex(repo)
+
+    return {
+        "bootstrap_installed": bootstrap_installed,
+        "harness_links": links,
+        "collect_ran": collect_ran,
+        "sync_ran": sync_ran,
+        "mcp": mcp,
+        "dry_run": dry_run,
     }
