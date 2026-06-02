@@ -78,7 +78,7 @@ prevent runaway calls:
 ## Bootstrap Skill
 
 `~/.skills/using-skill-rag/SKILL.md` is the single source of truth, symlinked
-into every supported harness's auto-load directory by `scripts/install.sh`.
+into every supported harness's auto-load directory by the `skill-rag install` command.
 `loader.scan` skips it so it never surfaces in search results.
 
 ## Constraints

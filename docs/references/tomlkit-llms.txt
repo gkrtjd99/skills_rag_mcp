@@ -1,0 +1,22 @@
+# tomlkit quick reference
+
+Format-preserving TOML for Python. Used by skill_rag to add/remove the
+[mcp_servers.skill-rag] block in ~/.codex/config.toml without disturbing
+the user's other entries, comments, or formatting.
+
+import tomlkit
+
+doc = tomlkit.parse(text)          # parse existing file (preserves layout)
+doc = tomlkit.document()           # new empty document
+
+# Nested header [mcp_servers.skill-rag] without an empty [mcp_servers] line:
+servers = tomlkit.table(is_super_table=True)
+doc["mcp_servers"] = servers
+entry = tomlkit.table()
+entry["command"] = "uv"
+entry["args"] = ["--directory", "/repo", "run", "skill-rag", "mcp"]
+servers["skill-rag"] = entry
+
+del doc["mcp_servers"]["skill-rag"]  # remove a block
+text = tomlkit.dumps(doc)            # serialize back to a string
+"skill-rag" in doc.get("mcp_servers", {})  # membership test

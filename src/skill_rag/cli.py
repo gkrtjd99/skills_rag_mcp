@@ -10,6 +10,7 @@ import typer
 from . import collect as collect_mod
 from . import corpus as corpus_mod
 from . import index as index_mod
+from . import lifecycle
 from . import retrieve
 from . import sync as sync_mod
 from .embed import DEFAULT_MODEL
@@ -138,6 +139,57 @@ def reset():
     index_mod.reset()
     sync_mod.reset_cache()
     typer.echo("index dropped.")
+
+
+@app.command()
+def install(
+    dry_run: bool = typer.Option(False, "--dry-run", help="Show actions without writing."),
+    json_out: bool = typer.Option(False, "--json"),
+):
+    """Install the bootstrap skill, collect+index skills, register the MCP server."""
+    report = lifecycle.install(dry_run=dry_run)
+    if json_out:
+        typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
+        return
+    typer.echo(f"bootstrap installed : {report['bootstrap_installed']}")
+    typer.echo(f"harness links       : {len(report['harness_links'])}")
+    typer.echo(f"collect ran         : {report['collect_ran']}")
+    typer.echo(f"sync ran            : {report['sync_ran']}")
+    typer.echo(f"mcp                 : {report['mcp']}")
+    if dry_run:
+        typer.echo("\n(dry-run — nothing written)")
+
+
+@app.command()
+def uninstall(
+    purge: bool = typer.Option(False, "--purge", help="Also delete the entire ~/.skills corpus."),
+    yes: bool = typer.Option(False, "--yes", "-y", help="Skip the confirmation prompt."),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Show actions without writing."),
+    json_out: bool = typer.Option(False, "--json"),
+):
+    """Reverse `install`: unregister MCP, remove harness links + bootstrap + index.
+
+    Default keeps hand-placed real skill dirs; `--purge` empties ~/.skills.
+    """
+    if not dry_run and not yes:
+        scope = "the ENTIRE ~/.skills corpus" if purge else "skill-rag's footprint"
+        typer.echo(f"About to remove {scope}, the index, harness links, and MCP registration.")
+        if not typer.confirm("Continue?"):
+            typer.echo("aborted.")
+            raise typer.Exit(1)
+    report = lifecycle.uninstall(purge=purge, dry_run=dry_run)
+    if json_out:
+        typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
+        return
+    c = report["corpus"]
+    typer.echo(f"mcp                 : {report['mcp']}")
+    typer.echo(f"harness links rm    : {len(report['harness_links_removed'])}")
+    typer.echo(f"index dropped       : {report['index_dropped']}")
+    typer.echo(f"corpus symlinks     : {len(c['removed_links'])}")
+    typer.echo(f"corpus dirs removed : {len(c['removed_dirs'])}")
+    typer.echo(f"corpus kept         : {len(c['kept'])}")
+    if dry_run:
+        typer.echo("\n(dry-run — nothing written)")
 
 
 @app.command()
