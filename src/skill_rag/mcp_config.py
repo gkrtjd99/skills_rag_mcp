@@ -48,6 +48,7 @@ def claude_json_path() -> Path:
 
 
 def _claude_cli_add(repo: Path, run) -> None:
+    # Not idempotent at the CLI level; `claude mcp add` may error if already registered.
     run(
         ["claude", "mcp", "add", MCP_NAME, "--scope", "user", "--", "uv", *launch_args(repo)],
         check=True,
@@ -64,7 +65,13 @@ def register_claude(repo: Path, json_path: Path | None = None, which=shutil.whic
         _claude_cli_add(repo, run)
         return "cli"
     json_path = json_path or claude_json_path()
-    data = json.loads(json_path.read_text(encoding="utf-8")) if json_path.exists() else {}
+    if json_path.exists():
+        try:
+            data = json.loads(json_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Cannot parse {json_path}: {exc}") from exc
+    else:
+        data = {}
     servers = data.setdefault("mcpServers", {})
     desired = {"command": "uv", "args": launch_args(repo)}
     if servers.get(MCP_NAME) == desired:
@@ -83,7 +90,10 @@ def unregister_claude(json_path: Path | None = None, which=shutil.which, run=sub
     json_path = json_path or claude_json_path()
     if not json_path.exists():
         return "noop"
-    data = json.loads(json_path.read_text(encoding="utf-8"))
+    try:
+        data = json.loads(json_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Cannot parse {json_path}: {exc}") from exc
     if MCP_NAME not in data.get("mcpServers", {}):
         return "noop"
     del data["mcpServers"][MCP_NAME]

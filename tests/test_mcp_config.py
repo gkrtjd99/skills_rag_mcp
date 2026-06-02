@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import pytest
 import tomlkit
 
 from skill_rag import mcp_config
@@ -67,7 +68,6 @@ def test_register_codex_updates_stale_repo(tmp_path):
 
 
 def test_register_codex_rejects_malformed_toml(tmp_path):
-    import pytest
     cfg = tmp_path / "config.toml"
     cfg.write_text("this is = = not valid toml [[[", encoding="utf-8")
     with pytest.raises(ValueError):
@@ -139,3 +139,17 @@ def test_unregister_claude_cli(tmp_path):
     )
     assert mode == "cli"
     assert calls[0][:4] == ["claude", "mcp", "remove", "skill-rag"]
+
+
+def test_register_claude_file_is_idempotent(tmp_path):
+    cfg = tmp_path / ".claude.json"
+    repo = tmp_path / "repo"
+    assert mcp_config.register_claude(repo, json_path=cfg, which=lambda _: None) == "file"
+    assert mcp_config.register_claude(repo, json_path=cfg, which=lambda _: None) == "noop"
+
+
+def test_register_claude_rejects_malformed_json(tmp_path):
+    cfg = tmp_path / ".claude.json"
+    cfg.write_text("{not valid json", encoding="utf-8")
+    with pytest.raises(ValueError, match="Cannot parse"):
+        mcp_config.register_claude(tmp_path / "repo", json_path=cfg, which=lambda _: None)
