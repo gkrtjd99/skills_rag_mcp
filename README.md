@@ -39,11 +39,14 @@ make install
 2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치 후
    `~/.claude/skills/`, `~/.codex/skills/`에 심볼릭 링크
 3. `skill-rag collect` — 발견된 하네스 스킬을 `~/.skills/`에 심볼릭으로 모음
-4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 인덱스 빌드
+4. `skill-rag sync` — 첫 실행 시 임베딩·번역 모델 다운로드 후 인덱스 빌드
 5. MCP 서버 등록 (Claude Code는 `claude mcp add`; Codex는
    `~/.codex/config.toml`)
 
 이후 하네스를 재시작.
+
+> 한↔영 번역 도입 이전 버전에서 올린 경우, `uv run skill-rag reset && uv run skill-rag sync`를
+> 한 번 실행해 번역 포함 인덱스로 재빌드하세요 (스키마는 그대로라 자동 재빌드되지 않음).
 
 ### 동작 확인
 

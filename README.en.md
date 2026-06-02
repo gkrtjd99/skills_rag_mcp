@@ -40,11 +40,15 @@ make install
 2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/` and
    symlinks it into `~/.claude/skills/` and `~/.codex/skills/`
 3. `skill-rag collect` — symlinks discovered harness skills into `~/.skills/`
-4. `skill-rag sync` — downloads the embedding model on first run, builds the index
+4. `skill-rag sync` — downloads the embedding and translation models on first run, builds the index
 5. Registers the MCP server (Claude Code via `claude mcp add`; Codex via
    `~/.codex/config.toml`)
 
 Restart the harness afterward.
+
+> Upgrading from a version before ko↔en translation? Run
+> `uv run skill-rag reset && uv run skill-rag sync` once to rebuild the index
+> with translations (the schema is unchanged, so it won't auto-rebuild).
 
 ### Sanity check
 
