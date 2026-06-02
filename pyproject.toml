@@ -1,7 +1,7 @@
 [project]
 name = "skill-rag"
 version = "0.1.0"
-description = "Local RAG over Claude/Codex skill frontmatter, exposed via CLI and MCP."
+description = "Local RAG over ~/.skills, exposed via CLI and MCP."
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [{ name = "skill-rag contributors" }]

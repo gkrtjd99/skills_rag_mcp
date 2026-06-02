@@ -1,9 +1,14 @@
 # Design Decision Log
 
-| Date | Decision | Doc |
+| Date | Decision | Current doc |
 | --- | --- | --- |
-| 2026-05-28 | Centralize corpus at `~/.skills/`, drop multi-source | `../superpowers/specs/2026-05-28-centralized-skills-rag-design.md` |
-| 2026-05-28 | LanceDB schema v3: drop `source` column | `../../src/skill_rag/index.py` (schema comment) |
-| 2026-05-28 | `search_skills` + `get_skill` with explicit terminal statuses | `mcp-interface.md` |
-| 2026-05-28 | Bootstrap skill via symlink from `~/.skills/` | `meta-skill-bootstrap.md` |
-| 2026-05-28 | Local-only, single-user, single-corpus, YAGNI | `core-beliefs.md` |
+| 2026-05-28 | Centralize corpus at `~/.skills/` and expose lazy MCP skill loading. | `../../ARCHITECTURE.md`, `mcp-interface.md` |
+| 2026-05-29 | Add portable fixture eval as the repository benchmark. | `../product-specs/skill-rag.md`, `../../eval/fixtures/` |
+| 2026-05-31 | Add hybrid dense+BM25 retrieval, Korean normalization, and source-agent attribution. | `../../ARCHITECTURE.md`, `mcp-interface.md`, `../../src/skill_rag/index.py` |
+| 2026-06-02 | Replace one-way install script with symmetric Makefile/CLI lifecycle. | `meta-skill-bootstrap.md`, `../../src/skill_rag/lifecycle.py` |
+| 2026-06-02 | Add local ko<->en description translation at index time. | `../../ARCHITECTURE.md`, `../../src/skill_rag/translate.py` |
+| 2026-06-02 | Consolidate completed superpowers specs/plans into current-state docs and history. | `implementation-history.md` |
+
+Detailed dated implementation plans are intentionally not kept as active docs.
+Active future work belongs under `docs/superpowers/specs/` and
+`docs/superpowers/plans/`.

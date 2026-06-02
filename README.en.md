@@ -123,8 +123,11 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | Corpus path |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
 | `SKILL_RAG_MODEL` | `BAAI/bge-m3` | Embedding model |
-| `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load the embedding model from local cache only |
+| `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load embedding and translation models from local cache only |
+| `SKILL_RAG_MAX_SEQ_LENGTH` | `512` | Embedding input token cap |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (calibrated for bge-m3) |
+| `SKILL_RAG_BM25_THRESHOLD` | `0.30` | Normalized BM25 threshold |
+| `SKILL_RAG_RRF_K` | `60` | Dense/BM25 reciprocal-rank-fusion constant |
 | `SKILL_RAG_TRANSLATE` | `1` | Auto-translate each description ko↔en at index time (`0` disables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
@@ -142,4 +145,5 @@ uv run skill-rag eval --corpus ~/.skills --dataset eval/queries.jsonl
 - `ARCHITECTURE.md` — module structure
 - `docs/product-specs/skill-rag.md` — what and why
 - `docs/design-docs/` — design decision log
-- `docs/superpowers/specs/` — per-feature design specs
+- `docs/design-docs/implementation-history.md` — completed historical specs/plans
+- `docs/superpowers/` — active feature specs/plans, when present

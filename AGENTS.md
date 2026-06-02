@@ -11,15 +11,17 @@ Read documents in the order below before writing code.
 4. `docs/design-docs/mcp-interface.md` — `search_skills` / `get_skill` contract.
 5. `docs/design-docs/meta-skill-bootstrap.md` — how the bootstrap skill is installed and behaves.
 6. `docs/design-docs/index.md` — design decision log.
-7. `docs/superpowers/specs/` and `docs/superpowers/plans/` — active feature work.
-8. `docs/references/*-llms.txt` — quick reference for uv, lancedb, sentence-transformers, mcp.
+7. `docs/design-docs/implementation-history.md` — completed specs/plans, summarized.
+8. `docs/superpowers/specs/` and `docs/superpowers/plans/` — active feature work, if any.
+9. `docs/references/*-llms.txt` — quick references for uv, lancedb, sentence-transformers, mcp, tomlkit, opus-mt.
 
 ## Repository Map
 
-- `src/skill_rag/` — Python package (cli, models, parser, loader, embed, index, retrieve, sync, mcp_server, evaluator, corpus).
+- `src/skill_rag/` — Python package (agents, corpus, models, parser, loader, normalize, offline, embed, translate, sparse, index, retrieve, sync, mcp_server, collect, mcp_config, lifecycle, cli, evaluator).
 - `bootstrap-skill/using-skill-rag/SKILL.md` — meta-skill installed into each harness via symlink.
 - `Makefile` / `skill-rag install` — set up `~/.skills/`, symlinks, and MCP registration (`skill-rag uninstall` reverses it).
-- `eval/queries.jsonl` — evaluation queries with gold-standard skill names.
+- `eval/fixtures/` — public benchmark corpus and queries.
+- `eval/queries.jsonl` — personal-corpus evaluation queries with gold-standard skill names.
 - `tests/` — unit + integration tests.
 - `var/` — local-only LanceDB index (gitignored).
 - External corpus: `~/.skills/` (read-write by the user; not committed).

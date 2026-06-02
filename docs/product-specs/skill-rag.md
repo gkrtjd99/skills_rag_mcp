@@ -1,35 +1,50 @@
-# skill-rag — Product Spec
+# skill-rag - Product Spec
 
 ## What
+
 A local RAG over a user's skill corpus at `~/.skills/`, exposed to AI agents
-via an MCP server. Agents call `search_skills` to find relevant skills and
-`get_skill` to fetch the body of just the ones that apply.
+through an MCP server. Agents call `search_skills` to find relevant skills and
+`get_skill` to fetch the body of only the skills that apply.
 
 ## Why
-Today, every agent session loads its whole skill set into context up front.
-Each harness duplicates skills under its own directory. Both waste tokens
-and force agents to scan content they will never use this turn.
+
+Agent harnesses tend to load many skills up front and often duplicate the same
+skills under separate per-harness directories. That wastes context and creates
+drift. skill-rag keeps one user-global corpus and makes skill loading lazy.
 
 ## Users
-A single developer running multiple agent harnesses (Claude Code, Codex, …)
-on the same machine, all sharing one skill library.
+
+A single developer running multiple local agent harnesses (Claude Code, Codex,
+Antigravity, etc.) on the same machine.
 
 ## Guarantees
-- Only one bootstrap skill is loaded by default. Everything else is
-  fetched on demand.
-- Adding a SKILL.md to `~/.skills/` is searchable within 30 s with no
-  manual command.
-- `search_skills`/`get_skill` never return a shape that can make a
-  conforming agent loop (three explicit terminal statuses).
-- Local-only. No cloud calls at index or query time.
+
+- Only the bootstrap skill is loaded by default. Other skill bodies are fetched
+  on demand.
+- A direct `~/.skills/<name>/SKILL.md` file is reflected by the next
+  `search_skills` call after the 30 s sync TTL expires.
+- `search_skills` and `get_skill` return explicit terminal statuses that a
+  conforming bootstrap skill cannot loop on.
+- Retrieval supports English and Korean queries through local bge-m3 dense
+  embeddings, Korean-aware BM25, and optional index-time ko<->en description
+  translation.
+- No cloud API calls happen during indexing or querying.
+- `make install` and `skill-rag uninstall` provide a symmetric setup/teardown
+  path for bootstrap links, collected symlinks, the local index, and MCP
+  registration.
 
 ## Out of Scope
+
 - Multi-user or shared corpora.
-- Re-ranking, BM25, or LLM-based relevance.
+- Cloud embedding, translation, reranking, or LLM-based relevance scoring.
 - Real-time filesystem watchers.
-- Backwards compat with `~/.claude/skills` + `~/.codex/skills` layout.
+- Languages beyond Korean and English translation support.
+- Native-skill exclusion by caller harness. `agent` is currently attribution
+  metadata only.
+- Preserving backwards compatibility with pre-`~/.skills` corpus layouts.
 
 ## Success Metrics
-- `recall@5 ≥ 0.8` on the public fixture eval shipped in this repository.
-- `p95 < 1 s` search latency on a ~50-skill corpus.
+
+- `recall@5 >= 0.8` on the public fixture eval shipped in this repository.
+- `p95 < 1 s` search latency on a roughly 50-skill corpus.
 - No cloud API calls in indexing or query paths.

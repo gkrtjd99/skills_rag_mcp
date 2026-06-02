@@ -120,8 +120,11 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | corpus 경로 |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
 | `SKILL_RAG_MODEL` | `BAAI/bge-m3` | 임베딩 모델 |
-| `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩 모델 로드 |
+| `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩·번역 모델 로드 |
+| `SKILL_RAG_MAX_SEQ_LENGTH` | `512` | 임베딩 입력 토큰 상한 |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (bge-m3 기준 calibration) |
+| `SKILL_RAG_BM25_THRESHOLD` | `0.30` | BM25 normalized score 임계값 |
+| `SKILL_RAG_RRF_K` | `60` | dense/BM25 reciprocal-rank-fusion 상수 |
 | `SKILL_RAG_TRANSLATE` | `1` | 인덱스 시 description 한↔영 자동 번역 (`0`이면 끔) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
 
@@ -139,5 +142,5 @@ uv run skill-rag eval --corpus ~/.skills --dataset eval/queries.jsonl
 - `ARCHITECTURE.md` — 모듈 구조
 - `docs/product-specs/skill-rag.md` — 무엇을, 왜
 - `docs/design-docs/` — 설계 결정 로그
-- `docs/superpowers/specs/` — 기능별 설계 스펙
-```
+- `docs/design-docs/implementation-history.md` — 완료된 과거 specs/plans 요약
+- `docs/superpowers/` — 진행 중인 기능 spec/plan이 있을 때만 사용

@@ -2,21 +2,28 @@
 
 Two tools. Three terminal statuses across them.
 
-## `search_skills(query: str, k: int = 5) -> dict`
+## `search_skills(query: str, k: int = 5, agent: str | None = None) -> dict`
 
 Find skills relevant to the query. Auto-runs sync if the cache is stale.
+`agent` names the calling harness (`"codex"`, `"claude-code"`, etc.) and is
+currently informational. Each returned hit reports the source `agent` inferred
+from its filesystem path.
 
 ```json
 // status: "ok"
 {
   "status": "ok",
   "hits": [
-    {"name": "brainstorming", "description": "...", "score": 0.82},
-    {"name": "writing-plans", "description": "...", "score": 0.74}
+    {
+      "name": "code-review",
+      "description": "Review code changes for bugs...",
+      "score": 0.82,
+      "agent": "codex"
+    }
   ]
 }
 
-// status: "no_match"  (no hits above SCORE_THRESHOLD, or empty corpus)
+// status: "no_match"
 {
   "status": "no_match",
   "hits": [],
@@ -24,10 +31,31 @@ Find skills relevant to the query. Auto-runs sync if the cache is stale.
 }
 ```
 
+`no_match` covers an empty query, empty corpus, or candidates failing both
+retrieval thresholds.
+
+## Retrieval Contract
+
+Search is hybrid:
+
+- Dense: local sentence-transformers model (`BAAI/bge-m3` by default), cosine
+  search in LanceDB over normalized `text`.
+- Sparse: in-memory BM25 over the indexed `text` column. Tokenization preserves
+  Latin/code identifiers and emits Hangul character bigrams.
+- Keep rule: dense cosine >= `SCORE_THRESHOLD` (default 0.45) OR normalized
+  BM25 >= `BM25_THRESHOLD` (default 0.30).
+- Ordering: reciprocal rank fusion with `RRF_K` (default 60).
+
+`text` is built from name, description, optional translated description, and
+body. Translation is local ko<->en only and happens at index time for
+added/changed records.
+
 ## `get_skill(name: str) -> dict`
 
-Return the full SKILL.md body. If the file is missing, force a sync and
-retry once before returning `not_found`.
+Return the full `SKILL.md` body for a frontmatter skill name. The implementation
+uses the index's `name -> path` mapping, so the directory name does not need to
+match the frontmatter name. If the mapping is missing or stale, it forces sync
+and retries once before returning `not_found`.
 
 ```json
 // status: "ok"
@@ -40,21 +68,13 @@ retry once before returning `not_found`.
 }
 ```
 
-## Threshold
-
-`SCORE_THRESHOLD` (default `0.25`, env `SKILL_RAG_SCORE_THRESHOLD`) filters
-out low-similarity matches in `search_skills`. Calibrated against
-the public fixture eval in `eval/fixtures/`: 0.25 keeps `recall@5 ≥ 0.8`
-on the repository-owned benchmark. Re-tune when the eval set or embedding
-model changes.
-
 ## Loop Prevention Contract
 
 A conforming bootstrap skill must:
 
-- On `search_skills → no_match`: respond directly, not re-call with a
+- On `search_skills -> no_match`: respond directly, not re-call with a
   reworded query.
-- On `get_skill → not_found`: not re-call `get_skill` or `search_skills`
-  for the same name this turn.
-- On `search_skills → ok` where no description actually fits: proceed
-  without a skill, not refetch.
+- On `get_skill -> not_found`: not re-call `get_skill` or `search_skills` for
+  the same name this turn.
+- On `search_skills -> ok` where no description actually fits: proceed without
+  a skill, not refetch.

@@ -5,6 +5,8 @@ from functools import lru_cache
 
 import numpy as np
 
+from .offline import enforce_hf_offline
+
 DEFAULT_MODEL = os.environ.get(
     "SKILL_RAG_MODEL",
     # bge-m3: strong cross-lingual retrieval so Korean queries match English
@@ -25,6 +27,7 @@ MAX_SEQ_LENGTH = int(os.environ.get("SKILL_RAG_MAX_SEQ_LENGTH", "512"))
 
 @lru_cache(maxsize=4)
 def _load_model(name: str):
+    enforce_hf_offline(LOCAL_FILES_ONLY)
     # Imported lazily so importing this module is cheap (helps tests).
     from sentence_transformers import SentenceTransformer
 

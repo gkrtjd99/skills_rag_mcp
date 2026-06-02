@@ -13,6 +13,8 @@ import os
 import re
 from functools import lru_cache
 
+from .offline import enforce_hf_offline
+
 TRANSLATE_ENABLED = os.environ.get("SKILL_RAG_TRANSLATE", "1").lower() not in {
     "0",
     "false",
@@ -38,6 +40,7 @@ def detect_lang(text: str) -> str:
 
 @lru_cache(maxsize=2)
 def _load_model(name: str):
+    enforce_hf_offline(LOCAL_FILES_ONLY)
     # Imported lazily so importing this module stays cheap (helps tests).
     from transformers import MarianMTModel, MarianTokenizer
 

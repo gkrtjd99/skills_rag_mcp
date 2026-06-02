@@ -1,91 +1,127 @@
 # Architecture
 
-skill_rag serves a single user-global skill corpus (`~/.skills/<name>/SKILL.md`)
-to AI agents via an MCP server. Agents start with one bootstrap meta-skill
-resident in their context and lazily fetch other skill bodies only when a
-RAG search shows they apply.
+skill_rag serves a single user-global skill corpus
+(`~/.skills/<name>/SKILL.md`) to AI agents via an MCP server. Agents start with
+one bootstrap meta-skill in context and lazily fetch other skill bodies only
+when retrieval says they apply.
 
 ## Module Boundaries
 
 ```
 src/skill_rag/
-├── corpus.py       # constants: paths, threshold, TTL
+├── agents.py       # infer source harness from filesystem paths
+├── corpus.py       # corpus path, thresholds, TTL constants
 ├── models.py       # SkillRecord, SearchHit
-├── parser.py       # SKILL.md text → SkillRecord
-├── loader.py       # ~/.skills/ → [SkillRecord]
+├── parser.py       # SKILL.md text -> SkillRecord
+├── loader.py       # ~/.skills/ -> [SkillRecord]
+├── normalize.py    # dense-query/text normalization
+├── offline.py      # enforce local-only Hugging Face runtime mode
 ├── embed.py        # sentence-transformers wrapper (L2-normalized)
-├── index.py        # LanceDB CRUD (schema v3)
-├── retrieve.py     # query → top-k with threshold + status response
-├── sync.py         # disk↔index diff; TTL cache (only stateful module)
+├── translate.py    # local ko<->en description translation
+├── sparse.py       # in-memory BM25 + Korean-aware tokenization
+├── index.py        # LanceDB CRUD (schema v5)
+├── retrieve.py     # hybrid search + threshold/status response
+├── sync.py         # disk<->index diff; TTL cache (only stateful module)
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
-├── cli.py          # Typer CLI: sync/query/list-skills/reset/mcp/eval
+├── collect.py      # symlink harness skills into ~/.skills/
+├── mcp_config.py   # Claude/Codex MCP registration helpers
+├── lifecycle.py    # install/uninstall orchestration
+├── cli.py          # Typer CLI
 └── evaluator.py    # recall@k, MRR, latency
 ```
 
-Each module has one responsibility; only `sync` holds mutable state
-(a single timestamp). `mcp_server` is a router with no logic.
+Each module owns one responsibility. `sync` is the only module with mutable
+runtime state (a single timestamp).
 
 ## Request Flow
 
-### `search_skills(query, k)`
+### `search_skills(query, k, agent)`
 
-1. `sync.sync_if_stale()` — runs `loader.scan` and diffs against the index
-   only if more than 30 s have elapsed since the last sync.
-2. `embed.encode_one(query)` — 384-dim L2-normalized vector.
-3. `index.search(vec, k)` — LanceDB cosine, returns `SearchHit[]`.
-4. `retrieve.search` filters out hits below `SCORE_THRESHOLD` (default 0.25).
-5. Returns `{status: "ok", hits}` or `{status: "no_match", hits: [], message}`.
+1. `sync.sync_if_stale()` runs at most once per TTL window (default 30 s).
+2. `retrieve.search` reads indexed metadata and text.
+3. The query is normalized for dense retrieval, then encoded with the local
+   embedding model (`BAAI/bge-m3` by default).
+4. LanceDB returns dense cosine scores over the indexed vectors.
+5. BM25 scores are computed in memory over the indexed `text` column. The
+   tokenizer preserves Latin/code tokens and emits Hangul character bigrams.
+6. A candidate is kept when dense cosine clears `SCORE_THRESHOLD` (default
+   0.45) or normalized BM25 clears `BM25_THRESHOLD` (default 0.30).
+7. Kept candidates are ordered by reciprocal rank fusion (`RRF_K`, default 60).
+8. Returns `{status: "ok", hits}` or `{status: "no_match", hits: [], message}`.
+
+Hits contain `{name, description, score, agent}`. The caller-supplied `agent`
+argument is informational today; each hit reports the source harness inferred
+from the skill path.
 
 ### `get_skill(name)`
 
-1. Read `~/.skills/<name>/SKILL.md` directly.
-2. On miss, force `sync_if_stale(ttl=0)` and retry once.
-3. Return `{status: "ok", body}` or `{status: "not_found", message}`.
+1. Look up the indexed row whose frontmatter `name` matches `name`.
+2. Read that row's `path` directly. This avoids assuming directory name equals
+   frontmatter name.
+3. On miss or stale path, force `sync_if_stale(ttl=0)` and retry once.
+4. Return `{status: "ok", body}` or `{status: "not_found", message}`.
 
-### Sync (`sync_if_stale`)
+## Sync
 
-- TTL gate (default 30 s, env-overridable).
-- `loader.scan(~/.skills)` returns one `SkillRecord` per `<name>/SKILL.md`.
-- Skips the `using-skill-rag` directory (it is already loaded by the harness).
-- Diff vs. `index.list_indexed()` by `path` + `content_hash`:
-  added → upsert; changed → upsert; missing → delete.
+- `loader.scan(~/.skills)` returns one `SkillRecord` per direct
+  `<name>/SKILL.md` directory.
+- `using-skill-rag` is skipped because the bootstrap skill is already loaded by
+  the harness.
+- `agent` is inferred from the resolved path (`.claude`, `.codex`,
+  `.antigravity`, or `local`).
+- Diffing is by `path` and `content_hash`.
+- Added/changed records get description translation at index time
+  (`translate.translate`) before upsert. Unchanged rows are not retranslated.
+- Removed paths are deleted from LanceDB.
 
 ## Data Schema
 
-LanceDB table `skills` (schema v3):
+LanceDB table `skills` (schema v5):
 
 | Column | Type | Notes |
 | --- | --- | --- |
-| `path` | string | Primary key. `<corpus>/<name>/SKILL.md`. |
-| `name` | string | From frontmatter. |
-| `description` | string | From frontmatter. |
-| `content_hash` | string | sha256 of the full SKILL.md. |
-| `vector` | list<float32>[384] | Embedding of `name\ndescription`. |
+| `path` | string | Primary key for `merge_insert`; points to `SKILL.md`. |
+| `name` | string | Frontmatter skill name. |
+| `description` | string | Frontmatter description. |
+| `content_hash` | string | sha256 of the full `SKILL.md`. |
+| `text` | string | `name`, `description`, translated description, and body. |
+| `agent` | string | Source harness: `claude-code`, `codex`, `antigravity`, `local`, etc. |
+| `vector` | list<float32>[dim] | Embedding of `text`; `dim` comes from the selected model. |
 
-`SkillRecord` and `SearchHit` live in `src/skill_rag/models.py`.
+Schema drift drops and recreates the table because the index is a derived
+cache. Content-only changes to `embed_text()` still require `skill-rag reset`
+followed by `skill-rag sync`.
+
+## Install Lifecycle
+
+`make install` runs `uv sync` and then `SKILL_RAG_LOCAL_FILES_ONLY=0 uv run
+skill-rag install`. The CLI command:
+
+1. Copies the bootstrap template into `~/.skills/using-skill-rag/` if missing.
+2. Symlinks that installed bootstrap into Claude Code and Codex skill dirs.
+3. Collects discovered harness skills into `~/.skills/` as symlinks.
+4. Runs sync, downloading local models during first setup when needed.
+5. Registers the MCP server for Claude Code and Codex.
+
+`skill-rag uninstall` reverses this. Non-purge uninstall removes skill-rag's
+footprint and collected symlinks but preserves hand-placed real skill
+directories under `~/.skills`.
 
 ## Loop Prevention
 
-The bootstrap skill's instructions and the server's status responses jointly
-prevent runaway calls:
+The bootstrap skill and server response shapes jointly prevent retry loops:
 
-| Tool | Failure shape | Response status | Meta-skill rule |
+| Tool | Failure shape | Response status | Bootstrap rule |
 | --- | --- | --- | --- |
-| `search_skills` | No hit above threshold | `no_match` | Respond directly. No retry. |
-| `get_skill` | File missing (even after forced sync) | `not_found` | No retry this turn. |
-| `search_skills` | Hits returned, none actually fit | `ok` (agent judges) | Proceed without skill. |
-
-## Bootstrap Skill
-
-`~/.skills/using-skill-rag/SKILL.md` is the single source of truth, symlinked
-into every supported harness's auto-load directory by the `skill-rag install` command.
-`loader.scan` skips it so it never surfaces in search results.
+| `search_skills` | Empty query, empty corpus, or no candidate above thresholds | `no_match` | Respond directly. No reworded retry. |
+| `get_skill` | Missing skill after forced sync | `not_found` | Do not retry this name this turn. |
+| `search_skills` | Hits returned, none actually fit | `ok` (agent judges) | Proceed without a skill. |
 
 ## Constraints
 
-- Local-only: no cloud API calls at index or query time.
-- Single user, single corpus.
+- Local-first: no cloud APIs at index or query time.
 - Python 3.13 + uv. No `pip` or raw `venv`.
+- Single user, single corpus.
 - `~/.skills/` is user-managed and never committed.
-- Embedding model loading is local-only by default; set
-  `SKILL_RAG_LOCAL_FILES_ONLY=0` only for an explicit model download/setup run.
+- Model loading defaults to local cache only. `make install` explicitly sets
+  `SKILL_RAG_LOCAL_FILES_ONLY=0` for first-time local model setup.

@@ -3,27 +3,39 @@
 Non-negotiable principles. Changes require explicit user buy-in.
 
 ## Local-First
-No cloud APIs at index or query time. The user owns their machine, their
-embeddings, and their corpus. Latency is bounded by local hardware, not
-network round trips. Runtime model loading defaults to local cache only; any
-model download must be an explicit setup step, not an implicit query/index
-side effect. Tested via the "no cloud" Done-When criterion.
+
+No cloud APIs at index or query time. Embeddings, BM25, translation, and MCP
+serving all run on the user's machine. Runtime model loading defaults to the
+local cache only; first-time model downloads must be explicit setup work, not a
+surprise side effect of a query.
 
 ## Single Global Corpus
-One canonical location for skills: `~/.skills/<name>/SKILL.md`. No
-multi-source, no per-harness duplication. Harnesses link to the same
-files via symlink. Simpler index, simpler mental model, fewer bugs.
+
+One canonical skill corpus: `~/.skills/<name>/SKILL.md`. Harness skills may be
+collected into that corpus as symlinks, but retrieval and `get_skill` operate
+against this one location and its derived index.
 
 ## Lazy Loading
-Agents do not load skills at session start. The bootstrap skill calls
-`search_skills` per user message and `get_skill` only for skills that
-clearly apply. Context tokens are spent on relevant skills only.
+
+Agents do not load all skills at session start. The bootstrap skill calls
+`search_skills` per user message and calls `get_skill` only for skills whose
+descriptions clearly fit the task.
 
 ## Single User
-The project assumes one developer on one machine. Concurrency, sharing,
-permissions, and ACLs are not designed for and not tested.
 
-## YAGNI
-No re-ranking, hybrid search, LLM-based scoring, filesystem watchers,
-or other speculative complexity. If `recall@5 ≥ 0.8` is met by plain
-cosine over a 384-dim model, we ship that.
+The project assumes one developer on one machine. Concurrency, sharing,
+permissions, ACLs, and multi-tenant concerns are not designed for or tested.
+
+## Measured Complexity Only
+
+Complexity is allowed only after a measured retrieval or lifecycle failure.
+Hybrid BM25, Korean normalization, agent attribution, and ko<->en description
+translation exist because fixture or real-corpus failures justified them.
+
+Still out of scope: cloud providers, LLM-based scoring, real-time filesystem
+watchers, multi-user indexing, and speculative framework abstractions.
+
+## Disposable Index
+
+The LanceDB index is a cache derived from `~/.skills`. Schema drift can drop and
+recreate it. Users should never treat `var/` as source data.
