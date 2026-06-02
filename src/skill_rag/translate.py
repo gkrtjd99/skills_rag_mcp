@@ -32,12 +32,12 @@ _LATIN = re.compile(r"[A-Za-z]")
 
 
 def detect_lang(text: str) -> str:
-    """Return 'ko' if Hangul dominates the text, else 'en'."""
+    """Return 'ko' if Hangul characters outnumber Latin ones, else 'en' (tie → 'en')."""
     return "ko" if len(_HANGUL.findall(text)) > len(_LATIN.findall(text)) else "en"
 
 
 @lru_cache(maxsize=2)
-def _load(name: str):
+def _load_model(name: str):
     # Imported lazily so importing this module stays cheap (helps tests).
     from transformers import MarianMTModel, MarianTokenizer
 
@@ -47,7 +47,8 @@ def _load(name: str):
 
 
 def _run_model(text: str, name: str) -> str:
-    tok, model = _load(name)
+    tok, model = _load_model(name)
+    # Same limit for input and output: MarianMT output length tracks input for short text.
     batch = tok([text], return_tensors="pt", truncation=True, max_length=MAX_LENGTH)
     generated = model.generate(**batch, max_length=MAX_LENGTH)
     return tok.batch_decode(generated, skip_special_tokens=True)[0]
@@ -60,6 +61,9 @@ def translate(text: str) -> str:
     proceeds without the augmentation rather than crashing).
     """
     if not TRANSLATE_ENABLED or not text.strip():
+        return ""
+    # Skip when there's no translatable script (e.g. pure numbers/symbols).
+    if not _HANGUL.search(text) and not _LATIN.search(text):
         return ""
     name = MT_KO_EN if detect_lang(text) == "ko" else MT_EN_KO
     try:

@@ -62,3 +62,16 @@ def test_translate_failure_returns_empty(monkeypatch):
     monkeypatch.setattr(translate, "_run_model", boom)
     monkeypatch.setattr(translate, "TRANSLATE_ENABLED", True)
     assert translate.translate("Deploy app") == ""
+
+
+def test_translate_symbols_only_returns_empty(monkeypatch):
+    called = []
+
+    def fake(text, name):
+        called.append(name)
+        return "should-not-be-used"
+
+    monkeypatch.setattr(translate, "_run_model", fake)
+    monkeypatch.setattr(translate, "TRANSLATE_ENABLED", True)
+    assert translate.translate("512 @#$") == ""
+    assert called == []  # model never invoked
