@@ -19,7 +19,7 @@ src/skill_rag/
 ├── embed.py        # sentence-transformers wrapper (L2-normalized)
 ├── translate.py    # local ko<->en description translation
 ├── sparse.py       # in-memory BM25 + Korean-aware tokenization
-├── index.py        # LanceDB CRUD (schema v5)
+├── index.py        # LanceDB CRUD (schema v6)
 ├── retrieve.py     # hybrid search + threshold/status response
 ├── sync.py         # disk<->index diff; TTL cache (only stateful module)
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
@@ -71,12 +71,14 @@ from the skill path.
   `.antigravity`, or `local`).
 - Diffing is by `path` and `content_hash`.
 - Added/changed records get description translation at index time
-  (`translate.translate`) before upsert. Unchanged rows are not retranslated.
+  (`translate.translate_for_index`) before upsert.
+- Unchanged rows whose prior `translation_status` is `failed`, `disabled`, or
+  `pending` are retried when translation is enabled.
 - Removed paths are deleted from LanceDB.
 
 ## Data Schema
 
-LanceDB table `skills` (schema v5):
+LanceDB table `skills` (schema v6):
 
 | Column | Type | Notes |
 | --- | --- | --- |
@@ -86,6 +88,7 @@ LanceDB table `skills` (schema v5):
 | `content_hash` | string | sha256 of the full `SKILL.md`. |
 | `text` | string | `name`, `description`, translated description, and body. |
 | `agent` | string | Source harness: `claude-code`, `codex`, `antigravity`, `local`, etc. |
+| `translation_status` | string | `ok`, `failed`, `disabled`, `skipped`, or `pending`. |
 | `vector` | list<float32>[dim] | Embedding of `text`; `dim` comes from the selected model. |
 
 Schema drift drops and recreates the table because the index is a derived

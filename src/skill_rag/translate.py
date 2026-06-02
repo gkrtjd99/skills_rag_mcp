@@ -38,6 +38,10 @@ def detect_lang(text: str) -> str:
     return "ko" if len(_HANGUL.findall(text)) > len(_LATIN.findall(text)) else "en"
 
 
+def is_translatable(text: str) -> bool:
+    return bool(text.strip() and (_HANGUL.search(text) or _LATIN.search(text)))
+
+
 @lru_cache(maxsize=2)
 def _load_model(name: str):
     enforce_hf_offline(LOCAL_FILES_ONLY)
@@ -57,19 +61,33 @@ def _run_model(text: str, name: str) -> str:
     return tok.batch_decode(generated, skip_special_tokens=True)[0]
 
 
+def translate_for_index(text: str) -> tuple[str, str]:
+    """Translate ``text`` and return (translated_text, status).
+
+    Status values:
+    - ok: translated text is present.
+    - disabled: translation is disabled by env.
+    - skipped: text is empty or has no translatable script.
+    - failed: model load/run failed, or the model returned empty text.
+    """
+    if not TRANSLATE_ENABLED:
+        return "", "disabled"
+    if not is_translatable(text):
+        return "", "skipped"
+    name = MT_KO_EN if detect_lang(text) == "ko" else MT_EN_KO
+    try:
+        out = _run_model(text, name).strip()
+    except Exception:
+        return "", "failed"
+    if not out:
+        return "", "failed"
+    return out, "ok"
+
+
 def translate(text: str) -> str:
     """Translate ``text`` to the other language (ko↔en).
 
     Returns "" when disabled, on empty input, or on ANY failure (so indexing
     proceeds without the augmentation rather than crashing).
     """
-    if not TRANSLATE_ENABLED or not text.strip():
-        return ""
-    # Skip when there's no translatable script (e.g. pure numbers/symbols).
-    if not _HANGUL.search(text) and not _LATIN.search(text):
-        return ""
-    name = MT_KO_EN if detect_lang(text) == "ko" else MT_EN_KO
-    try:
-        return _run_model(text, name).strip()
-    except Exception:
-        return ""
+    return translate_for_index(text)[0]

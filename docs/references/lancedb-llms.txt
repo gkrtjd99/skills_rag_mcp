@@ -14,7 +14,7 @@ Used by `src/skill_rag/index.py` as a disposable local cache.
 
 ## Current Schema Pattern
 
-The table is schema v5:
+The table is schema v6:
 
 ```python
 schema = pa.schema([
@@ -24,12 +24,14 @@ schema = pa.schema([
     pa.field("content_hash", pa.string()),
     pa.field("text", pa.string()),
     pa.field("agent", pa.string()),
+    pa.field("translation_status", pa.string()),
     pa.field("vector", pa.list_(pa.float32(), dim)),
 ])
 ```
 
 `path` is the merge key. `text` is the retrieval text used for both embeddings
-and BM25. `agent` records the source harness.
+and BM25. `agent` records the source harness. `translation_status` lets sync
+retry unchanged rows whose prior description translation failed or was disabled.
 
 ## Constraints
 

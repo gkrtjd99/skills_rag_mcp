@@ -1,6 +1,6 @@
 """LanceDB-backed index for skill records.
 
-Schema version: 5
+Schema version: 6
 - v1: pk=name
 - v2: pk=path; added `source` column
 - v3: pk=path; removed `source`, `allowed_tools` (single-corpus design)
@@ -8,6 +8,8 @@ Schema version: 5
 - v5: added `agent` column (source harness: claude-code, codex, local, ...)
   (the `text`/vector content also includes a ko↔en translation of the
    description via translate.py; changing embed_text requires `reset && sync`)
+- v6: added `translation_status` column so failed/disabled description
+  translations can be retried without a content change.
 """
 
 from __future__ import annotations
@@ -37,6 +39,7 @@ def _schema(dim: int) -> pa.Schema:
             pa.field("content_hash", pa.string()),
             pa.field("text", pa.string()),
             pa.field("agent", pa.string()),
+            pa.field("translation_status", pa.string()),
             pa.field("vector", pa.list_(pa.float32(), dim)),
         ]
     )
@@ -66,7 +69,15 @@ def list_indexed() -> list[dict]:
     tbl = open_table()
     if tbl.count_rows() == 0:
         return []
-    cols = ["path", "name", "description", "content_hash", "text", "agent"]
+    cols = [
+        "path",
+        "name",
+        "description",
+        "content_hash",
+        "text",
+        "agent",
+        "translation_status",
+    ]
     return tbl.to_arrow().select(cols).to_pylist()
 
 
@@ -92,6 +103,7 @@ def upsert(records: list[SkillRecord], model_name: str = DEFAULT_MODEL) -> None:
             "content_hash": r.content_hash,
             "text": text,
             "agent": r.agent,
+            "translation_status": r.translation_status,
             "vector": vec.tolist(),
         }
         for r, text, vec in zip(records, texts, vectors)

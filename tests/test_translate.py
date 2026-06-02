@@ -29,6 +29,7 @@ def test_translate_korean_uses_ko_en_model(monkeypatch):
     out = translate.translate("배포 스킬")
     assert seen["name"] == translate.MT_KO_EN
     assert out == "EN: 배포 스킬"
+    assert translate.translate_for_index("배포 스킬") == ("EN: 배포 스킬", "ok")
 
 
 def test_translate_english_uses_en_ko_model(monkeypatch):
@@ -48,11 +49,13 @@ def test_translate_english_uses_en_ko_model(monkeypatch):
 def test_translate_disabled_returns_empty(monkeypatch):
     monkeypatch.setattr(translate, "TRANSLATE_ENABLED", False)
     assert translate.translate("배포 스킬") == ""
+    assert translate.translate_for_index("배포 스킬") == ("", "disabled")
 
 
 def test_translate_empty_returns_empty(monkeypatch):
     monkeypatch.setattr(translate, "TRANSLATE_ENABLED", True)
     assert translate.translate("   ") == ""
+    assert translate.translate_for_index("   ") == ("", "skipped")
 
 
 def test_translate_failure_returns_empty(monkeypatch):
@@ -62,6 +65,7 @@ def test_translate_failure_returns_empty(monkeypatch):
     monkeypatch.setattr(translate, "_run_model", boom)
     monkeypatch.setattr(translate, "TRANSLATE_ENABLED", True)
     assert translate.translate("Deploy app") == ""
+    assert translate.translate_for_index("Deploy app") == ("", "failed")
 
 
 def test_translate_symbols_only_returns_empty(monkeypatch):
@@ -74,4 +78,5 @@ def test_translate_symbols_only_returns_empty(monkeypatch):
     monkeypatch.setattr(translate, "_run_model", fake)
     monkeypatch.setattr(translate, "TRANSLATE_ENABLED", True)
     assert translate.translate("512 @#$") == ""
+    assert translate.translate_for_index("512 @#$") == ("", "skipped")
     assert called == []  # model never invoked

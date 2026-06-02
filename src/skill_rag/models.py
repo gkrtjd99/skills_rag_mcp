@@ -14,6 +14,7 @@ class SkillRecord:
     content_hash: str
     agent: str = "unknown"  # source harness: claude-code, codex, local, ...
     description_translated: str = ""  # ko↔en translation, filled at sync time
+    translation_status: str = "pending"  # ok, failed, disabled, skipped, pending
 
     def embed_text(self) -> str:
         # Stable string we embed AND index for lexical (BM25) search.

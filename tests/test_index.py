@@ -98,6 +98,14 @@ def test_upsert_stores_agent():
     assert rows[0]["agent"] == "codex"
 
 
+def test_upsert_stores_translation_status():
+    rec = _record("foo")
+    rec.translation_status = "failed"
+    index_mod.upsert([rec])
+    rows = index_mod.list_indexed()
+    assert rows[0]["translation_status"] == "failed"
+
+
 def test_open_table_migrates_legacy_schema(tmp_path):
     import lancedb
     import pyarrow as pa

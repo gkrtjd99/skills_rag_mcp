@@ -23,7 +23,7 @@ Important outcomes:
 Superseded details:
 
 - Early plans used `all-MiniLM-L6-v2`, 384-dim vectors, schema v3, and a 0.35
-  threshold. Current implementation uses bge-m3 by default, schema v5, hybrid
+  threshold. Current implementation uses bge-m3 by default, schema v6, hybrid
   retrieval, and a 0.45 dense threshold.
 - Early install instructions referenced `scripts/install.sh`. Current setup is
   `make install` and `skill-rag install`.
@@ -94,3 +94,12 @@ An eval run exposed Hugging Face metadata HTTP requests even with
 `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1` before lazy embedding or
 translation model imports. Setup remains explicit: `make install` sets
 `SKILL_RAG_LOCAL_FILES_ONLY=0` when first-time model downloads are intended.
+
+## 2026-06-02 - Translation Retry State
+
+Schema v6 added `translation_status` to the LanceDB index. Sync stores whether
+description translation was `ok`, `failed`, `disabled`, or `skipped`. When an
+unchanged row was previously `failed`, `disabled`, or `pending`, sync retries
+translation if translation is currently enabled. This lets users recover after
+models are downloaded without editing skill files or manually resetting the
+index.

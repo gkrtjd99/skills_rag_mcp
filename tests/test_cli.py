@@ -14,11 +14,12 @@ def isolated(tmp_path, monkeypatch):
     monkeypatch.setenv("SKILL_RAG_CORPUS_PATH", str(tmp_path / "skills"))
     monkeypatch.setenv("SKILL_RAG_SCORE_THRESHOLD", "0.0")
     import importlib
-    from skill_rag import corpus, retrieve
+    from skill_rag import corpus, retrieve, translate
     importlib.reload(corpus)
     importlib.reload(index_mod)
     importlib.reload(retrieve)
     importlib.reload(sync_mod)
+    monkeypatch.setattr(translate, "translate_for_index", lambda text: ("", "skipped"))
     yield
     index_mod.reset()
     sync_mod.reset_cache()

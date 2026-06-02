@@ -32,29 +32,47 @@ def _dedupe_by_name(records: list) -> tuple[list, list[dict[str, str]]]:
     return kept, duplicates
 
 
+def _fill_translation(record) -> None:
+    text, status = translate_mod.translate_for_index(record.description)
+    record.description_translated = text
+    record.translation_status = status
+
+
+def _needs_translation_retry(row: dict, record) -> bool:
+    if not translate_mod.TRANSLATE_ENABLED:
+        return False
+    if not translate_mod.is_translatable(record.description):
+        return False
+    return row.get("translation_status", "failed") in {"failed", "disabled", "pending"}
+
+
 def run_sync() -> dict:
-    """Force a sync. Returns {added, updated, removed, unchanged, duplicate_names}."""
+    """Force a sync. Returns added/updated/removed/unchanged plus warnings."""
     global _last_sync_at
     records, duplicate_names = _dedupe_by_name(loader.scan(corpus_mod.CORPUS_PATH))
-    indexed = {row["path"]: row["content_hash"] for row in index_mod.list_indexed()}
+    indexed_rows = {row["path"]: row for row in index_mod.list_indexed()}
     disk_paths = {r.path for r in records}
 
     added: list[str] = []
     updated: list[str] = []
+    translation_retried: list[str] = []
     to_upsert = []
     unchanged = 0
     for r in records:
-        prev_hash = indexed.get(r.path)
-        if prev_hash is None:
+        prev_row = indexed_rows.get(r.path)
+        if prev_row is None:
             added.append(r.name)
             to_upsert.append(r)
-        elif prev_hash != r.content_hash:
+        elif prev_row["content_hash"] != r.content_hash:
             updated.append(r.name)
+            to_upsert.append(r)
+        elif _needs_translation_retry(prev_row, r):
+            translation_retried.append(r.name)
             to_upsert.append(r)
         else:
             unchanged += 1
 
-    removed_paths = [p for p in indexed if p not in disk_paths]
+    removed_paths = [p for p in indexed_rows if p not in disk_paths]
     # Recover names by querying the indexed rows we just listed.
     removed_names: list[str] = []
     if removed_paths:
@@ -64,7 +82,7 @@ def run_sync() -> dict:
 
     if to_upsert:
         for record in to_upsert:
-            record.description_translated = translate_mod.translate(record.description)
+            _fill_translation(record)
         index_mod.upsert(to_upsert)
     if removed_paths:
         index_mod.delete_by_paths(removed_paths)
@@ -75,6 +93,7 @@ def run_sync() -> dict:
         "updated": updated,
         "removed": removed_names,
         "unchanged": unchanged,
+        "translation_retried": translation_retried,
         "duplicate_names": duplicate_names,
     }
 

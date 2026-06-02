@@ -16,7 +16,7 @@ def isolated(tmp_path, monkeypatch):
     from skill_rag import translate as translate_mod
     # Stub out translation — sync correctness tests don't depend on translated
     # text, and this keeps them from loading the real MT model.
-    monkeypatch.setattr(translate_mod, "translate", lambda text: "")
+    monkeypatch.setattr(translate_mod, "translate_for_index", lambda text: ("", "skipped"))
     yield
     index_mod.reset()
 
@@ -148,7 +148,7 @@ def test_sync_translates_only_new_and_changed(tmp_path, monkeypatch):
         calls.append(text)
         return f"T[{text}]"
 
-    monkeypatch.setattr(translate_mod, "translate", fake)
+    monkeypatch.setattr(translate_mod, "translate_for_index", lambda text: (fake(text), "ok"))
     corpus_root = tmp_path / "skills"
     _mk(corpus_root, "foo", desc="alpha")
     sync_mod.run_sync()
@@ -168,9 +168,37 @@ def test_sync_translates_only_new_and_changed(tmp_path, monkeypatch):
 def test_sync_translation_lands_in_indexed_text(tmp_path, monkeypatch):
     from skill_rag import translate as translate_mod
 
-    monkeypatch.setattr(translate_mod, "translate", lambda text: "번역결과")
+    monkeypatch.setattr(translate_mod, "translate_for_index", lambda text: ("번역결과", "ok"))
     corpus_root = tmp_path / "skills"
     _mk(corpus_root, "foo", desc="Deploy")
     sync_mod.run_sync()
     row = index_mod.list_indexed()[0]
     assert "번역결과" in row["text"]
+    assert row["translation_status"] == "ok"
+
+
+def test_sync_retries_failed_translation_for_unchanged_record(tmp_path, monkeypatch):
+    from skill_rag import translate as translate_mod
+
+    outcomes = [("", "failed"), ("번역결과", "ok")]
+
+    def fake(text):
+        return outcomes.pop(0)
+
+    monkeypatch.setattr(translate_mod, "translate_for_index", fake)
+    monkeypatch.setattr(translate_mod, "TRANSLATE_ENABLED", True)
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "foo", desc="Deploy")
+
+    first = sync_mod.run_sync()
+    first_row = index_mod.list_indexed()[0]
+    assert first["added"] == ["foo"]
+    assert first_row["translation_status"] == "failed"
+    assert "번역결과" not in first_row["text"]
+
+    second = sync_mod.run_sync()
+    second_row = index_mod.list_indexed()[0]
+    assert second["translation_retried"] == ["foo"]
+    assert second["unchanged"] == 0
+    assert second_row["translation_status"] == "ok"
+    assert "번역결과" in second_row["text"]
