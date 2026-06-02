@@ -11,7 +11,7 @@ from . import mcp_config
 from . import sync as sync_mod
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-BOOTSTRAP_SRC = PROJECT_ROOT / "bootstrap-skill" / corpus_mod.BOOTSTRAP_SKILL_NAME
+BOOTSTRAP_SRC = PROJECT_ROOT / "bootstrap-skill" / corpus_mod.BOOTSTRAP_SKILL_NAME  # used by install()
 
 
 def default_harness_skill_dirs() -> list[Path]:

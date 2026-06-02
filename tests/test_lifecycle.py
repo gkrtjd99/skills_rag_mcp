@@ -66,3 +66,29 @@ def test_uninstall_idempotent_on_empty(tmp_path):
     corpus = tmp_path / "skills"
     corpus.mkdir()
     lifecycle.uninstall(corpus_path=corpus, harness_skill_dirs=[])  # no error
+
+
+def test_uninstall_keeps_stray_file_in_non_purge(tmp_path):
+    corpus = tmp_path / "skills"
+    corpus.mkdir()
+    stray = corpus / "notes.txt"
+    stray.write_text("hello", encoding="utf-8")
+
+    report = lifecycle.uninstall(corpus_path=corpus, harness_skill_dirs=[])
+
+    assert stray.exists()                       # non-symlink file preserved
+    assert "notes.txt" in report["corpus"]["kept"]
+
+
+def test_uninstall_leaves_real_dir_harness_link_untouched(tmp_path):
+    corpus = tmp_path / "skills"
+    corpus.mkdir()
+    harness = tmp_path / "claude" / "skills"
+    real = harness / "using-skill-rag"          # a real dir, NOT a symlink
+    real.mkdir(parents=True)
+    (real / "marker").write_text("x", encoding="utf-8")
+
+    report = lifecycle.uninstall(corpus_path=corpus, harness_skill_dirs=[harness])
+
+    assert real.exists()                        # real dir not removed
+    assert report["harness_links_removed"] == []
