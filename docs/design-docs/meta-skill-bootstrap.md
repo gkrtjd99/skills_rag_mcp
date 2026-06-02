@@ -8,7 +8,7 @@ The bootstrap skill lives in two places, both pointing to the same file:
 - Each harness's auto-load dir: `~/.<harness>/skills/using-skill-rag/` →
   symlink to the above.
 
-`scripts/install.sh` creates the directories and the symlinks. To update
+`skill-rag install` (via `make install`) creates the directories and the symlinks. To update
 the skill, edit the canonical file; all harnesses see it immediately.
 
 ## Why Symlink
@@ -17,7 +17,7 @@ the skill, edit the canonical file; all harnesses see it immediately.
 - No drift between harnesses.
 - Harness's own auto-load mechanism discovers it as a normal skill.
 
-If a harness blocks symlinks, fall back to copy and re-run `install.sh`
+If a harness blocks symlinks, fall back to copy and re-run `skill-rag install`
 to refresh.
 
 ## Why Excluded from Search

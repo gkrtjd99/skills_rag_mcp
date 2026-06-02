@@ -28,73 +28,25 @@ agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
 
 ## Install
 
-### 1) Clone + one-shot setup
-
 ```bash
 git clone <repo-url>
 cd skill_rag
-bash scripts/install.sh
+make install
 ```
 
-`install.sh` is idempotent and does, in order:
+`make install` is idempotent and does, in order:
 
 1. `uv sync`
 2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/` and
    symlinks it into `~/.claude/skills/` and `~/.codex/skills/`
-3. `skill-rag collect` — symlinks every harness skill it finds
-   (`~/.claude/skills`, `~/.claude/plugins/**/skills`, `~/.codex/skills`,
-   `~/.codex/plugins/**/skills`) into `~/.skills/`. On name collisions the
-   first source wins; on multiple plugin versions the newest mtime wins.
-   Anything you already placed at `~/.skills/<name>` is left untouched.
-4. `skill-rag sync` — downloads the embedding model on first run, then
-   builds the LanceDB index
-5. Prints the MCP registration snippet for each harness
+3. `skill-rag collect` — symlinks discovered harness skills into `~/.skills/`
+4. `skill-rag sync` — downloads the embedding model on first run, builds the index
+5. Registers the MCP server (Claude Code via `claude mcp add`; Codex via
+   `~/.codex/config.toml`)
 
-### 2) Register the MCP server
+Restart the harness afterward.
 
-Substitute the repo path (`$REPO`) with the output of `pwd`. The MCP launch
-command is the same across every harness:
-
-```
-uv --directory $REPO run skill-rag mcp
-```
-
-#### Claude Code
-
-One-line CLI registration (user scope, global):
-
-```bash
-claude mcp add skill-rag --scope user -- uv --directory "$(pwd)" run skill-rag mcp
-```
-
-Or add it directly to `mcpServers` in `~/.claude.json`:
-
-```json
-{
-  "mcpServers": {
-    "skill-rag": {
-      "command": "uv",
-      "args": ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
-    }
-  }
-}
-```
-
-#### Codex
-
-Add to `~/.codex/config.toml`:
-
-```toml
-[mcp_servers.skill-rag]
-command = "uv"
-args = ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
-```
-
-#### Other MCP-compatible clients (Cursor, Windsurf, etc.)
-
-Register the same `command` / `args` in each client's MCP settings.
-
-### 3) Restart + sanity check
+### Sanity check
 
 After restarting the harness, in a fresh session:
 
@@ -107,6 +59,27 @@ You can also verify the same search from the CLI:
 ```bash
 uv run skill-rag query "deploy to vercel"
 ```
+
+### Other MCP-compatible clients (Cursor, Windsurf, etc.)
+
+`make install` auto-registers Claude Code and Codex only. For other clients,
+register the MCP server manually using:
+
+```
+uv --directory <repo> run skill-rag mcp
+```
+
+## Uninstall
+
+```bash
+make uninstall   # removes skill-rag's footprint; keeps hand-placed skills
+make purge       # also empties ~/.skills entirely
+```
+
+`uninstall` reverses install: unregisters the MCP server, removes the harness
+bootstrap symlinks and the index, and removes collected symlinks + the bootstrap
+skill. Hand-placed real skill directories under `~/.skills` are preserved unless
+you use `purge`.
 
 ## Adding a skill
 
@@ -136,6 +109,8 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `uv run skill-rag eval` | Measure recall@5 against the public fixture eval |
 | `uv run skill-rag reset` | Reset the index |
 | `uv run skill-rag mcp` | Run the MCP server |
+| `uv run skill-rag install` | Install bootstrap + collect/index + register MCP (use `make install`) |
+| `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | Reverse install; `--purge` empties `~/.skills` |
 
 ## Environment variables
 

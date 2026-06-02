@@ -18,7 +18,7 @@ Read documents in the order below before writing code.
 
 - `src/skill_rag/` — Python package (cli, models, parser, loader, embed, index, retrieve, sync, mcp_server, evaluator, corpus).
 - `bootstrap-skill/using-skill-rag/SKILL.md` — meta-skill installed into each harness via symlink.
-- `scripts/install.sh` — set up `~/.skills/`, symlinks, and MCP registration instructions.
+- `Makefile` / `skill-rag install` — set up `~/.skills/`, symlinks, and MCP registration (`skill-rag uninstall` reverses it).
 - `eval/queries.jsonl` — evaluation queries with gold-standard skill names.
 - `tests/` — unit + integration tests.
 - `var/` — local-only LanceDB index (gitignored).

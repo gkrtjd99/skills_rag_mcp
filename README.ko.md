@@ -27,71 +27,25 @@ MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든
 
 ## 설치
 
-### 1) clone 후 원샷 셋업
-
 ```bash
 git clone <repo-url>
 cd skill_rag
-bash scripts/install.sh
+make install
 ```
 
-`install.sh`는 idempotent하며 다음 순서로 동작:
+`make install`은 idempotent하며 다음 순서로 동작:
 
 1. `uv sync`
 2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치 후
    `~/.claude/skills/`, `~/.codex/skills/`에 심볼릭 링크
-3. `skill-rag collect` — 하네스의 모든 스킬
-   (`~/.claude/skills`, `~/.claude/plugins/**/skills`, `~/.codex/skills`,
-   `~/.codex/plugins/**/skills`)을 `~/.skills/`에 심볼릭으로 모음.
-   이름 충돌 시 먼저 본 소스가 이김, 같은 플러그인의 여러 버전이 있으면
-   mtime이 최신인 버전이 이김. `~/.skills/<name>`에 이미 직접 둔 항목은 건드리지 않음.
-4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 LanceDB 인덱스 빌드
-5. 각 하네스용 MCP 등록 스니펫 출력
+3. `skill-rag collect` — 발견된 하네스 스킬을 `~/.skills/`에 심볼릭으로 모음
+4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 인덱스 빌드
+5. MCP 서버 등록 (Claude Code는 `claude mcp add`; Codex는
+   `~/.codex/config.toml`)
 
-### 2) MCP 서버 등록
+이후 하네스를 재시작.
 
-리포 경로 (`$REPO`)는 `pwd` 결과로 치환. 모든 하네스에서 MCP 실행 커맨드는 동일:
-
-```
-uv --directory $REPO run skill-rag mcp
-```
-
-#### Claude Code
-
-CLI로 한 줄 등록 (사용자 스코프, 전역):
-
-```bash
-claude mcp add skill-rag --scope user -- uv --directory "$(pwd)" run skill-rag mcp
-```
-
-또는 `~/.claude.json`의 `mcpServers`에 직접 추가:
-
-```json
-{
-  "mcpServers": {
-    "skill-rag": {
-      "command": "uv",
-      "args": ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
-    }
-  }
-}
-```
-
-#### Codex
-
-`~/.codex/config.toml`에 추가:
-
-```toml
-[mcp_servers.skill-rag]
-command = "uv"
-args = ["--directory", "/absolute/path/to/skill_rag", "run", "skill-rag", "mcp"]
-```
-
-#### 기타 MCP 호환 클라이언트 (Cursor, Windsurf 등)
-
-각 클라이언트의 MCP 설정에 동일한 `command` / `args`를 등록.
-
-### 3) 재시작 + 동작 확인
+### 동작 확인
 
 하네스를 재시작한 뒤 새 세션에서:
 
@@ -104,6 +58,26 @@ CLI에서도 같은 검색이 동작하는지 빠르게 확인:
 ```bash
 uv run skill-rag query "deploy to vercel"
 ```
+
+### 기타 MCP 호환 클라이언트 (Cursor, Windsurf 등)
+
+`make install`은 Claude Code와 Codex만 자동 등록. 다른 클라이언트는
+아래 커맨드로 수동 등록:
+
+```
+uv --directory <repo> run skill-rag mcp
+```
+
+## 제거
+
+```bash
+make uninstall   # skill-rag 설치 내용 제거; 직접 둔 스킬은 보존
+make purge       # ~/.skills 전체도 비움
+```
+
+`uninstall`은 install을 역순으로 실행: MCP 서버 등록 해제, 하네스 부트스트랩
+심볼릭 링크 및 인덱스 제거, 수집된 심볼릭 링크 및 부트스트랩 스킬 제거.
+`~/.skills` 아래 직접 둔 실제 스킬 디렉터리는 `purge`를 쓰지 않는 한 보존됨.
 
 ## 스킬 추가
 
@@ -133,6 +107,8 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `uv run skill-rag eval` | 공개 fixture 평가셋으로 recall@5 측정 |
 | `uv run skill-rag reset` | 인덱스 초기화 |
 | `uv run skill-rag mcp` | MCP 서버 실행 |
+| `uv run skill-rag install` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장) |
+| `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | install 역순; `--purge`는 `~/.skills` 통째 비움 |
 
 ## 환경 변수
 
