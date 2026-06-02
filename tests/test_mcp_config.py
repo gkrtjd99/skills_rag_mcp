@@ -116,7 +116,10 @@ def test_register_claude_uses_cli_when_available(tmp_path):
     )
 
     assert mode == "cli"
-    assert calls and calls[0][:4] == ["claude", "mcp", "add", "skill-rag"]
+    verbs = [c[:4] for c in calls]
+    assert ["claude", "mcp", "remove", "skill-rag"] in verbs  # idempotent pre-clean
+    assert ["claude", "mcp", "add", "skill-rag"] in verbs
+    assert verbs.index(["claude", "mcp", "remove", "skill-rag"]) < verbs.index(["claude", "mcp", "add", "skill-rag"])
     assert not (tmp_path / ".claude.json").exists()  # file not touched
 
 

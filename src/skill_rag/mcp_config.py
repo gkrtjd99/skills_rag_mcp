@@ -48,7 +48,8 @@ def claude_json_path() -> Path:
 
 
 def _claude_cli_add(repo: Path, run) -> None:
-    # Not idempotent at the CLI level; `claude mcp add` may error if already registered.
+    # Idempotent: drop any existing entry first (ignore failure), then add.
+    run(["claude", "mcp", "remove", MCP_NAME, "--scope", "user"], check=False)
     run(
         ["claude", "mcp", "add", MCP_NAME, "--scope", "user", "--", "uv", *launch_args(repo)],
         check=True,
@@ -136,6 +137,11 @@ def register_codex(repo: Path, path: Path | None = None) -> bool:
     _backup(path)
     _atomic_write(path, tomlkit.dumps(doc))
     return True
+
+
+def preview_modes(which=shutil.which) -> dict:
+    """What register_*/unregister_* WOULD do, without touching anything."""
+    return {"claude": "cli" if which("claude") else "file", "codex": "file"}
 
 
 def unregister_codex(path: Path | None = None) -> bool:

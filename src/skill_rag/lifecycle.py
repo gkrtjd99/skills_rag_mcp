@@ -57,10 +57,12 @@ def uninstall(
         harness_skill_dirs if harness_skill_dirs is not None else default_harness_skill_dirs()
     )
 
-    mcp = {}
     if not dry_run:
+        mcp: dict = {}
         mcp["claude"] = mcp_config.unregister_claude()
         mcp["codex"] = mcp_config.unregister_codex()
+    else:
+        mcp = mcp_config.preview_modes()
 
     links_removed: list[str] = []
     for d in harness_skill_dirs:
@@ -122,6 +124,9 @@ def install(
     harness_skill_dirs: list[Path] | None = None,
     dry_run: bool = False,
 ) -> dict:
+    """Install bootstrap + collect/index + register MCP. Note: sync.run_sync()
+    always indexes the configured corpus (corpus_mod.CORPUS_PATH); a non-default
+    corpus_path only affects bootstrap copy/collect/cleanup (test isolation)."""
     repo = (repo or PROJECT_ROOT).expanduser()
     corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
     harness_skill_dirs = (
@@ -132,14 +137,16 @@ def install(
     links = _link_bootstrap(harness_skill_dirs, corpus_path, dry_run)
 
     collect_ran = sync_ran = False
-    mcp = {}
     if not dry_run:
+        mcp: dict = {}
         collect.apply(target=corpus_path)
         collect_ran = True
         sync.run_sync()
         sync_ran = True
         mcp["claude"] = mcp_config.register_claude(repo)
         mcp["codex"] = mcp_config.register_codex(repo)
+    else:
+        mcp = mcp_config.preview_modes()
 
     return {
         "bootstrap_installed": bootstrap_installed,

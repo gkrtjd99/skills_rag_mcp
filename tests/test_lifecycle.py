@@ -136,7 +136,7 @@ def test_install_dry_run_writes_nothing(tmp_path, monkeypatch):
     assert not harness.exists() or not (harness / "using-skill-rag").exists()
     assert report["collect_ran"] is False
     assert report["sync_ran"] is False
-    assert report["mcp"] == {}
+    assert "claude" in report["mcp"] and "codex" in report["mcp"]  # preview_modes populated
 
 
 def test_install_is_idempotent_for_bootstrap(tmp_path, monkeypatch):
@@ -151,3 +151,12 @@ def test_install_is_idempotent_for_bootstrap(tmp_path, monkeypatch):
     assert first["bootstrap_installed"] is True
     assert second["bootstrap_installed"] is False   # already present, not recopied
     assert (corpus / "using-skill-rag" / "SKILL.md").exists()
+
+
+def test_install_dry_run_previews_mcp(tmp_path, monkeypatch):
+    monkeypatch.setattr(lifecycle.mcp_config, "preview_modes", lambda **k: {"claude": "file", "codex": "file"})
+    report = lifecycle.install(
+        repo=tmp_path / "repo", corpus_path=tmp_path / "skills",
+        harness_skill_dirs=[tmp_path / "h"], dry_run=True,
+    )
+    assert report["mcp"] == {"claude": "file", "codex": "file"}
