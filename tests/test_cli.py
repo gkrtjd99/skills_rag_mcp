@@ -84,6 +84,40 @@ def test_reset_command(tmp_path):
     assert index_mod.list_indexed() == []
 
 
+def test_status_json_includes_retrieval_and_runtime_settings():
+    runner = CliRunner()
+    result = runner.invoke(app, ["status", "--json"])
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["score_threshold"] == 0.0
+    assert payload["bm25_threshold"] == 0.30
+    assert payload["rrf_k"] == 60
+    assert payload["local_files_only"] is True
+    assert payload["max_seq_length"] == 512
+    assert payload["translation_enabled"] is True
+
+
+def test_status_text_includes_hybrid_search_settings():
+    runner = CliRunner()
+    result = runner.invoke(app, ["status"])
+    assert result.exit_code == 0
+    assert "dense threshold" in result.stdout
+    assert "BM25 threshold" in result.stdout
+    assert "RRF k" in result.stdout
+    assert "translation" in result.stdout
+
+
+def test_status_uses_count_without_listing_rows(monkeypatch):
+    runner = CliRunner()
+    monkeypatch.setattr(index_mod, "indexed_count", lambda: 7)
+    monkeypatch.setattr(index_mod, "list_indexed", lambda: pytest.fail("listed rows"))
+
+    result = runner.invoke(app, ["status", "--json"])
+
+    assert result.exit_code == 0
+    assert json.loads(result.stdout)["indexed_count"] == 7
+
+
 def test_uninstall_command_dry_run(tmp_path, monkeypatch):
     runner = CliRunner()
     captured = {}

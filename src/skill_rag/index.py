@@ -70,6 +70,14 @@ def list_indexed() -> list[dict]:
     return tbl.to_arrow().select(cols).to_pylist()
 
 
+def indexed_count() -> int:
+    """Return row count without creating a table or loading the embedding model."""
+    db = _open_db()
+    if TABLE_NAME not in db.list_tables().tables:
+        return 0
+    return db.open_table(TABLE_NAME).count_rows()
+
+
 def upsert(records: list[SkillRecord], model_name: str = DEFAULT_MODEL) -> None:
     if not records:
         return

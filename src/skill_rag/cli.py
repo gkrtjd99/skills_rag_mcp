@@ -13,7 +13,8 @@ from . import index as index_mod
 from . import lifecycle
 from . import retrieve
 from . import sync as sync_mod
-from .embed import DEFAULT_MODEL
+from . import embed as embed_mod
+from . import translate as translate_mod
 
 app = typer.Typer(no_args_is_help=True, help="skill_rag — local RAG over ~/.skills.")
 PROJECT_ROOT = _Path(__file__).resolve().parents[2]
@@ -110,15 +111,19 @@ def collect(
 
 @app.command()
 def status(json_out: bool = typer.Option(False, "--json")):
-    """Show corpus path, model, index size, and threshold at a glance."""
-    rows = index_mod.list_indexed()
+    """Show corpus, index, model, retrieval, and sync settings."""
     payload = {
         "corpus_path": str(corpus_mod.CORPUS_PATH),
         "corpus_exists": corpus_mod.CORPUS_PATH.exists(),
         "index_path": str(index_mod.index_path()),
-        "indexed_count": len(rows),
-        "model": DEFAULT_MODEL,
+        "indexed_count": index_mod.indexed_count(),
+        "model": embed_mod.DEFAULT_MODEL,
+        "local_files_only": embed_mod.LOCAL_FILES_ONLY,
+        "max_seq_length": embed_mod.MAX_SEQ_LENGTH,
         "score_threshold": corpus_mod.SCORE_THRESHOLD,
+        "bm25_threshold": corpus_mod.BM25_THRESHOLD,
+        "rrf_k": corpus_mod.RRF_K,
+        "translation_enabled": translate_mod.TRANSLATE_ENABLED,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
     }
     if json_out:
@@ -129,7 +134,12 @@ def status(json_out: bool = typer.Option(False, "--json")):
     typer.echo(f"index path      : {payload['index_path']}")
     typer.echo(f"indexed skills  : {payload['indexed_count']}")
     typer.echo(f"embedding model : {payload['model']}")
-    typer.echo(f"score threshold : {payload['score_threshold']}")
+    typer.echo(f"local files only: {payload['local_files_only']}")
+    typer.echo(f"max seq length  : {payload['max_seq_length']}")
+    typer.echo(f"dense threshold : {payload['score_threshold']}")
+    typer.echo(f"BM25 threshold  : {payload['bm25_threshold']}")
+    typer.echo(f"RRF k           : {payload['rrf_k']}")
+    typer.echo(f"translation     : {payload['translation_enabled']}")
     typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")
 
 

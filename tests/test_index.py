@@ -28,6 +28,11 @@ def test_empty_index_lists_nothing():
     assert index_mod.list_indexed() == []
 
 
+def test_indexed_count_empty_does_not_load_model(monkeypatch):
+    monkeypatch.setattr(index_mod, "model_dim", lambda *a, **k: pytest.fail("loaded model"))
+    assert index_mod.indexed_count() == 0
+
+
 def test_upsert_then_list():
     index_mod.upsert([_record("foo"), _record("bar")])
     rows = index_mod.list_indexed()
