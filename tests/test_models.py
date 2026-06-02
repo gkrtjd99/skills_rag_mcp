@@ -39,3 +39,25 @@ def test_search_hit_fields():
     assert h.name == "x"
     assert h.description == "y"
     assert h.score == 0.9
+
+
+def test_embed_text_includes_translation():
+    from skill_rag.models import SkillRecord
+
+    r = SkillRecord(
+        name="n", description="Deploy to Vercel", path="p", body="",
+        content_hash="h", description_translated="버셀에 배포",
+    )
+    text = r.embed_text()
+    assert "Deploy to Vercel" in text
+    assert "버셀에 배포" in text
+
+
+def test_embed_text_omits_empty_translation():
+    from skill_rag.models import SkillRecord
+
+    r = SkillRecord(
+        name="n", description="Deploy to Vercel", path="p", body="", content_hash="h",
+    )
+    # No translation field set -> appears exactly once (from description only).
+    assert r.embed_text().count("Deploy to Vercel") == 1
