@@ -110,7 +110,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `uv run skill-rag eval` | 공개 fixture 평가셋으로 recall@5 측정 |
 | `uv run skill-rag reset` | 인덱스 초기화 |
 | `uv run skill-rag mcp` | MCP 서버 실행 |
-| `uv run skill-rag install` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장) |
+| `uv run skill-rag install [--refresh-bootstrap]` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장). `--refresh-bootstrap`는 기존 메타-스킬을 템플릿으로 덮어씀 |
 | `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | install 역순; `--purge`는 `~/.skills` 통째 비움 |
 
 ## 환경 변수

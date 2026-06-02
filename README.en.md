@@ -113,7 +113,7 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `uv run skill-rag eval` | Measure recall@5 against the public fixture eval |
 | `uv run skill-rag reset` | Reset the index |
 | `uv run skill-rag mcp` | Run the MCP server |
-| `uv run skill-rag install` | Install bootstrap + collect/index + register MCP (use `make install`) |
+| `uv run skill-rag install [--refresh-bootstrap]` | Install bootstrap + collect/index + register MCP (use `make install`). `--refresh-bootstrap` overwrites the existing meta-skill from the template |
 | `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | Reverse install; `--purge` empties `~/.skills` |
 
 ## Environment variables

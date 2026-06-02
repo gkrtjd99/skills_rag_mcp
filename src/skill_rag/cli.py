@@ -161,14 +161,20 @@ def reset():
 @app.command()
 def install(
     dry_run: bool = typer.Option(False, "--dry-run", help="Show actions without writing."),
+    refresh_bootstrap: bool = typer.Option(
+        False,
+        "--refresh-bootstrap",
+        help="Overwrite an existing ~/.skills/using-skill-rag from the repo template.",
+    ),
     json_out: bool = typer.Option(False, "--json"),
 ):
     """Install the bootstrap skill, collect+index skills, register the MCP server."""
-    report = lifecycle.install(dry_run=dry_run)
+    report = lifecycle.install(dry_run=dry_run, refresh_bootstrap=refresh_bootstrap)
     if json_out:
         typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
         return
     typer.echo(f"bootstrap installed : {report['bootstrap_installed']}")
+    typer.echo(f"bootstrap refreshed : {report.get('bootstrap_refreshed', False)}")
     typer.echo(f"harness links       : {len(report['harness_links'])}")
     typer.echo(f"collect ran         : {report['collect_ran']}")
     typer.echo(f"sync ran            : {report['sync_ran']}")

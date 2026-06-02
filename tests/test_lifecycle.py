@@ -117,6 +117,7 @@ def test_install_copies_bootstrap_and_links_harness(tmp_path, monkeypatch):
     assert (corpus / "using-skill-rag" / "SKILL.md").exists()  # bootstrap copied
     assert (harness / "using-skill-rag").is_symlink()          # harness link
     assert report["bootstrap_installed"] is True
+    assert report["bootstrap_refreshed"] is False
     assert report["collect_ran"] is True
     assert report["sync_ran"] is True
 
@@ -151,6 +152,66 @@ def test_install_is_idempotent_for_bootstrap(tmp_path, monkeypatch):
     assert first["bootstrap_installed"] is True
     assert second["bootstrap_installed"] is False   # already present, not recopied
     assert (corpus / "using-skill-rag" / "SKILL.md").exists()
+
+
+def test_install_preserves_existing_bootstrap_without_refresh(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    existing = corpus / "using-skill-rag"
+    existing.mkdir(parents=True)
+    marker = existing / "SKILL.md"
+    marker.write_text("custom bootstrap", encoding="utf-8")
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    report = lifecycle.install(
+        repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[]
+    )
+
+    assert marker.read_text(encoding="utf-8") == "custom bootstrap"
+    assert report["bootstrap_installed"] is False
+    assert report["bootstrap_refreshed"] is False
+
+
+def test_install_refresh_bootstrap_overwrites_existing(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    existing = corpus / "using-skill-rag"
+    existing.mkdir(parents=True)
+    marker = existing / "SKILL.md"
+    marker.write_text("custom bootstrap", encoding="utf-8")
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    report = lifecycle.install(
+        repo=tmp_path / "repo",
+        corpus_path=corpus,
+        harness_skill_dirs=[],
+        refresh_bootstrap=True,
+    )
+
+    assert "Skill RAG" in marker.read_text(encoding="utf-8")
+    assert report["bootstrap_installed"] is False
+    assert report["bootstrap_refreshed"] is True
+
+
+def test_install_refresh_bootstrap_dry_run_preserves_existing(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    existing = corpus / "using-skill-rag"
+    existing.mkdir(parents=True)
+    marker = existing / "SKILL.md"
+    marker.write_text("custom bootstrap", encoding="utf-8")
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    report = lifecycle.install(
+        repo=tmp_path / "repo",
+        corpus_path=corpus,
+        harness_skill_dirs=[],
+        refresh_bootstrap=True,
+        dry_run=True,
+    )
+
+    assert marker.read_text(encoding="utf-8") == "custom bootstrap"
+    assert report["bootstrap_refreshed"] is True
 
 
 def test_install_dry_run_previews_mcp(tmp_path, monkeypatch):

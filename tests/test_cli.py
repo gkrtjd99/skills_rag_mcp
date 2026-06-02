@@ -156,11 +156,26 @@ def test_install_command_invokes_lifecycle(tmp_path, monkeypatch):
     def fake_install(**k):
         called["ran"] = True
         return {"bootstrap_installed": True, "harness_links": [],
-                "collect_ran": True, "sync_ran": True, "mcp": {}, "dry_run": False}
+                "bootstrap_refreshed": False, "collect_ran": True,
+                "sync_ran": True, "mcp": {}, "dry_run": False}
     monkeypatch.setattr(lifecycle_mod, "install", fake_install)
     result = runner.invoke(app, ["install"])
     assert result.exit_code == 0
     assert called["ran"] is True
+
+
+def test_install_command_passes_refresh_bootstrap(tmp_path, monkeypatch):
+    runner = CliRunner()
+    captured = {}
+    def fake_install(**k):
+        captured.update(k)
+        return {"bootstrap_installed": False, "bootstrap_refreshed": True,
+                "harness_links": [], "collect_ran": True, "sync_ran": True,
+                "mcp": {}, "dry_run": False}
+    monkeypatch.setattr(lifecycle_mod, "install", fake_install)
+    result = runner.invoke(app, ["install", "--refresh-bootstrap"])
+    assert result.exit_code == 0
+    assert captured["refresh_bootstrap"] is True
 
 
 def test_uninstall_yes_skips_prompt(tmp_path, monkeypatch):
@@ -182,7 +197,8 @@ def test_install_json_output(tmp_path, monkeypatch):
     runner = CliRunner()
     def fake_install(**k):
         return {"bootstrap_installed": True, "harness_links": [],
-                "collect_ran": True, "sync_ran": True, "mcp": {}, "dry_run": False}
+                "bootstrap_refreshed": False, "collect_ran": True,
+                "sync_ran": True, "mcp": {}, "dry_run": False}
     monkeypatch.setattr(lifecycle_mod, "install", fake_install)
     result = runner.invoke(app, ["install", "--json"])
     assert result.exit_code == 0

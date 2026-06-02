@@ -87,14 +87,27 @@ def uninstall(
     }
 
 
-def _copy_bootstrap(corpus_path: Path, dry_run: bool) -> bool:
+def _remove_path(path: Path) -> None:
+    if path.is_dir() and not path.is_symlink():
+        shutil.rmtree(path)
+    else:
+        path.unlink()
+
+
+def _copy_bootstrap(corpus_path: Path, dry_run: bool, refresh: bool) -> tuple[bool, bool]:
     dest = corpus_path / corpus_mod.BOOTSTRAP_SKILL_NAME
-    if dest.exists():  # any existing dest is treated as complete; purge+reinstall to refresh
-        return False
+    if dest.exists() or dest.is_symlink():
+        if not refresh:
+            return False, False
+        if not dry_run:
+            _remove_path(dest)
+            corpus_path.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(BOOTSTRAP_SRC, dest)
+        return False, True
     if not dry_run:
         corpus_path.mkdir(parents=True, exist_ok=True)
         shutil.copytree(BOOTSTRAP_SRC, dest)
-    return True
+    return True, False
 
 
 def _link_bootstrap(harness_skill_dirs: list[Path], corpus_path: Path, dry_run: bool) -> list[str]:
@@ -123,6 +136,7 @@ def install(
     corpus_path: Path | None = None,
     harness_skill_dirs: list[Path] | None = None,
     dry_run: bool = False,
+    refresh_bootstrap: bool = False,
 ) -> dict:
     """Install bootstrap + collect/index + register MCP. Note: sync.run_sync()
     always indexes the configured corpus (corpus_mod.CORPUS_PATH); a non-default
@@ -133,7 +147,9 @@ def install(
         harness_skill_dirs if harness_skill_dirs is not None else default_harness_skill_dirs()
     )
 
-    bootstrap_installed = _copy_bootstrap(corpus_path, dry_run)
+    bootstrap_installed, bootstrap_refreshed = _copy_bootstrap(
+        corpus_path, dry_run, refresh_bootstrap
+    )
     links = _link_bootstrap(harness_skill_dirs, corpus_path, dry_run)
 
     collect_ran = sync_ran = False
@@ -150,6 +166,7 @@ def install(
 
     return {
         "bootstrap_installed": bootstrap_installed,
+        "bootstrap_refreshed": bootstrap_refreshed,
         "harness_links": links,
         "collect_ran": collect_ran,
         "sync_ran": sync_ran,
