@@ -16,6 +16,7 @@ MCP_NAME = "skill-rag"
 
 
 def launch_args(repo: Path) -> list[str]:
+    """Args after `uv` for launching the MCP server: `uv --directory <repo> run skill-rag mcp`."""
     return ["--directory", str(repo), "run", "skill-rag", "mcp"]
 
 
@@ -23,10 +24,16 @@ def _atomic_write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + ".tmp")
     tmp.write_text(text, encoding="utf-8")
-    os.replace(tmp, path)
+    try:
+        os.replace(tmp, path)
+    except OSError:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def _backup(path: Path) -> None:
+    # Single-slot backup: each write overwrites the previous .bak. One level is
+    # enough for a dev tool; do not "fix" this into versioned backups.
     if path.exists():
         _atomic_write(path.with_name(path.name + ".bak"), path.read_text(encoding="utf-8"))
 
@@ -40,7 +47,13 @@ def codex_config_path() -> Path:
 def register_codex(repo: Path, path: Path | None = None) -> bool:
     """Add [mcp_servers.skill-rag]. Returns True if the file changed."""
     path = path or codex_config_path()
-    doc = tomlkit.parse(path.read_text(encoding="utf-8")) if path.exists() else tomlkit.document()
+    if path.exists():
+        try:
+            doc = tomlkit.parse(path.read_text(encoding="utf-8"))
+        except tomlkit.exceptions.ParseError as exc:
+            raise ValueError(f"Cannot parse {path}: {exc}") from exc
+    else:
+        doc = tomlkit.document()
 
     desired_args = launch_args(repo)
     existing = doc.get("mcp_servers", {})
@@ -66,7 +79,10 @@ def unregister_codex(path: Path | None = None) -> bool:
     path = path or codex_config_path()
     if not path.exists():
         return False
-    doc = tomlkit.parse(path.read_text(encoding="utf-8"))
+    try:
+        doc = tomlkit.parse(path.read_text(encoding="utf-8"))
+    except tomlkit.exceptions.ParseError as exc:
+        raise ValueError(f"Cannot parse {path}: {exc}") from exc
     if MCP_NAME not in doc.get("mcp_servers", {}):
         return False
     del doc["mcp_servers"][MCP_NAME]
