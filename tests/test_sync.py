@@ -14,6 +14,8 @@ def isolated(tmp_path, monkeypatch):
     importlib.reload(index_mod)
     importlib.reload(sync_mod)
     from skill_rag import translate as translate_mod
+    # Stub out translation — sync correctness tests don't depend on translated
+    # text, and this keeps them from loading the real MT model.
     monkeypatch.setattr(translate_mod, "translate", lambda text: "")
     yield
     index_mod.reset()
