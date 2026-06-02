@@ -13,6 +13,7 @@ class SkillRecord:
     body: str
     content_hash: str
     agent: str = "unknown"  # source harness: claude-code, codex, local, ...
+    description_translated: str = ""  # ko↔en translation, filled at sync time
 
     def embed_text(self) -> str:
         # Stable string we embed AND index for lexical (BM25) search.
@@ -20,8 +21,11 @@ class SkillRecord:
         # examples that the one-line description omits. The embedding model
         # truncates to its max sequence length, so this mainly adds the
         # body's intro to the dense vector while giving BM25 the full text.
-        # Changing this requires a reindex.
+        # The ko↔en translation of the description (when present) lets a query
+        # in either language match. Changing this requires a reindex.
         parts = [self.name, self.description]
+        if self.description_translated.strip():
+            parts.append(self.description_translated.strip())
         if self.body.strip():
             parts.append(self.body.strip())
         return normalize_for_dense("\n".join(parts))

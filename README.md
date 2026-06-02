@@ -39,11 +39,14 @@ make install
 2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치 후
    `~/.claude/skills/`, `~/.codex/skills/`에 심볼릭 링크
 3. `skill-rag collect` — 발견된 하네스 스킬을 `~/.skills/`에 심볼릭으로 모음
-4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 인덱스 빌드
+4. `skill-rag sync` — 첫 실행 시 임베딩·번역 모델 다운로드 후 인덱스 빌드
 5. MCP 서버 등록 (Claude Code는 `claude mcp add`; Codex는
    `~/.codex/config.toml`)
 
 이후 하네스를 재시작.
+
+> 한↔영 번역 도입 이전 버전에서 올린 경우, `uv run skill-rag reset && uv run skill-rag sync`를
+> 한 번 실행해 번역 포함 인덱스로 재빌드하세요 (스키마는 그대로라 자동 재빌드되지 않음).
 
 ### 동작 확인
 
@@ -119,6 +122,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `SKILL_RAG_MODEL` | `BAAI/bge-m3` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩 모델 로드 |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (bge-m3 기준 calibration) |
+| `SKILL_RAG_TRANSLATE` | `1` | 인덱스 시 description 한↔영 자동 번역 (`0`이면 끔) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
 
 `skill-rag eval`은 기본적으로 `eval/fixtures/` 아래의 공개 fixture를 사용하므로

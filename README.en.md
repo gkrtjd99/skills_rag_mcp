@@ -40,11 +40,15 @@ make install
 2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/` and
    symlinks it into `~/.claude/skills/` and `~/.codex/skills/`
 3. `skill-rag collect` — symlinks discovered harness skills into `~/.skills/`
-4. `skill-rag sync` — downloads the embedding model on first run, builds the index
+4. `skill-rag sync` — downloads the embedding and translation models on first run, builds the index
 5. Registers the MCP server (Claude Code via `claude mcp add`; Codex via
    `~/.codex/config.toml`)
 
 Restart the harness afterward.
+
+> Upgrading from a version before ko↔en translation? Run
+> `uv run skill-rag reset && uv run skill-rag sync` once to rebuild the index
+> with translations (the schema is unchanged, so it won't auto-rebuild).
 
 ### Sanity check
 
@@ -121,6 +125,7 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `SKILL_RAG_MODEL` | `BAAI/bge-m3` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load the embedding model from local cache only |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (calibrated for bge-m3) |
+| `SKILL_RAG_TRANSLATE` | `1` | Auto-translate each description ko↔en at index time (`0` disables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
 `skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`

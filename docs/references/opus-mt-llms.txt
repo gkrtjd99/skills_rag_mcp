@@ -1,0 +1,16 @@
+# opus-mt (MarianMT) quick reference
+
+Local ko<->en translation for skill_rag (translate.py). No cloud calls.
+Models: Helsinki-NLP/opus-mt-ko-en, Helsinki-NLP/opus-mt-en-ko.
+Tokenizer needs sentencepiece + sacremoses.
+
+from transformers import MarianMTModel, MarianTokenizer
+
+tok = MarianTokenizer.from_pretrained(name, local_files_only=True)
+model = MarianMTModel.from_pretrained(name, local_files_only=True)
+batch = tok([text], return_tensors="pt", truncation=True, max_length=512)
+out = model.generate(**batch, max_length=512)
+text = tok.batch_decode(out, skip_special_tokens=True)[0]
+
+Models download on first `make install` (SKILL_RAG_LOCAL_FILES_ONLY=0).
+Disable translation entirely with SKILL_RAG_TRANSLATE=0.

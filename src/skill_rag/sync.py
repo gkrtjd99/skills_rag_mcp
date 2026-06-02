@@ -10,6 +10,7 @@ import time
 from . import corpus as corpus_mod
 from . import index as index_mod
 from . import loader
+from . import translate as translate_mod
 
 _last_sync_at: float | None = None
 
@@ -45,6 +46,8 @@ def run_sync() -> dict:
                 removed_names.append(row["name"])
 
     if to_upsert:
+        for record in to_upsert:
+            record.description_translated = translate_mod.translate(record.description)
         index_mod.upsert(to_upsert)
     if removed_paths:
         index_mod.delete_by_paths(removed_paths)

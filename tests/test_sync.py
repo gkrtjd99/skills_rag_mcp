@@ -13,6 +13,10 @@ def isolated(tmp_path, monkeypatch):
     importlib.reload(corpus)
     importlib.reload(index_mod)
     importlib.reload(sync_mod)
+    from skill_rag import translate as translate_mod
+    # Stub out translation — sync correctness tests don't depend on translated
+    # text, and this keeps them from loading the real MT model.
+    monkeypatch.setattr(translate_mod, "translate", lambda text: "")
     yield
     index_mod.reset()
 
@@ -101,3 +105,40 @@ def test_sync_if_stale_force_with_ttl_zero(monkeypatch, tmp_path):
     # No time advance, but ttl=0 forces.
     sync_mod.sync_if_stale(ttl=0)
     assert sorted(r["name"] for r in index_mod.list_indexed()) == ["bar", "foo"]
+
+
+def test_sync_translates_only_new_and_changed(tmp_path, monkeypatch):
+    from skill_rag import translate as translate_mod
+
+    calls = []
+
+    def fake(text):
+        calls.append(text)
+        return f"T[{text}]"
+
+    monkeypatch.setattr(translate_mod, "translate", fake)
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "foo", desc="alpha")
+    sync_mod.run_sync()
+    assert calls == ["alpha"]  # new -> translated
+
+    calls.clear()
+    _mk(corpus_root, "foo", desc="beta")   # changed
+    _mk(corpus_root, "bar", desc="gamma")  # new
+    sync_mod.run_sync()
+    assert sorted(calls) == ["beta", "gamma"]  # only changed + new
+
+    calls.clear()
+    sync_mod.run_sync()  # nothing changed
+    assert calls == []  # unchanged -> not re-translated
+
+
+def test_sync_translation_lands_in_indexed_text(tmp_path, monkeypatch):
+    from skill_rag import translate as translate_mod
+
+    monkeypatch.setattr(translate_mod, "translate", lambda text: "번역결과")
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "foo", desc="Deploy")
+    sync_mod.run_sync()
+    row = index_mod.list_indexed()[0]
+    assert "번역결과" in row["text"]
