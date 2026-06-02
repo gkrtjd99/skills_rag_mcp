@@ -95,7 +95,7 @@ def test_uninstall_leaves_real_dir_harness_link_untouched(tmp_path):
 
 
 class _FakeCollect:
-    def apply(self, **kwargs):
+    def apply(self, target=None, sources=None, dry_run=False):
         return None
 
 
@@ -119,3 +119,35 @@ def test_install_copies_bootstrap_and_links_harness(tmp_path, monkeypatch):
     assert report["bootstrap_installed"] is True
     assert report["collect_ran"] is True
     assert report["sync_ran"] is True
+
+
+def test_install_dry_run_writes_nothing(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    harness = tmp_path / "claude" / "skills"
+    # dry_run must not call collect/sync; stub them so a stray call would be obvious
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    report = lifecycle.install(
+        repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[harness], dry_run=True
+    )
+
+    assert not (corpus / "using-skill-rag").exists()   # nothing copied
+    assert not harness.exists() or not (harness / "using-skill-rag").exists()
+    assert report["collect_ran"] is False
+    assert report["sync_ran"] is False
+    assert report["mcp"] == {}
+
+
+def test_install_is_idempotent_for_bootstrap(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    harness = tmp_path / "claude" / "skills"
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    first = lifecycle.install(repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[harness])
+    second = lifecycle.install(repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[harness])
+
+    assert first["bootstrap_installed"] is True
+    assert second["bootstrap_installed"] is False   # already present, not recopied
+    assert (corpus / "using-skill-rag" / "SKILL.md").exists()

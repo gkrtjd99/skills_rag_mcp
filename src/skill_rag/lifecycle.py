@@ -87,7 +87,7 @@ def uninstall(
 
 def _copy_bootstrap(corpus_path: Path, dry_run: bool) -> bool:
     dest = corpus_path / corpus_mod.BOOTSTRAP_SKILL_NAME
-    if dest.exists():
+    if dest.exists():  # any existing dest is treated as complete; purge+reinstall to refresh
         return False
     if not dry_run:
         corpus_path.mkdir(parents=True, exist_ok=True)
@@ -100,6 +100,7 @@ def _link_bootstrap(harness_skill_dirs: list[Path], corpus_path: Path, dry_run: 
     linked: list[str] = []
     for d in harness_skill_dirs:
         link = d / corpus_mod.BOOTSTRAP_SKILL_NAME
+        # resolve() uses strict=False (default): safe even before target exists (dry_run)
         if link.is_symlink() and link.resolve() == target.resolve():
             continue
         if not dry_run:
