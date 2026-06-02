@@ -21,11 +21,12 @@ def isolated(tmp_path, monkeypatch):
     index_mod.reset()
 
 
-def _mk(corpus_root, name, desc="d", body="b"):
+def _mk(corpus_root, name, desc="d", body="b", frontmatter_name=None):
     d = corpus_root / name
     d.mkdir(parents=True, exist_ok=True)
+    skill_name = frontmatter_name or name
     (d / "SKILL.md").write_text(
-        f"---\nname: {name}\ndescription: {desc}\n---\n{body}\n", encoding="utf-8"
+        f"---\nname: {skill_name}\ndescription: {desc}\n---\n{body}\n", encoding="utf-8"
     )
 
 
@@ -62,6 +63,37 @@ def test_sync_detects_removal(tmp_path):
     assert report["removed"] == ["foo"]
     rows = index_mod.list_indexed()
     assert [r["name"] for r in rows] == ["bar"]
+
+
+def test_sync_skips_duplicate_frontmatter_names(tmp_path):
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "first", frontmatter_name="same")
+    _mk(corpus_root, "second", frontmatter_name="same")
+
+    report = sync_mod.run_sync()
+
+    assert report["added"] == ["same"]
+    assert report["duplicate_names"] == [
+        {
+            "name": "same",
+            "kept": str(corpus_root / "first" / "SKILL.md"),
+            "skipped": str(corpus_root / "second" / "SKILL.md"),
+        }
+    ]
+    rows = index_mod.list_indexed()
+    assert len(rows) == 1
+    assert rows[0]["path"] == str(corpus_root / "first" / "SKILL.md")
+
+
+def test_sync_removes_previously_indexed_duplicate_name(tmp_path):
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "second", frontmatter_name="same")
+    sync_mod.run_sync()
+    _mk(corpus_root, "first", frontmatter_name="same")
+    sync_mod.run_sync()
+    rows = index_mod.list_indexed()
+    assert len(rows) == 1
+    assert rows[0]["path"] == str(corpus_root / "first" / "SKILL.md")
 
 
 def test_sync_if_stale_skips_within_ttl(monkeypatch, tmp_path):

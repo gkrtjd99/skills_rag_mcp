@@ -15,10 +15,27 @@ from . import translate as translate_mod
 _last_sync_at: float | None = None
 
 
+def _dedupe_by_name(records: list) -> tuple[list, list[dict[str, str]]]:
+    """Keep the first record for each frontmatter name; report skipped duplicates."""
+    seen: dict[str, str] = {}
+    kept = []
+    duplicates: list[dict[str, str]] = []
+    for record in records:
+        kept_path = seen.get(record.name)
+        if kept_path is not None:
+            duplicates.append(
+                {"name": record.name, "kept": kept_path, "skipped": record.path}
+            )
+            continue
+        seen[record.name] = record.path
+        kept.append(record)
+    return kept, duplicates
+
+
 def run_sync() -> dict:
-    """Force a sync. Returns {added, updated, removed, unchanged}."""
+    """Force a sync. Returns {added, updated, removed, unchanged, duplicate_names}."""
     global _last_sync_at
-    records = loader.scan(corpus_mod.CORPUS_PATH)
+    records, duplicate_names = _dedupe_by_name(loader.scan(corpus_mod.CORPUS_PATH))
     indexed = {row["path"]: row["content_hash"] for row in index_mod.list_indexed()}
     disk_paths = {r.path for r in records}
 
@@ -58,6 +75,7 @@ def run_sync() -> dict:
         "updated": updated,
         "removed": removed_names,
         "unchanged": unchanged,
+        "duplicate_names": duplicate_names,
     }
 
 

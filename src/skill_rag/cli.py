@@ -39,6 +39,13 @@ def sync(json_out: bool = typer.Option(False, "--json")):
     for n in report["removed"]:
         typer.echo(f"  - {n}")
     typer.echo(f"unchanged: {report['unchanged']}")
+    duplicates = report.get("duplicate_names", [])
+    if duplicates:
+        typer.echo(f"duplicate names skipped: {len(duplicates)}")
+        for item in duplicates:
+            typer.echo(f"  ! {item['name']}")
+            typer.echo(f"      kept    {item['kept']}")
+            typer.echo(f"      skipped {item['skipped']}")
 
 
 @app.command()

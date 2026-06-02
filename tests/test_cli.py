@@ -24,11 +24,12 @@ def isolated(tmp_path, monkeypatch):
     sync_mod.reset_cache()
 
 
-def _mk(corpus_root, name, desc="d"):
+def _mk(corpus_root, name, desc="d", frontmatter_name=None):
     d = corpus_root / name
     d.mkdir(parents=True, exist_ok=True)
+    skill_name = frontmatter_name or name
     (d / "SKILL.md").write_text(
-        f"---\nname: {name}\ndescription: {desc}\n---\nbody\n", encoding="utf-8"
+        f"---\nname: {skill_name}\ndescription: {desc}\n---\nbody\n", encoding="utf-8"
     )
 
 
@@ -39,6 +40,16 @@ def test_sync_command(tmp_path):
     assert result.exit_code == 0
     assert "added" in result.stdout
     assert "foo" in result.stdout
+
+
+def test_sync_command_reports_duplicate_frontmatter_names(tmp_path):
+    runner = CliRunner()
+    _mk(tmp_path / "skills", "a", frontmatter_name="same")
+    _mk(tmp_path / "skills", "b", frontmatter_name="same")
+    result = runner.invoke(app, ["sync"])
+    assert result.exit_code == 0
+    assert "duplicate names skipped" in result.stdout
+    assert "same" in result.stdout
 
 
 def test_query_command(tmp_path):
