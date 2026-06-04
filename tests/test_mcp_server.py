@@ -104,3 +104,32 @@ def test_search_skills_does_not_skip_real_query(tmp_path):
     res = mcp_server.search_skills("explore ideas before building", k=5)
     assert res["status"] in {"ok", "no_match"}
     assert res["status"] != "skip"
+
+
+def test_search_skills_blank_query_stays_no_match(tmp_path):
+    # Whitespace-only must keep the existing no_match contract, not become skip.
+    res = mcp_server.search_skills("   ", k=5)
+    assert res["status"] == "no_match"
+
+
+def test_search_skills_skip_message_is_actionable(tmp_path):
+    res = mcp_server.search_skills("네", k=5)
+    assert res["status"] == "skip"
+    assert "Do not search again" in res["message"]
+
+
+def test_interactive_flow_searches_once_then_skips(tmp_path):
+    """Simulate a PRD-coach flow: the opening task searches, the per-turn
+    multiple-choice/ack replies all skip without touching the index."""
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "brainstorming", desc="explore product ideas and requirements before building")
+
+    opening = mcp_server.search_skills(
+        "act as a PRD coach and interview me to draft a product spec", k=5
+    )
+    assert opening["status"] in {"ok", "no_match"}  # a real retrieval ran
+
+    for reply in ["A", "B", "네", "잘 모르겠어요", "다음", "1", "done"]:
+        res = mcp_server.search_skills(reply, k=5)
+        assert res["status"] == "skip", f"{reply!r} should skip"
+        assert res["hits"] == []

@@ -170,3 +170,35 @@ def test_skip_response_shape():
     assert res["status"] == "skip"
     assert res["hits"] == []
     assert "task or topic" in res["message"]
+
+
+@pytest.mark.parametrize("query", [None, 123, 4.5, [], {}, object()])
+def test_is_conversational_non_string_returns_false(query):
+    # Defensive: never raise on a non-str query; fall through to normal handling.
+    assert retrieve.is_conversational(query) is False
+
+
+@pytest.mark.parametrize("query", ["...", "???", "!!!", "…", "。", "   ", "\t\n"])
+def test_is_conversational_punctuation_or_blank_is_not_skipped(query):
+    # Punctuation/whitespace-only strips to empty -> not a conversational token.
+    assert retrieve.is_conversational(query) is False
+
+
+@pytest.mark.parametrize("query", ["C++", "A)", "(A)", "[1]", "go", "v2", "x86"])
+def test_is_conversational_does_not_overreach(query):
+    # Two-char tokens, bracketed choices, and real short topics must not skip.
+    assert retrieve.is_conversational(query) is False
+
+
+@pytest.mark.parametrize("query", ["A.", "No.", "Ok!", "YES", "네.", "다음…"])
+def test_is_conversational_trims_trailing_punctuation(query):
+    assert retrieve.is_conversational(query) is True
+
+
+def test_search_does_not_skip_conversational_query(monkeypatch):
+    # retrieve.search itself never short-circuits (the CLI debug path always
+    # searches); only the MCP wrapper skips. A bare letter just finds no match.
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.99)
+    _seed()
+    res = retrieve.search("A", k=5)
+    assert res["status"] == "no_match"

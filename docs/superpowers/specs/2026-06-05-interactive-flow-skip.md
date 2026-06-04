@@ -111,8 +111,20 @@ Empty queries keep returning `no_match` (unchanged). The guard runs *before*
 ## Verification
 
 - Unit tests: `is_conversational` true/false table; `search_skills` returns
-  `skip` for conversational input without touching the index; real queries still
-  return `ok`/`no_match`.
+  `skip` for conversational input without touching the index (sync + search
+  monkeypatched and asserted uncalled); real queries still return `ok`/
+  `no_match`; an interactive-flow integration test searches once on the opening
+  task then skips every per-turn reply.
+- Robustness/exceptions: non-string input (`None`, `int`, `list`, …) returns
+  `False` without raising; punctuation-only and whitespace-only strip to empty
+  and are not skipped; two-char/bracketed tokens (`C++`, `A)`, `[1]`, `x86`)
+  and real queries containing an ack word (`no caching`, `revise schema`) are
+  not skipped; trailing sentence punctuation and case are normalized.
+- Contract preserved: whitespace-only stays `no_match` (not `skip`); the CLI
+  `query` debug path (`retrieve.search`) never skips.
 - The bootstrap meta-skill documents `skip` alongside `ok`/`no_match`/
   `not_found` and states the per-task (not per-message) rule.
-- `uv run pytest -q`
+- `uv run pytest -q` → 212 passed.
+- Fixture eval unaffected (skip guard sits in the eval's `search_skills` path
+  but no fixture query is a bare token): `recall@5 = 1.0`, `p95 ≈ 75 ms`,
+  0 misses.

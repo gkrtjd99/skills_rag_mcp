@@ -43,8 +43,11 @@ def is_conversational(query: str) -> bool:
       trailing sentence punctuation.
 
     Empty queries return ``False`` here; they stay on the existing ``no_match``
-    path in :func:`search`.
+    path in :func:`search`. Non-string input also returns ``False`` so the
+    caller falls through to its normal validation rather than raising.
     """
+    if not isinstance(query, str):
+        return False
     q = query.strip()
     if not q:
         return False
