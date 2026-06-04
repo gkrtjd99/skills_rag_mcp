@@ -37,6 +37,9 @@ runtime state (a single timestamp).
 
 ### `search_skills(query, k, agent)`
 
+0. `retrieve.is_conversational(query)` runs first. A bare interactive-flow reply
+   (single letter, all digits, or a curated ko/en affirmation/ack token) returns
+   `{status: "skip"}` immediately — no sync, no embedding, no search.
 1. `sync.sync_if_stale()` runs at most once per TTL window (default 30 s).
 2. `retrieve.search` reads indexed metadata and text.
 3. The query is normalized for dense retrieval, then encoded with the local
@@ -116,6 +119,7 @@ The bootstrap skill and server response shapes jointly prevent retry loops:
 
 | Tool | Failure shape | Response status | Bootstrap rule |
 | --- | --- | --- | --- |
+| `search_skills` | Bare interactive-flow reply (single letter, digits, ko/en ack) | `skip` | Respond directly. Stop searching every turn until a new task. |
 | `search_skills` | Empty query, empty corpus, or no candidate above thresholds | `no_match` | Respond directly. No reworded retry. |
 | `get_skill` | Missing skill after forced sync | `not_found` | Do not retry this name this turn. |
 | `search_skills` | Hits returned, none actually fit | `ok` (agent judges) | Proceed without a skill. |

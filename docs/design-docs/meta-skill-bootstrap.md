@@ -38,12 +38,16 @@ slot and could encourage self-referential calls.
 
 The skill body requires:
 
-- Parent agent: call `search_skills` before responding to any user message.
+- Parent agent: call `search_skills` when a new task starts or the topic
+  shifts — not on every user message. Inside a sustained interactive flow
+  (interview/wizard/Q&A coaching) where the user is merely answering, do not
+  re-search until a new task appears.
 - Subagent: call only when the parent context describes substantive work.
 - Caller: pass `agent=<harness name>` when known.
-- Status handling: `ok`, `no_match`, and `not_found` each have a terminal
-  action.
-- Anti-patterns: no multi-call retries with reworded queries.
+- Status handling: `ok`, `no_match`, `skip`, and `not_found` each have a
+  terminal action.
+- Anti-patterns: no per-turn searching inside an established interactive flow;
+  no multi-call retries with reworded queries.
 
 The MCP server's response shapes enforce the contract; the skill text makes it
 explicit to the agent.

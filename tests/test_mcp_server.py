@@ -80,3 +80,27 @@ def test_get_skill_works_when_dir_name_differs_from_skill_name(tmp_path):
     res = mcp_server.get_skill("vercel-react-best-practices")
     assert res["status"] == "ok"
     assert "hello" in res["body"]
+
+
+def test_search_skills_skips_conversational_reply(tmp_path, monkeypatch):
+    """A bare interactive-flow reply returns skip without syncing or searching."""
+    called = {"sync": False, "search": False}
+    monkeypatch.setattr(
+        mcp_server.sync_mod, "sync_if_stale", lambda *a, **k: called.__setitem__("sync", True)
+    )
+    monkeypatch.setattr(
+        mcp_server.retrieve, "search",
+        lambda *a, **k: called.__setitem__("search", True) or {"status": "ok", "hits": []},
+    )
+    res = mcp_server.search_skills("A", k=5)
+    assert res["status"] == "skip"
+    assert res["hits"] == []
+    assert called == {"sync": False, "search": False}
+
+
+def test_search_skills_does_not_skip_real_query(tmp_path):
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "brainstorming", desc="explore ideas before implementation")
+    res = mcp_server.search_skills("explore ideas before building", k=5)
+    assert res["status"] in {"ok", "no_match"}
+    assert res["status"] != "skip"
