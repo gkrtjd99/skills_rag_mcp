@@ -6,6 +6,7 @@ get_skill:     full SKILL.md body for a single skill.
 Response shapes (mirrored in bootstrap-skill/using-skill-rag/SKILL.md):
   search_skills -> {"status": "ok", "hits": [...]}
                 or {"status": "no_match", "hits": [], "message": "..."}
+                or {"status": "skip", "hits": [], "message": "..."}
   get_skill     -> {"status": "ok", "body": "..."}
                 or {"status": "not_found", "message": "..."}
 """
@@ -38,9 +39,9 @@ def _path_for_name(name: str) -> Path | None:
 
 @server.tool()
 def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
-    """Find skills relevant to ``query``. Call BEFORE responding to any user
-    message. Returns metadata only — call ``get_skill`` to fetch the body of
-    any skill that fits the task.
+    """Find skills relevant to ``query``. Call when a new task starts or the
+    topic shifts — not on every reply inside an interactive flow. Returns
+    metadata only; call ``get_skill`` to fetch the body of any skill that fits.
 
     Pass ``agent`` as your own harness name (e.g. "claude-code", "codex") so
     each hit can be attributed to its source. Each hit reports the ``agent``
@@ -49,7 +50,12 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     Response:
       - {"status": "ok", "hits": [{"name", "description", "score", "agent"}, ...]}
       - {"status": "no_match", "hits": [], "message": "..."}
+      - {"status": "skip", "hits": [], "message": "..."}  # conversational reply
     """
+    # Cheap guard first: a bare interactive-flow reply ("A", "네", "next") can
+    # never need a new skill, so skip before sync and embedding entirely.
+    if retrieve.is_conversational(query):
+        return retrieve.skip_response()
     sync_mod.sync_if_stale()
     return retrieve.search(query, k=k, agent=agent)
 
