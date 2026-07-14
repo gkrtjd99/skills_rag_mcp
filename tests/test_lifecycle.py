@@ -21,7 +21,7 @@ def _real_skill(root: Path, name: str) -> Path:
     return d
 
 
-def test_uninstall_removes_symlinks_keeps_real_dirs(tmp_path):
+def test_uninstall_preserves_untracked_entries(tmp_path):
     corpus = tmp_path / "skills"
     corpus.mkdir()
     src = _real_skill(tmp_path / "src", "linked")
@@ -34,11 +34,11 @@ def test_uninstall_removes_symlinks_keeps_real_dirs(tmp_path):
 
     report = lifecycle.uninstall(corpus_path=corpus, harness_skill_dirs=[harness])
 
-    assert not (corpus / "linked").exists()             # symlink removed
-    assert not (corpus / "using-skill-rag").exists()    # bootstrap removed
+    assert (corpus / "linked").exists()                 # user symlink preserved
+    assert (corpus / "using-skill-rag").exists()        # untracked bootstrap preserved
     assert (corpus / "manual").exists()                 # real dir kept
-    assert not (harness / "using-skill-rag").exists()   # harness link removed
-    assert report["corpus"]["removed_links"] == ["linked"]
+    assert (harness / "using-skill-rag").exists()       # foreign harness link preserved
+    assert report["corpus"]["removed_links"] == []
 
 
 def test_uninstall_purge_empties_corpus(tmp_path):
@@ -95,12 +95,18 @@ def test_uninstall_leaves_real_dir_harness_link_untouched(tmp_path):
 
 
 class _FakeCollect:
+    class _Report:
+        linked: list[str] = []
+
+    def plan(self, target=None, sources=None):
+        return [], self._Report()
+
     def apply(self, target=None, sources=None, dry_run=False):
         return None
 
 
 class _FakeSync:
-    def run_sync(self):
+    def run_sync(self, corpus_path=None):
         return {"added": [], "updated": [], "removed": [], "unchanged": 0}
 
 
@@ -120,6 +126,27 @@ def test_install_copies_bootstrap_and_links_harness(tmp_path, monkeypatch):
     assert report["bootstrap_refreshed"] is False
     assert report["collect_ran"] is True
     assert report["sync_ran"] is True
+    state = lifecycle._load_state(corpus)
+    assert state["harness_links"][str(harness / "using-skill-rag")] == str(
+        (corpus / "using-skill-rag").resolve()
+    )
+
+
+def test_install_syncs_the_same_injected_corpus(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    captured = {}
+
+    class SpySync:
+        def run_sync(self, corpus_path=None):
+            captured["corpus_path"] = corpus_path
+            return {"added": [], "updated": [], "removed": [], "unchanged": 0}
+
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", SpySync(), raising=True)
+
+    lifecycle.install(repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[])
+
+    assert captured["corpus_path"] == corpus
 
 
 def test_install_dry_run_writes_nothing(tmp_path, monkeypatch):

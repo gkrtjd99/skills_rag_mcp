@@ -6,10 +6,19 @@ __pycache__/
 
 # uv / venv
 .venv/
+dist/
 
-# LanceDB index (cache; rebuild from corpus with `skill-rag sync`)
+# LanceDB indexes and disposable benchmark output (rebuild/regenerate locally)
 var/
 *.lance/
+bench/results/
+bench/cache/
+bench/outputs/
+
+# Local Hugging Face/model caches (never commit downloaded weights)
+.hf-cache/
+hf-cache/
+.cache/huggingface/
 
 # OS
 .DS_Store

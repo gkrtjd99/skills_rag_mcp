@@ -26,7 +26,7 @@ def scan(root: Path) -> list[SkillRecord]:
         if not skill_md.is_file():
             continue
         record = parse_skill_file(skill_md)
-        if record is not None:
+        if record is not None and record.name != BOOTSTRAP_SKILL_NAME:
             # Classify by the symlink target: a corpus entry is usually a
             # symlink into a harness install, so resolve before classifying.
             record.agent = agent_for_path(skill_md.resolve())

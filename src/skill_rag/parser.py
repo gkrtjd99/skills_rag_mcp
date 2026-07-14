@@ -16,7 +16,12 @@ def parse_skill_file(path: Path) -> SkillRecord | None:
     content_hash is sha256 of the FULL file text so any change to the body or
     frontmatter triggers re-indexing.
     """
-    text = path.read_text(encoding="utf-8")
+    try:
+        text = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        # The corpus is user-managed. One unreadable or malformed-encoding
+        # entry must not prevent the remaining skills from being searchable.
+        return None
     fm_text, body = _split_frontmatter(text)
     if fm_text is None:
         return None

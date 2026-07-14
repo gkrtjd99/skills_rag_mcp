@@ -1,22 +1,20 @@
-{"query": "How do I configure Supabase RLS policies?", "expected": ["supabase"]}
-{"query": "How do I set up Row Level Security in Supabase?", "expected": ["supabase"]}
-{"query": "Handle login and sessions with supabase-js", "expected": ["supabase"]}
-{"query": "Configure @supabase/ssr cookies in Next.js", "expected": ["supabase"]}
-{"query": "Supabase Edge Function deployment is failing", "expected": ["supabase"]}
-{"query": "Enable the pg_vector extension", "expected": ["supabase", "supabase-postgres-best-practices"]}
-{"query": "Design effective Postgres indexes", "expected": ["supabase-postgres-best-practices"]}
-{"query": "Slow query optimization in Postgres", "expected": ["supabase-postgres-best-practices"]}
-{"query": "Read a Postgres query plan with EXPLAIN ANALYZE", "expected": ["supabase-postgres-best-practices"]}
-{"query": "connection pooling for postgres", "expected": ["supabase-postgres-best-practices"]}
-{"query": "schema design best practices", "expected": ["supabase-postgres-best-practices"]}
-{"query": "Scaffold agent operating documents for a new repo", "expected": ["harness-init"]}
-{"query": "Set up a repository in the harness engineering style", "expected": ["harness-init"]}
-{"query": "ARCHITECTURE.md template", "expected": ["harness-init"]}
-{"query": "Handle JWTs in Supabase Auth", "expected": ["supabase"]}
-{"query": "Reduce N+1 queries in Postgres", "expected": ["supabase-postgres-best-practices"]}
-{"query": "Supabase Realtime channel subscriptions keep disconnecting", "expected": ["supabase"]}
-{"query": "create a new codex skill", "expected": ["skill-creator"]}
-{"query": "install a codex skill from github", "expected": ["skill-installer"]}
-{"query": "generate an image with AI", "expected": ["imagegen"]}
-{"query": "scaffold a codex plugin manifest", "expected": ["plugin-creator"]}
-{"query": "how to use OpenAI API correctly with citations", "expected": ["openai-docs"]}
+{"query": "Generate a raster illustration from a text prompt", "expected": ["imagegen"]}
+{"query": "Edit an existing PNG with AI image generation", "expected": ["imagegen"]}
+{"query": "Create a transparent-background bitmap asset", "expected": ["imagegen"]}
+{"query": "Make an AI-generated product mockup image", "expected": ["imagegen"]}
+{"query": "Find official OpenAI API documentation and cite it", "expected": ["openai-docs"]}
+{"query": "Which OpenAI model should I choose for this use case?", "expected": ["openai-docs"]}
+{"query": "How do I upgrade an OpenAI API integration and prompts?", "expected": ["openai-docs"]}
+{"query": "Answer a Codex question using the official OpenAI docs", "expected": ["openai-docs"]}
+{"query": "Create a Codex plugin with a plugin.json manifest", "expected": ["plugin-creator"]}
+{"query": "Scaffold a personal Codex plugin directory", "expected": ["plugin-creator"]}
+{"query": "Add a plugin to the personal marketplace", "expected": ["plugin-creator"]}
+{"query": "Update an existing Codex plugin during development", "expected": ["plugin-creator"]}
+{"query": "Create a new Codex skill for a specialized workflow", "expected": ["skill-creator"]}
+{"query": "Update an existing skill with tools and references", "expected": ["skill-creator"]}
+{"query": "Write effective SKILL.md instructions", "expected": ["skill-creator"]}
+{"query": "Design a reusable skill for Codex", "expected": ["skill-creator"]}
+{"query": "Install a Codex skill from a GitHub repository", "expected": ["skill-installer"]}
+{"query": "List available curated skills to install", "expected": ["skill-installer"]}
+{"query": "Install a skill into CODEX_HOME", "expected": ["skill-installer"]}
+{"query": "Install a skill from a private GitHub repo", "expected": ["skill-installer"]}

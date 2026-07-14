@@ -35,6 +35,24 @@ def test_scan_skips_bootstrap_skill(tmp_path):
     assert "real-skill" in names
 
 
+def test_scan_skips_bootstrap_when_only_frontmatter_name_matches(tmp_path):
+    _mk(tmp_path, "renamed-bootstrap", fm_name="using-skill-rag", desc="bootstrap")
+    _mk(tmp_path, "real-skill")
+
+    names = [r.name for r in scan(tmp_path)]
+
+    assert names == ["real-skill"]
+
+
+def test_scan_skips_invalid_utf8_and_keeps_valid_skills(tmp_path):
+    _mk(tmp_path, "valid")
+    broken = tmp_path / "broken"
+    broken.mkdir()
+    (broken / "SKILL.md").write_bytes(b"---\nname: broken\ndescription: \xff\n---\n")
+
+    assert [r.name for r in scan(tmp_path)] == ["valid"]
+
+
 def test_scan_ignores_dir_without_skill_md(tmp_path):
     (tmp_path / "empty-dir").mkdir()
     _mk(tmp_path, "real-skill")

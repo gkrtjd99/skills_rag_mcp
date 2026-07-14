@@ -10,6 +10,11 @@
 | 2026-06-02 | LanceDB schema v6: add `translation_status`; schema drift drops/rebuilds the derived index. | `../../ARCHITECTURE.md`, `../../src/skill_rag/index.py` |
 | 2026-06-02 | Consolidate completed superpowers specs/plans into current-state docs and history. | `implementation-history.md` |
 | 2026-06-05 | Search per task, not per message: reframe bootstrap + add `skip` status for conversational replies inside interactive flows. | `mcp-interface.md`, `meta-skill-bootstrap.md`, `../../src/skill_rag/retrieve.py` |
+| 2026-07-14 | Harden offline verification, full-schema cache migration, corpus parsing, and evaluation percentiles. | `../../docs/superpowers/specs/2026-07-14-reliability-hardening.md` |
+| 2026-07-14 | Add disposable Docker multilingual model benchmark and choose native query evaluation. | `../../docs/superpowers/specs/2026-07-14-multimodel-docker-benchmark.md`, `../../docs/benchmarks/2026-07-14-docker-multilingual.md` |
+| 2026-07-14 | Switch the default embedding model from BGE-M3 to multilingual-e5-base after a 30-query native bilingual dynamic benchmark. | `../../docs/superpowers/specs/2026-07-14-e5-default-switch.md`, `../../docs/benchmarks/2026-07-14-docker-multilingual.md` |
+| 2026-07-14 | Tie the local gold evaluation to the five Codex system skills and separate it from arbitrary personal-corpus evaluation. | `../../docs/superpowers/specs/2026-07-14-codex-gold-eval.md`, `../../Makefile` |
+| 2026-07-14 | Stabilize release hygiene, isolate test clocks, serialize sync, and add positive/negative evaluation gates. | `../../docs/superpowers/specs/2026-07-14-maintenance-release.md`, `../../CHANGELOG.md` |
 
 Detailed dated implementation plans are intentionally not kept as active docs.
 Active future work belongs under `docs/superpowers/specs/` and

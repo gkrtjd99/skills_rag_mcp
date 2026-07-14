@@ -58,7 +58,7 @@ def open_table(model_name: str = DEFAULT_MODEL):
         tbl = db.open_table(TABLE_NAME)
         # Drop and recreate on any schema drift (e.g. a pre-`text` v3 table).
         # The index is a derived cache — `sync` rebuilds it from the corpus.
-        if list(tbl.schema.names) != list(schema.names):
+        if not tbl.schema.equals(schema, check_metadata=True):
             db.drop_table(TABLE_NAME)
             return db.create_table(TABLE_NAME, schema=schema)
         return tbl

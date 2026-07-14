@@ -46,6 +46,13 @@ def test_parse_empty_file(tmp_path):
     assert parse_skill_file(p) is None
 
 
+def test_parse_invalid_utf8_returns_none(tmp_path):
+    p = tmp_path / "broken" / "SKILL.md"
+    p.parent.mkdir()
+    p.write_bytes(b"---\nname: broken\ndescription: \xff\n---\n")
+    assert parse_skill_file(p) is None
+
+
 def test_hash_changes_with_body(tmp_path):
     p1 = _write(tmp_path / "a", "foo", "---\nname: foo\ndescription: d\n---\nbody1")
     p2 = _write(tmp_path / "b", "foo", "---\nname: foo\ndescription: d\n---\nbody2")

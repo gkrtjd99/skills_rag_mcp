@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-import time
+import math
+from time import monotonic as _monotonic
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
@@ -23,6 +24,8 @@ class Report:
     mrr: float
     p50_ms: float
     p95_ms: float
+    no_match_n: int = 0
+    no_match_accuracy: float = 0.0
     misses: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -33,6 +36,8 @@ class Report:
             "mrr": self.mrr,
             "p50_ms": self.p50_ms,
             "p95_ms": self.p95_ms,
+            "no_match_n": self.no_match_n,
+            "no_match_accuracy": self.no_match_accuracy,
             "misses": self.misses,
         }
 
@@ -64,13 +69,22 @@ def evaluate(cases: list[Case], k: int = 5, search_fn: SearchFn | None = None) -
     rr_sum = 0.0
     latencies: list[float] = []
     misses: list[dict] = []
+    no_match_n = 0
+    no_match_correct = 0
 
     for case in cases:
-        t0 = time.monotonic()
+        t0 = _monotonic()
         res = search_fn(case.query, k)
-        latencies.append((time.monotonic() - t0) * 1000.0)
+        latencies.append((_monotonic() - t0) * 1000.0)
 
         names = [h["name"] for h in res.get("hits", [])]
+        if not case.expected:
+            no_match_n += 1
+            if not names:
+                no_match_correct += 1
+            else:
+                misses.append({"query": case.query, "expected": [], "got": names})
+            continue
         found = [n for n in case.expected if n in names]
         if found:
             hit_count += 1
@@ -81,13 +95,18 @@ def evaluate(cases: list[Case], k: int = 5, search_fn: SearchFn | None = None) -
 
     latencies.sort()
     p50 = latencies[len(latencies) // 2]
-    p95 = latencies[max(0, int(len(latencies) * 0.95) - 1)]
+    # Nearest-rank percentile: for two observations, p95 is the slower one,
+    # never the minimum. This makes the reported latency a conservative gate.
+    p95 = latencies[math.ceil(len(latencies) * 0.95) - 1]
+    positive_n = len(cases) - no_match_n
     return Report(
         n=len(cases),
         k=k,
-        recall_at_k=hit_count / len(cases),
-        mrr=rr_sum / len(cases),
+        recall_at_k=(hit_count / positive_n if positive_n else 0.0),
+        mrr=(rr_sum / positive_n if positive_n else 0.0),
         p50_ms=p50,
         p95_ms=p95,
+        no_match_n=no_match_n,
+        no_match_accuracy=(no_match_correct / no_match_n if no_match_n else 0.0),
         misses=misses,
     )

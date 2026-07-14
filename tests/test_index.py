@@ -126,3 +126,29 @@ def test_open_table_migrates_legacy_schema(tmp_path):
     tbl = index_mod.open_table()
     assert "text" in tbl.schema.names
     assert tbl.count_rows() == 0
+
+
+def test_open_table_recreates_when_vector_dimension_changes(monkeypatch):
+    import lancedb
+    import pyarrow as pa
+
+    monkeypatch.setattr(index_mod, "model_dim", lambda *a, **k: 16)
+    db = lancedb.connect(str(index_mod.index_path()))
+    stale_schema = pa.schema(
+        [
+            pa.field("path", pa.string()),
+            pa.field("name", pa.string()),
+            pa.field("description", pa.string()),
+            pa.field("content_hash", pa.string()),
+            pa.field("text", pa.string()),
+            pa.field("agent", pa.string()),
+            pa.field("translation_status", pa.string()),
+            pa.field("vector", pa.list_(pa.float32(), 8)),
+        ]
+    )
+    db.create_table(index_mod.TABLE_NAME, schema=stale_schema)
+
+    tbl = index_mod.open_table()
+
+    assert tbl.schema.field("vector").type.list_size == 16
+    assert tbl.count_rows() == 0

@@ -1,0 +1,30 @@
+{"query":"이 변경사항에서 놓친 테스트나 회귀 가능성을 찾아줘","expected":["code-review"]}
+{"query":"diff를 보고 유지보수 위험과 버그를 검토해줘","expected":["code-review"]}
+{"query":"PR 코드가 안전한지 검토하고 문제점을 알려줘","expected":["code-review"]}
+{"query":"Could you inspect this patch for regressions and test gaps?","expected":["code-review"]}
+{"query":"Please assess maintainability risks in the implementation.","expected":["code-review"]}
+{"query":"Find bugs in the pull request before it is merged.","expected":["code-review"]}
+{"query":"커밋 전에 저장소에 비밀번호나 개인 경로가 남았는지 확인해줘","expected":["local-privacy"]}
+{"query":"이 프로젝트에서 API 키와 토큰이 노출됐는지 검사해줘","expected":["local-privacy"]}
+{"query":"추적 중인 파일에서 민감한 정보를 찾아줘","expected":["local-privacy"]}
+{"query":"Scan this repository for credentials and user-specific paths.","expected":["local-privacy"]}
+{"query":"Check whether generated files leak private data before commit.","expected":["local-privacy"]}
+{"query":"Audit the project for secrets that should not be checked in.","expected":["local-privacy"]}
+{"query":"이 파서 변경에 필요한 pytest 테스트를 작성해줘","expected":["python-testing"]}
+{"query":"실패하는 pytest fixture의 원인을 찾아줘","expected":["python-testing"]}
+{"query":"이 Python 동작을 검증할 단위 테스트를 추가해줘","expected":["python-testing"]}
+{"query":"Add focused pytest coverage for the changed behavior.","expected":["python-testing"]}
+{"query":"Why is this Python test fixture failing?","expected":["python-testing"]}
+{"query":"Design a small unit test for this function.","expected":["python-testing"]}
+{"query":"새 Codex 스킬의 트리거와 지침을 작성해줘","expected":["skill-authoring"]}
+{"query":"기존 SKILL.md가 더 잘 검색되도록 설명을 개선해줘","expected":["skill-authoring"]}
+{"query":"데이터베이스 작업용 스킬을 만들어줘","expected":["skill-authoring"]}
+{"query":"Help me author a new Codex skill with clear triggers.","expected":["skill-authoring"]}
+{"query":"Improve this SKILL.md so it is easier to discover.","expected":["skill-authoring"]}
+{"query":"Create supporting instructions for a reusable skill.","expected":["skill-authoring"]}
+{"query":"이 웹앱을 배포하고 프리뷰 주소가 열리는지 확인해줘","expected":["web-deployment"]}
+{"query":"사이트를 온라인에 올리고 실제 URL을 알려줘","expected":["web-deployment"]}
+{"query":"배포 후 live page가 정상인지 검증해줘","expected":["web-deployment"]}
+{"query":"Ship this website and report the preview URL.","expected":["web-deployment"]}
+{"query":"Publish the app and verify the live address.","expected":["web-deployment"]}
+{"query":"Launch the web project so it is available online.","expected":["web-deployment"]}

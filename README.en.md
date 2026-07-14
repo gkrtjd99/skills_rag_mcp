@@ -5,9 +5,10 @@
 A local RAG that searches the skills collected under `~/.skills/` in natural
 language and loads only the relevant ones into the agent's context.
 
-At session start only a single meta-skill is auto-loaded; the remaining N
-skills are searched per user message via MCP, and only the matching bodies
-are fetched. This avoids burning context by reading every skill up front.
+skill-rag auto-loads only one meta-skill at session start; the remaining N
+skills are searched per new task via MCP, and only matching bodies are fetched.
+The native skill-loader settings of Claude/Codex are independent and remain
+available as a fallback.
 
 ## How it works
 
@@ -21,7 +22,7 @@ agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
                                   get_skill(name) ─→ SKILL.md body
 ```
 
-- Embeddings: `BAAI/bge-m3` running locally (no external API calls). Strong
+- Embeddings: `intfloat/multilingual-e5-base` running locally (no external API calls). Strong
   cross-lingual retrieval — Korean queries match English skill descriptions.
 - Vector DB: LanceDB
 - Index: auto-synced with a 30s TTL cache on each `search_skills` call
@@ -48,7 +49,8 @@ Restart the harness afterward.
 
 > Upgrading from a version before ko↔en translation? Run
 > `uv run skill-rag reset && uv run skill-rag sync` once to rebuild the index
-> with translations (the schema is unchanged, so it won't auto-rebuild).
+> with translations. Schema changes recreate the disposable cache automatically,
+> but this command is still needed when only `embed_text()` content changes.
 
 ### Sanity check
 
@@ -111,6 +113,10 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `uv run skill-rag query "<text>"` | Inspect search results |
 | `uv run skill-rag list-skills` | List indexed skills |
 | `uv run skill-rag eval` | Measure recall@5 against the public fixture eval |
+| `make eval-natural` | Evaluate the bilingual natural-language fixture at top-1 |
+| `make eval-no-match` | Evaluate no-match accuracy on unrelated queries |
+| `make eval-codex` | Evaluate the five Codex system skills with the fixed gold set |
+| `make eval-personal` | Evaluate a personal corpus with its matching gold set (`SKILL_RAG_EVAL_CORPUS`, `SKILL_RAG_EVAL_DATASET`) |
 | `uv run skill-rag reset` | Reset the index |
 | `uv run skill-rag mcp` | Run the MCP server |
 | `uv run skill-rag install [--refresh-bootstrap]` | Install bootstrap + collect/index + register MCP (use `make install`). `--refresh-bootstrap` overwrites the existing meta-skill from the template |
@@ -122,22 +128,35 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | --- | --- | --- |
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | Corpus path |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
-| `SKILL_RAG_MODEL` | `BAAI/bge-m3` | Embedding model |
+| `SKILL_RAG_MODEL` | `intfloat/multilingual-e5-base` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load embedding and translation models from local cache only |
 | `SKILL_RAG_MAX_SEQ_LENGTH` | `512` | Embedding input token cap |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (calibrated for bge-m3) |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (validated by E5 dynamic eval) |
 | `SKILL_RAG_BM25_THRESHOLD` | `0.30` | Normalized BM25 threshold |
 | `SKILL_RAG_RRF_K` | `60` | Dense/BM25 reciprocal-rank-fusion constant |
 | `SKILL_RAG_TRANSLATE` | `1` | Auto-translate each description ko↔en at index time (`0` disables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
 `skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`
-so GitHub users get the same benchmark. To inspect your personal corpus, pass
-both paths explicitly:
+so GitHub users get the same benchmark. The Codex system-skill gold set targets
+`~/.codex/skills/.system` on the current machine:
 
 ```bash
-uv run skill-rag eval --corpus ~/.skills --dataset eval/queries.jsonl
+make eval-codex
 ```
+
+For an arbitrary personal corpus, create a matching gold set using skill names
+that actually exist in that corpus and provide both paths:
+
+```bash
+SKILL_RAG_EVAL_CORPUS=~/.skills \
+SKILL_RAG_EVAL_DATASET=eval/my-corpus-queries.jsonl \
+make eval-personal
+```
+
+Use `make benchmark-docker` for the model matrix, or
+`make benchmark-natural-docker` for the stricter bilingual natural-language
+comparison.
 
 ## Docs
 

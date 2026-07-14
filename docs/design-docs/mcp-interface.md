@@ -11,6 +11,9 @@ cache is stale (skipped when the query is short-circuited as conversational).
 currently informational. Each returned hit reports the source `agent` inferred
 from its filesystem path.
 
+`k` must be an integer from 1 through 50. Invalid values are rejected before
+sync or retrieval; an `ok` response always contains at least one hit.
+
 ```json
 // status: "ok"
 {
@@ -58,7 +61,8 @@ merely contains such a word is not skipped. See
 
 Search is hybrid:
 
-- Dense: local sentence-transformers model (`BAAI/bge-m3` by default), cosine
+- Dense: local sentence-transformers model
+  (`intfloat/multilingual-e5-base` by default), cosine
   search in LanceDB over normalized `text`.
 - Sparse: in-memory BM25 over the indexed `text` column. Tokenization preserves
   Latin/code identifiers and emits Hangul character bigrams.

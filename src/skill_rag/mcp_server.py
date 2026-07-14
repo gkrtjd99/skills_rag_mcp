@@ -20,6 +20,7 @@ from mcp.server.fastmcp import FastMCP
 from . import index as index_mod
 from . import retrieve
 from . import sync as sync_mod
+from .corpus import MAX_SEARCH_K, MIN_SEARCH_K
 
 server = FastMCP("skill-rag")
 
@@ -52,6 +53,8 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
       - {"status": "no_match", "hits": [], "message": "..."}
       - {"status": "skip", "hits": [], "message": "..."}  # conversational reply
     """
+    if isinstance(k, bool) or not isinstance(k, int) or not MIN_SEARCH_K <= k <= MAX_SEARCH_K:
+        raise ValueError(f"k must be an integer between {MIN_SEARCH_K} and {MAX_SEARCH_K}")
     # Cheap guard first: a bare interactive-flow reply ("A", "네", "next") can
     # never need a new skill, so skip before sync and embedding entirely.
     if retrieve.is_conversational(query):

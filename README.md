@@ -4,9 +4,10 @@
 
 `~/.skills/` 에 모아둔 스킬들을 자연어로 검색해서 필요한 것만 에이전트 컨텍스트에 올리는 로컬 RAG.
 
-세션 시작 시 메타-스킬 1개만 자동 로드되고, 나머지 N개는 매 사용자 메시지마다
-MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든 스킬을 읽느라 컨텍스트
-소모하지 않음.
+skill-rag는 세션 시작 시 메타-스킬 1개만 자동 로드하고, 나머지 N개는 새 작업마다
+MCP로 검색해서 적합한 본문만 가져옴. 따라서 skill-rag 자체가 처음부터 모든 스킬을
+읽지는 않음. Claude/Codex의 native skill loader 설정은 별도로 동작할 수 있으며,
+현재는 fallback을 위해 끄지 않음.
 
 ## 핵심 동작
 
@@ -20,7 +21,7 @@ MCP로 검색해서 적합한 본문만 가져옴. 따라서 처음부터 모든
                                   get_skill(name) ─→ SKILL.md 본문
 ```
 
-- 임베딩: `BAAI/bge-m3` 로컬 모델 (외부 API 호출 없음). 강력한 교차언어 검색 —
+- 임베딩: `intfloat/multilingual-e5-base` 로컬 모델 (외부 API 호출 없음). 강력한 교차언어 검색 —
   한국어 쿼리가 영어 스킬 설명과도 매칭됨.
 - 벡터 DB: LanceDB
 - 인덱스: `search_skills` 호출 시 TTL 30s 캐시로 자동 sync
@@ -46,7 +47,8 @@ make install
 이후 하네스를 재시작.
 
 > 한↔영 번역 도입 이전 버전에서 올린 경우, `uv run skill-rag reset && uv run skill-rag sync`를
-> 한 번 실행해 번역 포함 인덱스로 재빌드하세요 (스키마는 그대로라 자동 재빌드되지 않음).
+> 한 번 실행해 번역 포함 인덱스로 재빌드하세요. 스키마 변경은 자동으로 캐시를 재생성하지만,
+> `embed_text()` 내용만 바뀐 경우에는 이 명령이 필요합니다.
 
 ### 동작 확인
 
@@ -108,6 +110,10 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `uv run skill-rag query "<text>"` | 검색 결과 확인 |
 | `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
 | `uv run skill-rag eval` | 공개 fixture 평가셋으로 recall@5 측정 |
+| `make eval-natural` | 영어·한국어 자연어 fixture를 top-1로 평가 |
+| `make eval-no-match` | 관련 스킬이 없는 질의의 no-match 정확도 평가 |
+| `make eval-codex` | Codex 기본 시스템 스킬 5개를 고정 gold set으로 평가 |
+| `make eval-personal` | 지정한 개인 corpus와 대응 gold set 평가 (`SKILL_RAG_EVAL_CORPUS`, `SKILL_RAG_EVAL_DATASET`) |
 | `uv run skill-rag reset` | 인덱스 초기화 |
 | `uv run skill-rag mcp` | MCP 서버 실행 |
 | `uv run skill-rag install [--refresh-bootstrap]` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장). `--refresh-bootstrap`는 기존 메타-스킬을 템플릿으로 덮어씀 |
@@ -119,22 +125,34 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | --- | --- | --- |
 | `SKILL_RAG_CORPUS_PATH` | `~/.skills` | corpus 경로 |
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
-| `SKILL_RAG_MODEL` | `BAAI/bge-m3` | 임베딩 모델 |
+| `SKILL_RAG_MODEL` | `intfloat/multilingual-e5-base` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩·번역 모델 로드 |
 | `SKILL_RAG_MAX_SEQ_LENGTH` | `512` | 임베딩 입력 토큰 상한 |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (bge-m3 기준 calibration) |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (E5 동적 테스트 기준) |
 | `SKILL_RAG_BM25_THRESHOLD` | `0.30` | BM25 normalized score 임계값 |
 | `SKILL_RAG_RRF_K` | `60` | dense/BM25 reciprocal-rank-fusion 상수 |
 | `SKILL_RAG_TRANSLATE` | `1` | 인덱스 시 description 한↔영 자동 번역 (`0`이면 끔) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
 
 `skill-rag eval`은 기본적으로 `eval/fixtures/` 아래의 공개 fixture를 사용하므로
-GitHub에서 받은 사용자도 같은 기준으로 검증할 수 있음. 개인 코퍼스를 점검하려면
-경로를 명시:
+GitHub에서 받은 사용자도 같은 기준으로 검증할 수 있음. Codex 기본 스킬 gold set은
+현재 머신의 `~/.codex/skills/.system`을 대상으로 다음처럼 실행:
 
 ```bash
-uv run skill-rag eval --corpus ~/.skills --dataset eval/queries.jsonl
+make eval-codex
 ```
+
+임의의 개인 코퍼스를 점검할 때는 그 코퍼스에 실제 존재하는 스킬 이름으로 별도
+gold set을 만들고 경로를 명시:
+
+```bash
+SKILL_RAG_EVAL_CORPUS=~/.skills \
+SKILL_RAG_EVAL_DATASET=eval/my-corpus-queries.jsonl \
+make eval-personal
+```
+
+Docker에서 모델을 비교하려면 `make benchmark-docker`를 사용하고, 더 엄격한
+영어·한국어 자연어 비교는 `make benchmark-natural-docker`를 사용함.
 
 ## 문서
 

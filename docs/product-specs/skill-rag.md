@@ -19,13 +19,15 @@ Antigravity, etc.) on the same machine.
 
 ## Guarantees
 
-- Only the bootstrap skill is loaded by default. Other skill bodies are fetched
-  on demand.
+- The skill-rag path loads only the bootstrap skill by default. Other skill
+  bodies are fetched on demand; a harness's independent native skill loader may
+  still load its own skills as a fallback.
 - A direct `~/.skills/<name>/SKILL.md` file is reflected by the next
   `search_skills` call after the 30 s sync TTL expires.
 - `search_skills` and `get_skill` return explicit terminal statuses that a
   conforming bootstrap skill cannot loop on.
-- Retrieval supports English and Korean queries through local bge-m3 dense
+- Retrieval supports English and Korean queries through local
+  multilingual-e5-base dense
   embeddings, Korean-aware BM25, and optional index-time ko<->en description
   translation.
 - No cloud API calls happen during indexing or querying.
@@ -46,5 +48,9 @@ Antigravity, etc.) on the same machine.
 ## Success Metrics
 
 - `recall@5 >= 0.8` on the public fixture eval shipped in this repository.
+- The default model must reach at least `recall@1 >= 0.95` independently on
+  the English and Korean natural-language fixture.
+- Negative query sets report no-match accuracy separately from positive recall;
+  unrelated queries must not be counted as retrieval misses.
 - `p95 < 1 s` search latency on a roughly 50-skill corpus.
 - No cloud API calls in indexing or query paths.

@@ -118,6 +118,18 @@ def test_search_skills_skip_message_is_actionable(tmp_path):
     assert "Do not search again" in res["message"]
 
 
+@pytest.mark.parametrize("k", [0, -1, 51, True, False])
+def test_search_skills_rejects_invalid_k_before_sync(monkeypatch, k):
+    monkeypatch.setattr(
+        mcp_server.sync_mod,
+        "sync_if_stale",
+        lambda *a, **k: pytest.fail("invalid k must not sync"),
+    )
+
+    with pytest.raises(ValueError, match="k must be an integer"):
+        mcp_server.search_skills("A", k=k)
+
+
 def test_interactive_flow_searches_once_then_skips(tmp_path):
     """Simulate a PRD-coach flow: the opening task searches, the per-turn
     multiple-choice/ack replies all skip without touching the index."""
