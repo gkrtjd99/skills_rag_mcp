@@ -37,7 +37,7 @@ def test_full_flow(tmp_path, monkeypatch):
 
     # Patch monotonic before first search so all timestamps use fake clock.
     times = [1000.0]
-    monkeypatch.setattr(sync_mod.time, "monotonic", lambda: times[0])
+    monkeypatch.setattr(sync_mod, "_monotonic", lambda: times[0])
 
     # 1. search finds something
     res = mcp_server.search_skills("how do I find a bug", k=5)

@@ -15,6 +15,7 @@ from . import retrieve
 from . import sync as sync_mod
 from . import embed as embed_mod
 from . import translate as translate_mod
+from .corpus import MAX_SEARCH_K, MIN_SEARCH_K
 
 app = typer.Typer(no_args_is_help=True, help="skill_rag — local RAG over ~/.skills.")
 PROJECT_ROOT = _Path(__file__).resolve().parents[2]
@@ -56,7 +57,7 @@ def sync(json_out: bool = typer.Option(False, "--json")):
 @app.command()
 def query(
     text: str = typer.Argument(..., help="Natural-language query."),
-    k: int = typer.Option(5, "--k", "-k", min=1, max=50),
+    k: int = typer.Option(5, "--k", "-k", min=MIN_SEARCH_K, max=MAX_SEARCH_K),
     json_out: bool = typer.Option(False, "--json"),
 ):
     """Return top-k skills for the query."""
@@ -236,7 +237,7 @@ def eval(
         "-c",
         help="Skill corpus to evaluate. Defaults to the repo fixture corpus.",
     ),
-    k: int = typer.Option(5, "--k", "-k"),
+    k: int = typer.Option(5, "--k", "-k", min=MIN_SEARCH_K, max=MAX_SEARCH_K),
     json_out: bool = typer.Option(False, "--json"),
 ):
     """Run the evaluation harness against a corpus and query set."""
@@ -276,6 +277,8 @@ def eval(
     typer.echo(f"mrr          = {report.mrr:.3f}")
     typer.echo(f"latency p50  = {report.p50_ms:.1f} ms")
     typer.echo(f"latency p95  = {report.p95_ms:.1f} ms")
+    if report.no_match_n:
+        typer.echo(f"no-match accuracy = {report.no_match_accuracy:.3f} ({report.no_match_n} cases)")
     if report.misses:
         typer.echo(f"\nmisses ({len(report.misses)}):")
         for m in report.misses:

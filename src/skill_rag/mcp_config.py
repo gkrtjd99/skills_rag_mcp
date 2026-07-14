@@ -77,6 +77,8 @@ def register_claude(repo: Path, json_path: Path | None = None, which=shutil.whic
     desired = {"command": "uv", "args": launch_args(repo)}
     if servers.get(MCP_NAME) == desired:
         return "noop"
+    if MCP_NAME in servers:
+        return "conflict"
     servers[MCP_NAME] = desired
     _backup(json_path)
     _atomic_write(json_path, json.dumps(data, indent=2, ensure_ascii=False) + "\n")
@@ -126,6 +128,7 @@ def register_codex(repo: Path, path: Path | None = None) -> bool:
         cur = existing[MCP_NAME]
         if cur.get("command") == "uv" and list(cur.get("args", [])) == desired_args:
             return False
+        return False
 
     if "mcp_servers" not in doc:
         doc["mcp_servers"] = tomlkit.table(is_super_table=True)

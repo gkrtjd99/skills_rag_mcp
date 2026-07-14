@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .corpus import BM25_THRESHOLD, RRF_K, SCORE_THRESHOLD
+from .corpus import BM25_THRESHOLD, MAX_SEARCH_K, MIN_SEARCH_K, RRF_K, SCORE_THRESHOLD
 from .embed import DEFAULT_MODEL, encode_one
 from .index import list_indexed as _list_indexed
 from .index import search as _index_search
@@ -54,7 +54,7 @@ def is_conversational(query: str) -> bool:
     low = q.lower().rstrip(".!?…。 ").strip()
     if not low:
         return False
-    if len(low) == 1 and low.isalpha():
+    if len(low) == 1 and low.isascii() and low.isalpha():
         return True
     if low.isdigit():
         return True
@@ -83,6 +83,8 @@ def search(
       - "ok": at least one candidate passes either threshold
       - "no_match": empty corpus, or nothing passes
     """
+    if isinstance(k, bool) or not isinstance(k, int) or not MIN_SEARCH_K <= k <= MAX_SEARCH_K:
+        raise ValueError(f"k must be an integer between {MIN_SEARCH_K} and {MAX_SEARCH_K}")
     query = query.strip()
     if not query:
         return {"status": "no_match", "hits": [], "message": "Empty query. Proceed without using a skill."}

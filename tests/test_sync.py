@@ -1,3 +1,6 @@
+import threading
+import time
+
 import pytest
 
 from skill_rag import index as index_mod
@@ -39,6 +42,18 @@ def test_sync_adds_skills(tmp_path):
     assert report["updated"] == []
     assert report["removed"] == []
     assert sorted(r["name"] for r in index_mod.list_indexed()) == ["bar", "foo"]
+
+
+def test_sync_can_use_an_injected_corpus_path(tmp_path):
+    alternate = tmp_path / "alternate-skills"
+    _mk(alternate, "only-here")
+
+    report = sync_mod.run_sync(corpus_path=alternate)
+
+    assert report["added"] == ["only-here"]
+    assert [row["path"] for row in index_mod.list_indexed()] == [
+        str(alternate / "only-here" / "SKILL.md")
+    ]
 
 
 def test_sync_detects_modification(tmp_path):
@@ -101,7 +116,7 @@ def test_sync_if_stale_skips_within_ttl(monkeypatch, tmp_path):
     _mk(corpus_root, "foo")
 
     times = [100.0]
-    monkeypatch.setattr(sync_mod.time, "monotonic", lambda: times[0])
+    monkeypatch.setattr(sync_mod, "_monotonic", lambda: times[0])
 
     sync_mod.sync_if_stale(ttl=30.0)
     assert len(index_mod.list_indexed()) == 1
@@ -117,7 +132,7 @@ def test_sync_if_stale_runs_after_ttl(monkeypatch, tmp_path):
     _mk(corpus_root, "foo")
 
     times = [100.0]
-    monkeypatch.setattr(sync_mod.time, "monotonic", lambda: times[0])
+    monkeypatch.setattr(sync_mod, "_monotonic", lambda: times[0])
 
     sync_mod.sync_if_stale(ttl=30.0)
     _mk(corpus_root, "bar")
@@ -130,13 +145,39 @@ def test_sync_if_stale_force_with_ttl_zero(monkeypatch, tmp_path):
     corpus_root = tmp_path / "skills"
     _mk(corpus_root, "foo")
     times = [100.0]
-    monkeypatch.setattr(sync_mod.time, "monotonic", lambda: times[0])
+    monkeypatch.setattr(sync_mod, "_monotonic", lambda: times[0])
 
     sync_mod.sync_if_stale(ttl=30.0)
     _mk(corpus_root, "bar")
     # No time advance, but ttl=0 forces.
     sync_mod.sync_if_stale(ttl=0)
     assert sorted(r["name"] for r in index_mod.list_indexed()) == ["bar", "foo"]
+
+
+def test_run_sync_serializes_concurrent_calls(monkeypatch):
+    active = 0
+    max_active = 0
+    guard = threading.Lock()
+
+    def fake_run(_corpus_path=None):
+        nonlocal active, max_active
+        with guard:
+            active += 1
+            max_active = max(max_active, active)
+        time.sleep(0.01)
+        with guard:
+            active -= 1
+        return {"added": [], "updated": [], "removed": [], "unchanged": 0,
+                "translation_retried": [], "duplicate_names": []}
+
+    monkeypatch.setattr(sync_mod, "_run_sync", fake_run)
+    threads = [threading.Thread(target=sync_mod.run_sync) for _ in range(4)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    assert max_active == 1
 
 
 def test_sync_translates_only_new_and_changed(tmp_path, monkeypatch):

@@ -190,6 +190,11 @@ def test_is_conversational_does_not_overreach(query):
     assert retrieve.is_conversational(query) is False
 
 
+@pytest.mark.parametrize("query", ["웹", "봇", "가", "é", "α", "中"])
+def test_is_conversational_does_not_skip_single_non_ascii_topic(query):
+    assert retrieve.is_conversational(query) is False
+
+
 @pytest.mark.parametrize("query", ["A.", "No.", "Ok!", "YES", "네.", "다음…"])
 def test_is_conversational_trims_trailing_punctuation(query):
     assert retrieve.is_conversational(query) is True
@@ -202,3 +207,9 @@ def test_search_does_not_skip_conversational_query(monkeypatch):
     _seed()
     res = retrieve.search("A", k=5)
     assert res["status"] == "no_match"
+
+
+@pytest.mark.parametrize("k", [0, -1, 51, True, False, 1.5, "1"])
+def test_search_rejects_invalid_k(k):
+    with pytest.raises(ValueError, match="k must be an integer"):
+        retrieve.search("any query", k=k)

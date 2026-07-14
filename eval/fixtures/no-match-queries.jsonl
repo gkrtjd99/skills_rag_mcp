@@ -1,0 +1,5 @@
+{"query":"What is the weather forecast for tomorrow?","expected":[]}
+{"query":"Explain quantum entanglement in simple terms.","expected":[]}
+{"query":"Convert this recipe to metric units.","expected":[]}
+{"query":"Book a table for two tonight.","expected":[]}
+{"query":"Write a poem about autumn.","expected":[]}

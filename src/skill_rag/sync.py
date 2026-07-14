@@ -5,7 +5,9 @@ Only this module holds mutable state (a single timestamp).
 
 from __future__ import annotations
 
-import time
+from time import monotonic as _monotonic
+from threading import RLock
+from pathlib import Path
 
 from . import corpus as corpus_mod
 from . import index as index_mod
@@ -13,6 +15,7 @@ from . import loader
 from . import translate as translate_mod
 
 _last_sync_at: float | None = None
+_sync_lock = RLock()
 
 
 def _dedupe_by_name(records: list) -> tuple[list, list[dict[str, str]]]:
@@ -46,10 +49,22 @@ def _needs_translation_retry(row: dict, record) -> bool:
     return row.get("translation_status", "failed") in {"failed", "disabled", "pending"}
 
 
-def run_sync() -> dict:
-    """Force a sync. Returns added/updated/removed/unchanged plus warnings."""
+def run_sync(corpus_path: Path | None = None) -> dict:
+    """Run one sync while preventing concurrent index mutations in-process."""
+    with _sync_lock:
+        return _run_sync(corpus_path)
+
+
+def _run_sync(corpus_path: Path | None = None) -> dict:
+    """Force a sync for ``corpus_path`` (or the configured global corpus).
+
+    The optional path keeps lifecycle operations testable and internally
+    consistent: collection and indexing always operate on the same corpus.
+    Runtime MCP calls continue to use the one configured global corpus.
+    """
     global _last_sync_at
-    records, duplicate_names = _dedupe_by_name(loader.scan(corpus_mod.CORPUS_PATH))
+    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    records, duplicate_names = _dedupe_by_name(loader.scan(corpus_path))
     indexed_rows = {row["path"]: row for row in index_mod.list_indexed()}
     disk_paths = {r.path for r in records}
 
@@ -87,7 +102,7 @@ def run_sync() -> dict:
     if removed_paths:
         index_mod.delete_by_paths(removed_paths)
 
-    _last_sync_at = time.monotonic()
+    _last_sync_at = _monotonic()
     return {
         "added": added,
         "updated": updated,
@@ -104,15 +119,17 @@ def sync_if_stale(ttl: float | None = None) -> None:
     Pass ``ttl=0`` to force a sync regardless of cache age.
     """
     global _last_sync_at
-    if ttl is None:
-        ttl = corpus_mod.SYNC_TTL_SECONDS
-    now = time.monotonic()
-    if ttl > 0 and _last_sync_at is not None and (now - _last_sync_at) < ttl:
-        return
-    run_sync()
+    with _sync_lock:
+        if ttl is None:
+            ttl = corpus_mod.SYNC_TTL_SECONDS
+        now = _monotonic()
+        if ttl > 0 and _last_sync_at is not None and (now - _last_sync_at) < ttl:
+            return
+        run_sync()
 
 
 def reset_cache() -> None:
     """Clear the TTL timestamp. Next sync_if_stale call will run."""
     global _last_sync_at
-    _last_sync_at = None
+    with _sync_lock:
+        _last_sync_at = None

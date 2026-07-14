@@ -3,7 +3,7 @@ import json
 import pytest
 
 from skill_rag import index as index_mod
-from skill_rag.evaluator import evaluate, load_cases
+from skill_rag.evaluator import Case, evaluate, load_cases
 from skill_rag.models import SkillRecord
 
 
@@ -48,3 +48,50 @@ def test_evaluate_recall(tmp_path):
     assert report.n == 2
     assert report.recall_at_k == 1.0
     assert report.p95_ms >= 0
+
+
+def test_evaluate_p95_uses_nearest_rank(monkeypatch):
+    from skill_rag import evaluator
+
+    times = iter([0.0, 0.001, 0.001, 0.101])
+    monkeypatch.setattr(evaluator, "_monotonic", lambda: next(times))
+
+    report = evaluate(
+        [
+            evaluator.Case(query="fast", expected=["fast"]),
+            evaluator.Case(query="slow", expected=["slow"]),
+        ],
+        search_fn=lambda query, k: {"hits": [{"name": query}]},
+    )
+
+    assert report.p95_ms == pytest.approx(100.0)
+
+
+def test_evaluate_reports_no_match_accuracy():
+    report = evaluate(
+        [
+            # Empty expected means this is a negative/no-match case.
+            Case(query="unrelated", expected=[]),
+        ],
+        k=1,
+        search_fn=lambda query, k: {"status": "no_match", "hits": []},
+    )
+
+    assert report.no_match_n == 1
+    assert report.no_match_accuracy == 1.0
+
+
+def test_positive_recall_excludes_negative_cases():
+    report = evaluate(
+        [Case(query="hit", expected=["skill"]), Case(query="none", expected=[])],
+        k=1,
+        search_fn=lambda query, k: (
+            {"status": "ok", "hits": [{"name": "skill"}]}
+            if query == "hit"
+            else {"status": "no_match", "hits": []}
+        ),
+    )
+
+    assert report.recall_at_k == 1.0
+    assert report.mrr == 1.0
+    assert report.no_match_accuracy == 1.0

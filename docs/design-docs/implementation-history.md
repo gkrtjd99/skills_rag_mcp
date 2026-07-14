@@ -23,8 +23,9 @@ Important outcomes:
 Superseded details:
 
 - Early plans used `all-MiniLM-L6-v2`, 384-dim vectors, schema v3, and a 0.35
-  threshold. Current implementation uses bge-m3 by default, schema v6, hybrid
-  retrieval, and a 0.45 dense threshold.
+  threshold. The implementation later used BGE-M3, then switched the default
+  to `multilingual-e5-base` after the 2026-07-14 native bilingual benchmark;
+  schema v6, hybrid retrieval, and the 0.45 dense threshold remain.
 - Early install instructions referenced `scripts/install.sh`. Current setup is
   `make install` and `skill-rag install`.
 
@@ -103,3 +104,13 @@ unchanged row was previously `failed`, `disabled`, or `pending`, sync retries
 translation if translation is currently enabled. This lets users recover after
 models are downloaded without editing skill files or manually resetting the
 index.
+
+## 2026-07-14 - Efficient multilingual default
+
+Native English/Korean natural-language queries (30 cases, 15 per language)
+were evaluated at top-1 in disposable Docker CPU containers. E5-base reached
+1.000 recall in both languages with lower p95 latency and peak memory than the
+previous BGE-M3 default. `src/skill_rag/embed.py` now defaults to
+`intfloat/multilingual-e5-base`; `SKILL_RAG_MODEL` remains an override. An old
+BGE index is derived cache: the existing schema-drift check drops it and the
+next sync rebuilds vectors at E5's 768 dimensions.

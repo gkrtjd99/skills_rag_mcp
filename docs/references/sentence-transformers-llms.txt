@@ -5,14 +5,14 @@ Used by `src/skill_rag/embed.py` for local dense retrieval.
 ## Commands
 
 - `from sentence_transformers import SentenceTransformer`
-- `model = SentenceTransformer("BAAI/bge-m3", local_files_only=True)`
+- `model = SentenceTransformer("intfloat/multilingual-e5-base", local_files_only=True)`
 - `model.max_seq_length = 512` to cap long skill bodies before encoding.
 - `vectors = model.encode(texts, normalize_embeddings=True, convert_to_numpy=True)`
 - `dim = model.get_embedding_dimension()`
 
 ## Current Project Defaults
 
-- Model: `BAAI/bge-m3`
+- Model: `intfloat/multilingual-e5-base`
 - Environment override: `SKILL_RAG_MODEL`
 - Local-cache guard: `SKILL_RAG_LOCAL_FILES_ONLY=1` by default
 - Sequence cap: `SKILL_RAG_MAX_SEQ_LENGTH=512`
@@ -24,8 +24,8 @@ on network access.
 
 ## Pitfalls
 
-- bge-m3 has a large default max sequence length. Keep the 512-token cap unless
-  there is a measured retrieval win and memory impact is acceptable.
+- Keep the 512-token cap unless there is a measured retrieval win and memory
+  impact is acceptable.
 - The embedding dimension comes from the selected model. Do not hard-code 384 or
   1024 outside schema construction.
 - `.encode()` is synchronous. Keep MCP calls simple and local; avoid adding

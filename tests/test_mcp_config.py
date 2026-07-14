@@ -58,13 +58,13 @@ def test_unregister_codex_absent_is_noop(tmp_path):
     assert mcp_config.unregister_codex(path=cfg) is False
 
 
-def test_register_codex_updates_stale_repo(tmp_path):
+def test_register_codex_preserves_conflicting_repo(tmp_path):
     cfg = tmp_path / "config.toml"
     mcp_config.register_codex(tmp_path / "old_repo", path=cfg)
     changed = mcp_config.register_codex(tmp_path / "new_repo", path=cfg)
-    assert changed is True
+    assert changed is False
     doc = tomlkit.parse(cfg.read_text())
-    assert str(tmp_path / "new_repo") in doc["mcp_servers"]["skill-rag"]["args"]
+    assert str(tmp_path / "old_repo") in doc["mcp_servers"]["skill-rag"]["args"]
 
 
 def test_register_codex_rejects_malformed_toml(tmp_path):

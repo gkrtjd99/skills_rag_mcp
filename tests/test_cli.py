@@ -223,3 +223,13 @@ def test_eval_command_uses_explicit_corpus_and_dataset(tmp_path):
     assert payload["recall_at_k"] == 1.0
     assert payload["corpus"] == str(corpus.resolve())
     assert payload["dataset"] == str(dataset.resolve())
+
+
+@pytest.mark.parametrize("command", ["query", "eval"])
+@pytest.mark.parametrize("k", ["0", "51"])
+def test_searching_commands_reject_out_of_range_k(command, k):
+    args = [command, "placeholder", "--k", k] if command == "query" else [command, "--k", k]
+    result = CliRunner().invoke(app, args)
+
+    assert result.exit_code != 0
+    assert "Invalid value" in result.output

@@ -9,19 +9,19 @@ from .offline import enforce_hf_offline
 
 DEFAULT_MODEL = os.environ.get(
     "SKILL_RAG_MODEL",
-    # bge-m3: strong cross-lingual retrieval so Korean queries match English
-    # skill descriptions (MiniLM underweighted those cross-lingual pairs).
-    "BAAI/bge-m3",
+    # multilingual-e5-base: matched BGE-M3 on native English/Korean queries
+    # while using materially less memory and query latency in Docker tests.
+    "intfloat/multilingual-e5-base",
 )
 LOCAL_FILES_ONLY = os.environ.get("SKILL_RAG_LOCAL_FILES_ONLY", "1").lower() not in {
     "0",
     "false",
     "no",
 }
-# Hard cap on input length. bge-m3 ships with max_seq_length=8192; a long skill
-# body then makes the O(seq^2) attention buffer explode (a 33k-char skill tried
-# to allocate 128 GiB on MPS). 512 tokens covers name+description+the body's
-# leading trigger text, which is what carries the retrieval signal anyway.
+# Hard cap on input length. Some multilingual models ship with a large default
+# max sequence length; a long skill body can make the O(seq^2) attention buffer
+# explode. 512 tokens covers name+description+the body's leading trigger text,
+# which is what carries the retrieval signal anyway.
 MAX_SEQ_LENGTH = int(os.environ.get("SKILL_RAG_MAX_SEQ_LENGTH", "512"))
 
 
