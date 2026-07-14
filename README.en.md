@@ -22,8 +22,14 @@ agent → search_skills(query)  ─→ top-k metadata (name, desc, score)
                                   get_skill(name) ─→ SKILL.md body
 ```
 
-- Embeddings: `intfloat/multilingual-e5-base` running locally (no external API calls). Strong
-  cross-lingual retrieval — Korean queries match English skill descriptions.
+- Embeddings: `intfloat/multilingual-e5-base` running locally with the model's
+  `query:`/`passage:` prompts (no external API calls). Strong cross-lingual
+  retrieval — Korean queries match English skill descriptions.
+- Retrieval keeps the LanceDB metadata and BM25 structure hot between MCP
+  calls, and uses a small local Korean intent bridge. Warm searches stay below
+  the one-second target on a roughly 50-skill corpus.
+- Search returns metadata only, with hit descriptions capped at 280 characters;
+  `get_skill` is the explicit path for the full body.
 - Vector DB: LanceDB
 - Index: auto-synced with a 30s TTL cache on each `search_skills` call
 
@@ -41,16 +47,17 @@ make install
 2. Installs the bootstrap meta-skill at `~/.skills/using-skill-rag/` and
    symlinks it into `~/.claude/skills/` and `~/.codex/skills/`
 3. `skill-rag collect` — symlinks discovered harness skills into `~/.skills/`
-4. `skill-rag sync` — downloads the embedding and translation models on first run, builds the index
+4. `skill-rag sync` — downloads the embedding model on first run and builds the index. Local description translation is optional and disabled by default.
 5. Registers the MCP server (Claude Code via `claude mcp add`; Codex via
    `~/.codex/config.toml`)
 
 Restart the harness afterward.
 
-> Upgrading from a version before ko↔en translation? Run
-> `uv run skill-rag reset && uv run skill-rag sync` once to rebuild the index
-> with translations. Schema changes recreate the disposable cache automatically,
-> but this command is still needed when only `embed_text()` content changes.
+> Upgrading from the previous unprompted E5 index? Schema metadata detects the
+> stale embedding profile and rebuilds it on the next sync. You can also run
+> `uv run skill-rag reset && uv run skill-rag sync` explicitly. Set
+> `SKILL_RAG_TRANSLATE=1` only when local ko↔en description augmentation is
+> needed; it adds an index-time translation model and cost.
 
 ### Sanity check
 
@@ -130,11 +137,18 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
 | `SKILL_RAG_MODEL` | `intfloat/multilingual-e5-base` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load embedding and translation models from local cache only |
-| `SKILL_RAG_MAX_SEQ_LENGTH` | `512` | Embedding input token cap |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | Dense match threshold (validated by E5 dynamic eval) |
+| `SKILL_RAG_MAX_SEQ_LENGTH` | `64` | Embedding input token cap |
+| `SKILL_RAG_DENSE_BODY_CHARS` | `0` | Optional opening-body characters added to dense passages (BM25 keeps the full body) |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.78` | Dense match threshold calibrated against positive and negative fixtures |
+| `SKILL_RAG_DENSE_ONLY_THRESHOLD` | `0.86` | Higher confidence required when a dense hit has no meaningful lexical evidence |
+| `SKILL_RAG_DENSE_ONLY_MARGIN_THRESHOLD` | `0.05` | Top-vs-runner-up cosine gap accepted for a strong small-corpus dense match |
 | `SKILL_RAG_BM25_THRESHOLD` | `0.30` | Normalized BM25 threshold |
+| `SKILL_RAG_BM25_MIN_QUERY_COVERAGE` | `0.50` | Meaningful query-term coverage required for lexical rescue |
 | `SKILL_RAG_RRF_K` | `60` | Dense/BM25 reciprocal-rank-fusion constant |
-| `SKILL_RAG_TRANSLATE` | `1` | Auto-translate each description ko↔en at index time (`0` disables) |
+| `SKILL_RAG_DENSE_CANDIDATE_MULTIPLIER` | `4` | Dense shortlist multiplier relative to requested `k` |
+| `SKILL_RAG_MIN_DENSE_CANDIDATES` | `20` | Minimum dense shortlist size |
+| `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP metadata description cap (`0` disables the cap) |
+| `SKILL_RAG_TRANSLATE` | `0` | Optional local description translation at index time (`1` enables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 
 `skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`

@@ -22,7 +22,7 @@ sync or retrieval; an `ok` response always contains at least one hit.
     {
       "name": "code-review",
       "description": "Review code changes for bugs...",
-      "score": 0.82,
+      "score": 1.0,
       "agent": "codex"
     }
   ]
@@ -62,17 +62,35 @@ merely contains such a word is not skipped. See
 Search is hybrid:
 
 - Dense: local sentence-transformers model
-  (`intfloat/multilingual-e5-base` by default), cosine
-  search in LanceDB over normalized `text`.
-- Sparse: in-memory BM25 over the indexed `text` column. Tokenization preserves
-  Latin/code identifiers and emits Hangul character bigrams.
-- Keep rule: dense cosine >= `SCORE_THRESHOLD` (default 0.45) OR normalized
-  BM25 >= `BM25_THRESHOLD` (default 0.30).
-- Ordering: reciprocal rank fusion with `RRF_K` (default 60).
+  (`intfloat/multilingual-e5-base` by default), with E5 `query:`/`passage:`
+  prompts and cosine search in LanceDB over normalized `text`. Dense passages
+  use name/description by default, while full bodies remain available to BM25;
+  inputs are capped at 64 tokens by default so first indexing remains bounded
+  on large corpora.
+- Korean queries get a small local intent-vocabulary expansion before dense
+  and sparse retrieval; no network translation is involved.
+- Sparse: cached in-memory BM25 over the indexed `text` column. Tokenization
+  preserves Latin/code identifiers, emits Hangul character bigrams, and
+  ignores common query function words. A lexical rescue must cover at least
+  half of the meaningful query terms.
+- Keep rule: a dense hit must clear `SCORE_THRESHOLD` (default 0.78) and have
+  at least one meaningful query-term match, unless it clears the higher
+  dense-only confidence bar `DENSE_ONLY_THRESHOLD` (default 0.86) or is the
+  clear top result with a `DENSE_ONLY_MARGIN_THRESHOLD` gap (default 0.05).
+  A lexical rescue may independently pass when covered normalized BM25 >=
+  `BM25_THRESHOLD` (default 0.30).
+- Dense ranking uses a bounded shortlist (`max(k*4, 20)` by default); BM25
+  still considers the complete corpus for exact lexical rescue.
+- Ordering: reciprocal rank fusion with `RRF_K` (default 60). The returned
+  `score` is the fused score normalized against the best hit for that query,
+  so it follows response order, is bounded to `(0, 1]`, and is not comparable
+  across unrelated queries. Dense and BM25 thresholds remain internal
+  filtering signals.
 
 `text` is built from name, description, optional translated description, and
-body. Translation is local ko<->en only and happens at index time for
-added/changed records.
+body. Translation is local ko<->en only, disabled by default, and happens at
+index time for added/changed records when `SKILL_RAG_TRANSLATE=1`. Search hit
+descriptions are capped at 280 characters by default to limit MCP context use.
 
 ## `get_skill(name: str) -> dict`
 

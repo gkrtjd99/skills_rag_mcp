@@ -40,18 +40,9 @@ def _path_for_name(name: str) -> Path | None:
 
 @server.tool()
 def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
-    """Find skills relevant to ``query``. Call when a new task starts or the
-    topic shifts — not on every reply inside an interactive flow. Returns
-    metadata only; call ``get_skill`` to fetch the body of any skill that fits.
+    """Search skill metadata for a new task or materially changed topic.
 
-    Pass ``agent`` as your own harness name (e.g. "claude-code", "codex") so
-    each hit can be attributed to its source. Each hit reports the ``agent``
-    that owns that skill.
-
-    Response:
-      - {"status": "ok", "hits": [{"name", "description", "score", "agent"}, ...]}
-      - {"status": "no_match", "hits": [], "message": "..."}
-      - {"status": "skip", "hits": [], "message": "..."}  # conversational reply
+    Search once per task; call ``get_skill`` only for a clearly relevant hit.
     """
     if isinstance(k, bool) or not isinstance(k, int) or not MIN_SEARCH_K <= k <= MAX_SEARCH_K:
         raise ValueError(f"k must be an integer between {MIN_SEARCH_K} and {MAX_SEARCH_K}")
@@ -65,12 +56,7 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
 
 @server.tool()
 def get_skill(name: str) -> dict:
-    """Fetch the full SKILL.md body for ``name``.
-
-    Response:
-      - {"status": "ok", "body": "..."}
-      - {"status": "not_found", "message": "..."}
-    """
+    """Fetch the full SKILL.md body for one returned skill name."""
     path = _path_for_name(name)
     if path is not None and path.exists():
         return {"status": "ok", "body": path.read_text(encoding="utf-8")}

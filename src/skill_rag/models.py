@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .corpus import DENSE_BODY_CHARS
 from .normalize import normalize_for_dense
 
 
@@ -29,6 +30,21 @@ class SkillRecord:
             parts.append(self.description_translated.strip())
         if self.body.strip():
             parts.append(self.body.strip())
+        return normalize_for_dense("\n".join(parts))
+
+    def dense_text(self) -> str:
+        """Return the compact semantic passage used for vector encoding.
+
+        The full body remains in :meth:`embed_text` for BM25. Encoding an
+        entire instruction body made large-corpus sync spend most of its time
+        padding irrelevant tail content, while names, descriptions, and the
+        opening trigger section carry the skill-discovery signal.
+        """
+        parts = [self.name, self.description]
+        if self.description_translated.strip():
+            parts.append(self.description_translated.strip())
+        if self.body.strip() and DENSE_BODY_CHARS > 0:
+            parts.append(self.body.strip()[:DENSE_BODY_CHARS])
         return normalize_for_dense("\n".join(parts))
 
 

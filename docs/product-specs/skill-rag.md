@@ -28,8 +28,13 @@ Antigravity, etc.) on the same machine.
   conforming bootstrap skill cannot loop on.
 - Retrieval supports English and Korean queries through local
   multilingual-e5-base dense
-  embeddings, Korean-aware BM25, and optional index-time ko<->en description
-  translation.
+  embeddings with E5 query/passage prompts, Korean-aware BM25, and a small
+  deterministic Korean intent bridge. Optional index-time ko<->en description
+  translation is available but disabled by default because native E5 retrieval
+  is the measured primary path.
+- Warm retrieval reuses the LanceDB table, indexed metadata, and BM25
+  structure in-process; search responses cap descriptions to avoid spending
+  agent context on repeated metadata.
 - No cloud API calls happen during indexing or querying.
 - `make install` and `skill-rag uninstall` provide a symmetric setup/teardown
   path for bootstrap links, collected symlinks, the local index, and MCP
@@ -53,4 +58,6 @@ Antigravity, etc.) on the same machine.
 - Negative query sets report no-match accuracy separately from positive recall;
   unrelated queries must not be counted as retrieval misses.
 - `p95 < 1 s` search latency on a roughly 50-skill corpus.
+- The public no-match fixture reports no-match accuracy separately and reaches
+  1.0 with the default retrieval profile.
 - No cloud API calls in indexing or query paths.

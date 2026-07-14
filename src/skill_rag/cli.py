@@ -15,7 +15,15 @@ from . import retrieve
 from . import sync as sync_mod
 from . import embed as embed_mod
 from . import translate as translate_mod
-from .corpus import MAX_SEARCH_K, MIN_SEARCH_K
+from .corpus import (
+    DENSE_CANDIDATE_MULTIPLIER,
+    DENSE_ONLY_MARGIN_THRESHOLD,
+    DENSE_ONLY_THRESHOLD,
+    MAX_HIT_DESCRIPTION_CHARS,
+    MAX_SEARCH_K,
+    MIN_DENSE_CANDIDATES,
+    MIN_SEARCH_K,
+)
 
 app = typer.Typer(no_args_is_help=True, help="skill_rag — local RAG over ~/.skills.")
 PROJECT_ROOT = _Path(__file__).resolve().parents[2]
@@ -134,8 +142,14 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "local_files_only": embed_mod.LOCAL_FILES_ONLY,
         "max_seq_length": embed_mod.MAX_SEQ_LENGTH,
         "score_threshold": corpus_mod.SCORE_THRESHOLD,
+        "dense_only_threshold": DENSE_ONLY_THRESHOLD,
+        "dense_only_margin_threshold": DENSE_ONLY_MARGIN_THRESHOLD,
         "bm25_threshold": corpus_mod.BM25_THRESHOLD,
+        "bm25_min_query_coverage": corpus_mod.BM25_MIN_QUERY_COVERAGE,
         "rrf_k": corpus_mod.RRF_K,
+        "dense_candidate_multiplier": DENSE_CANDIDATE_MULTIPLIER,
+        "min_dense_candidates": MIN_DENSE_CANDIDATES,
+        "max_hit_description_chars": MAX_HIT_DESCRIPTION_CHARS,
         "translation_enabled": translate_mod.TRANSLATE_ENABLED,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
     }
@@ -150,8 +164,13 @@ def status(json_out: bool = typer.Option(False, "--json")):
     typer.echo(f"local files only: {payload['local_files_only']}")
     typer.echo(f"max seq length  : {payload['max_seq_length']}")
     typer.echo(f"dense threshold : {payload['score_threshold']}")
+    typer.echo(f"dense-only bar  : {payload['dense_only_threshold']}")
+    typer.echo(f"dense-only gap  : {payload['dense_only_margin_threshold']}")
     typer.echo(f"BM25 threshold  : {payload['bm25_threshold']}")
+    typer.echo(f"BM25 coverage   : {payload['bm25_min_query_coverage']}")
     typer.echo(f"RRF k           : {payload['rrf_k']}")
+    typer.echo(f"dense candidates: {payload['dense_candidate_multiplier']}x / min {payload['min_dense_candidates']}")
+    typer.echo(f"hit desc cap    : {payload['max_hit_description_chars']} chars")
     typer.echo(f"translation     : {payload['translation_enabled']}")
     typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")
 
@@ -255,6 +274,10 @@ def eval(
             os.environ["SKILL_RAG_INDEX_PATH"] = str(_Path(tmp) / "index.lance")
             corpus_mod.CORPUS_PATH = corpus
             sync_mod.reset_cache()
+            # Keep one-time model loading and index construction out of query
+            # latency statistics. MCP is a long-lived server in production;
+            # this reports the warm retrieval path that its p95 gate targets.
+            sync_mod.sync_if_stale(ttl=0)
             report = _eval(cases, k=k, search_fn=search_skills)
             sync_mod.reset_cache()
     finally:

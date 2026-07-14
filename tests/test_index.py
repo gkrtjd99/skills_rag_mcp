@@ -33,6 +33,12 @@ def test_indexed_count_empty_does_not_load_model(monkeypatch):
     assert index_mod.indexed_count() == 0
 
 
+def test_list_indexed_does_not_load_model(monkeypatch):
+    index_mod.upsert([_record("foo")])
+    monkeypatch.setattr(index_mod, "model_dim", lambda *a, **k: pytest.fail("loaded model"))
+    assert index_mod.list_indexed()[0]["name"] == "foo"
+
+
 def test_upsert_then_list():
     index_mod.upsert([_record("foo"), _record("bar")])
     rows = index_mod.list_indexed()

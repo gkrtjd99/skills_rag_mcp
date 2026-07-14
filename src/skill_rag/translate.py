@@ -2,7 +2,8 @@
 
 Detects the description's language and translates it to the OTHER language so a
 query in either Korean or English retrieves the skill. Runs entirely locally via
-MarianMT (opus-mt) — no cloud calls. Disable with SKILL_RAG_TRANSLATE=0.
+MarianMT (opus-mt) — no cloud calls. Enable explicitly with
+SKILL_RAG_TRANSLATE=1; native E5 retrieval is the default path.
 
 Mirrors embed.py: env-driven config, lazy model load, model cached per direction.
 """
@@ -15,7 +16,10 @@ from functools import lru_cache
 
 from .offline import enforce_hf_offline
 
-TRANSLATE_ENABLED = os.environ.get("SKILL_RAG_TRANSLATE", "1").lower() not in {
+# E5 provides the primary Korean/English cross-lingual signal without a
+# second model. Translation remains available as an explicit local-only
+# augmentation for corpora that need it, but must not slow the default sync.
+TRANSLATE_ENABLED = os.environ.get("SKILL_RAG_TRANSLATE", "0").lower() not in {
     "0",
     "false",
     "no",

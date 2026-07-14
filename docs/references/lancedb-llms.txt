@@ -14,7 +14,7 @@ Used by `src/skill_rag/index.py` as a disposable local cache.
 
 ## Current Schema Pattern
 
-The table is schema v6:
+The table is schema v11:
 
 ```python
 schema = pa.schema([
@@ -32,6 +32,10 @@ schema = pa.schema([
 `path` is the merge key. `text` is the retrieval text used for both embeddings
 and BM25. `agent` records the source harness. `translation_status` lets sync
 retry unchanged rows whose prior description translation failed or was disabled.
+Schema metadata records the `e5-query-passage-v4-description` embedding
+profile, dense sequence cap, and optional dense body prefix so an older vector
+cache is rebuilt automatically when dense-text semantics change. The stored
+`text` column remains full length for BM25; only the vector passage is compact.
 
 ## Constraints
 

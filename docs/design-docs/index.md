@@ -15,6 +15,7 @@
 | 2026-07-14 | Switch the default embedding model from BGE-M3 to multilingual-e5-base after a 30-query native bilingual dynamic benchmark. | `../../docs/superpowers/specs/2026-07-14-e5-default-switch.md`, `../../docs/benchmarks/2026-07-14-docker-multilingual.md` |
 | 2026-07-14 | Tie the local gold evaluation to the five Codex system skills and separate it from arbitrary personal-corpus evaluation. | `../../docs/superpowers/specs/2026-07-14-codex-gold-eval.md`, `../../Makefile` |
 | 2026-07-14 | Stabilize release hygiene, isolate test clocks, serialize sync, and add positive/negative evaluation gates. | `../../docs/superpowers/specs/2026-07-14-maintenance-release.md`, `../../CHANGELOG.md` |
+| 2026-07-15 | Calibrate no-match behavior, use E5 query/passage prompts, cache warm retrieval, add Korean intent hints, cap MCP metadata, and make local translation opt-in. | `../../docs/superpowers/specs/2026-07-15-fast-multilingual-retrieval.md`, `../../ARCHITECTURE.md`, `mcp-interface.md` |
 
 Detailed dated implementation plans are intentionally not kept as active docs.
 Active future work belongs under `docs/superpowers/specs/` and

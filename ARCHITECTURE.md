@@ -15,12 +15,12 @@ src/skill_rag/
 ├── models.py       # SkillRecord, SearchHit
 ├── parser.py       # SKILL.md text -> SkillRecord
 ├── loader.py       # ~/.skills/ -> [SkillRecord]
-├── normalize.py    # dense-query/text normalization
+├── normalize.py    # dense normalization + Korean intent hints
 ├── offline.py      # enforce local-only Hugging Face runtime mode
 ├── embed.py        # sentence-transformers wrapper (L2-normalized)
 ├── translate.py    # local ko<->en description translation
-├── sparse.py       # in-memory BM25 + Korean-aware tokenization
-├── index.py        # LanceDB CRUD (schema v6)
+├── sparse.py       # cached BM25 + Korean-aware tokenization
+├── index.py        # LanceDB CRUD + hot table/metadata cache (schema v11)
 ├── retrieve.py     # hybrid search + threshold/status response
 ├── sync.py         # disk<->index diff; TTL cache (only stateful module)
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
@@ -33,8 +33,10 @@ src/skill_rag/
 bench/              # disposable Docker model matrix benchmark and reports
 ```
 
-Each module owns one responsibility. `sync` is the only module with mutable
-runtime state (a single timestamp).
+Each module owns one responsibility. `sync` owns corpus freshness state; the
+index and retrieval modules keep disposable in-process caches of the current
+table, metadata rows, and BM25 structure. Those caches are invalidated on every
+package-managed index write.
 
 ## Request Flow
 
@@ -45,17 +47,27 @@ runtime state (a single timestamp).
    `{status: "skip"}` immediately — no sync, no embedding, no search.
 1. `sync.sync_if_stale()` runs at most once per TTL window (default 30 s).
 2. `retrieve.search` reads indexed metadata and text.
-3. The query is normalized for dense retrieval, then encoded with the local
-   embedding model (`intfloat/multilingual-e5-base` by default).
-4. LanceDB returns dense cosine scores over the indexed vectors.
-5. BM25 scores are computed in memory over the indexed `text` column. The
-   tokenizer preserves Latin/code tokens and emits Hangul character bigrams.
-6. A candidate is kept when dense cosine clears `SCORE_THRESHOLD` (default
-   0.45) or normalized BM25 clears `BM25_THRESHOLD` (default 0.30).
+3. The query is normalized, augmented with a small Korean intent bridge when
+   useful, and encoded as an E5 `query:` with the local embedding model
+   (`intfloat/multilingual-e5-base` by default).
+4. LanceDB returns a bounded dense candidate shortlist; indexed passages use
+   the matching E5 `passage:` prompt.
+5. A cached in-memory BM25 structure scores the indexed `text` column. The
+   tokenizer preserves Latin/code tokens, emits Hangul character bigrams, and
+   ignores common query function words. A lexical rescue must cover at least
+   half of the meaningful query terms.
+6. A dense candidate must clear `SCORE_THRESHOLD` (default 0.78) and have at
+   least one meaningful query-term match, unless it clears the higher
+   `DENSE_ONLY_THRESHOLD` (default 0.86) or is the clear top result with a
+   `DENSE_ONLY_MARGIN_THRESHOLD` gap (default 0.05). A lexical rescue
+   independently passes when covered normalized BM25 clears `BM25_THRESHOLD`
+   (default 0.30).
 7. Kept candidates are ordered by reciprocal rank fusion (`RRF_K`, default 60).
 8. Returns `{status: "ok", hits}` or `{status: "no_match", hits: [], message}`.
 
-Hits contain `{name, description, score, agent}`. The caller-supplied `agent`
+Hits contain `{name, description, score, agent}`. Descriptions are capped at
+280 characters by default to keep MCP metadata responses small; the full
+description remains in the index and source body. The caller-supplied `agent`
 argument is informational today; each hit reports the source harness inferred
 from the skill path.
 
@@ -79,15 +91,16 @@ from the skill path.
 - `agent` is inferred from the resolved path (`.claude`, `.codex`,
   `.antigravity`, or `local`).
 - Diffing is by `path` and `content_hash`.
-- Added/changed records get description translation at index time
-  (`translate.translate_for_index`) before upsert.
+- Added/changed records use native E5 multilingual embeddings by default.
+  Optional local description translation (`SKILL_RAG_TRANSLATE=1`) is applied
+  before upsert when explicitly enabled.
 - Unchanged rows whose prior `translation_status` is `failed`, `disabled`, or
   `pending` are retried when translation is enabled.
 - Removed paths are deleted from LanceDB.
 
 ## Data Schema
 
-LanceDB table `skills` (schema v6):
+LanceDB table `skills` (schema v11):
 
 | Column | Type | Notes |
 | --- | --- | --- |
@@ -100,10 +113,14 @@ LanceDB table `skills` (schema v6):
 | `translation_status` | string | `ok`, `failed`, `disabled`, `skipped`, or `pending`. |
 | `vector` | list<float32>[dim] | Embedding of `text`; `dim` comes from the selected model. |
 
-Any Arrow schema drift (including a vector dimension change) drops and
-recreates the table because the index is a derived cache. Content-only changes
-to `embed_text()` still require `skill-rag reset`
-followed by `skill-rag sync`.
+The schema metadata records the embedding profile
+(`e5-query-passage-v4-description`), dense sequence cap, and optional dense
+body prefix. Any Arrow
+schema or profile drift (including a vector dimension, sequence-cap, or dense
+text change) drops and recreates the table because the index is a derived
+cache. A sync performs this check before reading old rows, so existing v6-v10
+indexes rebuild automatically;
+`skill-rag reset && skill-rag sync` remains a valid explicit migration path.
 
 ## Install Lifecycle
 

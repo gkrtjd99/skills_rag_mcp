@@ -27,6 +27,22 @@ def test_skill_record_embed_text_includes_body():
     assert "Use when starting a new feature" in text
 
 
+def test_skill_record_dense_text_keeps_optional_intro_but_not_long_tail(monkeypatch):
+    import skill_rag.models as models
+
+    monkeypatch.setattr(models, "DENSE_BODY_CHARS", 40)
+    r = SkillRecord(
+        name="brainstorming",
+        description="explore ideas",
+        path="/tmp/.skills/brainstorming/SKILL.md",
+        body="Trigger intro. " + "tail " * 500,
+        content_hash="abc",
+    )
+    text = r.dense_text()
+    assert text.startswith("brainstorming\nexplore ideas\nTrigger intro.")
+    assert len(text) < len(r.embed_text())
+
+
 def test_skill_record_has_agent_default():
     r = SkillRecord(
         name="a", description="d", path="/p", body="b", content_hash="h"

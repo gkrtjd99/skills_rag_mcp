@@ -6,7 +6,7 @@ Used by `src/skill_rag/embed.py` for local dense retrieval.
 
 - `from sentence_transformers import SentenceTransformer`
 - `model = SentenceTransformer("intfloat/multilingual-e5-base", local_files_only=True)`
-- `model.max_seq_length = 512` to cap long skill bodies before encoding.
+- `model.max_seq_length = 64` to cap long skill bodies before encoding.
 - `vectors = model.encode(texts, normalize_embeddings=True, convert_to_numpy=True)`
 - `dim = model.get_embedding_dimension()`
 
@@ -15,8 +15,13 @@ Used by `src/skill_rag/embed.py` for local dense retrieval.
 - Model: `intfloat/multilingual-e5-base`
 - Environment override: `SKILL_RAG_MODEL`
 - Local-cache guard: `SKILL_RAG_LOCAL_FILES_ONLY=1` by default
-- Sequence cap: `SKILL_RAG_MAX_SEQ_LENGTH=512`
+- Sequence cap: `SKILL_RAG_MAX_SEQ_LENGTH=64`
 - Vectors are L2-normalized before storage.
+- E5-family models receive `passage: ...` for indexed text and `query: ...`
+  for retrieval queries. Other model overrides are passed through unchanged.
+- Dense passages use the skill name and description by default. The full body
+  remains in the BM25 text column; set `SKILL_RAG_DENSE_BODY_CHARS` to add a
+  bounded opening prefix when a corpus has sparse descriptions.
 
 `make install` sets `SKILL_RAG_LOCAL_FILES_ONLY=0` for the setup run so the
 model can be downloaded explicitly. Runtime indexing/querying should not depend
@@ -24,8 +29,9 @@ on network access.
 
 ## Pitfalls
 
-- Keep the 512-token cap unless there is a measured retrieval win and memory
-  impact is acceptable.
+- Keep the 64-token cap unless a corpus-specific evaluation justifies a larger
+  value; the leading skill description and trigger text carry the default
+  retrieval signal.
 - The embedding dimension comes from the selected model. Do not hard-code 384 or
   1024 outside schema construction.
 - `.encode()` is synchronous. Keep MCP calls simple and local; avoid adding

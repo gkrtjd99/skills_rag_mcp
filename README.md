@@ -21,8 +21,12 @@ MCP로 검색해서 적합한 본문만 가져옴. 따라서 skill-rag 자체가
                                   get_skill(name) ─→ SKILL.md 본문
 ```
 
-- 임베딩: `intfloat/multilingual-e5-base` 로컬 모델 (외부 API 호출 없음). 강력한 교차언어 검색 —
-  한국어 쿼리가 영어 스킬 설명과도 매칭됨.
+- 임베딩: `intfloat/multilingual-e5-base` 로컬 모델의 `query:`/`passage:` 프롬프트 사용
+  (외부 API 호출 없음). 강력한 교차언어 검색 — 한국어 쿼리가 영어 스킬 설명과도 매칭됨.
+- MCP 프로세스가 LanceDB 메타데이터와 BM25 구조를 재사용하고, 한국어 의도어 보강을
+  사용함. 약 50개 스킬 기준 warm 검색은 1초 미만.
+- 검색은 메타데이터만 반환하고 hit description을 기본 280자로 제한함. 전체 본문은
+  `get_skill`을 호출할 때만 가져옴.
 - 벡터 DB: LanceDB
 - 인덱스: `search_skills` 호출 시 TTL 30s 캐시로 자동 sync
 
@@ -40,15 +44,17 @@ make install
 2. 부트스트랩 메타-스킬 `~/.skills/using-skill-rag/` 설치 후
    `~/.claude/skills/`, `~/.codex/skills/`에 심볼릭 링크
 3. `skill-rag collect` — 발견된 하네스 스킬을 `~/.skills/`에 심볼릭으로 모음
-4. `skill-rag sync` — 첫 실행 시 임베딩·번역 모델 다운로드 후 인덱스 빌드
+4. `skill-rag sync` — 첫 실행 시 임베딩 모델 다운로드 후 인덱스 빌드. 로컬 설명 번역은
+   선택 기능이며 기본으로 꺼져 있음.
 5. MCP 서버 등록 (Claude Code는 `claude mcp add`; Codex는
    `~/.codex/config.toml`)
 
 이후 하네스를 재시작.
 
-> 한↔영 번역 도입 이전 버전에서 올린 경우, `uv run skill-rag reset && uv run skill-rag sync`를
-> 한 번 실행해 번역 포함 인덱스로 재빌드하세요. 스키마 변경은 자동으로 캐시를 재생성하지만,
-> `embed_text()` 내용만 바뀐 경우에는 이 명령이 필요합니다.
+> 이전의 E5 프롬프트가 없던 인덱스를 사용 중이면 다음 sync에서 schema metadata가
+> 감지해 자동 재빌드합니다. 명시적으로 `uv run skill-rag reset && uv run skill-rag sync`를
+> 실행해도 됩니다. 로컬 한↔영 설명 보강이 필요할 때만 `SKILL_RAG_TRANSLATE=1`을
+> 설정하세요. 인덱스 시 번역 모델 비용이 추가됩니다.
 
 ### 동작 확인
 
@@ -127,11 +133,18 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
 | `SKILL_RAG_MODEL` | `intfloat/multilingual-e5-base` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩·번역 모델 로드 |
-| `SKILL_RAG_MAX_SEQ_LENGTH` | `512` | 임베딩 입력 토큰 상한 |
-| `SKILL_RAG_SCORE_THRESHOLD` | `0.45` | dense 매칭 임계값 (E5 동적 테스트 기준) |
+| `SKILL_RAG_MAX_SEQ_LENGTH` | `64` | 임베딩 입력 토큰 상한 |
+| `SKILL_RAG_DENSE_BODY_CHARS` | `0` | dense 임베딩에 추가할 본문 앞부분 문자 수 (기본은 name/description만 사용) |
+| `SKILL_RAG_SCORE_THRESHOLD` | `0.78` | 양성·부정 fixture로 보정한 dense 매칭 임계값 |
+| `SKILL_RAG_DENSE_ONLY_THRESHOLD` | `0.86` | 의미 있는 lexical 근거가 없을 때 dense 단독 매칭에 필요한 높은 confidence |
+| `SKILL_RAG_DENSE_ONLY_MARGIN_THRESHOLD` | `0.05` | 작은 corpus에서 강한 dense 매칭으로 인정할 top-2 cosine 차이 |
 | `SKILL_RAG_BM25_THRESHOLD` | `0.30` | BM25 normalized score 임계값 |
+| `SKILL_RAG_BM25_MIN_QUERY_COVERAGE` | `0.50` | lexical rescue에 필요한 의미어 커버리지 |
 | `SKILL_RAG_RRF_K` | `60` | dense/BM25 reciprocal-rank-fusion 상수 |
-| `SKILL_RAG_TRANSLATE` | `1` | 인덱스 시 description 한↔영 자동 번역 (`0`이면 끔) |
+| `SKILL_RAG_DENSE_CANDIDATE_MULTIPLIER` | `4` | 요청 k 대비 dense 후보 배수 |
+| `SKILL_RAG_MIN_DENSE_CANDIDATES` | `20` | dense 후보 최소 개수 |
+| `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP 메타데이터 description 상한 (`0`이면 해제) |
+| `SKILL_RAG_TRANSLATE` | `0` | 인덱스 시 로컬 description 번역 (`1`이면 켬) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
 
 `skill-rag eval`은 기본적으로 `eval/fixtures/` 아래의 공개 fixture를 사용하므로

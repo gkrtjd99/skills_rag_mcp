@@ -44,6 +44,33 @@ def test_sync_adds_skills(tmp_path):
     assert sorted(r["name"] for r in index_mod.list_indexed()) == ["bar", "foo"]
 
 
+def test_sync_rebuilds_v6_cache_before_diffing(tmp_path):
+    import lancedb
+    import pyarrow as pa
+
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "foo", desc="new content")
+    db = lancedb.connect(str(index_mod.index_path()))
+    old_schema = pa.schema(
+        [
+            pa.field("path", pa.string()),
+            pa.field("name", pa.string()),
+            pa.field("description", pa.string()),
+            pa.field("content_hash", pa.string()),
+            pa.field("text", pa.string()),
+            pa.field("agent", pa.string()),
+            pa.field("translation_status", pa.string()),
+            pa.field("vector", pa.list_(pa.float32(), 32)),
+        ]
+    )
+    db.create_table(index_mod.TABLE_NAME, schema=old_schema)
+
+    report = sync_mod.run_sync()
+
+    assert report["added"] == ["foo"]
+    assert index_mod.open_table().schema.metadata[b"skill-rag-schema"] == b"11"
+
+
 def test_sync_can_use_an_injected_corpus_path(tmp_path):
     alternate = tmp_path / "alternate-skills"
     _mk(alternate, "only-here")

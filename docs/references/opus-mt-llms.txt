@@ -13,4 +13,5 @@ out = model.generate(**batch, max_length=512)
 text = tok.batch_decode(out, skip_special_tokens=True)[0]
 
 Models download on first `make install` (SKILL_RAG_LOCAL_FILES_ONLY=0).
-Disable translation entirely with SKILL_RAG_TRANSLATE=0.
+Translation is opt-in with `SKILL_RAG_TRANSLATE=1`; the default is off because
+native multilingual E5 retrieval is the primary fast path.

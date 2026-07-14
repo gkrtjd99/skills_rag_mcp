@@ -103,10 +103,14 @@ def test_status_json_includes_retrieval_and_runtime_settings():
     payload = json.loads(result.stdout)
     assert payload["score_threshold"] == 0.0
     assert payload["bm25_threshold"] == 0.30
+    assert payload["bm25_min_query_coverage"] == 0.50
     assert payload["rrf_k"] == 60
+    assert payload["dense_candidate_multiplier"] == 4
+    assert payload["min_dense_candidates"] == 20
+    assert payload["max_hit_description_chars"] == 280
     assert payload["local_files_only"] is True
-    assert payload["max_seq_length"] == 512
-    assert payload["translation_enabled"] is True
+    assert payload["max_seq_length"] == 64
+    assert payload["translation_enabled"] is False
 
 
 def test_status_text_includes_hybrid_search_settings():

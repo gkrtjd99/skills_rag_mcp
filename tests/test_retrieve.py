@@ -52,6 +52,26 @@ def test_threshold_filters_out_low_scores(monkeypatch):
     assert "message" in res
 
 
+def test_dense_only_candidate_needs_lexical_signal_or_high_confidence(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.78)
+    monkeypatch.setattr(retrieve, "DENSE_ONLY_THRESHOLD", 0.86)
+    _seed()
+    monkeypatch.setattr(retrieve, "encode_one", lambda *args, **kwargs: None)
+    monkeypatch.setattr(
+        retrieve,
+        "_index_search",
+        lambda *args, **kwargs: [
+            type("Hit", (), {"name": "brainstorming", "description": "", "score": 0.82})(),
+            type("Hit", (), {"name": "tdd", "description": "", "score": 0.81})(),
+        ],
+    )
+
+    res = retrieve.search("qz-nonsense-token")
+
+    assert res["status"] == "no_match"
+    assert res["hits"] == []
+
+
 def test_empty_corpus_returns_no_match():
     res = retrieve.search("anything")
     assert res["status"] == "no_match"
@@ -118,6 +138,58 @@ def test_hits_include_agent_field(monkeypatch):
     assert "agent" in res["hits"][0]
 
 
+def test_scores_follow_hybrid_result_order_without_extra_fields(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
+    _seed()
+    res = retrieve.search("explore design ideas", k=2)
+    scores = [hit["score"] for hit in res["hits"]]
+
+    assert scores == sorted(scores, reverse=True)
+    assert scores[0] == 1.0
+    assert all(0.0 < score <= 1.0 for score in scores)
+    assert set(res["hits"][0]) == {"name", "description", "score", "agent"}
+
+
+def test_bm25_is_reused_for_same_index_snapshot(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
+    _seed()
+    retrieve._bm25_for_snapshot.cache_clear()
+    original = retrieve.tokenize
+    calls = []
+
+    def traced(text):
+        calls.append(text)
+        return original(text)
+
+    monkeypatch.setattr(retrieve, "tokenize", traced)
+    retrieve.search("explore design")
+    first_count = len(calls)
+    retrieve.search("write tests")
+
+    # Two documents are tokenized once; subsequent searches only tokenize the
+    # new query and reuse the cached corpus BM25 structure.
+    assert len(calls) == first_count + 1
+
+
+def test_hit_description_is_bounded_for_mcp_metadata(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
+    monkeypatch.setattr(retrieve, "MAX_HIT_DESCRIPTION_CHARS", 20)
+    index_mod.upsert([
+        SkillRecord(
+            name="long-description",
+            description="x" * 100,
+            path="/x/long-description/SKILL.md",
+            body="b",
+            content_hash="h1",
+        )
+    ])
+
+    res = retrieve.search("long-description", k=1)
+
+    assert len(res["hits"][0]["description"]) == 20
+    assert res["hits"][0]["description"].endswith("…")
+
+
 def test_query_is_normalized_before_encoding(monkeypatch):
     # The glued Korean query must reach the encoder spaced at the boundary.
     seen = {}
@@ -131,7 +203,8 @@ def test_query_is_normalized_before_encoding(monkeypatch):
     _seed()
     monkeypatch.setattr(retrieve, "encode_one", fake_encode_one)
     retrieve.search("vercel에 배포", k=5)
-    assert seen["text"] == "vercel 에 배포"
+    assert seen["text"].startswith("vercel 에 배포")
+    assert "deploy" in seen["text"]
 
 
 @pytest.mark.parametrize(

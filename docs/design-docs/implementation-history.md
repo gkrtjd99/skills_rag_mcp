@@ -25,7 +25,7 @@ Superseded details:
 - Early plans used `all-MiniLM-L6-v2`, 384-dim vectors, schema v3, and a 0.35
   threshold. The implementation later used BGE-M3, then switched the default
   to `multilingual-e5-base` after the 2026-07-14 native bilingual benchmark;
-  schema v6, hybrid retrieval, and the 0.45 dense threshold remain.
+  schema v11, hybrid retrieval, and the calibrated 0.78 dense threshold remain.
 - Early install instructions referenced `scripts/install.sh`. Current setup is
   `make install` and `skill-rag install`.
 
@@ -114,3 +114,16 @@ previous BGE-M3 default. `src/skill_rag/embed.py` now defaults to
 `intfloat/multilingual-e5-base`; `SKILL_RAG_MODEL` remains an override. An old
 BGE index is derived cache: the existing schema-drift check drops it and the
 next sync rebuilds vectors at E5's 768 dimensions.
+
+## 2026-07-15 - Fast multilingual retrieval
+
+The MCP retrieval path now uses E5's query/passage prompts, a schema-profiled
+v7 cache, deterministic Korean intent hints, cached table metadata/BM25, and a
+bounded dense shortlist. No-match calibration ignores common function words
+and requires meaningful lexical coverage. Search descriptions are capped to
+reduce context use, while full bodies remain available through `get_skill`.
+Native E5 bilingual retrieval is the default; local description translation is
+an explicit opt-in for corpora that benefit from it. The default dense input
+cap is now 64 tokens and dense passages use name/description by default: the
+real 1,925-skill corpus spent 51 seconds on its first 512-token indexing pass,
+while fixture quality remained unchanged with compact vectors.

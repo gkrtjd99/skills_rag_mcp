@@ -19,6 +19,20 @@ _WORD = re.compile(r"\w+", re.UNICODE)
 # ('코드리뷰' vs '코드 리뷰') still matches under BM25.
 _SEGMENT = re.compile(r"[가-힣]+|[^가-힣]+")
 _IS_HANGUL = re.compile(r"[가-힣]")
+# Function words are useful in a document but are weak evidence that a skill
+# applies. Ignoring them only for query scoring prevents BM25 from rescuing a
+# result because a negative request shares words such as "the" or "for" with
+# every SKILL.md body. Korean particles are included when they occur as
+# standalone tokens; glued Korean words continue to use character bigrams.
+_QUERY_STOPWORDS = frozenset(
+    {
+        "a", "an", "and", "are", "as", "at", "be", "by", "do", "for", "from",
+        "how", "i", "in", "is", "it", "me", "of", "on", "or", "that", "the",
+        "this", "to", "what", "when", "where", "which", "who", "why", "with",
+        "about", "can", "could", "please", "이", "가", "을", "를", "은", "는",
+        "에", "에서", "으로", "와", "과", "도", "좀", "해줘", "해주세요", "싶어",
+    }
+)
 
 
 def _bigrams(run: str) -> list[str]:
@@ -50,9 +64,11 @@ class BM25:
         self.avgdl = (sum(self.doc_len) / self.n) if self.n else 0.0
         self.tf = [Counter(d) for d in docs]
         df: Counter[str] = Counter()
-        for d in docs:
-            for term in set(d):
+        self.postings: dict[str, list[tuple[int, int]]] = {}
+        for i, counts in enumerate(self.tf):
+            for term, frequency in counts.items():
                 df[term] += 1
+                self.postings.setdefault(term, []).append((i, frequency))
         # Probabilistic idf with +1 so common terms stay non-negative.
         self.idf = {
             term: math.log(1 + (self.n - freq + 0.5) / (freq + 0.5))
@@ -63,16 +79,28 @@ class BM25:
         out = [0.0] * self.n
         if not self.n or self.avgdl == 0.0:
             return out
-        for term in query_tokens:
+        # Score only documents containing a query term. The previous dense
+        # nested loop was harmless for five skills but became a measurable
+        # per-query cost on a real corpus with long SKILL.md bodies.
+        for term in set(self.meaningful_query_tokens(query_tokens)):
             idf = self.idf.get(term)
             if idf is None:
                 continue
-            for i in range(self.n):
-                freq = self.tf[i].get(term, 0)
-                if not freq:
-                    continue
+            for i, freq in self.postings.get(term, []):
                 denom = freq + self.k1 * (
                     1 - self.b + self.b * self.doc_len[i] / self.avgdl
                 )
                 out[i] += idf * (freq * (self.k1 + 1)) / denom
         return out
+
+    @staticmethod
+    def meaningful_query_tokens(query_tokens: list[str]) -> list[str]:
+        return [term for term in query_tokens if term not in _QUERY_STOPWORDS]
+
+    def matched_term_counts(self, query_tokens: list[str]) -> list[int]:
+        """Return the number of distinct meaningful query terms per document."""
+        matched = [0] * self.n
+        for term in set(self.meaningful_query_tokens(query_tokens)):
+            for i, _ in self.postings.get(term, []):
+                matched[i] += 1
+        return matched

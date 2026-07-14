@@ -53,3 +53,14 @@ def test_bm25_unknown_terms_score_zero():
 def test_bm25_empty_corpus():
     bm25 = BM25([])
     assert bm25.scores(tokenize("anything")) == []
+
+
+def test_bm25_ignores_english_function_words_for_query_scoring():
+    bm25 = BM25([tokenize("write tests for a parser")])
+    assert bm25.scores(tokenize("what is the weather for tomorrow")) == [0.0]
+
+
+def test_bm25_reports_meaningful_term_coverage():
+    bm25 = BM25([tokenize("deploy to vercel")])
+    query = tokenize("deploy to vercel")
+    assert bm25.matched_term_counts(query) == [2]

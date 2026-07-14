@@ -64,6 +64,10 @@ def _run_sync(corpus_path: Path | None = None) -> dict:
     """
     global _last_sync_at
     corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    # Prompted E5 vectors and prior retrieval profiles share dimensions, so
+    # schema metadata must be checked before reading indexed rows. This turns
+    # a content-semantic change into an automatic disposable-cache rebuild.
+    index_mod.ensure_schema()
     records, duplicate_names = _dedupe_by_name(loader.scan(corpus_path))
     indexed_rows = {row["path"]: row for row in index_mod.list_indexed()}
     disk_paths = {r.path for r in records}
