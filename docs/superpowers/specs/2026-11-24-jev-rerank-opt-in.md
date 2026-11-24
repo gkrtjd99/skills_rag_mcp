@@ -38,8 +38,9 @@ size: at 350 skills strict recall@1 is 0.450 for the gate and 0.672 / 0.646 for
 2. The judge returns one probability per candidate from a single request. Each
    candidate is judged independently with the same question: is this skill the
    right documented procedure for the request.
-3. Candidates at or above `SKILL_RAG_RERANK_THRESHOLD` (default 0.5) are
-   returned in order of probability. The hit `score` is that probability, and
+3. Candidates at or above `SKILL_RAG_RERANK_THRESHOLD` (default 0.9, raised
+   from 0.5 after the precision benchmark) are kept in order of probability
+   and at most `SKILL_RAG_RERANK_MAX_HITS` (default 1) are returned. The hit `score` is that probability, and
    the hit `description` is capped at `SKILL_RAG_RERANK_DESCRIPTION_CHARS`
    (default 120). If none qualify the response is the usual `no_match`.
 4. `skip`, empty-query, and empty-corpus responses are decided locally before

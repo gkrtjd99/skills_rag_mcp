@@ -24,7 +24,7 @@ LOCAL_FILES_ONLY = os.environ.get("SKILL_RAG_LOCAL_FILES_ONLY", "1").lower() not
 # fixture, but it also cut long community descriptions and one-or-two-sentence
 # queries: on a 350-skill dev set, 128 tokens with a 300-character body prefix
 # put the expected skill in the top 16 for 78.7% of queries against 74.2% at
-# 64 (docs/benchmarks/2026-11-24-first-stage-results.md), for about twice the
+# 64 (docs/benchmarks/2026-11-24-precision-results.md), for about twice the
 # indexing time. The fixture gates are unchanged at 1.0.
 MAX_SEQ_LENGTH = int(os.environ.get("SKILL_RAG_MAX_SEQ_LENGTH", "128"))
 

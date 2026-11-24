@@ -18,6 +18,13 @@
 - `bench/jev_rerank_ab.py` (one arm per `--judge`) and held-out query sets for
   measuring the gate and judges on a corpus the thresholds were not tuned on.
 - `skill-rag status` reports rerank readiness and where data would be sent.
+- Rerank is precision first: threshold 0.9 and at most one skill returned
+  (`SKILL_RAG_RERANK_THRESHOLD`, `SKILL_RAG_RERANK_MAX_HITS`). On a fresh
+  350-skill test set `jev` returns a skill that does not fit for 9.3% of
+  requests with no matching skill (34.0% at the earlier 0.5 / up-to-`k`
+  setting) and returns a useful skill for 67.9% of matching requests (79.6%).
+- Optional whole-corpus scan by the judge (`SKILL_RAG_RERANK_SCAN_MAX`, off by
+  default): finds the right skill more often and returns more wrong ones.
 - `skill-rag adopt [names] [--from DIR]` moves skills out of harness or
   project skill directories into `~/.skills/`, so the harness stops loading
   their descriptions into every session; `skill-rag restore` moves them back.
@@ -43,6 +50,9 @@
 
 ### Changed
 
+- Dense inputs default to 128 tokens with a 300-character body prefix (was 64
+  and none); the index rebuilds itself on the next sync and indexing takes
+  about twice as long. Fixture evaluations are unchanged at 1.000.
 - `skill-rag query` follows the same search path as the MCP tool, including
   rerank when enabled.
 

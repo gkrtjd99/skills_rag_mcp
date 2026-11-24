@@ -70,9 +70,10 @@ package-managed index write.
 With `SKILL_RAG_RERANK` set (`jev`, `openai`, or `package.module:factory`),
 steps 6-7 are replaced after sync: `retrieve.shortlist` returns the top 16 by
 fused rank with no thresholds, the configured `judges.Judge` returns one fit
-probability per candidate from a single request, and candidates at or above
-0.5 are returned in order of that probability (which becomes the hit `score`)
-with descriptions capped at 120 characters. `rerank.py` owns that policy; a
+probability per candidate from a single request, and the best candidate at or
+above 0.9 is returned (its probability becomes the hit `score`) with the
+description capped at 120 characters. The rule is precision first: returning a
+skill that does not fit costs more than returning none. `rerank.py` owns that policy; a
 judge only scores, so swapping the model is a new `Judge` class. Any failure
 returns the local result above and pauses rerank for 60 s. Only the query and
 the shortlisted names and descriptions are sent.

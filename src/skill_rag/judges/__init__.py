@@ -93,7 +93,7 @@ def fit_question(name: str, description: str) -> str:
 
 
 # The whole-corpus scan sees this much of each description. Chosen on the dev
-# set (docs/benchmarks/2026-11-24-first-stage-results.md): 120 characters with
+# set (docs/benchmarks/2026-11-24-precision-results.md): 120 characters with
 # the bare wording below put the expected skill in the top 16 for 97% of dev
 # queries at 350 skills, for about 51 input tokens per skill.
 SCAN_DESCRIPTION_CHARS = 120

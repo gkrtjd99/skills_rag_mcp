@@ -1,5 +1,10 @@
 # Scale benchmark results
 
+> These runs used the rerank defaults of the time (threshold 0.5, up to `k`
+> skills, 64-token embeddings). The defaults were later changed for precision;
+> see `2026-11-24-precision-results.md` for the current numbers on a fresh test
+> set.
+
 Run on 2026-11-24 under the protocol fixed beforehand in
 `2026-11-24-scale-protocol.md` (commit `0c57561`, made before any skill was
 downloaded or query generated). Raw outputs are under `var/bench/scale/`

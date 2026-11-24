@@ -163,8 +163,8 @@ uv run skill-rag restore                              # everything back where it
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB path |
 | `SKILL_RAG_MODEL` | `intfloat/multilingual-e5-base` | Embedding model |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | Load embedding and translation models from local cache only |
-| `SKILL_RAG_MAX_SEQ_LENGTH` | `64` | Embedding input token cap |
-| `SKILL_RAG_DENSE_BODY_CHARS` | `0` | Optional opening-body characters added to dense passages (BM25 keeps the full body) |
+| `SKILL_RAG_MAX_SEQ_LENGTH` | `128` | Embedding input token cap (queries and skill passages) |
+| `SKILL_RAG_DENSE_BODY_CHARS` | `300` | Opening-body characters added to dense passages (`0` uses name/description only; BM25 keeps the full body) |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.78` | Dense match threshold calibrated against positive and negative fixtures |
 | `SKILL_RAG_DENSE_ONLY_THRESHOLD` | `0.86` | Higher confidence required when a dense hit has no meaningful lexical evidence |
 | `SKILL_RAG_DENSE_ONLY_MARGIN_THRESHOLD` | `0.05` | Top-vs-runner-up cosine gap accepted for a strong small-corpus dense match |
@@ -178,7 +178,9 @@ uv run skill-rag restore                              # everything back where it
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
 | `SKILL_RAG_RERANK` | (off) | Second-stage fit judge: `jev`, `openai`, or your own `package.module:factory` (cloud call, see below) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | Candidate skills shown to the judge |
-| `SKILL_RAG_RERANK_THRESHOLD` | `0.5` | Minimum fit probability for a skill to be returned |
+| `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | Minimum fit probability for a skill to be returned (chosen with `jev`) |
+| `SKILL_RAG_RERANK_MAX_HITS` | `1` | Most skills returned per search (`0` means up to `k`) |
+| `SKILL_RAG_RERANK_SCAN_MAX` | `0` | Largest corpus the judge scans whole to build the shortlist (`0` disables) |
 | `SKILL_RAG_RERANK_MODEL` | (provider default) | Pin the judge model id (for example `jev-1.14.0`, `gpt-6-luna`) |
 | `SKILL_RAG_RERANK_TIMEOUT` | `5` | Judge request timeout (seconds) |
 | `SKILL_RAG_RERANK_COOLDOWN` | `60` | Seconds to stay on the local gate after a failed judge call |
@@ -187,49 +189,43 @@ uv run skill-rag restore                              # everything back where it
 ### Optional: judge rerank (off by default)
 
 The default thresholds are calibrated on the public fixture and lose accuracy
-on other corpora. When enabled, local hybrid search only proposes candidates
+on other corpora. When enabled, local hybrid search only proposes 16 candidates
 and a judge model returns, per candidate, the probability that it fits the
-query.
+query. The rule is **only when sure**: the single skill at or above 0.9 is
+returned, otherwise nothing. A skill that does not fit costs the agent a skill
+body's worth of tokens and can steer it wrong.
 
-**Benchmark (rules committed before measuring).** From 433 skills (79
-repositories) on skills.sh's trending and all-time lists, 50 are targets and 50
-are held out of the corpus as no-match cases while the corpus grows from 50 to
-350 skills. The 283 queries (English and Korean) were written by another model
-from skill bodies only.
+**Benchmark (rules and configuration committed first, then one run on a test
+set nobody had seen).** A 350-skill corpus from skills.sh and 293 queries
+written by another model from skill bodies only (196 with a matching skill, 97
+without; English and Korean). "Wrong skill" means the first returned skill
+does not actually fit, as judged by a separate model.
 
-recall@1, strict (in parentheses, adjudicated: a first hit other than the
-expected skill counts if it genuinely fits):
+| | Wrong skill when none matches | Wrong skill when one matches | Useful skill returned | Skills returned | Response size | Latency p50 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Default gate | 88.7% | 46.4% | 50.5% | 4.83 | 1,559 chars | 45 ms |
+| `jev` (defaults) | 9.3% | 3.6% | 67.9% | 0.55 | 171 chars | 207 ms |
+| `jev`, threshold 0.5, up to `k` | 34.0% | 13.3% | 79.6% | 1.95 | 426 chars | 207 ms |
+| `openai` (defaults) | 26.8% | 10.2% | 79.6% | 0.77 | 196 chars | 466 ms |
 
-| Skills | Default gate | `jev` | `openai` |
-| ---: | ---: | ---: | ---: |
-| 50 | 0.619 (0.646) | 0.862 (0.915) | 0.857 (0.915) |
-| 100 | 0.529 (0.577) | 0.841 (0.899) | 0.794 (0.878) |
-| 200 | 0.460 (0.519) | 0.730 (0.836) | 0.693 (0.820) |
-| 350 | 0.450 (0.503) | 0.672 (0.788) | 0.646 (0.788) |
+- The `jev` defaults cut wrong skills to 9% / 4% at the price of returning a
+  useful skill for 68% of matching requests instead of 80%. For more recall
+  use `SKILL_RAG_RERANK_THRESHOLD=0.5 SKILL_RAG_RERANK_MAX_HITS=0`.
+- The 0.9 threshold was chosen with `jev` and does not suit `openai`, whose
+  probabilities sit closer to 0 and 1. The same precision with `openai` needs
+  a higher threshold, chosen on data.
+- Korean requests are weaker than English (`jev` useful rate 58% against 78%).
+- Letting the judge scan the whole corpus (`SKILL_RAG_RERANK_SCAN_MAX`) finds
+  the right skill more often but also returns more wrong ones, so it is off by
+  default.
+- Input tokens per search: about 3,400 for `jev`, 5,100 for `openai`.
 
-no-match accuracy, strict (in parentheses, adjudicated: nothing returned, or
-the returned skill genuinely fits):
-
-| Skills | Default gate | `jev` | `openai` |
-| ---: | ---: | ---: | ---: |
-| 50 | 0.064 (0.160) | 0.351 (0.574) | 0.394 (0.638) |
-| 350 | 0.021 (0.191) | 0.266 (0.702) | 0.319 (0.723) |
-
-- Both judges beat the gate at every size (95% intervals do not overlap). The
-  two judges are not distinguishable from each other. Latency is about 205 ms
-  for `jev` and 465 ms for `openai`.
-- Accuracy falls as the corpus grows, mainly in the first stage: the expected
-  skill is in the 16-candidate shortlist 96% of the time at 50 skills and 79%
-  at 350.
-- False alarms on near-miss requests remain: after adjudication a skill that
-  does not fit is still returned for 28-43% of no-match queries.
-- Search responses are 1,360-1,550 characters with the gate and 330-400 with a
-  judge.
-
-Full tables, intervals, and limits: `docs/benchmarks/2026-11-24-scale-results.md`;
-the rules: `docs/benchmarks/2026-11-24-scale-protocol.md`. The earlier numbers
-from author-written queries (`2026-11-24-heldout-jev-rerank.md`, `jev` recall@1
-0.979) are an upper bound on an easy set.
+Full tables, how the configuration was chosen, and limits:
+`docs/benchmarks/2026-11-24-precision-results.md`. Results by corpus size (50
+to 350, measured at the earlier 0.5 threshold):
+`docs/benchmarks/2026-11-24-scale-results.md`. The first numbers, from
+author-written queries (`2026-11-24-heldout-jev-rerank.md`, `jev` recall@1
+0.979), are an upper bound on an easy set.
 
 ```bash
 # TypeSafe Jev
