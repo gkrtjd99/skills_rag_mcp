@@ -3,7 +3,7 @@
 Rules live in docs/benchmarks/2026-11-24-scale-protocol.md; this file only
 implements them. Steps cache under var/bench/scale/ and are safe to rerun.
 
-    uv run python bench/scale/prepare.py pool      # needs `gh` signed in
+    uv run python bench/scale/prepare.py pool      # needs `gh` signed in; the versions pinned in manifest.json
     uv run python bench/scale/prepare.py split
     uv run python bench/scale/prepare.py queries   # needs OPENAI_API_KEY
 """
@@ -11,6 +11,7 @@ implements them. Steps cache under var/bench/scale/ and are safe to rerun.
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 import os
 import random
@@ -81,7 +82,46 @@ def skill_md_entry(tree: dict | None, skill_id: str) -> dict | None:
     return None
 
 
+def restore_pool() -> None:
+    """Download exactly the SKILL.md versions the committed manifest pins.
+
+    Reads manifest.json and never writes it, so the committed split and query
+    labels keep referring to the same skill texts whatever upstream does.
+    """
+    accepted = json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]
+
+    def fetch(a: dict) -> str | None:
+        blob = cached(
+            WORK / "blobs" / f"{a['blob_sha']}.json",
+            lambda: gh_json(f"repos/{a['source']}/git/blobs/{a['blob_sha']}") or {},
+        )
+        if "content" not in blob:
+            (WORK / "blobs" / f"{a['blob_sha']}.json").unlink(missing_ok=True)  # do not cache a failure
+            return f"{a['source']} {a['path']}: blob {a['blob_sha']} could not be fetched"
+        data = base64.b64decode(blob["content"])
+        if hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest() != a["blob_sha"]:
+            return f"{a['source']} {a['path']}: content does not match blob {a['blob_sha']}"
+        skill_md = WORK / "pool" / a["dir"] / "SKILL.md"
+        skill_md.parent.mkdir(parents=True, exist_ok=True)
+        skill_md.write_bytes(data)
+        return None
+
+    with ThreadPoolExecutor(8) as pool:
+        problems = [p for p in pool.map(fetch, accepted) if p]
+    print(f"restored {len(accepted) - len(problems)} of {len(accepted)} pinned skills")
+    if problems:
+        sys.exit("pool is incomplete; the published results cannot be reproduced from it:\n" + "\n".join(problems))
+
+
+def pool() -> None:
+    if MANIFEST.exists():
+        restore_pool()
+    else:
+        build_pool()
+
+
 def build_pool() -> None:
+    """Discover a new pool from each repository's current HEAD and write a new manifest."""
     candidates = json.loads(CANDIDATES.read_text(encoding="utf-8"))["candidates"]
     github = [c for c in candidates if GITHUB_SOURCE.fullmatch(c["source"])]
     sources = sorted({c["source"] for c in github})
@@ -441,7 +481,8 @@ def make_test2() -> None:
 
 if __name__ == "__main__":
     {
-        "pool": build_pool,
+        "pool": pool,  # the pinned pool when manifest.json exists
+        "discover": build_pool,  # new benchmark only: overwrites manifest.json
         "split": split,
         "queries": make_queries,
         "dev-queries": make_dev_queries,

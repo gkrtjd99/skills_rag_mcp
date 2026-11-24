@@ -58,6 +58,24 @@ def test_adopt_moves_skill_with_its_files_and_records_origin(layout):
     assert state["adopted"]["deploy"] == {"origin": str(origin), "store": str(corpus / "deploy")}
 
 
+def test_relative_source_is_recorded_absolute_and_restores_from_elsewhere(layout, tmp_path, monkeypatch):
+    corpus, _ = layout
+    project = tmp_path / "project"
+    origin = _skill(project / ".claude" / "skills", "deploy")
+    monkeypatch.chdir(project)
+
+    _adopt(corpus, [Path(".claude/skills")])
+
+    state = json.loads((corpus / lifecycle.STATE_FILE).read_text())
+    assert state["adopted"]["deploy"]["origin"] == str(origin)
+    elsewhere = tmp_path / "other"
+    elsewhere.mkdir()
+    monkeypatch.chdir(elsewhere)
+    _restore(corpus)
+    assert (origin / "SKILL.md").is_file()
+    assert not (elsewhere / ".claude").exists()
+
+
 def test_restore_puts_it_back_exactly(layout):
     corpus, harness = layout
     origin = _skill(harness, "deploy", extra="run.py")

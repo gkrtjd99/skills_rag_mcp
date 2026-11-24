@@ -87,7 +87,7 @@ queries nobody on the project wrote. The rules are in
 data was fetched; results are in `docs/benchmarks/2026-11-24-scale-results.md`.
 
 ```bash
-uv run python bench/scale/prepare.py pool      # download SKILL.md files listed on skills.sh (needs gh)
+uv run python bench/scale/prepare.py pool      # download the SKILL.md versions pinned in manifest.json (needs gh)
 uv run python bench/scale/prepare.py split     # seeded split, corpora of 50/100/200/350
 uv run python bench/scale/prepare.py queries   # model-written queries (needs OPENAI_API_KEY)
 for n in 50 100 200 350; do
