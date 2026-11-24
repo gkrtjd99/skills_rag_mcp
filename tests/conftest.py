@@ -50,3 +50,14 @@ def fake_embedding_model(monkeypatch):
 
     model = _DeterministicEmbeddingModel()
     monkeypatch.setattr(embed, "_load_model", lambda name: model)
+
+
+@pytest.fixture(autouse=True)
+def isolated_usage(tmp_path, monkeypatch):
+    """Keep the usage log and the session's loaded set out of the repo and
+    from leaking between tests."""
+    from skill_rag import usage
+
+    monkeypatch.setenv("SKILL_RAG_USAGE_PATH", str(tmp_path / "usage.jsonl"))
+    monkeypatch.setattr(usage, "_loaded", set())
+    monkeypatch.setattr(usage, "_suggested", set())

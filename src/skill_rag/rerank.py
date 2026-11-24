@@ -128,13 +128,13 @@ def scan(query: str, candidates: list[dict]) -> list[float]:
     return judges.checked(coarse(query, candidates), len(candidates))
 
 
-def _shortlist(query: str, size: int) -> list[dict]:
+def _shortlist(query: str, size: int, exclude: frozenset[str] = frozenset()) -> list[dict]:
     """Candidates for the fit judgment: scanned by the judge when the corpus
     is small enough, otherwise the local hybrid ranking."""
     total = retrieve.corpus_size()
     if not size < total <= RERANK_SCAN_MAX:
-        return retrieve.shortlist(query, size)
-    everything = retrieve.shortlist(query, total)
+        return retrieve.shortlist(query, size, exclude=exclude)
+    everything = retrieve.shortlist(query, total, exclude=exclude)
     if len(everything) <= size:
         return everything
     coarse = scan(query, everything)
@@ -143,18 +143,23 @@ def _shortlist(query: str, size: int) -> list[dict]:
     return [everything[i] for i in order[:size]]
 
 
-def search(query: str, k: int = 5, agent: str | None = None) -> dict:
+def search(
+    query: str, k: int = 5, agent: str | None = None, exclude: frozenset[str] = frozenset()
+) -> dict:
     """``retrieve.search`` contract, with a judge deciding fit when enabled."""
+    local = lambda: retrieve.search(query, k=k, agent=agent, exclude=exclude)
     if not enabled():
-        return retrieve.search(query, k=k, agent=agent)
+        return local()
     global _retry_after
     if _monotonic() < _retry_after:
-        return retrieve.search(query, k=k, agent=agent)
+        return local()
     if not query.strip() or retrieve.corpus_size() == 0:
         # Empty query or corpus: keep the local path's own messages.
-        return retrieve.search(query, k=k, agent=agent)
+        return local()
     try:
-        candidates = _shortlist(query, max(k, RERANK_CANDIDATES))
+        candidates = _shortlist(query, max(k, RERANK_CANDIDATES), exclude)
+        if not candidates:
+            return retrieve.no_match_response()
         fits = judge(query, candidates)
     except Exception as exc:
         _retry_after = _monotonic() + RERANK_COOLDOWN_SECONDS
@@ -168,7 +173,7 @@ def search(query: str, k: int = 5, agent: str | None = None) -> dict:
             f" {status}" if status else "",
             RERANK_COOLDOWN_SECONDS,
         )
-        return retrieve.search(query, k=k, agent=agent)
+        return local()
 
     kept = [(c, p) for c, p in zip(candidates, fits) if p >= RERANK_THRESHOLD]
     if not kept:

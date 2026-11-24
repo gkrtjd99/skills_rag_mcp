@@ -25,6 +25,7 @@ src/skill_rag/
 ├── rerank.py       # opt-in judge policy: shortlist -> fit probabilities -> hits; fail-open
 ├── judges/         # swappable fit judges: Judge protocol, jev, openai_decisions
 ├── sync.py         # disk<->index diff; TTL cache (only stateful module)
+├── usage.py        # local log of suggestions and loads; session's loaded set
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
 ├── collect.py      # symlink harness skills into ~/.skills/
 ├── mcp_config.py   # Claude/Codex MCP registration helpers
@@ -152,6 +153,18 @@ skill-rag install`. The CLI command:
 recorded footprint and collected symlinks but preserves untracked user entries
 under `~/.skills`. Installation ownership is recorded locally in
 `~/.skills/.skill-rag-install-state.json`.
+
+## Usage Log
+
+`mcp_server` records each `search_skills` result and each `get_skill` call
+through `usage.py` into a local JSONL file (`var/usage.jsonl`): skill names,
+scores, status, provider, a per-process session id, and for loads whether the
+skill had been suggested in that session. Request text is stored only in
+`full` mode. Skills loaded in the current session are passed as `exclude` to
+the search path, where they are dropped before ranking, so they take no
+shortlist slot and are never sent to a judge. `skill-rag usage` aggregates the
+log per skill. This is the only source of real-use data; every benchmark so
+far used model-written requests.
 
 ## Adopt and Restore
 

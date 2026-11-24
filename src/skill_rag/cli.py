@@ -15,6 +15,7 @@ from . import rerank as rerank_mod
 from . import sync as sync_mod
 from . import embed as embed_mod
 from . import translate as translate_mod
+from . import usage as usage_mod
 from .corpus import (
     DENSE_CANDIDATE_MULTIPLIER,
     DENSE_ONLY_MARGIN_THRESHOLD,
@@ -335,6 +336,30 @@ def restore(
             typer.echo(f"  ! {item['name']}: {item['reason']} ({item['origin']})")
     if dry_run:
         typer.echo("\n(dry-run — nothing moved)")
+
+
+@app.command()
+def usage(
+    json_out: bool = typer.Option(False, "--json"),
+    top: int = typer.Option(20, "--top", help="Skills to list, most suggested first."),
+):
+    """Show how often skills were suggested and then actually loaded."""
+    report = usage_mod.stats()
+    if json_out:
+        typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
+        return
+    typer.echo(f"log             : {usage_mod.usage_path()} (mode: {usage_mod.USAGE_LOG})")
+    typer.echo(f"searches        : {report['searches']} ({report['searches_with_no_hit']} returned nothing)")
+    suggestions = report["suggestions"]
+    rate = f"{report['loaded_after_suggestion'] / suggestions:.0%}" if suggestions else "-"
+    typer.echo(f"suggestions     : {suggestions}, loaded afterwards: {report['loaded_after_suggestion']} ({rate})")
+    typer.echo(f"loaded unasked  : {report['loaded_without_suggestion']} (skills fetched without being suggested)")
+    ranked = sorted(report["skills"].items(), key=lambda kv: -kv[1]["suggested"])[:top]
+    for name, s in ranked:
+        typer.echo(
+            f"  {name}: suggested {s['suggested']}, loaded after {s['loaded_after_suggestion']}, "
+            f"unasked {s['loaded_without_suggestion']}"
+        )
 
 
 @app.command()

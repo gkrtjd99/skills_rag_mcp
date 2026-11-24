@@ -117,7 +117,11 @@ def _compact_description(description: str, max_chars: int | None = None) -> str:
 
 
 def search(
-    query: str, k: int = 5, model_name: str = DEFAULT_MODEL, agent: str | None = None
+    query: str,
+    k: int = 5,
+    model_name: str = DEFAULT_MODEL,
+    agent: str | None = None,
+    exclude: frozenset[str] = frozenset(),
 ) -> dict:
     """Hybrid search over the skill corpus: dense cosine + BM25, fused by RRF.
 
@@ -141,7 +145,7 @@ def search(
     if not query:
         return {"status": "no_match", "hits": [], "message": "Empty query. Proceed without using a skill."}
 
-    ranked = _rank(query, k, model_name, gated=True)
+    ranked = _rank(query, k, model_name, gated=True, exclude=exclude)
     if not ranked:
         return no_match_response()
 
@@ -163,7 +167,9 @@ def search(
     return {"status": "ok", "hits": hits}
 
 
-def shortlist(query: str, n: int, model_name: str = DEFAULT_MODEL) -> list[dict]:
+def shortlist(
+    query: str, n: int, model_name: str = DEFAULT_MODEL, exclude: frozenset[str] = frozenset()
+) -> list[dict]:
     """Top ``n`` skills by fused hybrid rank with every threshold disabled.
 
     This is the recall-oriented input for a downstream judge (see
@@ -174,7 +180,7 @@ def shortlist(query: str, n: int, model_name: str = DEFAULT_MODEL) -> list[dict]
     query = query.strip()
     if not query or n < 1:
         return []
-    return [row for row, _ in _rank(query, n, model_name, gated=False)[:n]]
+    return [row for row, _ in _rank(query, n, model_name, gated=False, exclude=exclude)[:n]]
 
 
 def corpus_size() -> int:
@@ -183,12 +189,14 @@ def corpus_size() -> int:
 
 
 def _rank(
-    query: str, k: int, model_name: str, *, gated: bool
+    query: str, k: int, model_name: str, *, gated: bool, exclude: frozenset[str] = frozenset()
 ) -> list[tuple[dict, float]]:
     """Hybrid candidates as ``({name, description, agent}, rrf_score)`` in
     result order. ``gated`` applies the dense/BM25 keep rules; ungated keeps
     every indexed skill."""
-    rows = _list_indexed()
+    # ``exclude`` names skills the session already loaded; they are dropped
+    # before ranking so they neither take a slot nor reach a judge.
+    rows = [r for r in _list_indexed() if r["name"] not in exclude]
     if not rows:
         return []
 

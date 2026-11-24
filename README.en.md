@@ -118,6 +118,7 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `uv run skill-rag collect [--dry-run]` | Symlink harness skills into `~/.skills/` |
 | `uv run skill-rag adopt [names...] [--from DIR] [--dry-run]` | **Move** skills into `~/.skills/` (the harness stops loading them) |
 | `uv run skill-rag restore [names...] [--dry-run]` | Move adopted skills back to where they were |
+| `uv run skill-rag usage [--json]` | How often skills were suggested and then actually loaded |
 | `uv run skill-rag sync` | Manually sync the index |
 | `uv run skill-rag query "<text>"` | Inspect search results |
 | `uv run skill-rag list-skills` | List indexed skills |
@@ -155,6 +156,16 @@ uv run skill-rag restore                              # everything back where it
 - `get_skill` returns the skill's `path`, so bundled scripts and references
   still work.
 
+### Usage log
+
+What `search_skills` suggested, and whether the agent then loaded it with
+`get_skill`, is recorded in a local file. Nothing leaves the machine. The
+default mode (`stats`) stores skill names and scores, not request text. To
+build an evaluation set from real requests, set `SKILL_RAG_USAGE_LOG=full`.
+`uv run skill-rag usage` shows, per skill, how often it was suggested and how
+often it was loaded afterwards. A skill already loaded in the same session (one
+MCP server process) is not suggested again.
+
 ## Environment variables
 
 | Variable | Default | Description |
@@ -176,6 +187,9 @@ uv run skill-rag restore                              # everything back where it
 | `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP metadata description cap (`0` disables the cap) |
 | `SKILL_RAG_TRANSLATE` | `0` | Optional local description translation at index time (`1` enables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
+| `SKILL_RAG_USAGE_LOG` | `stats` | Local usage log: `stats` (skill names and scores only), `full` (also request text), `off` |
+| `SKILL_RAG_USAGE_PATH` | `./var/usage.jsonl` | Usage log file |
+| `SKILL_RAG_EXCLUDE_LOADED` | `1` | Leave skills already loaded in this session out of suggestions (`0` disables) |
 | `SKILL_RAG_RERANK` | (off) | Second-stage fit judge: `jev`, `openai`, or your own `package.module:factory` (cloud call, see below) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | Candidate skills shown to the judge |
 | `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | Minimum fit probability for a skill to be returned (chosen with `jev`) |

@@ -111,6 +111,11 @@ body. Translation is local ko<->en only, disabled by default, and happens at
 index time for added/changed records when `SKILL_RAG_TRANSLATE=1`. Search hit
 descriptions are capped at 280 characters by default to limit MCP context use.
 
+A skill that `get_skill` already returned in the current session (one server
+process) is left out of later `search_skills` results unless
+`SKILL_RAG_EXCLUDE_LOADED=0`, so a follow-up search can return `no_match`
+where the first one returned that skill.
+
 ## `get_skill(name: str) -> dict`
 
 Return the full `SKILL.md` body for a frontmatter skill name. The implementation

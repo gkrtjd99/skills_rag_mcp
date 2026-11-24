@@ -17,7 +17,7 @@ Read documents in the order below before writing code.
 
 ## Repository Map
 
-- `src/skill_rag/` — Python package (agents, corpus, models, parser, loader, normalize, offline, embed, translate, sparse, index, retrieve, rerank, judges/, sync, mcp_server, collect, mcp_config, lifecycle, cli, evaluator).
+- `src/skill_rag/` — Python package (agents, corpus, models, parser, loader, normalize, offline, embed, translate, sparse, index, retrieve, rerank, judges/, usage, sync, mcp_server, collect, mcp_config, lifecycle, cli, evaluator).
 - `bootstrap-skill/using-skill-rag/SKILL.md` — meta-skill installed into each harness via symlink.
 - `Makefile` / `skill-rag install` — set up `~/.skills/`, symlinks, and MCP registration (`skill-rag uninstall` reverses it).
 - `skill-rag adopt` / `restore` — move skills into `~/.skills/` so no harness loads them natively, and move them back.

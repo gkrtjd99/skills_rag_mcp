@@ -21,6 +21,7 @@ from . import index as index_mod
 from . import rerank
 from . import retrieve
 from . import sync as sync_mod
+from . import usage
 from .corpus import MAX_SEARCH_K, MIN_SEARCH_K
 
 server = FastMCP("skill-rag")
@@ -53,7 +54,9 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
         return retrieve.skip_response()
     sync_mod.sync_if_stale()
     # Local hybrid gate by default; opt-in Jev fit judgment (SKILL_RAG_RERANK).
-    return rerank.search(query, k=k, agent=agent)
+    result = rerank.search(query, k=k, agent=agent, exclude=usage.loaded_this_session())
+    usage.record_search(query, result, rerank.RERANK_PROVIDER if rerank.enabled() else "")
+    return result
 
 
 def _skill_response(skill_md: Path) -> dict:
@@ -74,12 +77,13 @@ def get_skill(name: str) -> dict:
     (scripts, references, assets) relative to it.
     """
     path = _path_for_name(name)
-    if path is not None and path.exists():
-        return _skill_response(path)
-    # Not found or path stale — force a sync, retry.
-    sync_mod.sync_if_stale(ttl=0)
-    path = _path_for_name(name)
-    if path is not None and path.exists():
+    if path is None or not path.exists():
+        # Not found or path stale — force a sync, retry.
+        sync_mod.sync_if_stale(ttl=0)
+        path = _path_for_name(name)
+    found = path is not None and path.exists()
+    usage.record_load(name, found)
+    if found:
         return _skill_response(path)
     return {
         "status": "not_found",

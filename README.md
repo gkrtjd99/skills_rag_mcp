@@ -115,6 +115,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `uv run skill-rag adopt [이름...] [--from 폴더] [--dry-run]` | 스킬을 `~/.skills/`로 **이동** (하네스가 더는 로드하지 않음) |
 | `uv run skill-rag restore [이름...] [--dry-run]` | adopt한 스킬을 원래 위치로 되돌림 |
 | `uv run skill-rag sync` | 인덱스 수동 동기화 |
+| `uv run skill-rag usage [--json]` | 스킬이 추천된 횟수와 추천 뒤 실제로 읽힌 횟수 |
 | `uv run skill-rag query "<text>"` | 검색 결과 확인 |
 | `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
 | `uv run skill-rag eval` | 공개 fixture 평가셋으로 recall@5 측정 |
@@ -146,6 +147,14 @@ uv run skill-rag restore                              # 전부 원래 위치로
 - 이동 후 하네스를 재시작해야 목록에서 빠짐. 옮긴 스킬은 `/스킬이름` 직접 호출이 안 됨.
 - `get_skill`이 스킬 폴더 `path`를 함께 돌려주므로 스킬에 딸린 스크립트·참고 파일도 사용 가능.
 
+### 사용 기록
+
+`search_skills`가 무엇을 추천했고 그 뒤 에이전트가 `get_skill`로 실제로 읽었는지를 로컬 파일에
+남김. 기계 밖으로 나가지 않음. 기본 모드(`stats`)는 스킬 이름과 점수만 남기고 질의 문장은 남기지
+않음. 실제 질의로 평가셋을 만들려면 `SKILL_RAG_USAGE_LOG=full`. `uv run skill-rag usage`로 스킬별
+추천 횟수와 추천 뒤 읽힌 횟수를 볼 수 있음. 같은 세션(MCP 서버 프로세스 하나)에서 이미 읽은 스킬은
+다시 추천하지 않음.
+
 ## 환경 변수
 
 | 변수 | 기본 | 설명 |
@@ -167,6 +176,9 @@ uv run skill-rag restore                              # 전부 원래 위치로
 | `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP 메타데이터 description 상한 (`0`이면 해제) |
 | `SKILL_RAG_TRANSLATE` | `0` | 인덱스 시 로컬 description 번역 (`1`이면 켬) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
+| `SKILL_RAG_USAGE_LOG` | `stats` | 로컬 사용 기록: `stats`(스킬 이름·점수만), `full`(질의 문장 포함), `off` |
+| `SKILL_RAG_USAGE_PATH` | `./var/usage.jsonl` | 사용 기록 파일 경로 |
+| `SKILL_RAG_EXCLUDE_LOADED` | `1` | 이번 세션에서 이미 읽은 스킬을 추천에서 제외 (`0`이면 끔) |
 | `SKILL_RAG_RERANK` | (꺼짐) | 2단계 적합성 판정 모델: `jev`, `openai`, 또는 직접 만든 `패키지.모듈:팩토리` (클라우드 호출, 아래 참고) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | 판정 모델에게 보여줄 후보 스킬 수 |
 | `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | 스킬을 반환하는 최소 적합 확률 (`jev` 기준으로 고른 값) |

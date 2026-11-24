@@ -32,6 +32,11 @@
   restore, even with `--purge`.
 - `skill-rag install --no-collect` sets up the bootstrap skill and MCP
   registration without linking harness and plugin skills into the store.
+- Local usage log (`var/usage.jsonl`, `SKILL_RAG_USAGE_LOG=stats|full|off`) of
+  what was suggested and what was then loaded, and `skill-rag usage` to
+  summarize it per skill. No request text unless `full`.
+- Skills already loaded in the current session are no longer suggested again
+  (`SKILL_RAG_EXCLUDE_LOADED`).
 - `get_skill` also returns `path`, the skill's directory, so bundled scripts
   and references resolve for skills no harness loads natively.
 
