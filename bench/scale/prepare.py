@@ -322,5 +322,129 @@ def make_dev_queries() -> None:
     print(f"wrote {len(rows)} dev queries; dropped for naming the skill: {sum(lost for _, lost in results)}")
 
 
+def _generated_rows(jobs: list[tuple[str, Path, int, str]], tag: str) -> tuple[list[dict], int]:
+    """``jobs`` are (name, SKILL.md path, requests per language, kind)."""
+
+    def run(job):
+        name, skill_md, n, _ = job
+        record = parse_skill_file(skill_md)
+        key = skill_md.parent.name
+
+        def attempt(suffix: str):
+            return cached(WORK / "gen" / f"{key}.{tag}{suffix}.json", lambda: generate(record.body, n))
+
+        first = attempt("")
+        if not any(mentions(q, name) for lang in ("en", "ko") for q in first[lang]):
+            return first, 0
+        second = attempt(".retry")
+        kept = {lang: [q for q in second[lang] if not mentions(q, name)] for lang in ("en", "ko")}
+        return kept, sum(n - len(kept[lang]) for lang in ("en", "ko"))
+
+    with ThreadPoolExecutor(6) as pool:
+        results = list(pool.map(run, jobs))
+    rows = [
+        {
+            "query": query,
+            "expected": [name] if kind == "positive" else [],
+            "lang": lang,
+            "kind": kind,
+            "from_skill": name,
+        }
+        for (name, _, _, kind), (generated, _) in zip(jobs, results)
+        for lang in ("en", "ko")
+        for query in generated[lang]
+    ]
+    return rows, sum(lost for _, lost in results)
+
+
+def make_dev_negatives() -> None:
+    """Dev negatives for the precision protocol: distractors never placed in a corpus."""
+    accepted = {a["name"]: a for a in json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    unused = parts["distractors"][max(parts["sizes"]) - N_TARGETS :]
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 1, "no_match_heldout") for n in unused]
+    rows, dropped = _generated_rows(jobs, "devneg")
+    (HERE / "dev-negatives.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    print(f"wrote {len(rows)} dev negatives from {len(unused)} skills; dropped for naming the skill: {dropped}")
+
+
+TEST2_SEED = 20261126
+
+
+def make_test2() -> None:
+    """Fresh test set of the precision protocol. Run once, after the configuration is committed."""
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]
+    accepted = {a["name"]: a for a in manifest}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    dev_targets = set(json.loads(DEV_SPLIT.read_text(encoding="utf-8"))["targets"])
+    rng = random.Random(TEST2_SEED)
+    eligible = [n for n in parts["distractors"][: max(parts["sizes"]) - N_TARGETS] if n not in dev_targets]
+    targets = rng.sample(eligible, 50)
+
+    # Negatives: candidates that never entered the pool, same content rules.
+    candidates = json.loads(CANDIDATES.read_text(encoding="utf-8"))["candidates"]
+    pooled_ids = {a["skill_id"].lower() for a in manifest}
+    pooled_names = {a["name"].lower() for a in manifest}
+    outside = [
+        c for c in candidates
+        if GITHUB_SOURCE.fullmatch(c["source"]) and c["skill_id"].lower() not in pooled_ids
+    ]
+    rng.shuffle(outside)
+    extra_dir = WORK / "outside"
+    negatives: list[tuple[str, Path]] = []
+    seen: set[str] = set()
+    for c in outside:
+        if len(negatives) == 50:
+            break
+        key = c["source"].replace("/", "__")
+        tree = cached(WORK / "trees" / f"{key}.json", lambda: gh_json(f"repos/{c['source']}/git/trees/HEAD?recursive=1") or {})
+        entry = skill_md_entry(tree, c["skill_id"])
+        if not entry:
+            continue
+        blob = cached(WORK / "blobs" / f"{entry['sha']}.json", lambda: gh_json(f"repos/{c['source']}/git/blobs/{entry['sha']}") or {})
+        if "content" not in blob:
+            continue
+        skill_md = extra_dir / f"{key}__{re.sub(r'[^A-Za-z0-9_.-]', '_', c['skill_id'])}" / "SKILL.md"
+        skill_md.parent.mkdir(parents=True, exist_ok=True)
+        skill_md.write_text(base64.b64decode(blob["content"]).decode("utf-8", "replace"), encoding="utf-8")
+        record = parse_skill_file(skill_md)
+        if (
+            record is None
+            or len(record.description) < MIN_DESCRIPTION
+            or len(record.body) < MIN_BODY
+            or record.name.lower() in pooled_names
+            or record.name.lower() in seen
+        ):
+            continue
+        seen.add(record.name.lower())
+        negatives.append((record.name, skill_md, c["source"]))
+
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 2, "positive") for n in targets] + [
+        (name, path, 1, "no_match_heldout") for name, path, _ in negatives
+    ]
+    rows, dropped = _generated_rows(jobs, "test2")
+    (HERE / "test2-queries.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    (HERE / "test2-split.json").write_text(
+        json.dumps(
+            {"seed": TEST2_SEED, "targets": targets, "negatives": [{"name": n, "source": s} for n, _, s in negatives]},
+            indent=1,
+        ),
+        encoding="utf-8",
+    )
+    kinds = Counter(r["kind"] for r in rows)
+    print(f"wrote {len(rows)} test-2 queries {dict(kinds)}; dropped for naming the skill: {dropped}")
+
+
 if __name__ == "__main__":
-    {"pool": build_pool, "split": split, "queries": make_queries, "dev-queries": make_dev_queries}[sys.argv[1]]()
+    {
+        "pool": build_pool,
+        "split": split,
+        "queries": make_queries,
+        "dev-queries": make_dev_queries,
+        "dev-negatives": make_dev_negatives,
+        "test2": make_test2,
+    }[sys.argv[1]]()
