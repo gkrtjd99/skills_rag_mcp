@@ -132,6 +132,31 @@ def test_install_copies_bootstrap_and_links_harness(tmp_path, monkeypatch):
     )
 
 
+def test_install_without_collect_links_nothing_but_still_syncs(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    harness = tmp_path / "claude" / "skills"
+
+    class _NoCollect:
+        def plan(self, **k):
+            raise AssertionError("collect.plan called with collect_skills=False")
+
+        def apply(self, **k):
+            raise AssertionError("collect.apply called with collect_skills=False")
+
+    monkeypatch.setattr(lifecycle, "collect", _NoCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+
+    report = lifecycle.install(
+        repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[harness],
+        collect_skills=False,
+    )
+
+    assert report["collect_ran"] is False and report["sync_ran"] is True
+    assert (harness / "using-skill-rag").is_symlink()
+    assert sorted(p.name for p in corpus.iterdir() if p.is_dir()) == ["using-skill-rag"]
+    assert lifecycle._load_state(corpus)["collected_links"] == {}
+
+
 def test_install_syncs_the_same_injected_corpus(tmp_path, monkeypatch):
     corpus = tmp_path / "skills"
     captured = {}

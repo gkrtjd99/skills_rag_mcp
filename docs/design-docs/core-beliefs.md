@@ -29,7 +29,9 @@ against this one location and its derived index.
 The skill-rag path does not load all skills at session start. The bootstrap
 skill calls `search_skills` per new task and calls `get_skill` only for skills
 whose descriptions clearly fit the task. Native harness loading remains a
-separate fallback and is not disabled by this repository.
+separate fallback and is not disabled by default. `skill-rag adopt` is the
+explicit, reversible way to take a skill out of native loading by moving it
+into the store.
 
 ## Single User
 

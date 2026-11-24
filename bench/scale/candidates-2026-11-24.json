@@ -1,0 +1,4479 @@
+{
+"snapshot": "2026-11-24",
+"origin": [
+"https://skills.sh/trending",
+"https://skills.sh/"
+],
+"candidates": [
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 29604
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 29586
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "twitter-automation",
+"installs": 29584
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 29584
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-browser",
+"skill_id": "agent-browser",
+"installs": 21645
+},
+{
+"list": "trending",
+"source": "designed-by-ai/skills",
+"skill_id": "design-mobile-apps",
+"installs": 19988
+},
+{
+"list": "trending",
+"source": "vercel-labs/skills",
+"skill_id": "find-skills",
+"installs": 18280
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes",
+"installs": 17022
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "media-use",
+"installs": 16858
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-cli",
+"installs": 16809
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-registry",
+"installs": 16637
+},
+{
+"list": "trending",
+"source": "uizze.sh",
+"skill_id": "ui-taste",
+"installs": 16453
+},
+{
+"list": "trending",
+"source": "gencraft-labs/skills",
+"skill_id": "ai-image-generation",
+"installs": 15508
+},
+{
+"list": "trending",
+"source": "gencraft-labs/skills",
+"skill_id": "ai-video-generation",
+"installs": 15448
+},
+{
+"list": "trending",
+"source": "gencraft-labs/skills",
+"skill_id": "video-edit",
+"installs": 15375
+},
+{
+"list": "trending",
+"source": "flowkit-labs/skills",
+"skill_id": "website-builder",
+"installs": 15373
+},
+{
+"list": "trending",
+"source": "gencraft-labs/skills",
+"skill_id": "image-to-video",
+"installs": 15351
+},
+{
+"list": "trending",
+"source": "flowkit-labs/skills",
+"skill_id": "reddit-automation",
+"installs": 15185
+},
+{
+"list": "trending",
+"source": "gencraft-labs/skills",
+"skill_id": "ai-music",
+"installs": 15161
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "reverse-any-video",
+"installs": 13573
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "style-sampling",
+"installs": 13505
+},
+{
+"list": "trending",
+"source": "uizze/uizze",
+"skill_id": "uizze-ui",
+"installs": 9613
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-best-practices",
+"installs": 9457
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 8912
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 8911
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 8911
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "twitter-automation",
+"installs": 8911
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-captions",
+"installs": 8869
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-render",
+"installs": 8845
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-create",
+"installs": 8804
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-studio",
+"installs": 8750
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-markup",
+"installs": 8722
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-multimedia",
+"installs": 8719
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-docs",
+"installs": 8667
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-upgrade",
+"installs": 8654
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-interactivity",
+"installs": 8647
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-maps",
+"installs": 8642
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-license",
+"installs": 8633
+},
+{
+"list": "trending",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-saas",
+"installs": 8628
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "remotion-to-hyperframes",
+"installs": 8412
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "slideshow",
+"installs": 8333
+},
+{
+"list": "trending",
+"source": "heygen-com/hyperframes",
+"skill_id": "figma",
+"installs": 8249
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-ai",
+"installs": 7484
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "microsoft-foundry",
+"installs": 7482
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-diagnostics",
+"installs": 7479
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "python-appservice-deploy",
+"installs": 7477
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-deploy",
+"installs": 7477
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-quotas",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-kubernetes",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-compliance",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-app-onboard-prereq",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-aigateway",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "discover-azure-skills",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-validate",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-enterprise-infra-planner",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-resource-visualizer",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "entra-app-registration",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-prepare",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "entra-agent-id",
+"installs": 7476
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "airunway-aks-setup",
+"installs": 7475
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-app-onboard",
+"installs": 7475
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-upgrade",
+"installs": 7475
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-reliability",
+"installs": 7475
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "appinsights-instrumentation",
+"installs": 7475
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-storage",
+"installs": 7475
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-kusto",
+"installs": 7474
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-compute",
+"installs": 7474
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-messaging",
+"installs": 7474
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-resource-lookup",
+"installs": 7474
+},
+{
+"list": "trending",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-cloud-migrate",
+"installs": 7474
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "grilling",
+"installs": 7352
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "grill-me",
+"installs": 6910
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "domain-modeling",
+"installs": 5733
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "grill-with-docs",
+"installs": 5623
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "agent-browser",
+"installs": 5536
+},
+{
+"list": "trending",
+"source": "leonxlnx/taste-skill",
+"skill_id": "design-taste-frontend",
+"installs": 5309
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "codebase-design",
+"installs": 5181
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "code-review",
+"installs": 5128
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "frontend-design",
+"installs": 5126
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "tdd",
+"installs": 5098
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "improve-codebase-architecture",
+"installs": 4971
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "to-spec",
+"installs": 4959
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "to-tickets",
+"installs": 4890
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "diagnosing-bugs",
+"installs": 4884
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 4845
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "setup-matt-pocock-skills",
+"installs": 4844
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "prototype",
+"installs": 4826
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "writing-for-agents",
+"installs": 4799
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 4787
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 4784
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "twitter-automation",
+"installs": 4781
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "research",
+"installs": 4775
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "handoff",
+"installs": 4761
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "implement",
+"installs": 4754
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "web-design-guidelines",
+"installs": 4671
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "wayfinder",
+"installs": 4643
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "teach",
+"installs": 4562
+},
+{
+"list": "trending",
+"source": "proseify.xyz",
+"skill_id": "anti-prose-slop",
+"installs": 4459
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "triage",
+"installs": 4417
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "ask-matt",
+"installs": 4389
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "retro",
+"installs": 4388
+},
+{
+"list": "trending",
+"source": "thinkui.xyz",
+"skill_id": "thinkui",
+"installs": 4368
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "to-questionnaire",
+"installs": 4226
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "wait-what",
+"installs": 4196
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "pr",
+"installs": 4147
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "implement-spec",
+"installs": 4142
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "wizard",
+"installs": 4141
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "vercel-react-best-practices",
+"installs": 3797
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-shared",
+"installs": 3627
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-doc",
+"installs": 3593
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "emil-design-eng",
+"installs": 3583
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-drive",
+"installs": 3571
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-sheets",
+"installs": 3559
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "infsh-cli",
+"installs": 3516
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "agent-tools",
+"installs": 3516
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-base",
+"installs": 3516
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "web-search",
+"installs": 3516
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "python-executor",
+"installs": 3516
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "remotion-render",
+"installs": 3516
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-wiki",
+"installs": 3515
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-im",
+"installs": 3499
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-calendar",
+"installs": 3498
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-approval",
+"installs": 3498
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-openapi-explorer",
+"installs": 3497
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-markdown",
+"installs": 3497
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-contact",
+"installs": 3496
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-meeting",
+"installs": 3495
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-attendance",
+"installs": 3494
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-event",
+"installs": 3494
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-task",
+"installs": 3492
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-workflow-meeting-summary",
+"installs": 3491
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-whiteboard",
+"installs": 3491
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-mail",
+"installs": 3490
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-apps",
+"installs": 3490
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-workflow-standup-report",
+"installs": 3489
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-skill-maker",
+"installs": 3489
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-slides",
+"installs": 3488
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-okr",
+"installs": 3487
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 3421
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 3421
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 3421
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "twitter-automation",
+"installs": 3421
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-minutes",
+"installs": 3371
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-vc-agent",
+"installs": 3366
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-note",
+"installs": 3366
+},
+{
+"list": "trending",
+"source": "open.feishu.cn",
+"skill_id": "lark-vc",
+"installs": 3364
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "apple-design",
+"installs": 3204
+},
+{
+"list": "trending",
+"source": "uizze/uizze",
+"skill_id": "image-to-ui",
+"installs": 3191
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "animate",
+"installs": 3106
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "review-animations",
+"installs": 3061
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "git-guardrails-claude-code",
+"installs": 3010
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "loop-me",
+"installs": 3001
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "setup-pre-commit",
+"installs": 2991
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "claude-handoff",
+"installs": 2987
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "writing-shape",
+"installs": 2975
+},
+{
+"list": "trending",
+"source": "bankai-skills/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 2969
+},
+{
+"list": "trending",
+"source": "bankai-skills/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 2969
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "writing-beats",
+"installs": 2969
+},
+{
+"list": "trending",
+"source": "bankai-skills/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 2968
+},
+{
+"list": "trending",
+"source": "bankai-skills/superpowers",
+"skill_id": "twitter-automation",
+"installs": 2968
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "chief-of-staff",
+"installs": 2959
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "writing-fragments",
+"installs": 2959
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "scaffold-exercises",
+"installs": 2955
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "setup-ts-deep-modules",
+"installs": 2938
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "migrate-to-shoehorn",
+"installs": 2938
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "improve-animations",
+"installs": 2923
+},
+{
+"list": "trending",
+"source": "mattpocock/skills",
+"skill_id": "software-factory",
+"installs": 2856
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "animation-performance",
+"installs": 2833
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "find-animation-opportunities",
+"installs": 2813
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "animation-vocabulary",
+"installs": 2803
+},
+{
+"list": "trending",
+"source": "pbakaus/impeccable",
+"skill_id": "impeccable",
+"installs": 2779
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "break-ui",
+"installs": 2771
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "mobile-native",
+"installs": 2748
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "choreograph",
+"installs": 2735
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "pick-ui-library",
+"installs": 2707
+},
+{
+"list": "trending",
+"source": "skills-shell/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 2679
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "prototype",
+"installs": 2678
+},
+{
+"list": "trending",
+"source": "skills-shell/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 2677
+},
+{
+"list": "trending",
+"source": "skills-shell/superpowers",
+"skill_id": "twitter-automation",
+"installs": 2676
+},
+{
+"list": "trending",
+"source": "skills-shell/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 2676
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "learn-taste",
+"installs": 2658
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "gestures",
+"installs": 2656
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "remove-animations",
+"installs": 2631
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "animate-expo",
+"installs": 2610
+},
+{
+"list": "trending",
+"source": "googlechrome/modern-web-guidance",
+"skill_id": "modern-web-guidance",
+"installs": 2589
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "ask-sonner",
+"installs": 2579
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "ask-emil",
+"installs": 2579
+},
+{
+"list": "trending",
+"source": "emilkowalski/skills",
+"skill_id": "write-swift",
+"installs": 2536
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman",
+"installs": 2460
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-client-api",
+"installs": 2371
+},
+{
+"list": "trending",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 2356
+},
+{
+"list": "trending",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 2356
+},
+{
+"list": "trending",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 2355
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-cli",
+"installs": 2355
+},
+{
+"list": "trending",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "twitter-automation",
+"installs": 2355
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-database-setup",
+"installs": 2334
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-orm-setup",
+"installs": 2330
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-postgres",
+"installs": 2321
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-driver-adapter-implementation",
+"installs": 2315
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-upgrade-v7",
+"installs": 2313
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-postgres-upgrade",
+"installs": 2312
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-postgres-setup",
+"installs": 2311
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-compute",
+"installs": 2310
+},
+{
+"list": "trending",
+"source": "prisma/skills",
+"skill_id": "prisma-mongodb-upgrade",
+"installs": 2305
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "vercel-composition-patterns",
+"installs": 2226
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "ui-ux-pro-max",
+"installs": 2152
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-adk-code",
+"installs": 2143
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-deploy",
+"installs": 2133
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-publish",
+"installs": 2133
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-workflow",
+"installs": 2107
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-scaffold",
+"installs": 2106
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-eval",
+"installs": 2106
+},
+{
+"list": "trending",
+"source": "google/agents-cli",
+"skill_id": "google-agents-cli-observability",
+"installs": 2104
+},
+{
+"list": "trending",
+"source": "magentosh/superpowers",
+"skill_id": "ai-image-generation",
+"installs": 2026
+},
+{
+"list": "trending",
+"source": "magentosh/superpowers",
+"skill_id": "ai-video-generation",
+"installs": 2018
+},
+{
+"list": "trending",
+"source": "magentosh/superpowers",
+"skill_id": "twitter-automation",
+"installs": 2015
+},
+{
+"list": "trending",
+"source": "magentosh/superpowers",
+"skill_id": "ai-avatar-video",
+"installs": 2014
+},
+{
+"list": "trending",
+"source": "cloudflare/security-audit-skill",
+"skill_id": "security-audit",
+"installs": 1954
+},
+{
+"list": "trending",
+"source": "sentry/dev",
+"skill_id": "sentry-cli",
+"installs": 1945
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "product-hunt-launch",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "youtube-thumbnail-design",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "image-to-video",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "storyboard-creation",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "character-design-sheet",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "competitor-teardown",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "landing-page-design",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "app-store-screenshots",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "video-ad-specs",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "beltsh/superpowers",
+"skill_id": "product-photography",
+"installs": 1932
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-generate",
+"installs": 1862
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-youtube-thumbnail",
+"installs": 1817
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-compress",
+"installs": 1809
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-product-photoshoot",
+"installs": 1806
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-soul-id",
+"installs": 1806
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-faceless-video",
+"installs": 1801
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-video-explainer",
+"installs": 1799
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-brandkit",
+"installs": 1799
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-websites",
+"installs": 1793
+},
+{
+"list": "trending",
+"source": "higgsfield-ai/skills",
+"skill_id": "higgsfield-marketplace-cards",
+"installs": 1792
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-stats",
+"installs": 1751
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "agent-browser",
+"installs": 1658
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "systematic-debugging",
+"installs": 1634
+},
+{
+"list": "trending",
+"source": "nutlope/hallmark",
+"skill_id": "hallmark",
+"installs": 1617
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "verification-before-completion",
+"installs": 1539
+},
+{
+"list": "trending",
+"source": "mastra-ai/skills",
+"skill_id": "mastra",
+"installs": 1533
+},
+{
+"list": "trending",
+"source": "mcollina/skills",
+"skill_id": "fastify-best-practices",
+"installs": 1506
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "vercel-react-view-transitions",
+"installs": 1500
+},
+{
+"list": "trending",
+"source": "spillwavesolutions/design-doc-mermaid",
+"skill_id": "design-doc-mermaid",
+"installs": 1492
+},
+{
+"list": "trending",
+"source": "intellectronica/agent-skills",
+"skill_id": "notion-api",
+"installs": 1476
+},
+{
+"list": "trending",
+"source": "nrwl/nx-ai-agents-config",
+"skill_id": "nx-workspace",
+"installs": 1471
+},
+{
+"list": "trending",
+"source": "amplitude/mcp-marketplace",
+"skill_id": "instrument-events",
+"installs": 1467
+},
+{
+"list": "trending",
+"source": "amplitude/mcp-marketplace",
+"skill_id": "add-analytics-instrumentation",
+"installs": 1467
+},
+{
+"list": "trending",
+"source": "amplitude/mcp-marketplace",
+"skill_id": "diff-intake",
+"installs": 1467
+},
+{
+"list": "trending",
+"source": "amplitude/mcp-marketplace",
+"skill_id": "discover-analytics-patterns",
+"installs": 1465
+},
+{
+"list": "trending",
+"source": "amplitude/mcp-marketplace",
+"skill_id": "discover-event-surfaces",
+"installs": 1465
+},
+{
+"list": "trending",
+"source": "amplitude/mcp-marketplace",
+"skill_id": "taxonomy",
+"installs": 1463
+},
+{
+"list": "trending",
+"source": "wind-alice/alicemarket",
+"skill_id": "wind-mcp-skill",
+"installs": 1448
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "deploy-to-vercel",
+"installs": 1444
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "vercel-react-native-skills",
+"installs": 1432
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "brainstorming",
+"installs": 1399
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "writing-guidelines",
+"installs": 1372
+},
+{
+"list": "trending",
+"source": "dietrichgebert/ponytail",
+"skill_id": "ponytail",
+"installs": 1348
+},
+{
+"list": "trending",
+"source": "shadcn-ui/ui",
+"skill_id": "shadcn",
+"installs": 1340
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "vercel-optimize",
+"installs": 1314
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "copywriting",
+"installs": 1290
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "test-driven-development",
+"installs": 1266
+},
+{
+"list": "trending",
+"source": "vercel-labs/agent-skills",
+"skill_id": "vercel-cli-with-tokens",
+"installs": 1264
+},
+{
+"list": "trending",
+"source": "archify.si",
+"skill_id": "archify",
+"installs": 1251
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-commit",
+"installs": 1242
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "writing-plans",
+"installs": 1241
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-review",
+"installs": 1227
+},
+{
+"list": "trending",
+"source": "autonnel/autonnel-skills",
+"skill_id": "landing-page-conversion-audit",
+"installs": 1225
+},
+{
+"list": "trending",
+"source": "antibrow/anti-detect-browser-skills",
+"skill_id": "anti-detect-browser",
+"installs": 1207
+},
+{
+"list": "trending",
+"source": "autonnel/autonnel-skills",
+"skill_id": "sales-funnel-blueprint",
+"installs": 1206
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "seo-audit",
+"installs": 1203
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "ultracave",
+"installs": 1203
+},
+{
+"list": "trending",
+"source": "autonnel/autonnel-skills",
+"skill_id": "server-side-conversion-tracking",
+"installs": 1200
+},
+{
+"list": "trending",
+"source": "antibrow/anti-detect-browser-skills",
+"skill_id": "multi-account-isolation",
+"installs": 1198
+},
+{
+"list": "trending",
+"source": "autonnel/autonnel-skills",
+"skill_id": "self-hosted-funnel-launch",
+"installs": 1196
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-help",
+"installs": 1195
+},
+{
+"list": "trending",
+"source": "antibrow/anti-detect-browser-skills",
+"skill_id": "browser-mcp-agent",
+"installs": 1195
+},
+{
+"list": "trending",
+"source": "autonnel/autonnel-skills",
+"skill_id": "post-purchase-upsell-flow",
+"installs": 1195
+},
+{
+"list": "trending",
+"source": "autonnel/autonnel-skills",
+"skill_id": "funnel-platform-picker",
+"installs": 1188
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "cavecrew",
+"installs": 1186
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "requesting-code-review",
+"installs": 1181
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-explore",
+"installs": 1176
+},
+{
+"list": "trending",
+"source": "microsoft/playwright-cli",
+"skill_id": "playwright-cli",
+"installs": 1170
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "surgical-patch",
+"installs": 1169
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "investigate-first",
+"installs": 1168
+},
+{
+"list": "trending",
+"source": "liarjsdev/liarjs-skills",
+"skill_id": "fingerprint-failure-triage",
+"installs": 1168
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "safe-refactor",
+"installs": 1166
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "verify-and-stop",
+"installs": 1166
+},
+{
+"list": "trending",
+"source": "liarjsdev/liarjs-skills",
+"skill_id": "playwright-stealth-verify",
+"installs": 1163
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-learn",
+"installs": 1163
+},
+{
+"list": "trending",
+"source": "supabase/agent-skills",
+"skill_id": "supabase-postgres-best-practices",
+"installs": 1161
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "executing-plans",
+"installs": 1161
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "lean-build",
+"installs": 1160
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-optimize",
+"installs": 1160
+},
+{
+"list": "trending",
+"source": "liarjsdev/liarjs-skills",
+"skill_id": "fingerprint-ci-gate",
+"installs": 1157
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "megacave",
+"installs": 1157
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-evidence-review",
+"installs": 1156
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-discover",
+"installs": 1153
+},
+{
+"list": "trending",
+"source": "liarjsdev/liarjs-skills",
+"skill_id": "browser-fingerprint-audit",
+"installs": 1153
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-manage",
+"installs": 1151
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "migration",
+"installs": 1150
+},
+{
+"list": "trending",
+"source": "juliusbrussee/caveman",
+"skill_id": "caveman-setup",
+"installs": 1149
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "infsh-cli",
+"installs": 1133
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "python-executor",
+"installs": 1133
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "web-search",
+"installs": 1133
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "agent-tools",
+"installs": 1133
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "remotion-render",
+"installs": 1133
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "receiving-code-review",
+"installs": 1130
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "subagent-driven-development",
+"installs": 1112
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "skill-creator",
+"installs": 1107
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "cloudflare",
+"installs": 1094
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "using-git-worktrees",
+"installs": 1089
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "finishing-a-development-branch",
+"installs": 1089
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "dispatching-parallel-agents",
+"installs": 1083
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "using-superpowers",
+"installs": 1079
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "writing-skills",
+"installs": 1072
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "workers-best-practices",
+"installs": 1069
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "wrangler",
+"installs": 1065
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "durable-objects",
+"installs": 1035
+},
+{
+"list": "trending",
+"source": "iannuttall/seo",
+"skill_id": "seo",
+"installs": 1029
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "agents-sdk",
+"installs": 1025
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "web-perf",
+"installs": 1018
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "turnstile-spin",
+"installs": 991
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "cloudflare-email-service",
+"installs": 989
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "nextjs-on-cloudflare",
+"installs": 988
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "cloudflare-one",
+"installs": 984
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "sandbox-stable",
+"installs": 982
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "cloudflare-one-migrations",
+"installs": 981
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "sandbox-migrate-to-next",
+"installs": 976
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "sandbox-next",
+"installs": 976
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "social",
+"installs": 972
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "ai-seo",
+"installs": 963
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-shared",
+"installs": 960
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-doc",
+"installs": 957
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "content-strategy",
+"installs": 957
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "cf-cli",
+"installs": 955
+},
+{
+"list": "trending",
+"source": "obra/superpowers",
+"skill_id": "diagnosing-superpowers",
+"installs": 955
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-core",
+"installs": 950
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-drive",
+"installs": 945
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "cro",
+"installs": 943
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-wiki",
+"installs": 942
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-im",
+"installs": 941
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-base",
+"installs": 939
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-sheets",
+"installs": 938
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "frameworks-on-cloudflare",
+"installs": 937
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-whiteboard",
+"installs": 936
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "webapp-testing",
+"installs": 936
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "workers-development",
+"installs": 935
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "k2",
+"installs": 933
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-markdown",
+"installs": 933
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "workers-profiling",
+"installs": 932
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "basin",
+"installs": 932
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-task",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-event",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "gateway-workers",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-meeting",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-contact",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-slides",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-mail",
+"installs": 931
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-workflow-standup-report",
+"installs": 930
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-calendar",
+"installs": 929
+},
+{
+"list": "trending",
+"source": "cloudflare/skills",
+"skill_id": "cloudflare-app-bootstrap",
+"installs": 929
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-workflow-meeting-summary",
+"installs": 928
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "pptx",
+"installs": 928
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-openapi-explorer",
+"installs": 928
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-note",
+"installs": 927
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-apps",
+"installs": 926
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-okr",
+"installs": 926
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-attendance",
+"installs": 926
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-approval",
+"installs": 926
+},
+{
+"list": "trending",
+"source": "larksuite/cli",
+"skill_id": "lark-skill-maker",
+"installs": 925
+},
+{
+"list": "trending",
+"source": "supabase/agent-skills",
+"skill_id": "supabase",
+"installs": 920
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-scrolltrigger",
+"installs": 892
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "marketing-psychology",
+"installs": 891
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-timeline",
+"installs": 885
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "agent-browser",
+"installs": 870
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "pricing",
+"installs": 867
+},
+{
+"list": "trending",
+"source": "dietrichgebert/ponytail",
+"skill_id": "ponytail-review",
+"installs": 858
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-performance",
+"installs": 854
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "ad-creative",
+"installs": 848
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "product-marketing",
+"installs": 842
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "copy-editing",
+"installs": 839
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon-postgres",
+"installs": 827
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-plugins",
+"installs": 819
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-react",
+"installs": 818
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "xlsx",
+"installs": 815
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "docx",
+"installs": 814
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "pdf",
+"installs": 813
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon",
+"installs": 810
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "schema",
+"installs": 801
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "offers",
+"installs": 796
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "canvas-design",
+"installs": 788
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "customer-research",
+"installs": 781
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "cold-email",
+"installs": 777
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "ads",
+"installs": 776
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-utils",
+"installs": 772
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "analytics",
+"installs": 766
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "marketing-plan",
+"installs": 762
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "sales-enablement",
+"installs": 761
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "launch",
+"installs": 758
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "prospecting",
+"installs": 750
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "video",
+"installs": 750
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "site-architecture",
+"installs": 749
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "competitor-profiling",
+"installs": 749
+},
+{
+"list": "trending",
+"source": "greensock/gsap-skills",
+"skill_id": "gsap-frameworks",
+"installs": 746
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "programmatic-seo",
+"installs": 743
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "marketing-ideas",
+"installs": 741
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "emails",
+"installs": 733
+},
+{
+"list": "trending",
+"source": "dietrichgebert/ponytail",
+"skill_id": "ponytail-audit",
+"installs": 722
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "conversion-tracking",
+"installs": 718
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "lead-magnets",
+"installs": 709
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "competitors",
+"installs": 709
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "design-system",
+"installs": 708
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "ab-testing",
+"installs": 708
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "image",
+"installs": 702
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "referrals",
+"installs": 701
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "onboarding",
+"installs": 699
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "ai-research-reproduction",
+"installs": 698
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "ai-research-explore",
+"installs": 697
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "analyze-project",
+"installs": 695
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "paper-context-resolver",
+"installs": 695
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "influencer-marketing",
+"installs": 693
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "safe-debug",
+"installs": 693
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "minimal-run-and-audit",
+"installs": 692
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "reverse-engineer-marketing",
+"installs": 692
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "run-train",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "env-and-assets-bootstrap",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "explore-run",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "explore-code",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "aso",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "community-marketing",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "lllllllama/rigorpilot-skills",
+"skill_id": "repo-intake-and-plan",
+"installs": 691
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon-object-storage",
+"installs": 688
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "marketing-loops",
+"installs": 688
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "public-relations",
+"installs": 687
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "marketing-council",
+"installs": 687
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "paywalls",
+"installs": 685
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "signup",
+"installs": 683
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "popups",
+"installs": 683
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon-auth",
+"installs": 682
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon-functions",
+"installs": 682
+},
+{
+"list": "trending",
+"source": "dietrichgebert/ponytail",
+"skill_id": "ponytail-debt",
+"installs": 682
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "link-building",
+"installs": 681
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "ui-styling",
+"installs": 681
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "churn-prevention",
+"installs": 680
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "attribution",
+"installs": 680
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "directory-submissions",
+"installs": 680
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "free-tools",
+"installs": 680
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "code-review-and-quality",
+"installs": 680
+},
+{
+"list": "trending",
+"source": "dietrichgebert/ponytail",
+"skill_id": "ponytail-help",
+"installs": 679
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "banner-design",
+"installs": 679
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon-realtime",
+"installs": 678
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "revops",
+"installs": 677
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "design",
+"installs": 675
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "events",
+"installs": 675
+},
+{
+"list": "trending",
+"source": "neondatabase/agent-skills",
+"skill_id": "neon-ai-gateway",
+"installs": 674
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "co-marketing",
+"installs": 674
+},
+{
+"list": "trending",
+"source": "coreyhaines31/marketingskills",
+"skill_id": "sms",
+"installs": 674
+},
+{
+"list": "trending",
+"source": "dietrichgebert/ponytail",
+"skill_id": "ponytail-gain",
+"installs": 674
+},
+{
+"list": "trending",
+"source": "mvanhorn/last30days-skill",
+"skill_id": "last30days",
+"installs": 669
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "agent-browser",
+"installs": 663
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "security-and-hardening",
+"installs": 661
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "slides",
+"installs": 661
+},
+{
+"list": "trending",
+"source": "hustcer/pptx-nova",
+"skill_id": "pptx-nova",
+"installs": 656
+},
+{
+"list": "trending",
+"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+"skill_id": "brand",
+"installs": 651
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex",
+"installs": 644
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-test",
+"installs": 643
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-authz",
+"installs": 643
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-docs",
+"installs": 643
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-quickstart",
+"installs": 642
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-verify",
+"installs": 642
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-design",
+"installs": 642
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-migrate",
+"installs": 642
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-reviewer",
+"installs": 642
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-seed",
+"installs": 641
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-env",
+"installs": 641
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-crons",
+"installs": 641
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-create-component",
+"installs": 641
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-optimize",
+"installs": 640
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-advisor",
+"installs": 640
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-auth",
+"installs": 640
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-expert",
+"installs": 640
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-deploy-guard",
+"installs": 640
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-insights",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-launch-readiness",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-backup",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-add",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-migrate-rehearse",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-explain-app",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-suggest",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-billing",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-monitor",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-agent",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-sentinel",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-self-heal",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-domains",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-cost",
+"installs": 639
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-bundle-size",
+"installs": 638
+},
+{
+"list": "trending",
+"source": "convex/agent-skills",
+"skill_id": "convex-improve-convex-plugin",
+"installs": 638
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "mcp-builder",
+"installs": 627
+},
+{
+"list": "trending",
+"source": "jeffallan/claude-skills",
+"skill_id": "typescript-pro",
+"installs": 623
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "frontend-ui-engineering",
+"installs": 620
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "performance-optimization",
+"installs": 601
+},
+{
+"list": "trending",
+"source": "cathrynlavery/diagram-design",
+"skill_id": "diagram-design",
+"installs": 587
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "spec-driven-development",
+"installs": 584
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "interview-me",
+"installs": 584
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "api-and-interface-design",
+"installs": 584
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "web-search",
+"installs": 583
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "code-simplification",
+"installs": 581
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "planning-and-task-breakdown",
+"installs": 577
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "python-executor",
+"installs": 577
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "agent-tools",
+"installs": 576
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "remotion-render",
+"installs": 576
+},
+{
+"list": "trending",
+"source": "101-skills/superpowers",
+"skill_id": "infsh-cli",
+"installs": 575
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "debugging-and-error-recovery",
+"installs": 566
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "test-driven-development",
+"installs": 563
+},
+{
+"list": "trending",
+"source": "currents-dev/playwright-best-practices-skill",
+"skill_id": "playwright-best-practices",
+"installs": 563
+},
+{
+"list": "trending",
+"source": "cursor/plugins",
+"skill_id": "unslop",
+"installs": 563
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "context-engineering",
+"installs": 560
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "documentation-and-adrs",
+"installs": 559
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "incremental-implementation",
+"installs": 559
+},
+{
+"list": "trending",
+"source": "herdrdev/herdr",
+"skill_id": "herdr",
+"installs": 553
+},
+{
+"list": "trending",
+"source": "bankai-skills/superpowers",
+"skill_id": "agent-browser",
+"installs": 551
+},
+{
+"list": "trending",
+"source": "vercel/next.js",
+"skill_id": "next-cache-components-adoption",
+"installs": 550
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "browser-testing-with-devtools",
+"installs": 549
+},
+{
+"list": "trending",
+"source": "wheresryan22/anatomy",
+"skill_id": "anatomy",
+"installs": 548
+},
+{
+"list": "trending",
+"source": "vercel-labs/ui",
+"skill_id": "ui-sdk",
+"installs": 542
+},
+{
+"list": "trending",
+"source": "benjitaylor/skills",
+"skill_id": "stageshow",
+"installs": 541
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "doubt-driven-development",
+"installs": 540
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "accessibility-engineering",
+"installs": 537
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "git-workflow-and-versioning",
+"installs": 535
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "idea-refine",
+"installs": 534
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "shipping-and-launch",
+"installs": 534
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "source-driven-development",
+"installs": 532
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "observability-and-instrumentation",
+"installs": 530
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "competitor-teardown",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "youtube-thumbnail-design",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "product-hunt-launch",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "landing-page-design",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "app-store-screenshots",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "image-to-video",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "storyboard-creation",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "video-ad-specs",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "product-photography",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "qu-skills/superpowers",
+"skill_id": "character-design-sheet",
+"installs": 529
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "using-agent-skills",
+"installs": 527
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "ci-cd-and-automation",
+"installs": 526
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "constraint-driven-development",
+"installs": 522
+},
+{
+"list": "trending",
+"source": "addyosmani/agent-skills",
+"skill_id": "deprecation-and-migration",
+"installs": 521
+},
+{
+"list": "trending",
+"source": "tt-a1i/archify",
+"skill_id": "archify",
+"installs": 513
+},
+{
+"list": "trending",
+"source": "stablyai/orca",
+"skill_id": "orca-cli",
+"installs": 494
+},
+{
+"list": "trending",
+"source": "nexu-io/openmotion",
+"skill_id": "openmotion",
+"installs": 478
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-firestore",
+"installs": 477
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "doc-coauthoring",
+"installs": 476
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "theme-factory",
+"installs": 472
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-basics",
+"installs": 471
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-security-rules-auditor",
+"installs": 466
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-auth-basics",
+"installs": 464
+},
+{
+"list": "trending",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "game-ui-ux",
+"installs": 460
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "web-artifacts-builder",
+"installs": 460
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firestore-rules-creation",
+"installs": 458
+},
+{
+"list": "trending",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "game-feel",
+"installs": 457
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "brand-guidelines",
+"installs": 453
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-hosting-basics",
+"installs": 451
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-crashlytics",
+"installs": 450
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-data-connect",
+"installs": 447
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "xcode-project-setup",
+"installs": 447
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-analytics",
+"installs": 447
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "extension-to-functions-codebase",
+"installs": 446
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-app-hosting-basics",
+"installs": 446
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-remote-config-basics",
+"installs": 446
+},
+{
+"list": "trending",
+"source": "firebase/agent-skills",
+"skill_id": "firebase-ai-logic-basics",
+"installs": 446
+},
+{
+"list": "trending",
+"source": "riekelt/technical-writer",
+"skill_id": "technical-writing",
+"installs": 445
+},
+{
+"list": "trending",
+"source": "anthropics/skills",
+"skill_id": "claude-api",
+"installs": 444
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "ai-image-generation",
+"installs": 443
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "web-search",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "remotion-render",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "infsh-cli",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "python-executor",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "ai-video-generation",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "whytryharder/superpowers",
+"skill_id": "agent-tools",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "niazmorshed2007/reanimate",
+"skill_id": "reanimate",
+"installs": 441
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "image-to-video",
+"installs": 441
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "video-edit",
+"installs": 440
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "ai-avatar-video",
+"installs": 439
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "nano-banana-2",
+"installs": 439
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "gpt-image-2",
+"installs": 439
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "lipsync",
+"installs": 439
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "gpt-image-edit",
+"installs": 438
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "elevenlabs-music-generation",
+"installs": 438
+},
+{
+"list": "trending",
+"source": "skills-shell/superpowers",
+"skill_id": "agent-browser",
+"installs": 438
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "face-swap",
+"installs": 437
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "kling-3-0",
+"installs": 437
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "runcomfy-cli",
+"installs": 437
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "image-edit",
+"installs": 437
+},
+{
+"list": "trending",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "codex-pet",
+"installs": 437
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-animation",
+"installs": 1005695
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-core",
+"installs": 931369
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-creative",
+"installs": 917421
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-keyframes",
+"installs": 755097
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-audio",
+"installs": 664168
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "general-video",
+"installs": 662061
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "resolving-merge-conflicts",
+"installs": 551260
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "product-launch-video",
+"installs": 539610
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "faceless-explainer",
+"installs": 522337
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "motion-graphics",
+"installs": 514629
+},
+{
+"list": "all-time",
+"source": "larksuite/cli",
+"skill_id": "lark-minutes",
+"installs": 478689
+},
+{
+"list": "all-time",
+"source": "larksuite/cli",
+"skill_id": "lark-vc",
+"installs": 478476
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "high-end-visual-design",
+"installs": 458917
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "redesign-existing-projects",
+"installs": 458803
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "embedded-captions",
+"installs": 454224
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-studio",
+"installs": 451934
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "pr-to-video",
+"installs": 449545
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "nano-banana-edit",
+"installs": 449408
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "flux-kontext",
+"installs": 449203
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "wan-2-7",
+"installs": 448632
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "seedance-v2",
+"installs": 448485
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "happyhorse-1-0",
+"installs": 448390
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "flux-2-klein",
+"installs": 448230
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "minimalist-ui",
+"installs": 425188
+},
+{
+"list": "all-time",
+"source": "uizze.sh",
+"skill_id": "ios-design",
+"installs": 420375
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "music-to-video",
+"installs": 419587
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "talking-head-recut",
+"installs": 408241
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "full-output-enforcement",
+"installs": 401117
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "gpt-taste",
+"installs": 399570
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "industrial-brutalist-ui",
+"installs": 396978
+},
+{
+"list": "all-time",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-rbac",
+"installs": 396677
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "stitch-design-taste",
+"installs": 394933
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "brandkit",
+"installs": 390788
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "video-inpainting",
+"installs": 390422
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "image-inpainting",
+"installs": 389950
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "controlnet-pose",
+"installs": 389670
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "video-extend",
+"installs": 389253
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "image-outpainting",
+"installs": 388979
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "relight",
+"installs": 388890
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "video-outpainting",
+"installs": 388787
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "image-to-code",
+"installs": 385988
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "ai-music",
+"installs": 381311
+},
+{
+"list": "all-time",
+"source": "prime-skills/runcomfy-agent-skills",
+"skill_id": "ace-step",
+"installs": 380668
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "imagegen-frontend-web",
+"installs": 380170
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "imagegen-frontend-mobile",
+"installs": 373819
+},
+{
+"list": "all-time",
+"source": "larksuite/cli",
+"skill_id": "lark-vc-agent",
+"installs": 366782
+},
+{
+"list": "all-time",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-cost",
+"installs": 362649
+},
+{
+"list": "all-time",
+"source": "stablyai/orca",
+"skill_id": "orchestration",
+"installs": 360717
+},
+{
+"list": "all-time",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-hosted-copilot-sdk",
+"installs": 355277
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "to-prd",
+"installs": 351598
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "to-issues",
+"installs": 339117
+},
+{
+"list": "all-time",
+"source": "leonxlnx/taste-skill",
+"skill_id": "design-taste-frontend-v1",
+"installs": 330407
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "writing-great-skills",
+"installs": 306608
+},
+{
+"list": "all-time",
+"source": "shadcn/ui",
+"skill_id": "shadcn",
+"installs": 271099
+},
+{
+"list": "all-time",
+"source": "scrapegraphai/just-scrape",
+"skill_id": "just-scrape",
+"installs": 245017
+},
+{
+"list": "all-time",
+"source": "stablyai/orca",
+"skill_id": "computer-use",
+"installs": 241726
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "diagnose",
+"installs": 227599
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "write-a-skill",
+"installs": 219749
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "zoom-out",
+"installs": 219155
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "caveman",
+"installs": 214567
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "design-an-interface",
+"installs": 208904
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "request-refactor-plan",
+"installs": 202495
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "qa",
+"installs": 198736
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "ubiquitous-language",
+"installs": 197258
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "obsidian-vault",
+"installs": 195570
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "edit-article",
+"installs": 191835
+},
+{
+"list": "all-time",
+"source": "magentosh/superpowers",
+"skill_id": "agent-browser",
+"installs": 181096
+},
+{
+"list": "all-time",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-cost-optimization",
+"installs": 155407
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "hyperframes-media",
+"installs": 141733
+},
+{
+"list": "all-time",
+"source": "better-auth/skills",
+"skill_id": "better-auth-best-practices",
+"installs": 133854
+},
+{
+"list": "all-time",
+"source": "arvindrk/extract-design-system",
+"skill_id": "extract-design-system",
+"installs": 132018
+},
+{
+"list": "all-time",
+"source": "magentosh/superpowers",
+"skill_id": "web-search",
+"installs": 120707
+},
+{
+"list": "all-time",
+"source": "magentosh/superpowers",
+"skill_id": "agent-tools",
+"installs": 120661
+},
+{
+"list": "all-time",
+"source": "magentosh/superpowers",
+"skill_id": "remotion-render",
+"installs": 120657
+},
+{
+"list": "all-time",
+"source": "magentosh/superpowers",
+"skill_id": "python-executor",
+"installs": 120646
+},
+{
+"list": "all-time",
+"source": "magentosh/superpowers",
+"skill_id": "infsh-cli",
+"installs": 120491
+},
+{
+"list": "all-time",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "agent-browser",
+"installs": 117734
+},
+{
+"list": "all-time",
+"source": "solana-foundation/solana-dev-skill",
+"skill_id": "solana-dev",
+"installs": 116093
+},
+{
+"list": "all-time",
+"source": "2dmurali/review-loop-skill",
+"skill_id": "review-loop",
+"installs": 115866
+},
+{
+"list": "all-time",
+"source": "skills-shell/superpowers",
+"skill_id": "python-executor",
+"installs": 113173
+},
+{
+"list": "all-time",
+"source": "skills-shell/superpowers",
+"skill_id": "remotion-render",
+"installs": 113085
+},
+{
+"list": "all-time",
+"source": "skills-shell/superpowers",
+"skill_id": "infsh-cli",
+"installs": 113079
+},
+{
+"list": "all-time",
+"source": "skills-shell/superpowers",
+"skill_id": "agent-tools",
+"installs": 113033
+},
+{
+"list": "all-time",
+"source": "skills-shell/superpowers",
+"skill_id": "web-search",
+"installs": 112979
+},
+{
+"list": "all-time",
+"source": "browser-act/skills",
+"skill_id": "browser-act",
+"installs": 108532
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl",
+"installs": 105015
+},
+{
+"list": "all-time",
+"source": "stripe/ai",
+"skill_id": "stripe-best-practices",
+"installs": 104400
+},
+{
+"list": "all-time",
+"source": "typesafe-ai/skills",
+"skill_id": "typesafe-ai",
+"installs": 102261
+},
+{
+"list": "all-time",
+"source": "wshobson/agents",
+"skill_id": "typescript-advanced-types",
+"installs": 102004
+},
+{
+"list": "all-time",
+"source": "browser-use/browser-use",
+"skill_id": "browser-use",
+"installs": 100282
+},
+{
+"list": "all-time",
+"source": "anthropics/skills",
+"skill_id": "algorithmic-art",
+"installs": 99245
+},
+{
+"list": "all-time",
+"source": "obsidianmd/obsidian-skills",
+"skill_id": "obsidian-markdown",
+"installs": 98840
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "website-to-video",
+"installs": 97355
+},
+{
+"list": "all-time",
+"source": "convex/agent-skills",
+"skill_id": "convex-performance-audit",
+"installs": 94263
+},
+{
+"list": "all-time",
+"source": "convex/agent-skills",
+"skill_id": "convex-setup-auth",
+"installs": 93853
+},
+{
+"list": "all-time",
+"source": "convex/agent-skills",
+"skill_id": "convex-migration-helper",
+"installs": 93834
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "gsap",
+"installs": 92065
+},
+{
+"list": "all-time",
+"source": "vercel/turborepo",
+"skill_id": "turborepo",
+"installs": 92021
+},
+{
+"list": "all-time",
+"source": "mattpocock/skills",
+"skill_id": "review",
+"installs": 89887
+},
+{
+"list": "all-time",
+"source": "anthropics/skills",
+"skill_id": "internal-comms",
+"installs": 89396
+},
+{
+"list": "all-time",
+"source": "heygen-com/hyperframes",
+"skill_id": "website-to-hyperframes",
+"installs": 89314
+},
+{
+"list": "all-time",
+"source": "obsidianmd/obsidian-skills",
+"skill_id": "obsidian-cli",
+"installs": 87988
+},
+{
+"list": "all-time",
+"source": "googleworkspace/cli",
+"skill_id": "gws-gmail",
+"installs": 86751
+},
+{
+"list": "all-time",
+"source": "microsoft/azure-skills",
+"skill_id": "azure-observability",
+"installs": 86214
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl-search",
+"installs": 85556
+},
+{
+"list": "all-time",
+"source": "agentix-cloud/skills",
+"skill_id": "agentix-ceo",
+"installs": 85225
+},
+{
+"list": "all-time",
+"source": "browser-act/skills",
+"skill_id": "browser-act-skill-forge",
+"installs": 85224
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "polish",
+"installs": 85171
+},
+{
+"list": "all-time",
+"source": "obsidianmd/obsidian-skills",
+"skill_id": "obsidian-bases",
+"installs": 84729
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl-scrape",
+"installs": 84633
+},
+{
+"list": "all-time",
+"source": "anthropics/skills",
+"skill_id": "slack-gif-creator",
+"installs": 83768
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "critique",
+"installs": 82637
+},
+{
+"list": "all-time",
+"source": "bankai-skills/superpowers",
+"skill_id": "python-executor",
+"installs": 82596
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl-agent",
+"installs": 82272
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "audit",
+"installs": 81858
+},
+{
+"list": "all-time",
+"source": "bankai-skills/superpowers",
+"skill_id": "web-search",
+"installs": 81797
+},
+{
+"list": "all-time",
+"source": "bankai-skills/superpowers",
+"skill_id": "agent-tools",
+"installs": 81779
+},
+{
+"list": "all-time",
+"source": "bankai-skills/superpowers",
+"skill_id": "infsh-cli",
+"installs": 81777
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "animate",
+"installs": 81731
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "adapt",
+"installs": 81720
+},
+{
+"list": "all-time",
+"source": "bankai-skills/superpowers",
+"skill_id": "remotion-render",
+"installs": 81698
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl-crawl",
+"installs": 81644
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "clarify",
+"installs": 81211
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl-map",
+"installs": 81117
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "optimize",
+"installs": 81055
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "colorize",
+"installs": 80875
+},
+{
+"list": "all-time",
+"source": "firecrawl/cli",
+"skill_id": "firecrawl-download",
+"installs": 80687
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "bolder",
+"installs": 80008
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "delight",
+"installs": 79846
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "distill",
+"installs": 79457
+},
+{
+"list": "all-time",
+"source": "obsidianmd/obsidian-skills",
+"skill_id": "json-canvas",
+"installs": 79151
+},
+{
+"list": "all-time",
+"source": "obsidianmd/obsidian-skills",
+"skill_id": "defuddle",
+"installs": 78797
+},
+{
+"list": "all-time",
+"source": "googleworkspace/cli",
+"skill_id": "gws-drive",
+"installs": 78689
+},
+{
+"list": "all-time",
+"source": "pbakaus/impeccable",
+"skill_id": "quieter",
+"installs": 78654
+},
+{
+"list": "all-time",
+"source": "anthropics/skills",
+"skill_id": "template-skill",
+"installs": 78521
+},
+{
+"list": "all-time",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "remotion-render",
+"installs": 78468
+},
+{
+"list": "all-time",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "web-search",
+"installs": 78448
+},
+{
+"list": "all-time",
+"source": "nexscope-ai/amazon-skills",
+"skill_id": "amazon-product-research",
+"installs": 78420
+},
+{
+"list": "all-time",
+"source": "expo/skills",
+"skill_id": "expo-dev-client",
+"installs": 78410
+},
+{
+"list": "all-time",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "agent-tools",
+"installs": 78397
+},
+{
+"list": "all-time",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "python-executor",
+"installs": 78395
+},
+{
+"list": "all-time",
+"source": "jakubkrehel/make-interfaces-feel-better",
+"skill_id": "make-interfaces-feel-better",
+"installs": 78343
+},
+{
+"list": "all-time",
+"source": "its-a-skill-issue/superpowers",
+"skill_id": "infsh-cli",
+"installs": 78289
+},
+{
+"list": "all-time",
+"source": "googleworkspace/cli",
+"skill_id": "gws-gmail-send",
+"installs": 77461
+},
+{
+"list": "all-time",
+"source": "stripe/ai",
+"skill_id": "upgrade-stripe",
+"installs": 76492
+}
+]
+}

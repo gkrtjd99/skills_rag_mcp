@@ -114,11 +114,14 @@ descriptions are capped at 280 characters by default to limit MCP context use.
 Return the full `SKILL.md` body for a frontmatter skill name. The implementation
 uses the index's `name -> path` mapping, so the directory name does not need to
 match the frontmatter name. If the mapping is missing or stale, it forces sync
-and retries once before returning `not_found`.
+and retries once before returning `not_found`. `path` is the directory that
+holds the `SKILL.md`; files the body refers to (scripts, references, assets)
+resolve relative to it. It matters most for adopted skills, which no harness
+loads natively.
 
 ```json
 // status: "ok"
-{"status": "ok", "body": "---\nname: ...\n---\n..."}
+{"status": "ok", "body": "---\nname: ...\n---\n...", "path": "/Users/me/.skills/code-review"}
 
 // status: "not_found"
 {

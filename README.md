@@ -112,6 +112,8 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | --- | --- |
 | `uv run skill-rag status` | 코퍼스 경로/모델/인덱스 수/임계값 한눈에 |
 | `uv run skill-rag collect [--dry-run]` | 하네스 스킬을 `~/.skills/`로 심볼릭 수집 |
+| `uv run skill-rag adopt [이름...] [--from 폴더] [--dry-run]` | 스킬을 `~/.skills/`로 **이동** (하네스가 더는 로드하지 않음) |
+| `uv run skill-rag restore [이름...] [--dry-run]` | adopt한 스킬을 원래 위치로 되돌림 |
 | `uv run skill-rag sync` | 인덱스 수동 동기화 |
 | `uv run skill-rag query "<text>"` | 검색 결과 확인 |
 | `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
@@ -122,8 +124,27 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `make eval-personal` | 지정한 개인 corpus와 대응 gold set 평가 (`SKILL_RAG_EVAL_CORPUS`, `SKILL_RAG_EVAL_DATASET`) |
 | `uv run skill-rag reset` | 인덱스 초기화 |
 | `uv run skill-rag mcp` | MCP 서버 실행 |
-| `uv run skill-rag install [--refresh-bootstrap]` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장). `--refresh-bootstrap`는 기존 메타-스킬을 템플릿으로 덮어씀 |
+| `uv run skill-rag install [--refresh-bootstrap]` | 부트스트랩 설치 + collect/인덱싱 + MCP 등록 (`make install` 권장). `--refresh-bootstrap`는 기존 메타-스킬을 템플릿으로 덮어씀. `--no-collect`는 하네스·플러그인 스킬을 링크하지 않음 (adopt한 스킬만 제공할 때) |
 | `uv run skill-rag uninstall [--purge] [--dry-run] [-y]` | install 역순; `--purge`는 `~/.skills` 통째 비움 |
+
+### 스킬을 저장소에만 두기 (adopt)
+
+`collect`는 스킬을 원래 자리에 둔 채 링크만 걸기 때문에, 하네스는 여전히 모든 스킬 설명을
+매 세션 컨텍스트에 싣는다. `adopt`는 스킬 폴더를 `~/.skills/`로 옮겨서 하네스에는
+부트스트랩 스킬만 남기고, 나머지는 `search_skills` / `get_skill`로만 제공한다.
+
+```bash
+uv run skill-rag adopt --dry-run                      # 무엇이 옮겨질지 확인
+uv run skill-rag adopt                                # ~/.claude/skills, ~/.codex/skills 에서 이동
+uv run skill-rag adopt --from ~/work/app/.claude/skills   # 프로젝트에 설치한 스킬을 전역 저장소로
+uv run skill-rag restore                              # 전부 원래 위치로
+```
+
+- 직접 하위 폴더만 대상이며 심볼릭 링크, 플러그인 캐시, 중첩 폴더는 건드리지 않음.
+- 이동 기록이 남으므로 `restore`와 `uninstall`이 원래 위치로 되돌림. 원래 위치가 다시
+  차 있으면 덮어쓰지 않고 저장소에 남김 (`--purge`로도 삭제되지 않음).
+- 이동 후 하네스를 재시작해야 목록에서 빠짐. 옮긴 스킬은 `/스킬이름` 직접 호출이 안 됨.
+- `get_skill`이 스킬 폴더 `path`를 함께 돌려주므로 스킬에 딸린 스크립트·참고 파일도 사용 가능.
 
 ## 환경 변수
 
@@ -156,19 +177,40 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 
 ### 선택 기능: 판정 모델 재순위 (기본 꺼짐)
 
-기본 임계값은 공개 fixture에 맞춰져 있어 다른 코퍼스에서는 정확도가 떨어질 수 있음.
+기본 임계값은 공개 fixture에 맞춰져 있어 다른 코퍼스에서는 정확도가 떨어짐.
 켜면 로컬 하이브리드 검색은 후보만 뽑고, 판정 모델이 후보마다 "이 질의에 맞는 스킬인가"의
-확률을 돌려줌. held-out 스킬 45개, 질의 133개 기준 측정값:
+확률을 돌려줌.
 
-| | 기본 게이트 | `jev` | `openai` |
-| --- | ---: | ---: | ---: |
-| recall@1 | 0.726 | 0.979 | 0.968 |
-| no-match 정확도 | 0.395 | 1.000 | 0.947 |
-| 검색 응답 크기 (평균 문자 수) | 1,184 | 237 | 230 |
-| 지연 p50 | 31 ms | 211 ms | 496 ms |
-| 요청당 입력 토큰 | 없음 | 4,411 | 6,013 |
+**벤치마크 (규칙을 먼저 커밋한 뒤 측정).** skills.sh 트렌딩·전체 순위에서 받은 스킬 433개
+(79개 저장소) 중 50개를 정답 대상으로, 50개를 코퍼스에서 뺀 no-match 대상으로 두고 코퍼스를
+50 → 350개로 늘림. 질의 283개는 다른 모델이 스킬 본문만 보고 작성 (한·영).
 
-측정 방법과 한계는 `docs/benchmarks/2026-11-24-heldout-jev-rerank.md` 참고.
+recall@1, 엄격 채점 (괄호는 보정 채점: 정답이 아니어도 실제로 맞는 스킬이면 인정):
+
+| 스킬 수 | 기본 게이트 | `jev` | `openai` |
+| ---: | ---: | ---: | ---: |
+| 50 | 0.619 (0.646) | 0.862 (0.915) | 0.857 (0.915) |
+| 100 | 0.529 (0.577) | 0.841 (0.899) | 0.794 (0.878) |
+| 200 | 0.460 (0.519) | 0.730 (0.836) | 0.693 (0.820) |
+| 350 | 0.450 (0.503) | 0.672 (0.788) | 0.646 (0.788) |
+
+no-match 정확도, 엄격 채점 (괄호는 보정 채점: 아무것도 안 주거나, 준 스킬이 실제로 맞음):
+
+| 스킬 수 | 기본 게이트 | `jev` | `openai` |
+| ---: | ---: | ---: | ---: |
+| 50 | 0.064 (0.160) | 0.351 (0.574) | 0.394 (0.638) |
+| 350 | 0.021 (0.191) | 0.266 (0.702) | 0.319 (0.723) |
+
+- 판정 모델은 모든 크기에서 게이트보다 확실히 나음 (95% 구간이 겹치지 않음). 두 판정 모델
+  사이는 구분되지 않음. 지연은 `jev` 약 205ms, `openai` 약 465ms.
+- 스킬이 늘수록 정확도가 떨어짐. 주원인은 1단계 검색: 정답이 후보 16개 안에 든 비율이
+  96% → 79%로 내려감.
+- 비슷한 스킬에 대한 오탐이 남음: 보정 후에도 no-match 질의의 28~43%에서 맞지 않는 스킬을 반환.
+- 검색 응답 크기는 게이트 1,360~1,550자, 판정 모델 330~400자.
+
+전체 표·오차 범위·한계는 `docs/benchmarks/2026-11-24-scale-results.md`, 측정 규칙은
+`docs/benchmarks/2026-11-24-scale-protocol.md`. 앞서 직접 쓴 질의로 잰 수치
+(`2026-11-24-heldout-jev-rerank.md`, `jev` recall@1 0.979)는 쉬운 질의에서의 상한으로만 볼 것.
 
 ```bash
 # TypeSafe Jev

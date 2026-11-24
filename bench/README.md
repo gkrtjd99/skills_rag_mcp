@@ -78,3 +78,27 @@ into one directory first. `--replay <earlier --out file>` re-scores recorded
 probabilities without spending credits. The table reports `resp_chars`, the
 size of the JSON an agent receives per search. Keep `--out` under `var/`; it
 records local paths.
+
+## Scale benchmark
+
+`bench/scale/` measures the same arms as the corpus grows, on skills and
+queries nobody on the project wrote. The rules are in
+`docs/benchmarks/2026-11-24-scale-protocol.md` and were committed before any
+data was fetched; results are in `docs/benchmarks/2026-11-24-scale-results.md`.
+
+```bash
+uv run python bench/scale/prepare.py pool      # download SKILL.md files listed on skills.sh (needs gh)
+uv run python bench/scale/prepare.py split     # seeded split, corpora of 50/100/200/350
+uv run python bench/scale/prepare.py queries   # model-written queries (needs OPENAI_API_KEY)
+for n in 50 100 200 350; do
+  uv run --extra rerank python bench/jev_rerank_ab.py \
+    --corpus var/bench/scale/corpus-$n --dataset bench/scale/queries.jsonl \
+    --judge jev --judge openai --out var/bench/scale/out-$n.json
+done
+uv run python bench/scale/report.py            # adjudication + bootstrap intervals
+```
+
+Downloaded skills live only under `var/bench/scale/` and are never installed or
+executed. `manifest.json` records each accepted skill's repository, path, and
+blob SHA; `split.json` and `queries.jsonl` are the exact inputs of the
+published run.

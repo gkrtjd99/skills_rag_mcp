@@ -173,3 +173,17 @@ def test_search_skills_skip_never_reaches_rerank(monkeypatch):
         rerank, "judge", lambda *a, **k: pytest.fail("judge called for a skip")
     )
     assert mcp_server.search_skills("네", k=5)["status"] == "skip"
+
+
+def test_get_skill_returns_the_skill_directory(tmp_path):
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "foo", body="see scripts/run.py")
+    (corpus_root / "foo" / "scripts").mkdir()
+    (corpus_root / "foo" / "scripts" / "run.py").write_text("print(1)\n", encoding="utf-8")
+    mcp_server.search_skills("foo", k=1)  # populate index
+    res = mcp_server.get_skill("foo")
+    assert res["status"] == "ok"
+    from pathlib import Path
+
+    assert (Path(res["path"]) / "scripts" / "run.py").is_file()
+    assert Path(res["path"]).name == "foo"

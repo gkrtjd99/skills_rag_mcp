@@ -1,0 +1,3908 @@
+{
+ "accepted": [
+  {
+   "name": "ai-video-generation",
+   "source": "beltsh/superpowers",
+   "skill_id": "ai-video-generation",
+   "path": "tools/video/ai-video-generation/SKILL.md",
+   "blob_sha": "148d0bbcb7ee3b3713ee464b888f4279ea017352",
+   "dir": "000-ai-video-generation",
+   "list": "trending"
+  },
+  {
+   "name": "ai-image-generation",
+   "source": "beltsh/superpowers",
+   "skill_id": "ai-image-generation",
+   "path": "tools/image/ai-image-generation/SKILL.md",
+   "blob_sha": "e53fa69ca737bcf79fe2e76f26d0c43b46b40706",
+   "dir": "001-ai-image-generation",
+   "list": "trending"
+  },
+  {
+   "name": "twitter-automation",
+   "source": "beltsh/superpowers",
+   "skill_id": "twitter-automation",
+   "path": "tools/social/twitter-automation/SKILL.md",
+   "blob_sha": "d48de8572668a3603fca7d76c9af1b28aa13037e",
+   "dir": "002-twitter-automation",
+   "list": "trending"
+  },
+  {
+   "name": "ai-avatar-video",
+   "source": "beltsh/superpowers",
+   "skill_id": "ai-avatar-video",
+   "path": "tools/video/ai-avatar-video/SKILL.md",
+   "blob_sha": "719f28b86632ec7d227d90e7ec96c3d1228fb468",
+   "dir": "003-ai-avatar-video",
+   "list": "trending"
+  },
+  {
+   "name": "agent-browser",
+   "source": "vercel-labs/agent-browser",
+   "skill_id": "agent-browser",
+   "path": "skills/agent-browser/SKILL.md",
+   "blob_sha": "f2e2ce9eba0ffb82b201fc76689ec8740f17eba4",
+   "dir": "004-agent-browser",
+   "list": "trending"
+  },
+  {
+   "name": "design-mobile-apps",
+   "source": "designed-by-ai/skills",
+   "skill_id": "design-mobile-apps",
+   "path": "skills/design-mobile-apps/SKILL.md",
+   "blob_sha": "065cfb10a9f23d5d5ad20cd32b1ba2eff83cb801",
+   "dir": "005-design-mobile-apps",
+   "list": "trending"
+  },
+  {
+   "name": "find-skills",
+   "source": "vercel-labs/skills",
+   "skill_id": "find-skills",
+   "path": "skills/find-skills/SKILL.md",
+   "blob_sha": "a41bdd074bb587afd861332cf2f473f3154de4d7",
+   "dir": "006-find-skills",
+   "list": "trending"
+  },
+  {
+   "name": "hyperframes",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "hyperframes",
+   "path": "skills/hyperframes/SKILL.md",
+   "blob_sha": "729e73521abd66b786b8a7bafa318f0d47d511eb",
+   "dir": "007-hyperframes",
+   "list": "trending"
+  },
+  {
+   "name": "media-use",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "media-use",
+   "path": "skills/media-use/SKILL.md",
+   "blob_sha": "2ec9a59a43407fe7e178a821a41592b866b48b34",
+   "dir": "008-media-use",
+   "list": "trending"
+  },
+  {
+   "name": "hyperframes-cli",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "hyperframes-cli",
+   "path": "skills/hyperframes-cli/SKILL.md",
+   "blob_sha": "98dde45536f4bfb372f41a55178741a79ecdb57a",
+   "dir": "009-hyperframes-cli",
+   "list": "trending"
+  },
+  {
+   "name": "hyperframes-registry",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "hyperframes-registry",
+   "path": "skills/hyperframes-registry/SKILL.md",
+   "blob_sha": "4c41be231c7fe4a09840c04fd53efb924d165c51",
+   "dir": "010-hyperframes-registry",
+   "list": "trending"
+  },
+  {
+   "name": "video-edit",
+   "source": "gencraft-labs/skills",
+   "skill_id": "video-edit",
+   "path": "video-edit/SKILL.md",
+   "blob_sha": "04e413e9d56c0f80039794dff564d835c66b4efd",
+   "dir": "011-video-edit",
+   "list": "trending"
+  },
+  {
+   "name": "website-builder",
+   "source": "flowkit-labs/skills",
+   "skill_id": "website-builder",
+   "path": "website-builder/SKILL.md",
+   "blob_sha": "c021bfee188dfadbe99733ef04f1c06adbc20948",
+   "dir": "012-website-builder",
+   "list": "trending"
+  },
+  {
+   "name": "image-to-video",
+   "source": "gencraft-labs/skills",
+   "skill_id": "image-to-video",
+   "path": "image-to-video/SKILL.md",
+   "blob_sha": "09ad3bd9f7dddbb4edede0524f09144392cbc01b",
+   "dir": "013-image-to-video",
+   "list": "trending"
+  },
+  {
+   "name": "reddit-automation",
+   "source": "flowkit-labs/skills",
+   "skill_id": "reddit-automation",
+   "path": "reddit-automation/SKILL.md",
+   "blob_sha": "5d70576df538538dead8dd77183ec62f0b87ce18",
+   "dir": "014-reddit-automation",
+   "list": "trending"
+  },
+  {
+   "name": "ai-music",
+   "source": "gencraft-labs/skills",
+   "skill_id": "ai-music",
+   "path": "ai-music/SKILL.md",
+   "blob_sha": "4009596b2e187145f4437823a00e8fce6de890b0",
+   "dir": "015-ai-music",
+   "list": "trending"
+  },
+  {
+   "name": "reverse-any-video",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "reverse-any-video",
+   "path": "skills/reverse-any-video/SKILL.md",
+   "blob_sha": "3c3fd29bf87625467d56606532c37afa3ba83a9a",
+   "dir": "016-reverse-any-video",
+   "list": "trending"
+  },
+  {
+   "name": "style-sampling",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "style-sampling",
+   "path": "skills/style-sampling/SKILL.md",
+   "blob_sha": "9cdfd04cbee774923cb48ad0996297fad6612757",
+   "dir": "017-style-sampling",
+   "list": "trending"
+  },
+  {
+   "name": "uizze-ui",
+   "source": "uizze/uizze",
+   "skill_id": "uizze-ui",
+   "path": "skills/uizze-ui/SKILL.md",
+   "blob_sha": "05cd0e6e01ec2c3a9a3e8678a85cd5d5385dabfc",
+   "dir": "018-uizze-ui",
+   "list": "trending"
+  },
+  {
+   "name": "remotion-captions",
+   "source": "remotion-dev/skills",
+   "skill_id": "remotion-captions",
+   "path": "skills/remotion-captions/SKILL.md",
+   "blob_sha": "d3e9f3bcccb7d9e7e318d49465a33e2325fe0cf4",
+   "dir": "019-remotion-captions",
+   "list": "trending"
+  },
+  {
+   "name": "remotion-render",
+   "source": "remotion-dev/skills",
+   "skill_id": "remotion-render",
+   "path": "skills/remotion-render/SKILL.md",
+   "blob_sha": "ba715a92b11c6a50ec090014ff7f96a583a502b2",
+   "dir": "020-remotion-render",
+   "list": "trending"
+  },
+  {
+   "name": "remotion-markup",
+   "source": "remotion-dev/skills",
+   "skill_id": "remotion-markup",
+   "path": "skills/remotion-markup/SKILL.md",
+   "blob_sha": "db58a86e3fb290a9e35e9dad8a3bd805e4757ff1",
+   "dir": "021-remotion-markup",
+   "list": "trending"
+  },
+  {
+   "name": "remotion-interactivity",
+   "source": "remotion-dev/skills",
+   "skill_id": "remotion-interactivity",
+   "path": "skills/remotion-interactivity/SKILL.md",
+   "blob_sha": "89940dc7a944128933c6d8fbd8273021df56f1fe",
+   "dir": "022-remotion-interactivity",
+   "list": "trending"
+  },
+  {
+   "name": "remotion-license",
+   "source": "remotion-dev/skills",
+   "skill_id": "remotion-license",
+   "path": "skills/remotion-license/SKILL.md",
+   "blob_sha": "cb350e56e8ee1ec5d93d0736d2c5e9257381f98f",
+   "dir": "023-remotion-license",
+   "list": "trending"
+  },
+  {
+   "name": "remotion-to-hyperframes",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "remotion-to-hyperframes",
+   "path": "skills/remotion-to-hyperframes/SKILL.md",
+   "blob_sha": "ffc05c17d238dbed3ea8c733054178a4c635f25f",
+   "dir": "024-remotion-to-hyperframes",
+   "list": "trending"
+  },
+  {
+   "name": "slideshow",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "slideshow",
+   "path": "skills/slideshow/SKILL.md",
+   "blob_sha": "506d7cea85380595578060c4bfa957dd1ba34b69",
+   "dir": "025-slideshow",
+   "list": "trending"
+  },
+  {
+   "name": "figma",
+   "source": "heygen-com/hyperframes",
+   "skill_id": "figma",
+   "path": "skills/figma/SKILL.md",
+   "blob_sha": "b56f8c5e5ecbe2b799c7ca21e94afcfb4d817c09",
+   "dir": "026-figma",
+   "list": "trending"
+  },
+  {
+   "name": "azure-ai",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-ai",
+   "path": "skills/azure-ai/SKILL.md",
+   "blob_sha": "a9d4b038b9904648e56f3f5c6af80869333a31d7",
+   "dir": "027-azure-ai",
+   "list": "trending"
+  },
+  {
+   "name": "microsoft-foundry",
+   "source": "microsoft/azure-skills",
+   "skill_id": "microsoft-foundry",
+   "path": "skills/microsoft-foundry/SKILL.md",
+   "blob_sha": "a77936e63f7f1ce2ae197d0450c2f9a2561225e1",
+   "dir": "028-microsoft-foundry",
+   "list": "trending"
+  },
+  {
+   "name": "azure-diagnostics",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-diagnostics",
+   "path": "skills/azure-diagnostics/SKILL.md",
+   "blob_sha": "2065c17715b474d23663c8622741d05a313eac4c",
+   "dir": "029-azure-diagnostics",
+   "list": "trending"
+  },
+  {
+   "name": "python-appservice-deploy",
+   "source": "microsoft/azure-skills",
+   "skill_id": "python-appservice-deploy",
+   "path": "skills/python-appservice-deploy/SKILL.md",
+   "blob_sha": "b9f7c8ddb14f145b3aac2a37f2a52f2b059b2bd8",
+   "dir": "030-python-appservice-deploy",
+   "list": "trending"
+  },
+  {
+   "name": "azure-deploy",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-deploy",
+   "path": "skills/azure-deploy/SKILL.md",
+   "blob_sha": "187e0206cdff0e0af4324761a0eca8aed2fc5ab6",
+   "dir": "031-azure-deploy",
+   "list": "trending"
+  },
+  {
+   "name": "azure-quotas",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-quotas",
+   "path": "skills/azure-quotas/SKILL.md",
+   "blob_sha": "00eb182af5ceb6861ee0df92d8c3c9986af652ad",
+   "dir": "032-azure-quotas",
+   "list": "trending"
+  },
+  {
+   "name": "azure-kubernetes",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-kubernetes",
+   "path": "skills/azure-kubernetes/SKILL.md",
+   "blob_sha": "c5b7d501c1f08a1fa64d9f9ea9c34133fd346a41",
+   "dir": "033-azure-kubernetes",
+   "list": "trending"
+  },
+  {
+   "name": "azure-compliance",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-compliance",
+   "path": "skills/azure-compliance/SKILL.md",
+   "blob_sha": "5f133e417691b7b4bf91ae44cc046c4d667821f2",
+   "dir": "034-azure-compliance",
+   "list": "trending"
+  },
+  {
+   "name": "azure-app-onboard-prereq",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-app-onboard-prereq",
+   "path": "skills/azure-app-onboard-prereq/SKILL.md",
+   "blob_sha": "17c63cde9f1dfe676dd5353f7427413a6601fbfb",
+   "dir": "035-azure-app-onboard-prereq",
+   "list": "trending"
+  },
+  {
+   "name": "azure-aigateway",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-aigateway",
+   "path": "skills/azure-aigateway/SKILL.md",
+   "blob_sha": "2a02dbfc3871846ede816112878cf65f7c8427ca",
+   "dir": "036-azure-aigateway",
+   "list": "trending"
+  },
+  {
+   "name": "discover-azure-skills",
+   "source": "microsoft/azure-skills",
+   "skill_id": "discover-azure-skills",
+   "path": "skills/discover-azure-skills/SKILL.md",
+   "blob_sha": "abee049349692e8bcb0f71970db3de7559bf7ec5",
+   "dir": "037-discover-azure-skills",
+   "list": "trending"
+  },
+  {
+   "name": "azure-validate",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-validate",
+   "path": "skills/azure-validate/SKILL.md",
+   "blob_sha": "7aca2090d92c3bc4b7618b8ac702af306bb6325b",
+   "dir": "038-azure-validate",
+   "list": "trending"
+  },
+  {
+   "name": "azure-enterprise-infra-planner",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-enterprise-infra-planner",
+   "path": "skills/azure-enterprise-infra-planner/SKILL.md",
+   "blob_sha": "5bc6f5c5a894507b7f89d0d96edc57927780c690",
+   "dir": "039-azure-enterprise-infra-planner",
+   "list": "trending"
+  },
+  {
+   "name": "azure-resource-visualizer",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-resource-visualizer",
+   "path": "skills/azure-resource-visualizer/SKILL.md",
+   "blob_sha": "24aa2ca9ce042b70cba745c50ae5a198db4a9a46",
+   "dir": "040-azure-resource-visualizer",
+   "list": "trending"
+  },
+  {
+   "name": "entra-app-registration",
+   "source": "microsoft/azure-skills",
+   "skill_id": "entra-app-registration",
+   "path": "skills/entra-app-registration/SKILL.md",
+   "blob_sha": "f7f472ade6f8ce489f3efae8bb8533dd0be6b3f0",
+   "dir": "041-entra-app-registration",
+   "list": "trending"
+  },
+  {
+   "name": "azure-prepare",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-prepare",
+   "path": "skills/azure-prepare/SKILL.md",
+   "blob_sha": "6a47bf660db5e8664d9857fee3c63028c1e9ac24",
+   "dir": "042-azure-prepare",
+   "list": "trending"
+  },
+  {
+   "name": "entra-agent-id",
+   "source": "microsoft/azure-skills",
+   "skill_id": "entra-agent-id",
+   "path": "skills/entra-agent-id/SKILL.md",
+   "blob_sha": "ec3318657c9709665e9f22c70e4820cb5bacb986",
+   "dir": "043-entra-agent-id",
+   "list": "trending"
+  },
+  {
+   "name": "airunway-aks-setup",
+   "source": "microsoft/azure-skills",
+   "skill_id": "airunway-aks-setup",
+   "path": "skills/airunway-aks-setup/SKILL.md",
+   "blob_sha": "b073a851e1f9678e349032558a51ab2a36f10454",
+   "dir": "044-airunway-aks-setup",
+   "list": "trending"
+  },
+  {
+   "name": "azure-app-onboard",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-app-onboard",
+   "path": "skills/azure-app-onboard/SKILL.md",
+   "blob_sha": "23ec1d16e8588f97064bf19653e6b54b8bfb5886",
+   "dir": "045-azure-app-onboard",
+   "list": "trending"
+  },
+  {
+   "name": "azure-upgrade",
+   "source": "microsoft/azure-skills",
+   "skill_id": "azure-upgrade",
+   "path": "skills/azure-upgrade/SKILL.md",
+   "blob_sha": "4d60fedcaa037dafd098d9ca3c4f8302c7520f1c",
+   "dir": "046-azure-upgrade",
+   "list": "trending"
+  },
+  {
+   "name": "grilling",
+   "source": "mattpocock/skills",
+   "skill_id": "grilling",
+   "path": "skills/productivity/grilling/SKILL.md",
+   "blob_sha": "d2f09a18e6a6c65c55f1271ba08dfeaf06f0bed3",
+   "dir": "047-grilling",
+   "list": "trending"
+  },
+  {
+   "name": "domain-modeling",
+   "source": "mattpocock/skills",
+   "skill_id": "domain-modeling",
+   "path": "skills/engineering/domain-modeling/SKILL.md",
+   "blob_sha": "a4438c6879c517d1a08e2b5fbca049b632688dfe",
+   "dir": "048-domain-modeling",
+   "list": "trending"
+  },
+  {
+   "name": "codebase-design",
+   "source": "mattpocock/skills",
+   "skill_id": "codebase-design",
+   "path": "skills/engineering/codebase-design/SKILL.md",
+   "blob_sha": "3f63c8146dd2604b419c929e9876b90c30d410e9",
+   "dir": "049-codebase-design",
+   "list": "trending"
+  },
+  {
+   "name": "code-review",
+   "source": "mattpocock/skills",
+   "skill_id": "code-review",
+   "path": "skills/engineering/code-review/SKILL.md",
+   "blob_sha": "83183e0ad36fd0eef25d37c7e483284b7e34c1f0",
+   "dir": "050-code-review",
+   "list": "trending"
+  },
+  {
+   "name": "frontend-design",
+   "source": "anthropics/skills",
+   "skill_id": "frontend-design",
+   "path": "skills/frontend-design/SKILL.md",
+   "blob_sha": "a5333457c414d20d625f307df945842c0952ecc3",
+   "dir": "051-frontend-design",
+   "list": "trending"
+  },
+  {
+   "name": "tdd",
+   "source": "mattpocock/skills",
+   "skill_id": "tdd",
+   "path": "skills/engineering/tdd/SKILL.md",
+   "blob_sha": "01eadaa34e7c9a63a67d6dc3cce1cc81b0e49985",
+   "dir": "052-tdd",
+   "list": "trending"
+  },
+  {
+   "name": "improve-codebase-architecture",
+   "source": "mattpocock/skills",
+   "skill_id": "improve-codebase-architecture",
+   "path": "skills/engineering/improve-codebase-architecture/SKILL.md",
+   "blob_sha": "f1eabb568464f03ae79a3346fc1918fdde6d8285",
+   "dir": "053-improve-codebase-architecture",
+   "list": "trending"
+  },
+  {
+   "name": "to-spec",
+   "source": "mattpocock/skills",
+   "skill_id": "to-spec",
+   "path": "skills/engineering/to-spec/SKILL.md",
+   "blob_sha": "3f52599ae2a4347aee5a07432c2707518e691a7f",
+   "dir": "054-to-spec",
+   "list": "trending"
+  },
+  {
+   "name": "to-tickets",
+   "source": "mattpocock/skills",
+   "skill_id": "to-tickets",
+   "path": "skills/engineering/to-tickets/SKILL.md",
+   "blob_sha": "9b77a01db9460c99c22d03c910c349f890f12c0e",
+   "dir": "055-to-tickets",
+   "list": "trending"
+  },
+  {
+   "name": "diagnosing-bugs",
+   "source": "mattpocock/skills",
+   "skill_id": "diagnosing-bugs",
+   "path": "skills/engineering/diagnosing-bugs/SKILL.md",
+   "blob_sha": "d039541ddd1c46e6ddbd662fe99d49b686fc5e12",
+   "dir": "056-diagnosing-bugs",
+   "list": "trending"
+  },
+  {
+   "name": "setup-matt-pocock-skills",
+   "source": "mattpocock/skills",
+   "skill_id": "setup-matt-pocock-skills",
+   "path": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+   "blob_sha": "2df0b07981718fa5d9a51526dfbcaee87e3a543d",
+   "dir": "057-setup-matt-pocock-skills",
+   "list": "trending"
+  },
+  {
+   "name": "prototype",
+   "source": "mattpocock/skills",
+   "skill_id": "prototype",
+   "path": "skills/engineering/prototype/SKILL.md",
+   "blob_sha": "a0044501fe0d385b4d8575b610188ede9b236ccf",
+   "dir": "058-prototype",
+   "list": "trending"
+  },
+  {
+   "name": "writing-for-agents",
+   "source": "mattpocock/skills",
+   "skill_id": "writing-for-agents",
+   "path": "skills/productivity/writing-for-agents/SKILL.md",
+   "blob_sha": "a37608daf6e835e767deecfb498facecaaba82ba",
+   "dir": "059-writing-for-agents",
+   "list": "trending"
+  },
+  {
+   "name": "research",
+   "source": "mattpocock/skills",
+   "skill_id": "research",
+   "path": "skills/engineering/research/SKILL.md",
+   "blob_sha": "ffc9eb89849cc4cf74962ce93d786ffd17c6a5dc",
+   "dir": "060-research",
+   "list": "trending"
+  },
+  {
+   "name": "handoff",
+   "source": "mattpocock/skills",
+   "skill_id": "handoff",
+   "path": "skills/productivity/handoff/SKILL.md",
+   "blob_sha": "a224edc643a20ddb989f9bca1547440169159810",
+   "dir": "061-handoff",
+   "list": "trending"
+  },
+  {
+   "name": "implement",
+   "source": "mattpocock/skills",
+   "skill_id": "implement",
+   "path": "skills/engineering/implement/SKILL.md",
+   "blob_sha": "bd49e472984c7b99aac40286fdae749bb955a842",
+   "dir": "062-implement",
+   "list": "trending"
+  },
+  {
+   "name": "web-design-guidelines",
+   "source": "vercel-labs/agent-skills",
+   "skill_id": "web-design-guidelines",
+   "path": "skills/web-design-guidelines/SKILL.md",
+   "blob_sha": "6e67f6e080d104973fe89a7903464c74d980edca",
+   "dir": "063-web-design-guidelines",
+   "list": "trending"
+  },
+  {
+   "name": "wayfinder",
+   "source": "mattpocock/skills",
+   "skill_id": "wayfinder",
+   "path": "skills/engineering/wayfinder/SKILL.md",
+   "blob_sha": "975d6bf9c0a49d18a651f3335e0b4dcf8650fe31",
+   "dir": "064-wayfinder",
+   "list": "trending"
+  },
+  {
+   "name": "teach",
+   "source": "mattpocock/skills",
+   "skill_id": "teach",
+   "path": "skills/productivity/teach/SKILL.md",
+   "blob_sha": "493fa3bae0dada971c4dfb965790e56920b1dced",
+   "dir": "065-teach",
+   "list": "trending"
+  },
+  {
+   "name": "triage",
+   "source": "mattpocock/skills",
+   "skill_id": "triage",
+   "path": "skills/engineering/triage/SKILL.md",
+   "blob_sha": "3fd5617e906cf9b71a6b17424791adb905fc248b",
+   "dir": "066-triage",
+   "list": "trending"
+  },
+  {
+   "name": "ask-matt",
+   "source": "mattpocock/skills",
+   "skill_id": "ask-matt",
+   "path": "skills/engineering/ask-matt/SKILL.md",
+   "blob_sha": "4bfeeb61dae548b8b7754c4fba7bd40ab3926099",
+   "dir": "067-ask-matt",
+   "list": "trending"
+  },
+  {
+   "name": "retro",
+   "source": "mattpocock/skills",
+   "skill_id": "retro",
+   "path": "skills/engineering/retro/SKILL.md",
+   "blob_sha": "12149acf2dd23b4514dec57b04a6293eaa1352fa",
+   "dir": "068-retro",
+   "list": "trending"
+  },
+  {
+   "name": "emil-design-eng",
+   "source": "emilkowalski/skills",
+   "skill_id": "emil-design-eng",
+   "path": "skills/emil-design-eng/SKILL.md",
+   "blob_sha": "5155a4bf33e99028645dbdad4c049a3d209b1f21",
+   "dir": "069-emil-design-eng",
+   "list": "trending"
+  },
+  {
+   "name": "infsh-cli",
+   "source": "beltsh/superpowers",
+   "skill_id": "infsh-cli",
+   "path": "tools/infsh-cli/SKILL.md",
+   "blob_sha": "13dd430f3d7fc41bf583c2ab58f871ee6d84c930",
+   "dir": "070-infsh-cli",
+   "list": "trending"
+  },
+  {
+   "name": "agent-tools",
+   "source": "beltsh/superpowers",
+   "skill_id": "agent-tools",
+   "path": "tools/agent-tools/SKILL.md",
+   "blob_sha": "11415ee61881d4be2d8ebcd1cdf4a4ee73af2ead",
+   "dir": "071-agent-tools",
+   "list": "trending"
+  },
+  {
+   "name": "web-search",
+   "source": "beltsh/superpowers",
+   "skill_id": "web-search",
+   "path": "tools/llm/web-search/SKILL.md",
+   "blob_sha": "b823357e968deef7963d0b0bfa67daaf19905ae7",
+   "dir": "072-web-search",
+   "list": "trending"
+  },
+  {
+   "name": "python-executor",
+   "source": "beltsh/superpowers",
+   "skill_id": "python-executor",
+   "path": "tools/utilities/python-executor/SKILL.md",
+   "blob_sha": "466af04e0c18a1987e65bb0ab888ad26549dfe49",
+   "dir": "073-python-executor",
+   "list": "trending"
+  },
+  {
+   "name": "apple-design",
+   "source": "emilkowalski/skills",
+   "skill_id": "apple-design",
+   "path": "skills/apple-design/SKILL.md",
+   "blob_sha": "97ec82d4ef630ff7f6f2fd283dc04702a63fcea4",
+   "dir": "074-apple-design",
+   "list": "trending"
+  },
+  {
+   "name": "image-to-ui",
+   "source": "uizze/uizze",
+   "skill_id": "image-to-ui",
+   "path": "skills/image-to-ui/SKILL.md",
+   "blob_sha": "6d1ab9dd98b9f0b228911b6bd91d61fd529c43ab",
+   "dir": "075-image-to-ui",
+   "list": "trending"
+  },
+  {
+   "name": "animate",
+   "source": "emilkowalski/skills",
+   "skill_id": "animate",
+   "path": "skills/animate/SKILL.md",
+   "blob_sha": "69338805e0ea1c77d6f4c1987d516f46b1657819",
+   "dir": "076-animate",
+   "list": "trending"
+  },
+  {
+   "name": "review-animations",
+   "source": "emilkowalski/skills",
+   "skill_id": "review-animations",
+   "path": "skills/review-animations/SKILL.md",
+   "blob_sha": "70bb73c016d0dafc28c03272a205cd97ece9f06d",
+   "dir": "077-review-animations",
+   "list": "trending"
+  },
+  {
+   "name": "improve-animations",
+   "source": "emilkowalski/skills",
+   "skill_id": "improve-animations",
+   "path": "skills/improve-animations/SKILL.md",
+   "blob_sha": "fb85fcc8c1707010ac0c64250d8a56ed0a68fe2d",
+   "dir": "078-improve-animations",
+   "list": "trending"
+  },
+  {
+   "name": "animation-performance",
+   "source": "emilkowalski/skills",
+   "skill_id": "animation-performance",
+   "path": "skills/animation-performance/SKILL.md",
+   "blob_sha": "c7dd441dde8d597c877e851ed9f9601249351591",
+   "dir": "079-animation-performance",
+   "list": "trending"
+  },
+  {
+   "name": "find-animation-opportunities",
+   "source": "emilkowalski/skills",
+   "skill_id": "find-animation-opportunities",
+   "path": "skills/find-animation-opportunities/SKILL.md",
+   "blob_sha": "8a72a1931e82d21ae24cd00834f4f0aaebf58a60",
+   "dir": "080-find-animation-opportunities",
+   "list": "trending"
+  },
+  {
+   "name": "animation-vocabulary",
+   "source": "emilkowalski/skills",
+   "skill_id": "animation-vocabulary",
+   "path": "skills/animation-vocabulary/SKILL.md",
+   "blob_sha": "e976138ced9ba6e9ecc3d65236c9ec24b753d9c0",
+   "dir": "081-animation-vocabulary",
+   "list": "trending"
+  },
+  {
+   "name": "impeccable",
+   "source": "pbakaus/impeccable",
+   "skill_id": "impeccable",
+   "path": ".pi/skills/impeccable/SKILL.md",
+   "blob_sha": "2f391d6e03e5bc59f561152d187e6f6e0e33505d",
+   "dir": "082-impeccable",
+   "list": "trending"
+  },
+  {
+   "name": "break-ui",
+   "source": "emilkowalski/skills",
+   "skill_id": "break-ui",
+   "path": "skills/break-ui/SKILL.md",
+   "blob_sha": "52be42ffb02f252e889b8ac3a45b97d9f7a0c36c",
+   "dir": "083-break-ui",
+   "list": "trending"
+  },
+  {
+   "name": "mobile-native",
+   "source": "emilkowalski/skills",
+   "skill_id": "mobile-native",
+   "path": "skills/mobile-native/SKILL.md",
+   "blob_sha": "b97d73d9bd5f6b283b03588b852b7a2ad3764673",
+   "dir": "084-mobile-native",
+   "list": "trending"
+  },
+  {
+   "name": "choreograph",
+   "source": "emilkowalski/skills",
+   "skill_id": "choreograph",
+   "path": "skills/choreograph/SKILL.md",
+   "blob_sha": "965f7b1ee991adbbc301401cf2f6f6890b247572",
+   "dir": "085-choreograph",
+   "list": "trending"
+  },
+  {
+   "name": "pick-ui-library",
+   "source": "emilkowalski/skills",
+   "skill_id": "pick-ui-library",
+   "path": "skills/pick-ui-library/SKILL.md",
+   "blob_sha": "fca76b8792f0b2e72623a25ffb182c2c46d3fbc0",
+   "dir": "086-pick-ui-library",
+   "list": "trending"
+  },
+  {
+   "name": "learn-taste",
+   "source": "emilkowalski/skills",
+   "skill_id": "learn-taste",
+   "path": "skills/learn-taste/SKILL.md",
+   "blob_sha": "9ea9da36bf557e063723df8641ce6b56594170d4",
+   "dir": "087-learn-taste",
+   "list": "trending"
+  },
+  {
+   "name": "gestures",
+   "source": "emilkowalski/skills",
+   "skill_id": "gestures",
+   "path": "skills/gestures/SKILL.md",
+   "blob_sha": "71fb5af14cf57ce9b052bfbf22dad8e4c71e3ac1",
+   "dir": "088-gestures",
+   "list": "trending"
+  },
+  {
+   "name": "remove-animations",
+   "source": "emilkowalski/skills",
+   "skill_id": "remove-animations",
+   "path": "skills/remove-animations/SKILL.md",
+   "blob_sha": "ccd6070c53575a9e96995de805eee9ad7d81bc58",
+   "dir": "089-remove-animations",
+   "list": "trending"
+  },
+  {
+   "name": "animate-expo",
+   "source": "emilkowalski/skills",
+   "skill_id": "animate-expo",
+   "path": "skills/animate-expo/SKILL.md",
+   "blob_sha": "2ab54f8a9edda2cf679fc830ab7fab874320fc00",
+   "dir": "090-animate-expo",
+   "list": "trending"
+  },
+  {
+   "name": "modern-web-guidance",
+   "source": "googlechrome/modern-web-guidance",
+   "skill_id": "modern-web-guidance",
+   "path": "skills/modern-web-guidance/SKILL.md",
+   "blob_sha": "f4e966d9297caf7cd76f2e5aa2fa708e10d2618f",
+   "dir": "091-modern-web-guidance",
+   "list": "trending"
+  },
+  {
+   "name": "ask-sonner",
+   "source": "emilkowalski/skills",
+   "skill_id": "ask-sonner",
+   "path": "skills/ask-sonner/SKILL.md",
+   "blob_sha": "368752157d59c75e7374f84406e26755f35ac8d8",
+   "dir": "092-ask-sonner",
+   "list": "trending"
+  },
+  {
+   "name": "ask-emil",
+   "source": "emilkowalski/skills",
+   "skill_id": "ask-emil",
+   "path": "skills/ask-emil/SKILL.md",
+   "blob_sha": "2fe1a76a2e06e05dc12381e2d4ad6d740749e99f",
+   "dir": "093-ask-emil",
+   "list": "trending"
+  },
+  {
+   "name": "write-swift",
+   "source": "emilkowalski/skills",
+   "skill_id": "write-swift",
+   "path": "skills/write-swift/SKILL.md",
+   "blob_sha": "9fdf55eaf5f490da0c5712a3fdcdfb30195c9fc0",
+   "dir": "094-write-swift",
+   "list": "trending"
+  },
+  {
+   "name": "caveman",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman",
+   "path": "skills/caveman/SKILL.md",
+   "blob_sha": "9a94044529e5ee1576361c891b4a271504518e6f",
+   "dir": "095-caveman",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-client-api",
+   "source": "prisma/skills",
+   "skill_id": "prisma-client-api",
+   "path": "prisma-client-api/SKILL.md",
+   "blob_sha": "57aa8a52e9d81fc63d3f7e0f085ebeb71f39ef7d",
+   "dir": "096-prisma-client-api",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-cli",
+   "source": "prisma/skills",
+   "skill_id": "prisma-cli",
+   "path": "prisma-cli/SKILL.md",
+   "blob_sha": "e612e02ed2cdc8c50a69a92350cb4fd59a58d4d9",
+   "dir": "097-prisma-cli",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-database-setup",
+   "source": "prisma/skills",
+   "skill_id": "prisma-database-setup",
+   "path": "prisma-database-setup/SKILL.md",
+   "blob_sha": "e505f7e8ae7e1046e9272b38ac30e648f533304e",
+   "dir": "098-prisma-database-setup",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-orm-setup",
+   "source": "prisma/skills",
+   "skill_id": "prisma-orm-setup",
+   "path": "prisma-orm-setup/SKILL.md",
+   "blob_sha": "141f011c4fcb3dbe3082bab6149987826baeb8a5",
+   "dir": "099-prisma-orm-setup",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-postgres",
+   "source": "prisma/skills",
+   "skill_id": "prisma-postgres",
+   "path": "prisma-postgres/SKILL.md",
+   "blob_sha": "f146d2725b5a52496287b43eca2112dfb7b3a84b",
+   "dir": "100-prisma-postgres",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-driver-adapter-implementation",
+   "source": "prisma/skills",
+   "skill_id": "prisma-driver-adapter-implementation",
+   "path": "prisma-driver-adapter-implementation/SKILL.md",
+   "blob_sha": "4bf3479c7fd3f0666305a5f4dd29116d3762b0f4",
+   "dir": "101-prisma-driver-adapter-implementation",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-upgrade-v7",
+   "source": "prisma/skills",
+   "skill_id": "prisma-upgrade-v7",
+   "path": "prisma-upgrade-v7/SKILL.md",
+   "blob_sha": "bd0e30598884112be908f22ebf0e2498cc07c32a",
+   "dir": "102-prisma-upgrade-v7",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-postgres-upgrade",
+   "source": "prisma/skills",
+   "skill_id": "prisma-postgres-upgrade",
+   "path": "prisma-postgres-upgrade/SKILL.md",
+   "blob_sha": "de0fde383821814e1908664101025a868a7d860c",
+   "dir": "103-prisma-postgres-upgrade",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-postgres-setup",
+   "source": "prisma/skills",
+   "skill_id": "prisma-postgres-setup",
+   "path": "prisma-postgres-setup/SKILL.md",
+   "blob_sha": "0ef9cfd8762406a101a899f30be13e99856259a1",
+   "dir": "104-prisma-postgres-setup",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-compute",
+   "source": "prisma/skills",
+   "skill_id": "prisma-compute",
+   "path": "prisma-compute/SKILL.md",
+   "blob_sha": "c7f7d0460a37eb076ea91bebecbea22e2e2146ad",
+   "dir": "105-prisma-compute",
+   "list": "trending"
+  },
+  {
+   "name": "prisma-mongodb-upgrade",
+   "source": "prisma/skills",
+   "skill_id": "prisma-mongodb-upgrade",
+   "path": "prisma-mongodb-upgrade/SKILL.md",
+   "blob_sha": "fa7e0d22cd70c146b93266e4222902a107c2e960",
+   "dir": "106-prisma-mongodb-upgrade",
+   "list": "trending"
+  },
+  {
+   "name": "ui-ux-pro-max",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "ui-ux-pro-max",
+   "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+   "blob_sha": "e6cfdd50ec8cbf6855d27ee5446424378ea6a416",
+   "dir": "107-ui-ux-pro-max",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-adk-code",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-adk-code",
+   "path": "skills/google-agents-cli-adk-code/SKILL.md",
+   "blob_sha": "75278ad17a38e8065de4cbab9f5fbdfe44793b3a",
+   "dir": "108-google-agents-cli-adk-code",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-deploy",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-deploy",
+   "path": "skills/google-agents-cli-deploy/SKILL.md",
+   "blob_sha": "978c3de623b075c4642d13912ebe94c9e3c9271e",
+   "dir": "109-google-agents-cli-deploy",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-publish",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-publish",
+   "path": "skills/google-agents-cli-publish/SKILL.md",
+   "blob_sha": "20ff119e732f12b10b737f6d812556cce65150c0",
+   "dir": "110-google-agents-cli-publish",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-workflow",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-workflow",
+   "path": "skills/google-agents-cli-workflow/SKILL.md",
+   "blob_sha": "00790aa445ef273c1680de3695a0e1339a38ddc4",
+   "dir": "111-google-agents-cli-workflow",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-scaffold",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-scaffold",
+   "path": "skills/google-agents-cli-scaffold/SKILL.md",
+   "blob_sha": "13d1d3b412920bbc434b851fc466ce0140743ee2",
+   "dir": "112-google-agents-cli-scaffold",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-eval",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-eval",
+   "path": "skills/google-agents-cli-eval/SKILL.md",
+   "blob_sha": "e982f1d39095e4cdea6806231e13015565942d21",
+   "dir": "113-google-agents-cli-eval",
+   "list": "trending"
+  },
+  {
+   "name": "google-agents-cli-observability",
+   "source": "google/agents-cli",
+   "skill_id": "google-agents-cli-observability",
+   "path": "skills/google-agents-cli-observability/SKILL.md",
+   "blob_sha": "f560a951de0db55ee79496cd202c6a29794ddcb3",
+   "dir": "114-google-agents-cli-observability",
+   "list": "trending"
+  },
+  {
+   "name": "security-audit",
+   "source": "cloudflare/security-audit-skill",
+   "skill_id": "security-audit",
+   "path": "skills/security-audit/SKILL.md",
+   "blob_sha": "92178dad304d3f63e37582a297026a7874e12c62",
+   "dir": "115-security-audit",
+   "list": "trending"
+  },
+  {
+   "name": "product-hunt-launch",
+   "source": "beltsh/superpowers",
+   "skill_id": "product-hunt-launch",
+   "path": "guides/product/product-hunt-launch/SKILL.md",
+   "blob_sha": "08944c4699f75643e8196ccd36195ed479fec2ee",
+   "dir": "116-product-hunt-launch",
+   "list": "trending"
+  },
+  {
+   "name": "youtube-thumbnail-design",
+   "source": "beltsh/superpowers",
+   "skill_id": "youtube-thumbnail-design",
+   "path": "guides/design/youtube-thumbnail-design/SKILL.md",
+   "blob_sha": "415753e87c9d9bd4ac6da4c684d2b7dd777d80e1",
+   "dir": "117-youtube-thumbnail-design",
+   "list": "trending"
+  },
+  {
+   "name": "storyboard-creation",
+   "source": "beltsh/superpowers",
+   "skill_id": "storyboard-creation",
+   "path": "guides/video/storyboard-creation/SKILL.md",
+   "blob_sha": "9c5ac442a843c4f3baf8c67e048b481c9d73c582",
+   "dir": "118-storyboard-creation",
+   "list": "trending"
+  },
+  {
+   "name": "character-design-sheet",
+   "source": "beltsh/superpowers",
+   "skill_id": "character-design-sheet",
+   "path": "guides/design/character-design-sheet/SKILL.md",
+   "blob_sha": "13d7d306caece4a4e5e360f3de342537145e8582",
+   "dir": "119-character-design-sheet",
+   "list": "trending"
+  },
+  {
+   "name": "competitor-teardown",
+   "source": "beltsh/superpowers",
+   "skill_id": "competitor-teardown",
+   "path": "guides/product/competitor-teardown/SKILL.md",
+   "blob_sha": "7845e07ba3c2c7cbd95ebe8bfb64cae3a7830d43",
+   "dir": "120-competitor-teardown",
+   "list": "trending"
+  },
+  {
+   "name": "landing-page-design",
+   "source": "beltsh/superpowers",
+   "skill_id": "landing-page-design",
+   "path": "guides/design/landing-page-design/SKILL.md",
+   "blob_sha": "1e6535c0a42b63b8cfc0c8e2221a192159d33b63",
+   "dir": "121-landing-page-design",
+   "list": "trending"
+  },
+  {
+   "name": "app-store-screenshots",
+   "source": "beltsh/superpowers",
+   "skill_id": "app-store-screenshots",
+   "path": "guides/design/app-store-screenshots/SKILL.md",
+   "blob_sha": "59d9a50a2c7a1cfcb9479088fecd00211ee3376d",
+   "dir": "122-app-store-screenshots",
+   "list": "trending"
+  },
+  {
+   "name": "video-ad-specs",
+   "source": "beltsh/superpowers",
+   "skill_id": "video-ad-specs",
+   "path": "guides/video/video-ad-specs/SKILL.md",
+   "blob_sha": "db37958e62d4724a9d0949e7311c4a47607e149f",
+   "dir": "123-video-ad-specs",
+   "list": "trending"
+  },
+  {
+   "name": "product-photography",
+   "source": "beltsh/superpowers",
+   "skill_id": "product-photography",
+   "path": "guides/photo/product-photography/SKILL.md",
+   "blob_sha": "c4e7acad6b499e1cab0d949de876ef507fe924a9",
+   "dir": "124-product-photography",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-generate",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-generate",
+   "path": "higgsfield-generate/SKILL.md",
+   "blob_sha": "3094e15be8934f077277636fd0f478d15644f252",
+   "dir": "125-higgsfield-generate",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-youtube-thumbnail",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-youtube-thumbnail",
+   "path": "higgsfield-youtube-thumbnail/SKILL.md",
+   "blob_sha": "c8ccbee4217c38517c14a05b42118c5fa0863287",
+   "dir": "126-higgsfield-youtube-thumbnail",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-compress",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-compress",
+   "path": "skills/caveman-compress/SKILL.md",
+   "blob_sha": "9f77893a780c9e5a57b24532ecf1fa4723a50147",
+   "dir": "127-caveman-compress",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-product-photoshoot",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-product-photoshoot",
+   "path": "higgsfield-product-photoshoot/SKILL.md",
+   "blob_sha": "b5673d7fd76a0c422c6c54e32044261aee0767eb",
+   "dir": "128-higgsfield-product-photoshoot",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-soul-id",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-soul-id",
+   "path": "higgsfield-soul-id/SKILL.md",
+   "blob_sha": "d14cfc002f05e635a1c44600884a62592fdc0d0c",
+   "dir": "129-higgsfield-soul-id",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-faceless-video",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-faceless-video",
+   "path": "higgsfield-faceless-video/SKILL.md",
+   "blob_sha": "c6863c475687a29440eb376c27ddba9adb7362dc",
+   "dir": "130-higgsfield-faceless-video",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-video-explainer",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-video-explainer",
+   "path": "higgsfield-video-explainer/SKILL.md",
+   "blob_sha": "662c9b7f0d8b64a9dc1cfec5324dc481da461953",
+   "dir": "131-higgsfield-video-explainer",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-brandkit",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-brandkit",
+   "path": "higgsfield-brandkit/SKILL.md",
+   "blob_sha": "594a88c38c3ed79b3677be27a79b800f7f616b0a",
+   "dir": "132-higgsfield-brandkit",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-websites",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-websites",
+   "path": "higgsfield-websites/SKILL.md",
+   "blob_sha": "c47acd761506555fe77732e40a2b52ed681dc7b7",
+   "dir": "133-higgsfield-websites",
+   "list": "trending"
+  },
+  {
+   "name": "higgsfield-marketplace-cards",
+   "source": "higgsfield-ai/skills",
+   "skill_id": "higgsfield-marketplace-cards",
+   "path": "higgsfield-marketplace-cards/SKILL.md",
+   "blob_sha": "f6c2f27a587364388fbbdcfe0e2cf30342975fa0",
+   "dir": "134-higgsfield-marketplace-cards",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-stats",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-stats",
+   "path": "skills/caveman-stats/SKILL.md",
+   "blob_sha": "e88c09b476117aa9e98843fa68282288f4fe1682",
+   "dir": "135-caveman-stats",
+   "list": "trending"
+  },
+  {
+   "name": "systematic-debugging",
+   "source": "obra/superpowers",
+   "skill_id": "systematic-debugging",
+   "path": "skills/systematic-debugging/SKILL.md",
+   "blob_sha": "62fc752aaef59a8bbed5d305f4cadc60f8ae07ed",
+   "dir": "136-systematic-debugging",
+   "list": "trending"
+  },
+  {
+   "name": "hallmark",
+   "source": "nutlope/hallmark",
+   "skill_id": "hallmark",
+   "path": "skills/hallmark/SKILL.md",
+   "blob_sha": "d27771723e827baa5e2b34d01492783a42df9174",
+   "dir": "137-hallmark",
+   "list": "trending"
+  },
+  {
+   "name": "verification-before-completion",
+   "source": "obra/superpowers",
+   "skill_id": "verification-before-completion",
+   "path": "skills/verification-before-completion/SKILL.md",
+   "blob_sha": "7d45333cc4a49c57a80df6c1fe2fa777a207afbc",
+   "dir": "138-verification-before-completion",
+   "list": "trending"
+  },
+  {
+   "name": "mastra",
+   "source": "mastra-ai/skills",
+   "skill_id": "mastra",
+   "path": "skills/mastra/SKILL.md",
+   "blob_sha": "173a67f981cb6752fc1903c357a48f1ebb2b61b3",
+   "dir": "139-mastra",
+   "list": "trending"
+  },
+  {
+   "name": "notion-api",
+   "source": "intellectronica/agent-skills",
+   "skill_id": "notion-api",
+   "path": "skills/notion-api/SKILL.md",
+   "blob_sha": "c777804d887f8c6d53911b8fd220edc5852333e4",
+   "dir": "140-notion-api",
+   "list": "trending"
+  },
+  {
+   "name": "nx-workspace",
+   "source": "nrwl/nx-ai-agents-config",
+   "skill_id": "nx-workspace",
+   "path": "skills/nx-workspace/SKILL.md",
+   "blob_sha": "1616c50f51aa3599ce2ec250ecc38d2d23c9a49b",
+   "dir": "141-nx-workspace",
+   "list": "trending"
+  },
+  {
+   "name": "instrument-events",
+   "source": "amplitude/mcp-marketplace",
+   "skill_id": "instrument-events",
+   "path": "plugins/amplitude/skills/instrument-events/SKILL.md",
+   "blob_sha": "fc09a40b8aadb24072c31370c789b27c6b402598",
+   "dir": "142-instrument-events",
+   "list": "trending"
+  },
+  {
+   "name": "add-analytics-instrumentation",
+   "source": "amplitude/mcp-marketplace",
+   "skill_id": "add-analytics-instrumentation",
+   "path": "plugins/amplitude/skills/add-analytics-instrumentation/SKILL.md",
+   "blob_sha": "55c624fb043152f9becbf9e3c5fdc9dedee7ff1e",
+   "dir": "143-add-analytics-instrumentation",
+   "list": "trending"
+  },
+  {
+   "name": "diff-intake",
+   "source": "amplitude/mcp-marketplace",
+   "skill_id": "diff-intake",
+   "path": "plugins/amplitude/skills/diff-intake/SKILL.md",
+   "blob_sha": "7a0ce09ef03fdab201047b78804e9d5c9f54bc96",
+   "dir": "144-diff-intake",
+   "list": "trending"
+  },
+  {
+   "name": "discover-analytics-patterns",
+   "source": "amplitude/mcp-marketplace",
+   "skill_id": "discover-analytics-patterns",
+   "path": "plugins/amplitude/skills/discover-analytics-patterns/SKILL.md",
+   "blob_sha": "ab4fe9d4373e1cfe43675289fdb7574509dd021e",
+   "dir": "145-discover-analytics-patterns",
+   "list": "trending"
+  },
+  {
+   "name": "discover-event-surfaces",
+   "source": "amplitude/mcp-marketplace",
+   "skill_id": "discover-event-surfaces",
+   "path": "plugins/amplitude/skills/discover-event-surfaces/SKILL.md",
+   "blob_sha": "70da2df6332211e450965deff24c17a84a168584",
+   "dir": "146-discover-event-surfaces",
+   "list": "trending"
+  },
+  {
+   "name": "taxonomy",
+   "source": "amplitude/mcp-marketplace",
+   "skill_id": "taxonomy",
+   "path": "plugins/amplitude/skills/taxonomy/SKILL.md",
+   "blob_sha": "6719bad055c9919ac827a46e6d643ab3b3adcca0",
+   "dir": "147-taxonomy",
+   "list": "trending"
+  },
+  {
+   "name": "wind-mcp-skill",
+   "source": "wind-alice/alicemarket",
+   "skill_id": "wind-mcp-skill",
+   "path": "skills/wind-mcp-skill/SKILL.md",
+   "blob_sha": "e52f7ccd817b0f494cb45e714aef766ac32b355c",
+   "dir": "148-wind-mcp-skill",
+   "list": "trending"
+  },
+  {
+   "name": "deploy-to-vercel",
+   "source": "vercel-labs/agent-skills",
+   "skill_id": "deploy-to-vercel",
+   "path": "skills/deploy-to-vercel/SKILL.md",
+   "blob_sha": "f3bb68ba31294f0edf81fdb326ddc2666a24e0e0",
+   "dir": "149-deploy-to-vercel",
+   "list": "trending"
+  },
+  {
+   "name": "brainstorming",
+   "source": "obra/superpowers",
+   "skill_id": "brainstorming",
+   "path": "skills/brainstorming/SKILL.md",
+   "blob_sha": "9eb0edc7fedf26e1d3e2f3f223e5bcc5058aed6a",
+   "dir": "150-brainstorming",
+   "list": "trending"
+  },
+  {
+   "name": "writing-guidelines",
+   "source": "vercel-labs/agent-skills",
+   "skill_id": "writing-guidelines",
+   "path": "skills/writing-guidelines/SKILL.md",
+   "blob_sha": "63facf310252a990d154bed12b3dcdd295ba771a",
+   "dir": "151-writing-guidelines",
+   "list": "trending"
+  },
+  {
+   "name": "ponytail",
+   "source": "dietrichgebert/ponytail",
+   "skill_id": "ponytail",
+   "path": "skills/ponytail/SKILL.md",
+   "blob_sha": "d64edd32265ba21cbf5270158f04e97d96925f27",
+   "dir": "152-ponytail",
+   "list": "trending"
+  },
+  {
+   "name": "shadcn",
+   "source": "shadcn-ui/ui",
+   "skill_id": "shadcn",
+   "path": "skills/shadcn/SKILL.md",
+   "blob_sha": "54da13fb6fdca971ec9ee4651cf5ff2cdab2236d",
+   "dir": "153-shadcn",
+   "list": "trending"
+  },
+  {
+   "name": "vercel-optimize",
+   "source": "vercel-labs/agent-skills",
+   "skill_id": "vercel-optimize",
+   "path": "skills/vercel-optimize/SKILL.md",
+   "blob_sha": "c8a6d6d7075b2cc3f7921da89de86e6926f78985",
+   "dir": "154-vercel-optimize",
+   "list": "trending"
+  },
+  {
+   "name": "copywriting",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "copywriting",
+   "path": "skills/copywriting/SKILL.md",
+   "blob_sha": "d70d0b8855f2dc1ed06b9d72a373cdc448ed4e8e",
+   "dir": "155-copywriting",
+   "list": "trending"
+  },
+  {
+   "name": "test-driven-development",
+   "source": "obra/superpowers",
+   "skill_id": "test-driven-development",
+   "path": "skills/test-driven-development/SKILL.md",
+   "blob_sha": "46838cc9e893c06259e3bdad0fc2425b36242f15",
+   "dir": "156-test-driven-development",
+   "list": "trending"
+  },
+  {
+   "name": "vercel-cli-with-tokens",
+   "source": "vercel-labs/agent-skills",
+   "skill_id": "vercel-cli-with-tokens",
+   "path": "skills/vercel-cli-with-tokens/SKILL.md",
+   "blob_sha": "814423d0c40f56853e0f4f2f64d03a02266dadf4",
+   "dir": "157-vercel-cli-with-tokens",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-commit",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-commit",
+   "path": "skills/caveman-commit/SKILL.md",
+   "blob_sha": "e13d6afc293d3bdebbefe8b23a9d09144595e874",
+   "dir": "158-caveman-commit",
+   "list": "trending"
+  },
+  {
+   "name": "writing-plans",
+   "source": "obra/superpowers",
+   "skill_id": "writing-plans",
+   "path": "skills/writing-plans/SKILL.md",
+   "blob_sha": "4cf0275d88d67aa4ef09f4bbca9970ed6ff74a00",
+   "dir": "159-writing-plans",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-review",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-review",
+   "path": "skills/caveman-review/SKILL.md",
+   "blob_sha": "ed2bf49948c1514c147a699a484456a5ff7b27f7",
+   "dir": "160-caveman-review",
+   "list": "trending"
+  },
+  {
+   "name": "landing-page-conversion-audit",
+   "source": "autonnel/autonnel-skills",
+   "skill_id": "landing-page-conversion-audit",
+   "path": "landing-page-conversion-audit/SKILL.md",
+   "blob_sha": "a598a3301d6d6a016a05f62b915f982ffaa9781b",
+   "dir": "161-landing-page-conversion-audit",
+   "list": "trending"
+  },
+  {
+   "name": "anti-detect-browser",
+   "source": "antibrow/anti-detect-browser-skills",
+   "skill_id": "anti-detect-browser",
+   "path": "anti-detect-browser/SKILL.md",
+   "blob_sha": "66b2dc46b551dd2703decb99f41097416bdb4f07",
+   "dir": "162-anti-detect-browser",
+   "list": "trending"
+  },
+  {
+   "name": "sales-funnel-blueprint",
+   "source": "autonnel/autonnel-skills",
+   "skill_id": "sales-funnel-blueprint",
+   "path": "sales-funnel-blueprint/SKILL.md",
+   "blob_sha": "8ae794063deab42ea77579676005f97ccb7458f6",
+   "dir": "163-sales-funnel-blueprint",
+   "list": "trending"
+  },
+  {
+   "name": "seo-audit",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "seo-audit",
+   "path": "skills/seo-audit/SKILL.md",
+   "blob_sha": "8e969c81b41f5ebc820de2ecd51a7c8ab85847c0",
+   "dir": "164-seo-audit",
+   "list": "trending"
+  },
+  {
+   "name": "ultracave",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "ultracave",
+   "path": "skills/ultracave/SKILL.md",
+   "blob_sha": "136db7e5c8804043c5329df8f767789b7d30228f",
+   "dir": "165-ultracave",
+   "list": "trending"
+  },
+  {
+   "name": "server-side-conversion-tracking",
+   "source": "autonnel/autonnel-skills",
+   "skill_id": "server-side-conversion-tracking",
+   "path": "server-side-conversion-tracking/SKILL.md",
+   "blob_sha": "a3c12f542493409c0c7f6acd6b380942f498dcc8",
+   "dir": "166-server-side-conversion-tracking",
+   "list": "trending"
+  },
+  {
+   "name": "multi-account-isolation",
+   "source": "antibrow/anti-detect-browser-skills",
+   "skill_id": "multi-account-isolation",
+   "path": "multi-account-isolation/SKILL.md",
+   "blob_sha": "9898bc8e3aeeb44e0c7de880543dd84157684c41",
+   "dir": "167-multi-account-isolation",
+   "list": "trending"
+  },
+  {
+   "name": "self-hosted-funnel-launch",
+   "source": "autonnel/autonnel-skills",
+   "skill_id": "self-hosted-funnel-launch",
+   "path": "self-hosted-funnel-launch/SKILL.md",
+   "blob_sha": "f6ff601c15dfd100bc7dd520623b2def68252e0a",
+   "dir": "168-self-hosted-funnel-launch",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-help",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-help",
+   "path": "skills/caveman-help/SKILL.md",
+   "blob_sha": "7805b3748cb95baca18a8be324f8d8597216e947",
+   "dir": "169-caveman-help",
+   "list": "trending"
+  },
+  {
+   "name": "browser-mcp-agent",
+   "source": "antibrow/anti-detect-browser-skills",
+   "skill_id": "browser-mcp-agent",
+   "path": "browser-mcp-agent/SKILL.md",
+   "blob_sha": "8701557b71ca59854ee4b22f377fd4efcf2d8a48",
+   "dir": "170-browser-mcp-agent",
+   "list": "trending"
+  },
+  {
+   "name": "post-purchase-upsell-flow",
+   "source": "autonnel/autonnel-skills",
+   "skill_id": "post-purchase-upsell-flow",
+   "path": "post-purchase-upsell-flow/SKILL.md",
+   "blob_sha": "d6057ab243cf12d786589c0968477430e2d1115c",
+   "dir": "171-post-purchase-upsell-flow",
+   "list": "trending"
+  },
+  {
+   "name": "funnel-platform-picker",
+   "source": "autonnel/autonnel-skills",
+   "skill_id": "funnel-platform-picker",
+   "path": "funnel-platform-picker/SKILL.md",
+   "blob_sha": "9ded16f4435331335d280aee3e616a0da3dc9bb4",
+   "dir": "172-funnel-platform-picker",
+   "list": "trending"
+  },
+  {
+   "name": "cavecrew",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "cavecrew",
+   "path": "skills/cavecrew/SKILL.md",
+   "blob_sha": "749c5df616c17c1e4f82b46f6fbd1dc5727f12bf",
+   "dir": "173-cavecrew",
+   "list": "trending"
+  },
+  {
+   "name": "requesting-code-review",
+   "source": "obra/superpowers",
+   "skill_id": "requesting-code-review",
+   "path": "skills/requesting-code-review/SKILL.md",
+   "blob_sha": "68d338a58ecdd8b77bfbb519b781ef223dbbb842",
+   "dir": "174-requesting-code-review",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-explore",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-explore",
+   "path": "skills/caveman-explore/SKILL.md",
+   "blob_sha": "1acc5bf8ce38ba3eb57de9e0084d407933cb5b61",
+   "dir": "175-caveman-explore",
+   "list": "trending"
+  },
+  {
+   "name": "playwright-cli",
+   "source": "microsoft/playwright-cli",
+   "skill_id": "playwright-cli",
+   "path": "skills/playwright-cli/SKILL.md",
+   "blob_sha": "4ad911bdb742adc1728ea4b3eb6c208e379386fa",
+   "dir": "176-playwright-cli",
+   "list": "trending"
+  },
+  {
+   "name": "surgical-patch",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "surgical-patch",
+   "path": "skills/surgical-patch/SKILL.md",
+   "blob_sha": "1c06cb1436efd87f5641270cef3c2a27a71442ed",
+   "dir": "177-surgical-patch",
+   "list": "trending"
+  },
+  {
+   "name": "investigate-first",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "investigate-first",
+   "path": "skills/investigate-first/SKILL.md",
+   "blob_sha": "83b2a9b35bea16e4d03439e44af367282e85c57c",
+   "dir": "178-investigate-first",
+   "list": "trending"
+  },
+  {
+   "name": "fingerprint-failure-triage",
+   "source": "liarjsdev/liarjs-skills",
+   "skill_id": "fingerprint-failure-triage",
+   "path": "skills/fingerprint-failure-triage/SKILL.md",
+   "blob_sha": "547d233344d5995d3500ab2258bd757e2cb6d8ac",
+   "dir": "179-fingerprint-failure-triage",
+   "list": "trending"
+  },
+  {
+   "name": "safe-refactor",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "safe-refactor",
+   "path": "skills/safe-refactor/SKILL.md",
+   "blob_sha": "0d492db7d302e87f5bf01738fee6a7543984a787",
+   "dir": "180-safe-refactor",
+   "list": "trending"
+  },
+  {
+   "name": "verify-and-stop",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "verify-and-stop",
+   "path": "skills/verify-and-stop/SKILL.md",
+   "blob_sha": "58a9cd7bbf500bc2905260f908dbcd03f107fa93",
+   "dir": "181-verify-and-stop",
+   "list": "trending"
+  },
+  {
+   "name": "playwright-stealth-verify",
+   "source": "liarjsdev/liarjs-skills",
+   "skill_id": "playwright-stealth-verify",
+   "path": "skills/playwright-stealth-verify/SKILL.md",
+   "blob_sha": "beab0a6ef2c35f38757997f25f88ca1d454474da",
+   "dir": "182-playwright-stealth-verify",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-learn",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-learn",
+   "path": "skills/caveman-learn/SKILL.md",
+   "blob_sha": "8dc2c2d4a6cc9e4f3c5a1184af02a2f349477110",
+   "dir": "183-caveman-learn",
+   "list": "trending"
+  },
+  {
+   "name": "supabase-postgres-best-practices",
+   "source": "supabase/agent-skills",
+   "skill_id": "supabase-postgres-best-practices",
+   "path": "skills/supabase-postgres-best-practices/SKILL.md",
+   "blob_sha": "6400792389dfcc82c81953054e546bd72ebcd259",
+   "dir": "184-supabase-postgres-best-practices",
+   "list": "trending"
+  },
+  {
+   "name": "executing-plans",
+   "source": "obra/superpowers",
+   "skill_id": "executing-plans",
+   "path": "skills/executing-plans/SKILL.md",
+   "blob_sha": "ea23196d745043eefb0287387112825d2ca99f05",
+   "dir": "185-executing-plans",
+   "list": "trending"
+  },
+  {
+   "name": "lean-build",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "lean-build",
+   "path": "skills/lean-build/SKILL.md",
+   "blob_sha": "2f7ff32e28ef1f7a426af75e270f10d1dc6b13dd",
+   "dir": "186-lean-build",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-optimize",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-optimize",
+   "path": "skills/caveman-optimize/SKILL.md",
+   "blob_sha": "93dc85f6b0af1aba49e81e8a51d6e55a249b2a0a",
+   "dir": "187-caveman-optimize",
+   "list": "trending"
+  },
+  {
+   "name": "fingerprint-ci-gate",
+   "source": "liarjsdev/liarjs-skills",
+   "skill_id": "fingerprint-ci-gate",
+   "path": "skills/fingerprint-ci-gate/SKILL.md",
+   "blob_sha": "0e65585fc8faa8487087de88e4ecf055601cd428",
+   "dir": "188-fingerprint-ci-gate",
+   "list": "trending"
+  },
+  {
+   "name": "megacave",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "megacave",
+   "path": "skills/megacave/SKILL.md",
+   "blob_sha": "e26ef7305706dbc4ae4fe8a1c14a6f9fdce574bc",
+   "dir": "189-megacave",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-evidence-review",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-evidence-review",
+   "path": "skills/caveman-evidence-review/SKILL.md",
+   "blob_sha": "451447e385bb7f4e0ce21d92d6e9827fa028e4c8",
+   "dir": "190-caveman-evidence-review",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-discover",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-discover",
+   "path": "skills/caveman-discover/SKILL.md",
+   "blob_sha": "22e7e27433b40dc811a34f94e5213a4941ef7dd2",
+   "dir": "191-caveman-discover",
+   "list": "trending"
+  },
+  {
+   "name": "browser-fingerprint-audit",
+   "source": "liarjsdev/liarjs-skills",
+   "skill_id": "browser-fingerprint-audit",
+   "path": "skills/browser-fingerprint-audit/SKILL.md",
+   "blob_sha": "b77a8730b20131ecc8497715fc54d6b1f0527979",
+   "dir": "192-browser-fingerprint-audit",
+   "list": "trending"
+  },
+  {
+   "name": "caveman-manage",
+   "source": "juliusbrussee/caveman",
+   "skill_id": "caveman-manage",
+   "path": "skills/caveman-manage/SKILL.md",
+   "blob_sha": "a1395b535fd9cb0a03dd3ce099a6b56a2f6a9076",
+   "dir": "193-caveman-manage",
+   "list": "trending"
+  },
+  {
+   "name": "receiving-code-review",
+   "source": "obra/superpowers",
+   "skill_id": "receiving-code-review",
+   "path": "skills/receiving-code-review/SKILL.md",
+   "blob_sha": "950da7b74bf6dbed6b8726d12ddadd65a9f5fda7",
+   "dir": "194-receiving-code-review",
+   "list": "trending"
+  },
+  {
+   "name": "subagent-driven-development",
+   "source": "obra/superpowers",
+   "skill_id": "subagent-driven-development",
+   "path": "skills/subagent-driven-development/SKILL.md",
+   "blob_sha": "45195787cb3f5d141af203e2fdc12f158be14522",
+   "dir": "195-subagent-driven-development",
+   "list": "trending"
+  },
+  {
+   "name": "skill-creator",
+   "source": "anthropics/skills",
+   "skill_id": "skill-creator",
+   "path": "skills/skill-creator/SKILL.md",
+   "blob_sha": "65b3a402dbd09b8e83f9d637c6b553875189085c",
+   "dir": "196-skill-creator",
+   "list": "trending"
+  },
+  {
+   "name": "cloudflare",
+   "source": "cloudflare/skills",
+   "skill_id": "cloudflare",
+   "path": "skills/cloudflare/SKILL.md",
+   "blob_sha": "bc4d3016b3ebc98eecc31eb1898ade5c6a59b30c",
+   "dir": "197-cloudflare",
+   "list": "trending"
+  },
+  {
+   "name": "using-git-worktrees",
+   "source": "obra/superpowers",
+   "skill_id": "using-git-worktrees",
+   "path": "skills/using-git-worktrees/SKILL.md",
+   "blob_sha": "1381dacb3516b94382dd6ec736ede21ee8ede2b3",
+   "dir": "198-using-git-worktrees",
+   "list": "trending"
+  },
+  {
+   "name": "finishing-a-development-branch",
+   "source": "obra/superpowers",
+   "skill_id": "finishing-a-development-branch",
+   "path": "skills/finishing-a-development-branch/SKILL.md",
+   "blob_sha": "fa8aecaf8813f1b19d19996f7957d1b0121f2d9c",
+   "dir": "199-finishing-a-development-branch",
+   "list": "trending"
+  },
+  {
+   "name": "dispatching-parallel-agents",
+   "source": "obra/superpowers",
+   "skill_id": "dispatching-parallel-agents",
+   "path": "skills/dispatching-parallel-agents/SKILL.md",
+   "blob_sha": "3fa091b348bbe0a18eaa0e17e9092c97f7005cbe",
+   "dir": "200-dispatching-parallel-agents",
+   "list": "trending"
+  },
+  {
+   "name": "using-superpowers",
+   "source": "obra/superpowers",
+   "skill_id": "using-superpowers",
+   "path": "skills/using-superpowers/SKILL.md",
+   "blob_sha": "069d578445805a28b8dacbf70cdf045e1673def0",
+   "dir": "201-using-superpowers",
+   "list": "trending"
+  },
+  {
+   "name": "writing-skills",
+   "source": "obra/superpowers",
+   "skill_id": "writing-skills",
+   "path": "skills/writing-skills/SKILL.md",
+   "blob_sha": "09d76b79dd4080fe4dcc9bfb3c54d05dbff8a563",
+   "dir": "202-writing-skills",
+   "list": "trending"
+  },
+  {
+   "name": "workers-best-practices",
+   "source": "cloudflare/skills",
+   "skill_id": "workers-best-practices",
+   "path": "skills/workers-best-practices/SKILL.md",
+   "blob_sha": "d150906f403b130b68e7e47b958c4e46fbd053f3",
+   "dir": "203-workers-best-practices",
+   "list": "trending"
+  },
+  {
+   "name": "wrangler",
+   "source": "cloudflare/skills",
+   "skill_id": "wrangler",
+   "path": "skills/wrangler/SKILL.md",
+   "blob_sha": "d5cef1c15fd2434202c33f071cf502b5d69b141d",
+   "dir": "204-wrangler",
+   "list": "trending"
+  },
+  {
+   "name": "durable-objects",
+   "source": "cloudflare/skills",
+   "skill_id": "durable-objects",
+   "path": "skills/durable-objects/SKILL.md",
+   "blob_sha": "80fb75785e42c023cd3cdcbf5b9a9ac6909ecc25",
+   "dir": "205-durable-objects",
+   "list": "trending"
+  },
+  {
+   "name": "seo",
+   "source": "iannuttall/seo",
+   "skill_id": "seo",
+   "path": "skills/seo/SKILL.md",
+   "blob_sha": "d148e8a3e6a126260cc785d16eb658ca9b37ef94",
+   "dir": "206-seo",
+   "list": "trending"
+  },
+  {
+   "name": "agents-sdk",
+   "source": "cloudflare/skills",
+   "skill_id": "agents-sdk",
+   "path": "skills/agents-sdk/SKILL.md",
+   "blob_sha": "46dc611f3f7666461dbd14f5f809e82629b3bfa4",
+   "dir": "207-agents-sdk",
+   "list": "trending"
+  },
+  {
+   "name": "web-perf",
+   "source": "cloudflare/skills",
+   "skill_id": "web-perf",
+   "path": "skills/web-perf/SKILL.md",
+   "blob_sha": "9c70b7079aef1fbac9af3669bd38d5dfb712f4b7",
+   "dir": "208-web-perf",
+   "list": "trending"
+  },
+  {
+   "name": "turnstile-spin",
+   "source": "cloudflare/skills",
+   "skill_id": "turnstile-spin",
+   "path": "skills/turnstile-spin/SKILL.md",
+   "blob_sha": "7f826babb92baf1ba00731c8ecf6c1d9b116a29b",
+   "dir": "209-turnstile-spin",
+   "list": "trending"
+  },
+  {
+   "name": "cloudflare-email-service",
+   "source": "cloudflare/skills",
+   "skill_id": "cloudflare-email-service",
+   "path": "skills/cloudflare-email-service/SKILL.md",
+   "blob_sha": "c57d6f87311f5fe64186eadef75951d67264a159",
+   "dir": "210-cloudflare-email-service",
+   "list": "trending"
+  },
+  {
+   "name": "nextjs-on-cloudflare",
+   "source": "cloudflare/skills",
+   "skill_id": "nextjs-on-cloudflare",
+   "path": "skills/nextjs-on-cloudflare/SKILL.md",
+   "blob_sha": "765fd91d545f537ae99fdfac3326ecc566ec3c5f",
+   "dir": "211-nextjs-on-cloudflare",
+   "list": "trending"
+  },
+  {
+   "name": "cloudflare-one",
+   "source": "cloudflare/skills",
+   "skill_id": "cloudflare-one",
+   "path": "skills/cloudflare-one/SKILL.md",
+   "blob_sha": "61493c0980fdbc39306f68d4cd4b5cc16682ad7e",
+   "dir": "212-cloudflare-one",
+   "list": "trending"
+  },
+  {
+   "name": "sandbox-stable",
+   "source": "cloudflare/skills",
+   "skill_id": "sandbox-stable",
+   "path": "skills/sandbox-stable/SKILL.md",
+   "blob_sha": "7433dbc6cd1737926964485b26f55a57cd5ec472",
+   "dir": "213-sandbox-stable",
+   "list": "trending"
+  },
+  {
+   "name": "cloudflare-one-migrations",
+   "source": "cloudflare/skills",
+   "skill_id": "cloudflare-one-migrations",
+   "path": "skills/cloudflare-one-migrations/SKILL.md",
+   "blob_sha": "05629c50be37106fa6dcac8e59927fd5119462a4",
+   "dir": "214-cloudflare-one-migrations",
+   "list": "trending"
+  },
+  {
+   "name": "sandbox-migrate-to-next",
+   "source": "cloudflare/skills",
+   "skill_id": "sandbox-migrate-to-next",
+   "path": "skills/sandbox-migrate-to-next/SKILL.md",
+   "blob_sha": "4774e043207c2f6343ea229e7c9e9ad3f56f0186",
+   "dir": "215-sandbox-migrate-to-next",
+   "list": "trending"
+  },
+  {
+   "name": "sandbox-next",
+   "source": "cloudflare/skills",
+   "skill_id": "sandbox-next",
+   "path": "skills/sandbox-next/SKILL.md",
+   "blob_sha": "07784baa807f6ceeacced7b14ae614817a591ddd",
+   "dir": "216-sandbox-next",
+   "list": "trending"
+  },
+  {
+   "name": "social",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "social",
+   "path": "skills/social/SKILL.md",
+   "blob_sha": "a99a03ad0d176d77021b197f83921d8ab4069845",
+   "dir": "217-social",
+   "list": "trending"
+  },
+  {
+   "name": "ai-seo",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "ai-seo",
+   "path": "skills/ai-seo/SKILL.md",
+   "blob_sha": "2869ca89116540ad34437c90888a9322553dc69d",
+   "dir": "218-ai-seo",
+   "list": "trending"
+  },
+  {
+   "name": "lark-shared",
+   "source": "larksuite/cli",
+   "skill_id": "lark-shared",
+   "path": "skills/lark-shared/SKILL.md",
+   "blob_sha": "9e54704bcd1a494bbdb69e4142b31054e10ec1f0",
+   "dir": "219-lark-shared",
+   "list": "trending"
+  },
+  {
+   "name": "lark-doc",
+   "source": "larksuite/cli",
+   "skill_id": "lark-doc",
+   "path": "skills/lark-doc/SKILL.md",
+   "blob_sha": "92cc132b12d4d8f705a84b7e9615f60df7690f61",
+   "dir": "220-lark-doc",
+   "list": "trending"
+  },
+  {
+   "name": "content-strategy",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "content-strategy",
+   "path": "skills/content-strategy/SKILL.md",
+   "blob_sha": "61a9c7ad6dd9ec215d28f8bfe72820ab3f6a1023",
+   "dir": "221-content-strategy",
+   "list": "trending"
+  },
+  {
+   "name": "cf-cli",
+   "source": "cloudflare/skills",
+   "skill_id": "cf-cli",
+   "path": "skills/cf-cli/SKILL.md",
+   "blob_sha": "80eb0c47454f5bfde7b27ce158d9ff18b58124bd",
+   "dir": "222-cf-cli",
+   "list": "trending"
+  },
+  {
+   "name": "diagnosing-superpowers",
+   "source": "obra/superpowers",
+   "skill_id": "diagnosing-superpowers",
+   "path": "skills/diagnosing-superpowers/SKILL.md",
+   "blob_sha": "dda2692d528574c410b118a6de545d6afc7eb047",
+   "dir": "223-diagnosing-superpowers",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-core",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-core",
+   "path": "skills/gsap-core/SKILL.md",
+   "blob_sha": "98639432f4112b664aa5e53cf5d8ea1a4697eff9",
+   "dir": "224-gsap-core",
+   "list": "trending"
+  },
+  {
+   "name": "lark-drive",
+   "source": "larksuite/cli",
+   "skill_id": "lark-drive",
+   "path": "skills/lark-drive/SKILL.md",
+   "blob_sha": "2a1666cebf07c8c66feabb73f1705b9f9cf509c3",
+   "dir": "225-lark-drive",
+   "list": "trending"
+  },
+  {
+   "name": "cro",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "cro",
+   "path": "skills/cro/SKILL.md",
+   "blob_sha": "194df7e3b26a7ce523739053c06605cc22622a14",
+   "dir": "226-cro",
+   "list": "trending"
+  },
+  {
+   "name": "lark-wiki",
+   "source": "larksuite/cli",
+   "skill_id": "lark-wiki",
+   "path": "skills/lark-wiki/SKILL.md",
+   "blob_sha": "2cbc6bf1fb4b3c1337ade5fe74468316ee84fa83",
+   "dir": "227-lark-wiki",
+   "list": "trending"
+  },
+  {
+   "name": "lark-im",
+   "source": "larksuite/cli",
+   "skill_id": "lark-im",
+   "path": "skills/lark-im/SKILL.md",
+   "blob_sha": "5e1a3398932f64d4e7140e623931fb78c591a3ce",
+   "dir": "228-lark-im",
+   "list": "trending"
+  },
+  {
+   "name": "lark-base",
+   "source": "larksuite/cli",
+   "skill_id": "lark-base",
+   "path": "skills/lark-base/SKILL.md",
+   "blob_sha": "2d9d7259cdd70fd0954b94c43890d927c7521213",
+   "dir": "229-lark-base",
+   "list": "trending"
+  },
+  {
+   "name": "lark-sheets",
+   "source": "larksuite/cli",
+   "skill_id": "lark-sheets",
+   "path": "skills/lark-sheets/SKILL.md",
+   "blob_sha": "83b95fa6ec61d72c70c26d57d4db9b7a0e006cd9",
+   "dir": "230-lark-sheets",
+   "list": "trending"
+  },
+  {
+   "name": "frameworks-on-cloudflare",
+   "source": "cloudflare/skills",
+   "skill_id": "frameworks-on-cloudflare",
+   "path": "skills/frameworks-on-cloudflare/SKILL.md",
+   "blob_sha": "483733cd1bc49bf3f4b6058871bbb21872daee8b",
+   "dir": "231-frameworks-on-cloudflare",
+   "list": "trending"
+  },
+  {
+   "name": "lark-whiteboard",
+   "source": "larksuite/cli",
+   "skill_id": "lark-whiteboard",
+   "path": "skills/lark-whiteboard/SKILL.md",
+   "blob_sha": "9152c32aa9ae766468cb298266a6aec76a4a453f",
+   "dir": "232-lark-whiteboard",
+   "list": "trending"
+  },
+  {
+   "name": "webapp-testing",
+   "source": "anthropics/skills",
+   "skill_id": "webapp-testing",
+   "path": "skills/webapp-testing/SKILL.md",
+   "blob_sha": "4726215301db64a0cc4d41fc3219c61f37a30f4a",
+   "dir": "233-webapp-testing",
+   "list": "trending"
+  },
+  {
+   "name": "workers-development",
+   "source": "cloudflare/skills",
+   "skill_id": "workers-development",
+   "path": "skills/workers-development/SKILL.md",
+   "blob_sha": "0c748f7dc1947caf6fde5e1b6db833854594136e",
+   "dir": "234-workers-development",
+   "list": "trending"
+  },
+  {
+   "name": "k2",
+   "source": "cloudflare/skills",
+   "skill_id": "k2",
+   "path": "skills/k2/SKILL.md",
+   "blob_sha": "b76e14b45ba918fc38ec1c70259b6453dea767fd",
+   "dir": "235-k2",
+   "list": "trending"
+  },
+  {
+   "name": "lark-markdown",
+   "source": "larksuite/cli",
+   "skill_id": "lark-markdown",
+   "path": "skills/lark-markdown/SKILL.md",
+   "blob_sha": "ce527b96f61ebce3454d61c436c5e3daa318666f",
+   "dir": "236-lark-markdown",
+   "list": "trending"
+  },
+  {
+   "name": "workers-profiling",
+   "source": "cloudflare/skills",
+   "skill_id": "workers-profiling",
+   "path": "skills/workers-profiling/SKILL.md",
+   "blob_sha": "792be905e836a3a892200f2c9f5a3ecbdc710314",
+   "dir": "237-workers-profiling",
+   "list": "trending"
+  },
+  {
+   "name": "basin",
+   "source": "cloudflare/skills",
+   "skill_id": "basin",
+   "path": "skills/basin/SKILL.md",
+   "blob_sha": "3f884f957e8b9e281553c77b6877e3e30e913eae",
+   "dir": "238-basin",
+   "list": "trending"
+  },
+  {
+   "name": "lark-task",
+   "source": "larksuite/cli",
+   "skill_id": "lark-task",
+   "path": "skills/lark-task/SKILL.md",
+   "blob_sha": "5962c055a8154bbe285afc33b99b181138f93973",
+   "dir": "239-lark-task",
+   "list": "trending"
+  },
+  {
+   "name": "lark-event",
+   "source": "larksuite/cli",
+   "skill_id": "lark-event",
+   "path": "skills/lark-event/SKILL.md",
+   "blob_sha": "72c318cc418648d846e08171b208ff5afc13b5cc",
+   "dir": "240-lark-event",
+   "list": "trending"
+  },
+  {
+   "name": "lark-meeting",
+   "source": "larksuite/cli",
+   "skill_id": "lark-meeting",
+   "path": "skills/lark-meeting/SKILL.md",
+   "blob_sha": "5c68f52751131b10fc66ed5e2f8c8879e4d14a7d",
+   "dir": "241-lark-meeting",
+   "list": "trending"
+  },
+  {
+   "name": "lark-contact",
+   "source": "larksuite/cli",
+   "skill_id": "lark-contact",
+   "path": "skills/lark-contact/SKILL.md",
+   "blob_sha": "2ea45d3e7c95b39d78d27db640bf667e9a5cd0e9",
+   "dir": "242-lark-contact",
+   "list": "trending"
+  },
+  {
+   "name": "lark-slides",
+   "source": "larksuite/cli",
+   "skill_id": "lark-slides",
+   "path": "skills/lark-slides/SKILL.md",
+   "blob_sha": "dd264d26ff1f8e34c56a619c2a0cb5fc286a4c93",
+   "dir": "243-lark-slides",
+   "list": "trending"
+  },
+  {
+   "name": "lark-mail",
+   "source": "larksuite/cli",
+   "skill_id": "lark-mail",
+   "path": "skills/lark-mail/SKILL.md",
+   "blob_sha": "c5d1087443fdc10fe2c8378a9a01c4fe4b78c047",
+   "dir": "244-lark-mail",
+   "list": "trending"
+  },
+  {
+   "name": "lark-workflow-standup-report",
+   "source": "larksuite/cli",
+   "skill_id": "lark-workflow-standup-report",
+   "path": "skills/lark-workflow-standup-report/SKILL.md",
+   "blob_sha": "4903553ca8ffd48b1669ea88fbda2bf0578827b3",
+   "dir": "245-lark-workflow-standup-report",
+   "list": "trending"
+  },
+  {
+   "name": "lark-calendar",
+   "source": "larksuite/cli",
+   "skill_id": "lark-calendar",
+   "path": "skills/lark-calendar/SKILL.md",
+   "blob_sha": "65e82642146891375941126fa21687dd1314fbf2",
+   "dir": "246-lark-calendar",
+   "list": "trending"
+  },
+  {
+   "name": "lark-workflow-meeting-summary",
+   "source": "larksuite/cli",
+   "skill_id": "lark-workflow-meeting-summary",
+   "path": "skills/lark-workflow-meeting-summary/SKILL.md",
+   "blob_sha": "e48056c41da9eb664cac9feabe4e40bb5c8cbe66",
+   "dir": "247-lark-workflow-meeting-summary",
+   "list": "trending"
+  },
+  {
+   "name": "pptx",
+   "source": "anthropics/skills",
+   "skill_id": "pptx",
+   "path": "skills/pptx/SKILL.md",
+   "blob_sha": "6857031b6d9942039b9fe1871887910e8f5c5ff5",
+   "dir": "248-pptx",
+   "list": "trending"
+  },
+  {
+   "name": "lark-openapi-explorer",
+   "source": "larksuite/cli",
+   "skill_id": "lark-openapi-explorer",
+   "path": "skills/lark-openapi-explorer/SKILL.md",
+   "blob_sha": "508193a09250b545d77c4b63fd2344966f853a56",
+   "dir": "249-lark-openapi-explorer",
+   "list": "trending"
+  },
+  {
+   "name": "lark-apps",
+   "source": "larksuite/cli",
+   "skill_id": "lark-apps",
+   "path": "skills/lark-apps/SKILL.md",
+   "blob_sha": "53baaab559becbf1c309153947a74378290a58c1",
+   "dir": "250-lark-apps",
+   "list": "trending"
+  },
+  {
+   "name": "supabase",
+   "source": "supabase/agent-skills",
+   "skill_id": "supabase",
+   "path": "skills/supabase/SKILL.md",
+   "blob_sha": "66093e0a0f8d9268094c1a4b38c04419b787ca89",
+   "dir": "251-supabase",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-scrolltrigger",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-scrolltrigger",
+   "path": "skills/gsap-scrolltrigger/SKILL.md",
+   "blob_sha": "6d8c09f2136c108595c9e0db859c4a39460e99cf",
+   "dir": "252-gsap-scrolltrigger",
+   "list": "trending"
+  },
+  {
+   "name": "marketing-psychology",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "marketing-psychology",
+   "path": "skills/marketing-psychology/SKILL.md",
+   "blob_sha": "2eef4a749a132bcfea440e2d7693c435abf08ab9",
+   "dir": "253-marketing-psychology",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-timeline",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-timeline",
+   "path": "skills/gsap-timeline/SKILL.md",
+   "blob_sha": "1fed372b0e5276b2a207d80bc23f81180a0dff55",
+   "dir": "254-gsap-timeline",
+   "list": "trending"
+  },
+  {
+   "name": "pricing",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "pricing",
+   "path": "skills/pricing/SKILL.md",
+   "blob_sha": "88fd2c3dd2cc4aafa0828920dc540ad04b184aab",
+   "dir": "255-pricing",
+   "list": "trending"
+  },
+  {
+   "name": "ponytail-review",
+   "source": "dietrichgebert/ponytail",
+   "skill_id": "ponytail-review",
+   "path": "skills/ponytail-review/SKILL.md",
+   "blob_sha": "a50e3ac6ded6fccc9edae34ce37877bbce11e3fa",
+   "dir": "256-ponytail-review",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-performance",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-performance",
+   "path": "skills/gsap-performance/SKILL.md",
+   "blob_sha": "05792acf5b0ea7fd30042cdc5e91282e8e047898",
+   "dir": "257-gsap-performance",
+   "list": "trending"
+  },
+  {
+   "name": "ad-creative",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "ad-creative",
+   "path": "skills/ad-creative/SKILL.md",
+   "blob_sha": "eda0dc15f00051b07b9cfc0dd2e5ad330a212961",
+   "dir": "258-ad-creative",
+   "list": "trending"
+  },
+  {
+   "name": "product-marketing",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "product-marketing",
+   "path": "skills/product-marketing/SKILL.md",
+   "blob_sha": "a8197bddb8739b62c0e35504207d2565396d3915",
+   "dir": "259-product-marketing",
+   "list": "trending"
+  },
+  {
+   "name": "copy-editing",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "copy-editing",
+   "path": "skills/copy-editing/SKILL.md",
+   "blob_sha": "2065709be9c2571fc34ad79a0f453fb040d8c1c0",
+   "dir": "260-copy-editing",
+   "list": "trending"
+  },
+  {
+   "name": "neon-postgres",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon-postgres",
+   "path": "skills/neon-postgres/SKILL.md",
+   "blob_sha": "b5ecf86ad28819140351a3cc4db0d1e89e37c9e9",
+   "dir": "261-neon-postgres",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-plugins",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-plugins",
+   "path": "skills/gsap-plugins/SKILL.md",
+   "blob_sha": "bb5f7483038adf26a889c8b2b85e3ef2cf0141dc",
+   "dir": "262-gsap-plugins",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-react",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-react",
+   "path": "skills/gsap-react/SKILL.md",
+   "blob_sha": "e2e51805457943cd4982fe792b858c14fa2c3c8f",
+   "dir": "263-gsap-react",
+   "list": "trending"
+  },
+  {
+   "name": "xlsx",
+   "source": "anthropics/skills",
+   "skill_id": "xlsx",
+   "path": "skills/xlsx/SKILL.md",
+   "blob_sha": "419ecd344b776826107eef93a9727af3772cb755",
+   "dir": "264-xlsx",
+   "list": "trending"
+  },
+  {
+   "name": "docx",
+   "source": "anthropics/skills",
+   "skill_id": "docx",
+   "path": "skills/docx/SKILL.md",
+   "blob_sha": "a95379e1bb058bbca8c51edbd30de4d31ae4785b",
+   "dir": "265-docx",
+   "list": "trending"
+  },
+  {
+   "name": "pdf",
+   "source": "anthropics/skills",
+   "skill_id": "pdf",
+   "path": "skills/pdf/SKILL.md",
+   "blob_sha": "9f606f1cd68dcab9dabb75b548e90c1de028b8a2",
+   "dir": "266-pdf",
+   "list": "trending"
+  },
+  {
+   "name": "neon",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon",
+   "path": "skills/neon/SKILL.md",
+   "blob_sha": "b6bcf8a491460b8590900f0033f01e7fe630c319",
+   "dir": "267-neon",
+   "list": "trending"
+  },
+  {
+   "name": "schema",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "schema",
+   "path": "skills/schema/SKILL.md",
+   "blob_sha": "a152e5e59496740caf18ba0f0c74f4ef0e383c39",
+   "dir": "268-schema",
+   "list": "trending"
+  },
+  {
+   "name": "offers",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "offers",
+   "path": "skills/offers/SKILL.md",
+   "blob_sha": "4733063b1b44e15f3ac32dde2a8103ed0e5058a6",
+   "dir": "269-offers",
+   "list": "trending"
+  },
+  {
+   "name": "canvas-design",
+   "source": "anthropics/skills",
+   "skill_id": "canvas-design",
+   "path": "skills/canvas-design/SKILL.md",
+   "blob_sha": "9f63fee82de84cd4230e1d0e322247b61eb4c94c",
+   "dir": "270-canvas-design",
+   "list": "trending"
+  },
+  {
+   "name": "customer-research",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "customer-research",
+   "path": "skills/customer-research/SKILL.md",
+   "blob_sha": "6fb68214bda721ddeff6a63266ce6d0ceaddefc9",
+   "dir": "271-customer-research",
+   "list": "trending"
+  },
+  {
+   "name": "cold-email",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "cold-email",
+   "path": "skills/cold-email/SKILL.md",
+   "blob_sha": "d664c0038a9e9012d7e313efcb65fa1f228af4be",
+   "dir": "272-cold-email",
+   "list": "trending"
+  },
+  {
+   "name": "ads",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "ads",
+   "path": "skills/ads/SKILL.md",
+   "blob_sha": "d41bee6cc3694fffd2bb0dc786f3f19d923a10e1",
+   "dir": "273-ads",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-utils",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-utils",
+   "path": "skills/gsap-utils/SKILL.md",
+   "blob_sha": "367e405e027936ce6b5fb85ec996beb135715194",
+   "dir": "274-gsap-utils",
+   "list": "trending"
+  },
+  {
+   "name": "analytics",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "analytics",
+   "path": "skills/analytics/SKILL.md",
+   "blob_sha": "5429676635189949c029bd9bfd537c1f3a5717f9",
+   "dir": "275-analytics",
+   "list": "trending"
+  },
+  {
+   "name": "marketing-plan",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "marketing-plan",
+   "path": "skills/marketing-plan/SKILL.md",
+   "blob_sha": "89736b6e966f506007c887dc47e52b98c54d05b5",
+   "dir": "276-marketing-plan",
+   "list": "trending"
+  },
+  {
+   "name": "sales-enablement",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "sales-enablement",
+   "path": "skills/sales-enablement/SKILL.md",
+   "blob_sha": "9bd5c6e78c8656cf900f69d302035cb5f8f0ef97",
+   "dir": "277-sales-enablement",
+   "list": "trending"
+  },
+  {
+   "name": "launch",
+   "source": "coreyhaines31/marketingskills",
+   "skill_id": "launch",
+   "path": "skills/launch/SKILL.md",
+   "blob_sha": "77c661a25360b620475c538c1a63102891bf3b42",
+   "dir": "278-launch",
+   "list": "trending"
+  },
+  {
+   "name": "gsap-frameworks",
+   "source": "greensock/gsap-skills",
+   "skill_id": "gsap-frameworks",
+   "path": "skills/gsap-frameworks/SKILL.md",
+   "blob_sha": "3c2df8611b61d0c97abb8d32ed922ce8207424e5",
+   "dir": "279-gsap-frameworks",
+   "list": "trending"
+  },
+  {
+   "name": "ponytail-audit",
+   "source": "dietrichgebert/ponytail",
+   "skill_id": "ponytail-audit",
+   "path": "skills/ponytail-audit/SKILL.md",
+   "blob_sha": "ff9a95480700600fe2664d2d0906a4d750b2da0b",
+   "dir": "280-ponytail-audit",
+   "list": "trending"
+  },
+  {
+   "name": "design-system",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "design-system",
+   "path": ".claude/skills/design-system/SKILL.md",
+   "blob_sha": "804e553325fedc49dd7e75c30c6cffeebaa6650b",
+   "dir": "281-design-system",
+   "list": "trending"
+  },
+  {
+   "name": "ai-research-reproduction",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "ai-research-reproduction",
+   "path": "skills/ai-research-reproduction/SKILL.md",
+   "blob_sha": "85bfc3dbf3fb3973f675cb61a674bd6e3e5f67a1",
+   "dir": "282-ai-research-reproduction",
+   "list": "trending"
+  },
+  {
+   "name": "ai-research-explore",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "ai-research-explore",
+   "path": "skills/ai-research-explore/SKILL.md",
+   "blob_sha": "5e2d834368e43bb8b6019f3fe33ad6713fb49b3f",
+   "dir": "283-ai-research-explore",
+   "list": "trending"
+  },
+  {
+   "name": "analyze-project",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "analyze-project",
+   "path": "skills/analyze-project/SKILL.md",
+   "blob_sha": "40adad95b592d5646ec6d95648b4b7611fa84556",
+   "dir": "284-analyze-project",
+   "list": "trending"
+  },
+  {
+   "name": "paper-context-resolver",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "paper-context-resolver",
+   "path": "skills/paper-context-resolver/SKILL.md",
+   "blob_sha": "f65d98f1b927f48c0db2e2e5369326c1b9943e17",
+   "dir": "285-paper-context-resolver",
+   "list": "trending"
+  },
+  {
+   "name": "safe-debug",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "safe-debug",
+   "path": "skills/safe-debug/SKILL.md",
+   "blob_sha": "7527176c8c76d5670ac47701e6e4b07edad63600",
+   "dir": "286-safe-debug",
+   "list": "trending"
+  },
+  {
+   "name": "minimal-run-and-audit",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "minimal-run-and-audit",
+   "path": "skills/minimal-run-and-audit/SKILL.md",
+   "blob_sha": "2acf95428cf58e83c6a3db34321ac34506ce4d95",
+   "dir": "287-minimal-run-and-audit",
+   "list": "trending"
+  },
+  {
+   "name": "run-train",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "run-train",
+   "path": "skills/run-train/SKILL.md",
+   "blob_sha": "b0d17e98f8a78a52db513a1c09c621fd6becad14",
+   "dir": "288-run-train",
+   "list": "trending"
+  },
+  {
+   "name": "env-and-assets-bootstrap",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "env-and-assets-bootstrap",
+   "path": "skills/env-and-assets-bootstrap/SKILL.md",
+   "blob_sha": "09fe48dac272a762327a271e56639b8025ab1b50",
+   "dir": "289-env-and-assets-bootstrap",
+   "list": "trending"
+  },
+  {
+   "name": "explore-run",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "explore-run",
+   "path": "skills/explore-run/SKILL.md",
+   "blob_sha": "775023832a74be507f105de72674b3826a6e4ffa",
+   "dir": "290-explore-run",
+   "list": "trending"
+  },
+  {
+   "name": "explore-code",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "explore-code",
+   "path": "skills/explore-code/SKILL.md",
+   "blob_sha": "7268670da021a12162867552cd7aef6bec6dd937",
+   "dir": "291-explore-code",
+   "list": "trending"
+  },
+  {
+   "name": "repo-intake-and-plan",
+   "source": "lllllllama/rigorpilot-skills",
+   "skill_id": "repo-intake-and-plan",
+   "path": "skills/repo-intake-and-plan/SKILL.md",
+   "blob_sha": "56441bc128529f2c0f52327339671d5a02b4baa7",
+   "dir": "292-repo-intake-and-plan",
+   "list": "trending"
+  },
+  {
+   "name": "neon-object-storage",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon-object-storage",
+   "path": "skills/neon-object-storage/SKILL.md",
+   "blob_sha": "502e8d29e28fcc0ab5fefe81aeb338c49c2b3eb2",
+   "dir": "293-neon-object-storage",
+   "list": "trending"
+  },
+  {
+   "name": "neon-auth",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon-auth",
+   "path": "skills/neon-auth/SKILL.md",
+   "blob_sha": "7c518d324c196928b08567530224cc5b71fd3328",
+   "dir": "294-neon-auth",
+   "list": "trending"
+  },
+  {
+   "name": "neon-functions",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon-functions",
+   "path": "skills/neon-functions/SKILL.md",
+   "blob_sha": "92f9fcdaf7f7b108c455783a2287f9ea49a9f6bb",
+   "dir": "295-neon-functions",
+   "list": "trending"
+  },
+  {
+   "name": "ponytail-debt",
+   "source": "dietrichgebert/ponytail",
+   "skill_id": "ponytail-debt",
+   "path": "skills/ponytail-debt/SKILL.md",
+   "blob_sha": "3124f520a65d2a4fa75a2f5db6225c38ebdb8620",
+   "dir": "296-ponytail-debt",
+   "list": "trending"
+  },
+  {
+   "name": "ui-styling",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "ui-styling",
+   "path": ".claude/skills/ui-styling/SKILL.md",
+   "blob_sha": "b5a9acb9643e10b3629c0b9cac7e616c1080b597",
+   "dir": "297-ui-styling",
+   "list": "trending"
+  },
+  {
+   "name": "code-review-and-quality",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "code-review-and-quality",
+   "path": "skills/code-review-and-quality/SKILL.md",
+   "blob_sha": "1c5ab78da82fc6965c0b57b295560327b19c6098",
+   "dir": "298-code-review-and-quality",
+   "list": "trending"
+  },
+  {
+   "name": "ponytail-help",
+   "source": "dietrichgebert/ponytail",
+   "skill_id": "ponytail-help",
+   "path": "skills/ponytail-help/SKILL.md",
+   "blob_sha": "34fccb3ff542b3b8d4d131e6120a1812c9c4617a",
+   "dir": "299-ponytail-help",
+   "list": "trending"
+  },
+  {
+   "name": "banner-design",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "banner-design",
+   "path": ".claude/skills/banner-design/SKILL.md",
+   "blob_sha": "79fa5ee1884ce1b9f76627a1bea073d3dd67ee7b",
+   "dir": "300-banner-design",
+   "list": "trending"
+  },
+  {
+   "name": "neon-realtime",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon-realtime",
+   "path": "skills/neon-realtime/SKILL.md",
+   "blob_sha": "4e2ef4ca96e164ee28adbf6ec35a124d9550b5be",
+   "dir": "301-neon-realtime",
+   "list": "trending"
+  },
+  {
+   "name": "design",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "design",
+   "path": ".claude/skills/design/SKILL.md",
+   "blob_sha": "56d809dd879986f505c6ee98d69860bdeb955faf",
+   "dir": "302-design",
+   "list": "trending"
+  },
+  {
+   "name": "neon-ai-gateway",
+   "source": "neondatabase/agent-skills",
+   "skill_id": "neon-ai-gateway",
+   "path": "skills/neon-ai-gateway/SKILL.md",
+   "blob_sha": "6395c9a7319f1e8deed7794822cadd82338841b0",
+   "dir": "303-neon-ai-gateway",
+   "list": "trending"
+  },
+  {
+   "name": "ponytail-gain",
+   "source": "dietrichgebert/ponytail",
+   "skill_id": "ponytail-gain",
+   "path": "skills/ponytail-gain/SKILL.md",
+   "blob_sha": "1edff0e461fad6b671733ea6796aea9e417e266b",
+   "dir": "304-ponytail-gain",
+   "list": "trending"
+  },
+  {
+   "name": "last30days",
+   "source": "mvanhorn/last30days-skill",
+   "skill_id": "last30days",
+   "path": "skills/last30days/SKILL.md",
+   "blob_sha": "364c0c8cb5fed3c446c87bd1743598fdd1ee3868",
+   "dir": "305-last30days",
+   "list": "trending"
+  },
+  {
+   "name": "security-and-hardening",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "security-and-hardening",
+   "path": "skills/security-and-hardening/SKILL.md",
+   "blob_sha": "03e427de05f2780d7b4618542be9ed1c03ea84a9",
+   "dir": "306-security-and-hardening",
+   "list": "trending"
+  },
+  {
+   "name": "slides",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "slides",
+   "path": ".claude/skills/slides/SKILL.md",
+   "blob_sha": "52d345d1f4ab5fde70b38fdd0601ad42ef0449f1",
+   "dir": "307-slides",
+   "list": "trending"
+  },
+  {
+   "name": "pptx-nova",
+   "source": "hustcer/pptx-nova",
+   "skill_id": "pptx-nova",
+   "path": "pptx-nova/SKILL.md",
+   "blob_sha": "b27bb7216162e62f9bf6548831e3e97672c7fc74",
+   "dir": "308-pptx-nova",
+   "list": "trending"
+  },
+  {
+   "name": "brand",
+   "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "skill_id": "brand",
+   "path": ".claude/skills/brand/SKILL.md",
+   "blob_sha": "3eddf309084e6c4493fa19a6b31e755703ba5e86",
+   "dir": "309-brand",
+   "list": "trending"
+  },
+  {
+   "name": "convex",
+   "source": "convex/agent-skills",
+   "skill_id": "convex",
+   "path": "skills/convex/SKILL.md",
+   "blob_sha": "71af2a038e6eb773f313ab6309fddf6fc0108aa0",
+   "dir": "310-convex",
+   "list": "trending"
+  },
+  {
+   "name": "convex-test",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-test",
+   "path": "skills/convex-test/SKILL.md",
+   "blob_sha": "ec19b3e9f3f0ed3e9b49a39281851ea76e9063d4",
+   "dir": "311-convex-test",
+   "list": "trending"
+  },
+  {
+   "name": "convex-authz",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-authz",
+   "path": "skills/convex-authz/SKILL.md",
+   "blob_sha": "94dcabbef4694b639c7b8163a50cf1120c8633df",
+   "dir": "312-convex-authz",
+   "list": "trending"
+  },
+  {
+   "name": "convex-docs",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-docs",
+   "path": "skills/convex-docs/SKILL.md",
+   "blob_sha": "389cf1cd214eaec23ba4c69251e3e80bdd31f57b",
+   "dir": "313-convex-docs",
+   "list": "trending"
+  },
+  {
+   "name": "convex-quickstart",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-quickstart",
+   "path": "skills/convex-quickstart/SKILL.md",
+   "blob_sha": "7fd9053c6146b3d710caa5a9d33457c52127c102",
+   "dir": "314-convex-quickstart",
+   "list": "trending"
+  },
+  {
+   "name": "convex-verify",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-verify",
+   "path": "skills/convex-verify/SKILL.md",
+   "blob_sha": "2fe59729b90489281f23faf9c72db7d162cbff9d",
+   "dir": "315-convex-verify",
+   "list": "trending"
+  },
+  {
+   "name": "convex-design",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-design",
+   "path": "skills/convex-design/SKILL.md",
+   "blob_sha": "b2529db03fcaae07b6ddb5bdca48830b7b95ce63",
+   "dir": "316-convex-design",
+   "list": "trending"
+  },
+  {
+   "name": "convex-migrate",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-migrate",
+   "path": "skills/convex-migrate/SKILL.md",
+   "blob_sha": "d2ea8f3f791d308494f2084132cc2390847cc5a4",
+   "dir": "317-convex-migrate",
+   "list": "trending"
+  },
+  {
+   "name": "convex-reviewer",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-reviewer",
+   "path": "skills/convex-reviewer/SKILL.md",
+   "blob_sha": "f3adab255c36ad7b893a525306dc93d204984634",
+   "dir": "318-convex-reviewer",
+   "list": "trending"
+  },
+  {
+   "name": "convex-seed",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-seed",
+   "path": "skills/convex-seed/SKILL.md",
+   "blob_sha": "faf857f3027baff7e8bb6df126a94a8ac09de90a",
+   "dir": "319-convex-seed",
+   "list": "trending"
+  },
+  {
+   "name": "convex-env",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-env",
+   "path": "skills/convex-env/SKILL.md",
+   "blob_sha": "e241eeafff0bbb46e76bd57b287a8315a5cd3d6c",
+   "dir": "320-convex-env",
+   "list": "trending"
+  },
+  {
+   "name": "convex-crons",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-crons",
+   "path": "skills/convex-crons/SKILL.md",
+   "blob_sha": "f3192193d3ffa000e39ad4160559e46b3462213c",
+   "dir": "321-convex-crons",
+   "list": "trending"
+  },
+  {
+   "name": "convex-create-component",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-create-component",
+   "path": "skills/convex-create-component/SKILL.md",
+   "blob_sha": "4e5785bd9dedb4820947733b4b38bd253b5b9867",
+   "dir": "322-convex-create-component",
+   "list": "trending"
+  },
+  {
+   "name": "convex-optimize",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-optimize",
+   "path": "skills/convex-optimize/SKILL.md",
+   "blob_sha": "f1aab6e40a0b70cf4859bd000d650671417b3f61",
+   "dir": "323-convex-optimize",
+   "list": "trending"
+  },
+  {
+   "name": "convex-advisor",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-advisor",
+   "path": "skills/convex-advisor/SKILL.md",
+   "blob_sha": "765528b1ed77f92d69a94400fbe88f938f2423e9",
+   "dir": "324-convex-advisor",
+   "list": "trending"
+  },
+  {
+   "name": "convex-auth",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-auth",
+   "path": "skills/convex-auth/SKILL.md",
+   "blob_sha": "b2310e0d9ee8b1587a2cc1737439ad3c3ddbbfa4",
+   "dir": "325-convex-auth",
+   "list": "trending"
+  },
+  {
+   "name": "convex-expert",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-expert",
+   "path": "skills/convex-expert/SKILL.md",
+   "blob_sha": "9cbe5d7ccd4c0db90d5d439dcb0558e8a03088ce",
+   "dir": "326-convex-expert",
+   "list": "trending"
+  },
+  {
+   "name": "convex-deploy-guard",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-deploy-guard",
+   "path": "skills/convex-deploy-guard/SKILL.md",
+   "blob_sha": "9d7da1fc9eb40dd2ea60d7a582db3db28e8e5e88",
+   "dir": "327-convex-deploy-guard",
+   "list": "trending"
+  },
+  {
+   "name": "convex-insights",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-insights",
+   "path": "skills/convex-insights/SKILL.md",
+   "blob_sha": "c0d7b82c931d0f6f1635876399ce97e6c959f2ac",
+   "dir": "328-convex-insights",
+   "list": "trending"
+  },
+  {
+   "name": "convex-launch-readiness",
+   "source": "convex/agent-skills",
+   "skill_id": "convex-launch-readiness",
+   "path": "skills/convex-launch-readiness/SKILL.md",
+   "blob_sha": "8a19d874476652477d9ac3c21c8732fbbacdee3f",
+   "dir": "329-convex-launch-readiness",
+   "list": "trending"
+  },
+  {
+   "name": "mcp-builder",
+   "source": "anthropics/skills",
+   "skill_id": "mcp-builder",
+   "path": "skills/mcp-builder/SKILL.md",
+   "blob_sha": "d61a9056202a0f8b2d064c896e62f415c45b1bf1",
+   "dir": "330-mcp-builder",
+   "list": "trending"
+  },
+  {
+   "name": "typescript-pro",
+   "source": "jeffallan/claude-skills",
+   "skill_id": "typescript-pro",
+   "path": "plugin/skills/typescript-pro/SKILL.md",
+   "blob_sha": "c38d542a870150f133b930e5e44fe5fa4a26064e",
+   "dir": "331-typescript-pro",
+   "list": "trending"
+  },
+  {
+   "name": "frontend-ui-engineering",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "frontend-ui-engineering",
+   "path": "skills/frontend-ui-engineering/SKILL.md",
+   "blob_sha": "cdb6a19a02b75761dc535a16b3b741fb4bd2d1fb",
+   "dir": "332-frontend-ui-engineering",
+   "list": "trending"
+  },
+  {
+   "name": "performance-optimization",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "performance-optimization",
+   "path": "skills/performance-optimization/SKILL.md",
+   "blob_sha": "3059f41a1ebd30e09bb67c0a6ab38bf09ad2e32d",
+   "dir": "333-performance-optimization",
+   "list": "trending"
+  },
+  {
+   "name": "diagram-design",
+   "source": "cathrynlavery/diagram-design",
+   "skill_id": "diagram-design",
+   "path": "skills/diagram-design/SKILL.md",
+   "blob_sha": "b8365d9174a8232890791939e54df406e2442c90",
+   "dir": "334-diagram-design",
+   "list": "trending"
+  },
+  {
+   "name": "spec-driven-development",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "spec-driven-development",
+   "path": "skills/spec-driven-development/SKILL.md",
+   "blob_sha": "b96b9f757adcff8c71ab9da3bce638791763a8fa",
+   "dir": "335-spec-driven-development",
+   "list": "trending"
+  },
+  {
+   "name": "interview-me",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "interview-me",
+   "path": "skills/interview-me/SKILL.md",
+   "blob_sha": "200f9186ffa234708aa5deec1946c6dfcb7a7335",
+   "dir": "336-interview-me",
+   "list": "trending"
+  },
+  {
+   "name": "api-and-interface-design",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "api-and-interface-design",
+   "path": "skills/api-and-interface-design/SKILL.md",
+   "blob_sha": "ce58d72ed0ee6568400f36564c94becfaeede717",
+   "dir": "337-api-and-interface-design",
+   "list": "trending"
+  },
+  {
+   "name": "code-simplification",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "code-simplification",
+   "path": "skills/code-simplification/SKILL.md",
+   "blob_sha": "c4f794aa3fc63ea041989b30be7a3887c79c53ed",
+   "dir": "338-code-simplification",
+   "list": "trending"
+  },
+  {
+   "name": "planning-and-task-breakdown",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "planning-and-task-breakdown",
+   "path": "skills/planning-and-task-breakdown/SKILL.md",
+   "blob_sha": "a30ecd63ffb7009dc9b4187918fc8838c5697354",
+   "dir": "339-planning-and-task-breakdown",
+   "list": "trending"
+  },
+  {
+   "name": "debugging-and-error-recovery",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "debugging-and-error-recovery",
+   "path": "skills/debugging-and-error-recovery/SKILL.md",
+   "blob_sha": "a078674507959e787e0bc031aaf65fa919382375",
+   "dir": "340-debugging-and-error-recovery",
+   "list": "trending"
+  },
+  {
+   "name": "playwright-best-practices",
+   "source": "currents-dev/playwright-best-practices-skill",
+   "skill_id": "playwright-best-practices",
+   "path": "playwright-best-practices/SKILL.md",
+   "blob_sha": "0da736253c343081ab8c0cb9802729a707c23196",
+   "dir": "341-playwright-best-practices",
+   "list": "trending"
+  },
+  {
+   "name": "context-engineering",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "context-engineering",
+   "path": "skills/context-engineering/SKILL.md",
+   "blob_sha": "abdfe2732255de944db13d0312a1634a425c7c5d",
+   "dir": "342-context-engineering",
+   "list": "trending"
+  },
+  {
+   "name": "documentation-and-adrs",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "documentation-and-adrs",
+   "path": "skills/documentation-and-adrs/SKILL.md",
+   "blob_sha": "019bf43d1845051775f83b4d894ee090365091b0",
+   "dir": "343-documentation-and-adrs",
+   "list": "trending"
+  },
+  {
+   "name": "incremental-implementation",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "incremental-implementation",
+   "path": "skills/incremental-implementation/SKILL.md",
+   "blob_sha": "141010b667e6771779c1cc50a1b7d3b39ad300a3",
+   "dir": "344-incremental-implementation",
+   "list": "trending"
+  },
+  {
+   "name": "herdr",
+   "source": "herdrdev/herdr",
+   "skill_id": "herdr",
+   "path": "skills/herdr/SKILL.md",
+   "blob_sha": "4943e5575e941a7820ea01ca9416e79749c3ddc3",
+   "dir": "345-herdr",
+   "list": "trending"
+  },
+  {
+   "name": "next-cache-components-adoption",
+   "source": "vercel/next.js",
+   "skill_id": "next-cache-components-adoption",
+   "path": "skills/next-cache-components-adoption/SKILL.md",
+   "blob_sha": "6a52990b31807eb8b72429bb9ce5580580b9c282",
+   "dir": "346-next-cache-components-adoption",
+   "list": "trending"
+  },
+  {
+   "name": "browser-testing-with-devtools",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "browser-testing-with-devtools",
+   "path": "skills/browser-testing-with-devtools/SKILL.md",
+   "blob_sha": "ca0044e859e5637c33250dbba1fc1a24540b7ad3",
+   "dir": "347-browser-testing-with-devtools",
+   "list": "trending"
+  },
+  {
+   "name": "ui-sdk",
+   "source": "vercel-labs/ui",
+   "skill_id": "ui-sdk",
+   "path": "packages/core/skills/ui-sdk/SKILL.md",
+   "blob_sha": "37b1e0b1299d685a0e9a3d7bb0bc44bf43835747",
+   "dir": "348-ui-sdk",
+   "list": "trending"
+  },
+  {
+   "name": "stageshow",
+   "source": "benjitaylor/skills",
+   "skill_id": "stageshow",
+   "path": "stageshow/SKILL.md",
+   "blob_sha": "5b94faf312984346e98ffbc092c9837f55b3dea1",
+   "dir": "349-stageshow",
+   "list": "trending"
+  },
+  {
+   "name": "doubt-driven-development",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "doubt-driven-development",
+   "path": "skills/doubt-driven-development/SKILL.md",
+   "blob_sha": "482bb4253ad86e1abdc2a55ee759b7139aaf35da",
+   "dir": "350-doubt-driven-development",
+   "list": "trending"
+  },
+  {
+   "name": "accessibility-engineering",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "accessibility-engineering",
+   "path": "skills/accessibility-engineering/SKILL.md",
+   "blob_sha": "6ac467875c614a3354a4df1afa432ab02d4bc705",
+   "dir": "351-accessibility-engineering",
+   "list": "trending"
+  },
+  {
+   "name": "git-workflow-and-versioning",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "git-workflow-and-versioning",
+   "path": "skills/git-workflow-and-versioning/SKILL.md",
+   "blob_sha": "0cf257bcc172a0b508f5696352c8b4fa516c65b6",
+   "dir": "352-git-workflow-and-versioning",
+   "list": "trending"
+  },
+  {
+   "name": "idea-refine",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "idea-refine",
+   "path": "skills/idea-refine/SKILL.md",
+   "blob_sha": "e2a2be0bead74b2916979bfddde38eff24a67ba6",
+   "dir": "353-idea-refine",
+   "list": "trending"
+  },
+  {
+   "name": "shipping-and-launch",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "shipping-and-launch",
+   "path": "skills/shipping-and-launch/SKILL.md",
+   "blob_sha": "0c277c1c70d9c98ddf461bb6f052c453d9c70dc7",
+   "dir": "354-shipping-and-launch",
+   "list": "trending"
+  },
+  {
+   "name": "source-driven-development",
+   "source": "addyosmani/agent-skills",
+   "skill_id": "source-driven-development",
+   "path": "skills/source-driven-development/SKILL.md",
+   "blob_sha": "fb94d0f36e2d4c53e6b507dd763d105b2e958623",
+   "dir": "355-source-driven-development",
+   "list": "trending"
+  },
+  {
+   "name": "archify",
+   "source": "tt-a1i/archify",
+   "skill_id": "archify",
+   "path": "archify/SKILL.md",
+   "blob_sha": "fe65809c03a37e43d9c635ddb046fbfb60a7afb4",
+   "dir": "356-archify",
+   "list": "trending"
+  },
+  {
+   "name": "orca-cli",
+   "source": "stablyai/orca",
+   "skill_id": "orca-cli",
+   "path": "skills/orca-cli/SKILL.md",
+   "blob_sha": "c666591e5c33040548d53b3dbe30e88da8eb590b",
+   "dir": "357-orca-cli",
+   "list": "trending"
+  },
+  {
+   "name": "openmotion",
+   "source": "nexu-io/openmotion",
+   "skill_id": "openmotion",
+   "path": "skills/openmotion/SKILL.md",
+   "blob_sha": "6a5da3866b3b96d66362e2daf9cb910aef9f8bb7",
+   "dir": "358-openmotion",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-firestore",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-firestore",
+   "path": "skills/firebase-firestore/SKILL.md",
+   "blob_sha": "b73b4eaa65d69ec42362c7b13b1a578884b0ee2e",
+   "dir": "359-firebase-firestore",
+   "list": "trending"
+  },
+  {
+   "name": "doc-coauthoring",
+   "source": "anthropics/skills",
+   "skill_id": "doc-coauthoring",
+   "path": "skills/doc-coauthoring/SKILL.md",
+   "blob_sha": "a5a69839ef4a161131d80b6daef10037a9686f4a",
+   "dir": "360-doc-coauthoring",
+   "list": "trending"
+  },
+  {
+   "name": "theme-factory",
+   "source": "anthropics/skills",
+   "skill_id": "theme-factory",
+   "path": "skills/theme-factory/SKILL.md",
+   "blob_sha": "90dfceaf2ecdc191a4dcfb0069768a9560638998",
+   "dir": "361-theme-factory",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-basics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-basics",
+   "path": "skills/firebase-basics/SKILL.md",
+   "blob_sha": "b1ffdcc74d52dd9fafbf701ebc375a9c3a4299f9",
+   "dir": "362-firebase-basics",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-security-rules-auditor",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-security-rules-auditor",
+   "path": "skills/firebase-security-rules-auditor/SKILL.md",
+   "blob_sha": "18d1abac06cd7f2a6546fc05d6590e43e770a1ad",
+   "dir": "363-firebase-security-rules-auditor",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-auth-basics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-auth-basics",
+   "path": "skills/firebase-auth-basics/SKILL.md",
+   "blob_sha": "d66d9f8c53d34c86042581c8bb1a5a3c5a67c780",
+   "dir": "364-firebase-auth-basics",
+   "list": "trending"
+  },
+  {
+   "name": "game-ui-ux",
+   "source": "gamedev-skills/awesome-gamedev-agent-skills",
+   "skill_id": "game-ui-ux",
+   "path": "skills/disciplines/game-ui-ux/SKILL.md",
+   "blob_sha": "f17857e60afd18f6de0f0a5c77bc00361b07c27f",
+   "dir": "365-game-ui-ux",
+   "list": "trending"
+  },
+  {
+   "name": "web-artifacts-builder",
+   "source": "anthropics/skills",
+   "skill_id": "web-artifacts-builder",
+   "path": "skills/web-artifacts-builder/SKILL.md",
+   "blob_sha": "8b39b19f259b4216ecb07574741dd8eaa9863a07",
+   "dir": "366-web-artifacts-builder",
+   "list": "trending"
+  },
+  {
+   "name": "firestore-rules-creation",
+   "source": "firebase/agent-skills",
+   "skill_id": "firestore-rules-creation",
+   "path": "skills/firestore-rules-creation/SKILL.md",
+   "blob_sha": "a6632bcd36182517c6134608181ace2587aae457",
+   "dir": "367-firestore-rules-creation",
+   "list": "trending"
+  },
+  {
+   "name": "game-feel",
+   "source": "gamedev-skills/awesome-gamedev-agent-skills",
+   "skill_id": "game-feel",
+   "path": "skills/disciplines/game-feel/SKILL.md",
+   "blob_sha": "821eacd2946f4baa7dbe87b77ed2daa58fe9fe2f",
+   "dir": "368-game-feel",
+   "list": "trending"
+  },
+  {
+   "name": "brand-guidelines",
+   "source": "anthropics/skills",
+   "skill_id": "brand-guidelines",
+   "path": "skills/brand-guidelines/SKILL.md",
+   "blob_sha": "47c72c607bdb5dd81bdea5de2b5e4f3992a5fd59",
+   "dir": "369-brand-guidelines",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-hosting-basics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-hosting-basics",
+   "path": "skills/firebase-hosting-basics/SKILL.md",
+   "blob_sha": "79d57d51971a5550996c8ebe46a15630b740b664",
+   "dir": "370-firebase-hosting-basics",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-crashlytics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-crashlytics",
+   "path": "skills/firebase-crashlytics/SKILL.md",
+   "blob_sha": "e636b405c0f1cd9257f2afef7c5960ca061ab3e9",
+   "dir": "371-firebase-crashlytics",
+   "list": "trending"
+  },
+  {
+   "name": "xcode-project-setup",
+   "source": "firebase/agent-skills",
+   "skill_id": "xcode-project-setup",
+   "path": "skills/xcode-project-setup/SKILL.md",
+   "blob_sha": "d33a6c68825d876d1154ff161fadbe79045d8df4",
+   "dir": "372-xcode-project-setup",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-analytics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-analytics",
+   "path": "skills/firebase-analytics/SKILL.md",
+   "blob_sha": "abbae57f4bee384b20d659c6e80cf059d65a55e3",
+   "dir": "373-firebase-analytics",
+   "list": "trending"
+  },
+  {
+   "name": "extension-to-functions-codebase",
+   "source": "firebase/agent-skills",
+   "skill_id": "extension-to-functions-codebase",
+   "path": "skills/extension-to-functions-codebase/SKILL.md",
+   "blob_sha": "6bb3ea9fc5edd1f60b78b5e0e58e1d62174f8aec",
+   "dir": "374-extension-to-functions-codebase",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-app-hosting-basics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-app-hosting-basics",
+   "path": "skills/firebase-app-hosting-basics/SKILL.md",
+   "blob_sha": "f3d77d9dd5b1e2d6fc728698e826447db844f593",
+   "dir": "375-firebase-app-hosting-basics",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-remote-config-basics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-remote-config-basics",
+   "path": "skills/firebase-remote-config-basics/SKILL.md",
+   "blob_sha": "8c4b038dd60bfd2fd612c46d8769954b50f88e59",
+   "dir": "376-firebase-remote-config-basics",
+   "list": "trending"
+  },
+  {
+   "name": "firebase-ai-logic-basics",
+   "source": "firebase/agent-skills",
+   "skill_id": "firebase-ai-logic-basics",
+   "path": "skills/firebase-ai-logic-basics/SKILL.md",
+   "blob_sha": "d7f925270baf2e06fe412194016a283071438369",
+   "dir": "377-firebase-ai-logic-basics",
+   "list": "trending"
+  },
+  {
+   "name": "technical-writing",
+   "source": "riekelt/technical-writer",
+   "skill_id": "technical-writing",
+   "path": "plugins/technical-writer/skills/technical-writing/SKILL.md",
+   "blob_sha": "6c9129840daee8286eff2ac233a3a6da9eb8d7e7",
+   "dir": "378-technical-writing",
+   "list": "trending"
+  },
+  {
+   "name": "claude-api",
+   "source": "anthropics/skills",
+   "skill_id": "claude-api",
+   "path": "skills/claude-api/SKILL.md",
+   "blob_sha": "fe7e28a55c713933ff98e017112e53c61d8f5537",
+   "dir": "379-claude-api",
+   "list": "trending"
+  },
+  {
+   "name": "reanimate",
+   "source": "niazmorshed2007/reanimate",
+   "skill_id": "reanimate",
+   "path": "skills/reanimate/SKILL.md",
+   "blob_sha": "6d2b044db816f6d4c2b74d5c933d071f74178c7c",
+   "dir": "380-reanimate",
+   "list": "trending"
+  },
+  {
+   "name": "nano-banana-2",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "nano-banana-2",
+   "path": "nano-banana-2/SKILL.md",
+   "blob_sha": "a07e693c89fe9ce567d0ee4a981d8ceac477928c",
+   "dir": "381-nano-banana-2",
+   "list": "trending"
+  },
+  {
+   "name": "gpt-image-2",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "gpt-image-2",
+   "path": "gpt-image-2/SKILL.md",
+   "blob_sha": "671a8ec956dbb3150ae7f8c07dafd5f402584c7e",
+   "dir": "382-gpt-image-2",
+   "list": "trending"
+  },
+  {
+   "name": "lipsync",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "lipsync",
+   "path": "lipsync/SKILL.md",
+   "blob_sha": "f4d3b34146c6c8205b274cf0f3dc5e00e89b6351",
+   "dir": "383-lipsync",
+   "list": "trending"
+  },
+  {
+   "name": "gpt-image-edit",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "gpt-image-edit",
+   "path": "gpt-image-edit/SKILL.md",
+   "blob_sha": "f7753225d9e2adf8042d976dfa8f16be4df24180",
+   "dir": "384-gpt-image-edit",
+   "list": "trending"
+  },
+  {
+   "name": "elevenlabs-music-generation",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "elevenlabs-music-generation",
+   "path": "elevenlabs-music-generation/SKILL.md",
+   "blob_sha": "4f5e448c20ff654fde478e35cb2c3e4f00f28821",
+   "dir": "385-elevenlabs-music-generation",
+   "list": "trending"
+  },
+  {
+   "name": "face-swap",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "face-swap",
+   "path": "face-swap/SKILL.md",
+   "blob_sha": "b56007f2bcf30afc8bed859599d13f3a479478e9",
+   "dir": "386-face-swap",
+   "list": "trending"
+  },
+  {
+   "name": "kling-3-0",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "kling-3-0",
+   "path": "kling-3-0/SKILL.md",
+   "blob_sha": "e5abd292177f0b6909c70fb7aa4dda661d949648",
+   "dir": "387-kling-3-0",
+   "list": "trending"
+  },
+  {
+   "name": "runcomfy-cli",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "runcomfy-cli",
+   "path": "runcomfy-cli/SKILL.md",
+   "blob_sha": "ee1c4acd74bb22772bda11b33a0e08c7de7bc511",
+   "dir": "388-runcomfy-cli",
+   "list": "trending"
+  },
+  {
+   "name": "image-edit",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "image-edit",
+   "path": "image-edit/SKILL.md",
+   "blob_sha": "812c9002a9e067560f9802517fd18a919d551e8d",
+   "dir": "389-image-edit",
+   "list": "trending"
+  },
+  {
+   "name": "codex-pet",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "codex-pet",
+   "path": "codex-pet/SKILL.md",
+   "blob_sha": "5bf974ca2283ddea0754b3a63be6761d88018222",
+   "dir": "390-codex-pet",
+   "list": "trending"
+  },
+  {
+   "name": "nano-banana-edit",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "nano-banana-edit",
+   "path": "nano-banana-edit/SKILL.md",
+   "blob_sha": "69e58aef4c8e9b5da7f176824dcde97e6d3376f7",
+   "dir": "391-nano-banana-edit",
+   "list": "all-time"
+  },
+  {
+   "name": "flux-kontext",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "flux-kontext",
+   "path": "flux-kontext/SKILL.md",
+   "blob_sha": "3018f9f977844f09900acdcfb2c73084c88bcb20",
+   "dir": "392-flux-kontext",
+   "list": "all-time"
+  },
+  {
+   "name": "wan-2-7",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "wan-2-7",
+   "path": "wan-2-7/SKILL.md",
+   "blob_sha": "fceb5e2be70d1a7eb0bfdf9a9bb63f5823dc81b1",
+   "dir": "393-wan-2-7",
+   "list": "all-time"
+  },
+  {
+   "name": "seedance-v2",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "seedance-v2",
+   "path": "seedance-v2/SKILL.md",
+   "blob_sha": "49be7fa3b30cc29f2607af5a2ead811b192d7c5c",
+   "dir": "394-seedance-v2",
+   "list": "all-time"
+  },
+  {
+   "name": "happyhorse-1-0",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "happyhorse-1-0",
+   "path": "happyhorse-1-0/SKILL.md",
+   "blob_sha": "549ae576c0dcc7d1625a1aeee404bd516b241d2d",
+   "dir": "395-happyhorse-1-0",
+   "list": "all-time"
+  },
+  {
+   "name": "flux-2-klein",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "flux-2-klein",
+   "path": "flux-2-klein/SKILL.md",
+   "blob_sha": "6c41cbe978c21eb3edd075acd744324280d294e9",
+   "dir": "396-flux-2-klein",
+   "list": "all-time"
+  },
+  {
+   "name": "video-inpainting",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "video-inpainting",
+   "path": "video-inpainting/SKILL.md",
+   "blob_sha": "6ce1667a12c5c3fbab42843b921890925b70e7d1",
+   "dir": "397-video-inpainting",
+   "list": "all-time"
+  },
+  {
+   "name": "image-inpainting",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "image-inpainting",
+   "path": "image-inpainting/SKILL.md",
+   "blob_sha": "154b216cd02cbee697be0c8f6279971b841eda73",
+   "dir": "398-image-inpainting",
+   "list": "all-time"
+  },
+  {
+   "name": "controlnet-pose",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "controlnet-pose",
+   "path": "controlnet-pose/SKILL.md",
+   "blob_sha": "5f280e588e806c7c5358530b7bdb7ced2c405776",
+   "dir": "399-controlnet-pose",
+   "list": "all-time"
+  },
+  {
+   "name": "video-extend",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "skill_id": "video-extend",
+   "path": "video-extend/SKILL.md",
+   "blob_sha": "a6710eb9671c4a79adcc55e1d8613ecf2c8aad93",
+   "dir": "400-video-extend",
+   "list": "all-time"
+  },
+  {
+   "name": "orchestration",
+   "source": "stablyai/orca",
+   "skill_id": "orchestration",
+   "path": "skills/orchestration/SKILL.md",
+   "blob_sha": "3dd0a7cf24740d6ff0fceaba1fc6301540a3f8b2",
+   "dir": "401-orchestration",
+   "list": "all-time"
+  },
+  {
+   "name": "just-scrape",
+   "source": "scrapegraphai/just-scrape",
+   "skill_id": "just-scrape",
+   "path": "skills/just-scrape/SKILL.md",
+   "blob_sha": "03b57e7f24156996f002166cd5f9fe832dd65b06",
+   "dir": "402-just-scrape",
+   "list": "all-time"
+  },
+  {
+   "name": "extract-design-system",
+   "source": "arvindrk/extract-design-system",
+   "skill_id": "extract-design-system",
+   "path": "skills/extract-design-system/SKILL.md",
+   "blob_sha": "13bea9d421418a9f191901d9829855bf10c5e96f",
+   "dir": "403-extract-design-system",
+   "list": "all-time"
+  },
+  {
+   "name": "solana-dev",
+   "source": "solana-foundation/solana-dev-skill",
+   "skill_id": "solana-dev",
+   "path": "skills/solana-dev/SKILL.md",
+   "blob_sha": "475e064169d6a96f588b3426c9344b245f16024e",
+   "dir": "404-solana-dev",
+   "list": "all-time"
+  },
+  {
+   "name": "review-loop",
+   "source": "2dmurali/review-loop-skill",
+   "skill_id": "review-loop",
+   "path": "review-loop/SKILL.md",
+   "blob_sha": "c3ff74ee1df8287c47bfa7f221ad92cae3836d12",
+   "dir": "405-review-loop",
+   "list": "all-time"
+  },
+  {
+   "name": "browser-act",
+   "source": "browser-act/skills",
+   "skill_id": "browser-act",
+   "path": "browser-act/SKILL.md",
+   "blob_sha": "1e0db2ac51c886516adbb3e83b1a8e0f9df911e4",
+   "dir": "406-browser-act",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl",
+   "path": "skills/firecrawl/SKILL.md",
+   "blob_sha": "a8baff5d20669ac6dfc8cda522a7a1de4d4fd5be",
+   "dir": "407-firecrawl",
+   "list": "all-time"
+  },
+  {
+   "name": "stripe-best-practices",
+   "source": "stripe/ai",
+   "skill_id": "stripe-best-practices",
+   "path": "skills/stripe-best-practices/SKILL.md",
+   "blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+   "dir": "408-stripe-best-practices",
+   "list": "all-time"
+  },
+  {
+   "name": "typesafe-ai",
+   "source": "typesafe-ai/skills",
+   "skill_id": "typesafe-ai",
+   "path": "skills/typesafe-ai/SKILL.md",
+   "blob_sha": "5e4fd5507990f3b67fe65b3e0e345cbea1192357",
+   "dir": "409-typesafe-ai",
+   "list": "all-time"
+  },
+  {
+   "name": "typescript-advanced-types",
+   "source": "wshobson/agents",
+   "skill_id": "typescript-advanced-types",
+   "path": "plugins/javascript-typescript/skills/typescript-advanced-types/SKILL.md",
+   "blob_sha": "5057af799047bbae1a066ffead0b6e298f0ef7ff",
+   "dir": "410-typescript-advanced-types",
+   "list": "all-time"
+  },
+  {
+   "name": "browser-use",
+   "source": "browser-use/browser-use",
+   "skill_id": "browser-use",
+   "path": "skills/browser-use/SKILL.md",
+   "blob_sha": "e8f09f6b9ded34fe65e4f0a9b1237791a7f671a8",
+   "dir": "411-browser-use",
+   "list": "all-time"
+  },
+  {
+   "name": "algorithmic-art",
+   "source": "anthropics/skills",
+   "skill_id": "algorithmic-art",
+   "path": "skills/algorithmic-art/SKILL.md",
+   "blob_sha": "634f6fa42e4e697fa6afd293acd7fb8246574876",
+   "dir": "412-algorithmic-art",
+   "list": "all-time"
+  },
+  {
+   "name": "obsidian-markdown",
+   "source": "obsidianmd/obsidian-skills",
+   "skill_id": "obsidian-markdown",
+   "path": "plugins/obsidian/skills/obsidian-markdown/SKILL.md",
+   "blob_sha": "13e3041536ac2b2e27509d7f4aff357995f0d090",
+   "dir": "413-obsidian-markdown",
+   "list": "all-time"
+  },
+  {
+   "name": "turborepo",
+   "source": "vercel/turborepo",
+   "skill_id": "turborepo",
+   "path": "skills/turborepo/SKILL.md",
+   "blob_sha": "15eaeb96a29b584e6001182e2505a52fe4961a9d",
+   "dir": "414-turborepo",
+   "list": "all-time"
+  },
+  {
+   "name": "internal-comms",
+   "source": "anthropics/skills",
+   "skill_id": "internal-comms",
+   "path": "skills/internal-comms/SKILL.md",
+   "blob_sha": "56ea935b74f371bfeb4c7d3c19d5139df866e73b",
+   "dir": "415-internal-comms",
+   "list": "all-time"
+  },
+  {
+   "name": "obsidian-cli",
+   "source": "obsidianmd/obsidian-skills",
+   "skill_id": "obsidian-cli",
+   "path": "plugins/obsidian/skills/obsidian-cli/SKILL.md",
+   "blob_sha": "a72787f713b0a9051c8597d11fa91c7981db811f",
+   "dir": "416-obsidian-cli",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl-search",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl-search",
+   "path": "skills/firecrawl-search/SKILL.md",
+   "blob_sha": "fccbeb6c6267756e352a2fa5c403305608e55486",
+   "dir": "417-firecrawl-search",
+   "list": "all-time"
+  },
+  {
+   "name": "agentix-ceo",
+   "source": "agentix-cloud/skills",
+   "skill_id": "agentix-ceo",
+   "path": "skills/agentix-ceo/SKILL.md",
+   "blob_sha": "1fd7acd592051fb3671ac199dd210c381c4693f3",
+   "dir": "418-agentix-ceo",
+   "list": "all-time"
+  },
+  {
+   "name": "browser-act-skill-forge",
+   "source": "browser-act/skills",
+   "skill_id": "browser-act-skill-forge",
+   "path": "browser-act-skill-forge/SKILL.md",
+   "blob_sha": "b4d933ce0e08b574bc45a30582f1ccc391007753",
+   "dir": "419-browser-act-skill-forge",
+   "list": "all-time"
+  },
+  {
+   "name": "obsidian-bases",
+   "source": "obsidianmd/obsidian-skills",
+   "skill_id": "obsidian-bases",
+   "path": "plugins/obsidian/skills/obsidian-bases/SKILL.md",
+   "blob_sha": "a6a84a5fd3387c9820985e056a2555d2277ce34b",
+   "dir": "420-obsidian-bases",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl-scrape",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl-scrape",
+   "path": "skills/firecrawl-scrape/SKILL.md",
+   "blob_sha": "e71d409a8853efb9e4ae6c51744e22b0aafa44f6",
+   "dir": "421-firecrawl-scrape",
+   "list": "all-time"
+  },
+  {
+   "name": "slack-gif-creator",
+   "source": "anthropics/skills",
+   "skill_id": "slack-gif-creator",
+   "path": "skills/slack-gif-creator/SKILL.md",
+   "blob_sha": "16660d8ceb77af47986bba1c9176c2ff3f287a91",
+   "dir": "422-slack-gif-creator",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl-agent",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl-agent",
+   "path": "skills/firecrawl-agent/SKILL.md",
+   "blob_sha": "eb6ab4284d9c01dba300a7bb6703d1175cd76293",
+   "dir": "423-firecrawl-agent",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl-crawl",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl-crawl",
+   "path": "skills/firecrawl-crawl/SKILL.md",
+   "blob_sha": "e2286572f689c59fc5cdec74bc681da0261d81ac",
+   "dir": "424-firecrawl-crawl",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl-map",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl-map",
+   "path": "skills/firecrawl-map/SKILL.md",
+   "blob_sha": "4742ccad267798e42982be5fe2021a85d02dd80b",
+   "dir": "425-firecrawl-map",
+   "list": "all-time"
+  },
+  {
+   "name": "firecrawl-download",
+   "source": "firecrawl/cli",
+   "skill_id": "firecrawl-download",
+   "path": "skills/firecrawl-download/SKILL.md",
+   "blob_sha": "7947e2b9a0b40449b39939ec37f75072bba4254d",
+   "dir": "426-firecrawl-download",
+   "list": "all-time"
+  },
+  {
+   "name": "json-canvas",
+   "source": "obsidianmd/obsidian-skills",
+   "skill_id": "json-canvas",
+   "path": "plugins/obsidian/skills/json-canvas/SKILL.md",
+   "blob_sha": "7a60b5dd74415cc4a2a7c27a06760ea90e91caaf",
+   "dir": "427-json-canvas",
+   "list": "all-time"
+  },
+  {
+   "name": "defuddle",
+   "source": "obsidianmd/obsidian-skills",
+   "skill_id": "defuddle",
+   "path": "plugins/obsidian/skills/defuddle/SKILL.md",
+   "blob_sha": "81f6ee03344ae517c45055b9c789eae530d47c43",
+   "dir": "428-defuddle",
+   "list": "all-time"
+  },
+  {
+   "name": "gws-drive",
+   "source": "googleworkspace/cli",
+   "skill_id": "gws-drive",
+   "path": "skills/gws-drive/SKILL.md",
+   "blob_sha": "d4debbdb084c25e4b24b414fc817bdd0a8ba36ff",
+   "dir": "429-gws-drive",
+   "list": "all-time"
+  },
+  {
+   "name": "amazon-product-research",
+   "source": "nexscope-ai/amazon-skills",
+   "skill_id": "amazon-product-research",
+   "path": "amazon-product-research/SKILL.md",
+   "blob_sha": "c4d3c46ea0828696279f18e871afc1d7dfbab4c8",
+   "dir": "430-amazon-product-research",
+   "list": "all-time"
+  },
+  {
+   "name": "expo-dev-client",
+   "source": "expo/skills",
+   "skill_id": "expo-dev-client",
+   "path": "plugins/expo/skills/expo-dev-client/SKILL.md",
+   "blob_sha": "71553755b653a03a97af150cd2815c8d5069c847",
+   "dir": "431-expo-dev-client",
+   "list": "all-time"
+  },
+  {
+   "name": "make-interfaces-feel-better",
+   "source": "jakubkrehel/make-interfaces-feel-better",
+   "skill_id": "make-interfaces-feel-better",
+   "path": "skills/make-interfaces-feel-better/SKILL.md",
+   "blob_sha": "e47b87b369396655fa6bea7240c17f108ea494d5",
+   "dir": "432-make-interfaces-feel-better",
+   "list": "all-time"
+  }
+ ],
+ "rejected": {
+  "1 not a GitHub source": 33,
+  "2 skill id already accepted": 96,
+  "3 source cap reached": 114,
+  "4 SKILL.md not found or not fetched": 54,
+  "6 description or body too short": 15
+ }
+}

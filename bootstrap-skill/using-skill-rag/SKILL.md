@@ -61,8 +61,12 @@ parent already framed, skip.
 
 `get_skill` returns one of:
 
-- `{status: "ok", body: "..."}`
+- `{status: "ok", body: "...", path: "<skill directory>"}`
   - Follow the instructions in `body`.
+  - When `body` refers to bundled files (`scripts/...`, `references/...`,
+    relative links), read or run them relative to `path`. The skill may not be
+    installed anywhere your harness loads natively, so `path` is the only way
+    to find them.
 
 - `{status: "not_found", message: ...}`
   - The skill was removed. **DO NOT call `get_skill` or `search_skills` for

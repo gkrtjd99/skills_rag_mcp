@@ -37,8 +37,11 @@ RERANK_PROVIDER = os.environ.get("SKILL_RAG_RERANK", "").strip()
 # rest. Measured with Jev on the held-out 40-skill corpus
 # (docs/benchmarks/2026-11-24-*): 8 candidates -> recall@1 0.925, ~2.4k input
 # tokens, p50 ~275 ms; 16 candidates -> recall@1 0.988, ~4.4k input tokens,
-# p50 ~555 ms. Both kept no-match accuracy at 1.000. Search runs once per
-# task, so the default favors not missing the skill.
+# p50 ~555 ms. Both kept no-match accuracy at 1.000 on that author-written
+# set; the scale benchmark (docs/benchmarks/2026-11-24-scale-results.md) is
+# harsher and shows the shortlist, not the judge, limiting recall as the
+# corpus grows. Search runs once per task, so the default favors not missing
+# the skill.
 RERANK_CANDIDATES = int(os.environ.get("SKILL_RAG_RERANK_CANDIDATES", "16"))
 # Probability midpoint, fixed before measuring. Accuracy was flat from 0.4 to
 # 0.7 at 16 candidates (0.2 to 0.7 at 8), so this is not a tuned value.

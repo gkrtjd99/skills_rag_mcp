@@ -18,13 +18,28 @@
 - `bench/jev_rerank_ab.py` (one arm per `--judge`) and held-out query sets for
   measuring the gate and judges on a corpus the thresholds were not tuned on.
 - `skill-rag status` reports rerank readiness and where data would be sent.
+- `skill-rag adopt [names] [--from DIR]` moves skills out of harness or
+  project skill directories into `~/.skills/`, so the harness stops loading
+  their descriptions into every session; `skill-rag restore` moves them back.
+  `uninstall` restores adopted skills first and never deletes one it cannot
+  restore, even with `--purge`.
+- `skill-rag install --no-collect` sets up the bootstrap skill and MCP
+  registration without linking harness and plugin skills into the store.
+- `get_skill` also returns `path`, the skill's directory, so bundled scripts
+  and references resolve for skills no harness loads natively.
 
 ### Measured
 
-- On a held-out 45-skill corpus (133 queries) the default gate scored
-  recall@1 0.726 and no-match accuracy 0.395 (1.000 and 1.000 on the fixture).
-  With rerank: `jev` 0.979 / 1.000 at p50 211 ms; `openai` 0.968 / 0.947 at
-  p50 496 ms. See `docs/benchmarks/2026-11-24-heldout-jev-rerank.md`.
+- Scale benchmark with the protocol committed before any data was fetched:
+  433 skills from skills.sh, corpus sizes 50 to 350, 283 queries written by
+  another model. Strict recall@1 at 50 / 350 skills: gate 0.619 / 0.450, `jev`
+  0.862 / 0.672, `openai` 0.857 / 0.646. Strict no-match accuracy at 350:
+  0.021, 0.266, 0.319. The first-stage shortlist holds the expected skill 96%
+  of the time at 50 skills and 79% at 350. See
+  `docs/benchmarks/2026-11-24-scale-results.md`.
+- An earlier author-written set (45 skills, 133 queries) scored `jev` 0.979 /
+  1.000 and `openai` 0.968 / 0.947; it is an upper bound on easy queries
+  (`docs/benchmarks/2026-11-24-heldout-jev-rerank.md`).
 
 ### Changed
 

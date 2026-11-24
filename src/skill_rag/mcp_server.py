@@ -7,7 +7,7 @@ Response shapes (mirrored in bootstrap-skill/using-skill-rag/SKILL.md):
   search_skills -> {"status": "ok", "hits": [...]}
                 or {"status": "no_match", "hits": [], "message": "..."}
                 or {"status": "skip", "hits": [], "message": "..."}
-  get_skill     -> {"status": "ok", "body": "..."}
+  get_skill     -> {"status": "ok", "body": "...", "path": "<skill directory>"}
                 or {"status": "not_found", "message": "..."}
 """
 
@@ -56,17 +56,31 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     return rerank.search(query, k=k, agent=agent)
 
 
+def _skill_response(skill_md: Path) -> dict:
+    # A skill served only through this tool is not loaded by the harness, so
+    # the agent has no other way to learn where its bundled files live.
+    return {
+        "status": "ok",
+        "body": skill_md.read_text(encoding="utf-8"),
+        "path": str(skill_md.parent),
+    }
+
+
 @server.tool()
 def get_skill(name: str) -> dict:
-    """Fetch the full SKILL.md body for one returned skill name."""
+    """Fetch the full SKILL.md body for one returned skill name.
+
+    ``path`` is the skill's directory: resolve files the body refers to
+    (scripts, references, assets) relative to it.
+    """
     path = _path_for_name(name)
     if path is not None and path.exists():
-        return {"status": "ok", "body": path.read_text(encoding="utf-8")}
+        return _skill_response(path)
     # Not found or path stale — force a sync, retry.
     sync_mod.sync_if_stale(ttl=0)
     path = _path_for_name(name)
     if path is not None and path.exists():
-        return {"status": "ok", "body": path.read_text(encoding="utf-8")}
+        return _skill_response(path)
     return {
         "status": "not_found",
         "message": (

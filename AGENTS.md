@@ -20,6 +20,7 @@ Read documents in the order below before writing code.
 - `src/skill_rag/` — Python package (agents, corpus, models, parser, loader, normalize, offline, embed, translate, sparse, index, retrieve, rerank, judges/, sync, mcp_server, collect, mcp_config, lifecycle, cli, evaluator).
 - `bootstrap-skill/using-skill-rag/SKILL.md` — meta-skill installed into each harness via symlink.
 - `Makefile` / `skill-rag install` — set up `~/.skills/`, symlinks, and MCP registration (`skill-rag uninstall` reverses it).
+- `skill-rag adopt` / `restore` — move skills into `~/.skills/` so no harness loads them natively, and move them back.
 - `eval/fixtures/` — public benchmark corpus and queries.
 - `eval/queries.jsonl` — personal-corpus evaluation queries with gold-standard skill names.
 - `tests/` — unit + integration tests.
@@ -29,7 +30,7 @@ Read documents in the order below before writing code.
 ## Done When
 
 - `mcp__skill-rag__search_skills` returns `{status: "ok"|"no_match", hits, [message]}`.
-- `mcp__skill-rag__get_skill` returns `{status: "ok"|"not_found", body|message}`.
+- `mcp__skill-rag__get_skill` returns `{status: "ok"|"not_found", body+path|message}`.
 - One bootstrap skill in `~/.skills/`, symlinked into Claude Code + Codex, auto-loads in both.
 - File added to `~/.skills/` is reflected in the next `search_skills` call after 30 s.
 - `recall@5 ≥ 0.8` on the public fixture eval

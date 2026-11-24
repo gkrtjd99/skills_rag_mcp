@@ -28,7 +28,7 @@ src/skill_rag/
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
 ├── collect.py      # symlink harness skills into ~/.skills/
 ├── mcp_config.py   # Claude/Codex MCP registration helpers
-├── lifecycle.py    # install/uninstall orchestration
+├── lifecycle.py    # install/uninstall orchestration; adopt/restore skill moves
 ├── cli.py          # Typer CLI
 └── evaluator.py    # recall@k, MRR, latency
 
@@ -89,7 +89,9 @@ from the skill path.
 2. Read that row's `path` directly. This avoids assuming directory name equals
    frontmatter name.
 3. On miss or stale path, force `sync_if_stale(ttl=0)` and retry once.
-4. Return `{status: "ok", body}` or `{status: "not_found", message}`.
+4. Return `{status: "ok", body, path}` or `{status: "not_found", message}`.
+   `path` is the skill directory, so bundled files resolve without the skill
+   being installed in any harness.
 
 ## Sync
 
@@ -149,6 +151,26 @@ skill-rag install`. The CLI command:
 recorded footprint and collected symlinks but preserves untracked user entries
 under `~/.skills`. Installation ownership is recorded locally in
 `~/.skills/.skill-rag-install-state.json`.
+
+## Adopt and Restore
+
+`collect` links to a skill where the harness installed it, so the harness
+still lists that skill's description in every session. `skill-rag adopt`
+moves the directory into `~/.skills/` instead, leaving the harness with only
+the bootstrap skill; the moved skill is then reachable only through
+`search_skills` / `get_skill`.
+
+- Sources are skill roots whose direct children are skills: the user-level
+  harness directories by default, or any root passed with `--from` (for
+  example a project's `.claude/skills`). No recursion, so plugin caches and
+  app-managed nested folders are never touched. Symlinked entries are skipped.
+- Each move is recorded in the install state as `name -> {origin, store}`
+  before it happens. `skill-rag restore` moves skills back; it never
+  overwrites an origin that has been reoccupied.
+- `uninstall` restores adopted skills first. One that cannot go back stays in
+  the store, even under `--purge`, because the store holds its only copy.
+- An adopted skill reports `agent: "local"`: harness attribution comes from
+  the path, and the path is now the store.
 
 ## Loop Prevention
 

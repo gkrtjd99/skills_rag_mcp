@@ -25,6 +25,12 @@ and 1.000 on the fixture. With rerank the same queries scored 0.979 / 1.000
 1,184 to about 235 characters. Full numbers, method, and limits:
 `docs/benchmarks/2026-11-24-heldout-jev-rerank.md`.
 
+Those queries were author-written. A later benchmark with pre-registered rules,
+community skills, and model-written queries confirms the direction but not the
+size: at 350 skills strict recall@1 is 0.450 for the gate and 0.672 / 0.646 for
+`jev` / `openai`, with frequent false alarms on near-miss requests
+(`docs/benchmarks/2026-11-24-scale-results.md`).
+
 ## Behavior
 
 1. `retrieve.shortlist` returns the top `SKILL_RAG_RERANK_CANDIDATES` (default

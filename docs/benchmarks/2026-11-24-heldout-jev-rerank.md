@@ -1,5 +1,9 @@
 # Held-out corpus check and opt-in judge rerank
 
+> Superseded as the headline result by `2026-11-24-scale-results.md`, which
+> uses skills and queries nobody on this project wrote and shows markedly lower
+> numbers. Read this one as an upper bound on easy, author-written queries.
+
 Measured on 2026-11-24 on macOS (host, not Docker), `multilingual-e5-base`,
 `jev-1.14.0`, single run per configuration.
 
