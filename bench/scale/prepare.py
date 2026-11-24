@@ -285,5 +285,42 @@ def make_queries() -> None:
     print(f"wrote {len(rows)} queries {dict(kinds)}; dropped for naming the skill: {dropped}")
 
 
+DEV_SEED = 20261125
+DEV_SPLIT = HERE / "dev-split.json"
+DEV_QUERIES = HERE / "dev-queries.jsonl"
+
+
+def make_dev_queries() -> None:
+    """Dev set for choosing first-stage settings; see 2026-11-24-first-stage-protocol.md."""
+    accepted = {a["name"]: a for a in json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    dev_targets = random.Random(DEV_SEED).sample(parts["distractors"][:150], 50)
+    DEV_SPLIT.write_text(json.dumps({"seed": DEV_SEED, "targets": dev_targets}, indent=1), encoding="utf-8")
+
+    def run(name: str):
+        record = parse_skill_file(WORK / "pool" / accepted[name]["dir"] / "SKILL.md")
+
+        def attempt(tag: str):
+            return cached(WORK / "gen" / f"{accepted[name]['dir']}.dev{tag}.json", lambda: generate(record.body, 2))
+
+        first = attempt("")
+        if not any(mentions(q, name) for lang in ("en", "ko") for q in first[lang]):
+            return first, 0
+        second = attempt(".retry")
+        kept = {lang: [q for q in second[lang] if not mentions(q, name)] for lang in ("en", "ko")}
+        return kept, sum(2 - len(kept[lang]) for lang in ("en", "ko"))
+
+    with ThreadPoolExecutor(6) as pool:
+        results = list(pool.map(run, dev_targets))
+    rows = [
+        {"query": query, "expected": [name], "lang": lang, "kind": "positive", "from_skill": name}
+        for name, (generated, _) in zip(dev_targets, results)
+        for lang in ("en", "ko")
+        for query in generated[lang]
+    ]
+    DEV_QUERIES.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+    print(f"wrote {len(rows)} dev queries; dropped for naming the skill: {sum(lost for _, lost in results)}")
+
+
 if __name__ == "__main__":
-    {"pool": build_pool, "split": split, "queries": make_queries}[sys.argv[1]]()
+    {"pool": build_pool, "split": split, "queries": make_queries, "dev-queries": make_dev_queries}[sys.argv[1]]()
