@@ -130,3 +130,7 @@ result (`docs/benchmarks/2026-11-24-cards-results.md`).
 `bench/scale/structure_dev.py` holds the decision-structure experiments
 (`docs/benchmarks/2026-11-24-structure-protocol.md`), also a negative result
 (`docs/benchmarks/2026-11-24-structure-results.md`).
+
+`bench/scale/retrieval_dev.py` holds the embedder and synthetic-request
+experiment (`docs/benchmarks/2026-11-24-retrieval-protocol.md`, results in
+`docs/benchmarks/2026-11-24-retrieval-results.md`).

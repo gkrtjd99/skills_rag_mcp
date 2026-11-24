@@ -83,7 +83,8 @@ What is left untested is different in kind:
 
 1. the first stage (the right skill is missing from the shortlist for 16% of
    matching requests): a stronger multilingual embedder and synthetic requests
-   per skill;
+   per skill (tried next, see `2026-11-24-retrieval-results.md`: recall rose,
+   the end result barely moved);
 2. more evidence: the skill body, which the default does not send off the
    machine;
 3. a stronger reader for uncertain cases: the agent itself, measured end to
