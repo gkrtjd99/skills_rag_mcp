@@ -47,22 +47,30 @@ def main() -> int:
         index_seconds = time.monotonic() - t0
         skills = index_mod.indexed_count()
         retrieve.shortlist("warm up the caches", max(KS))
-        ranks: list[tuple[str, int | None]] = []
-        t0 = time.monotonic()
+        # One call per K: the dense candidate limit depends on the requested
+        # size, so slicing a longer shortlist would not match what the rerank
+        # path sees at that K.
+        hit: dict[int, list[tuple[str, bool]]] = {k: [] for k in KS}
+        elapsed = 0.0
         for r in rows:
-            names = [c["name"] for c in retrieve.shortlist(r["query"], max(KS))]
-            found = [names.index(n) for n in r["expected"] if n in names]
-            ranks.append((r.get("lang", "?"), min(found) if found else None))
-        query_ms = (time.monotonic() - t0) * 1000.0 / len(rows)
+            for k in KS:
+                t0 = time.monotonic()
+                names = [c["name"] for c in retrieve.shortlist(r["query"], k)]
+                if k == 16:
+                    elapsed += time.monotonic() - t0
+                hit[k].append((r.get("lang", "?"), any(n in names for n in r["expected"])))
+        query_ms = elapsed * 1000.0 / len(rows)
+        ranks = hit[16]
         sync_mod.reset_cache()
 
     def recall(k: int, lang: str | None = None) -> float:
-        subset = [rank for lg, rank in ranks if lang is None or lg == lang]
-        return sum(1 for rank in subset if rank is not None and rank < k) / len(subset)
+        subset = [found for lg, found in hit[k] if lang is None or lg == lang]
+        return sum(subset) / len(subset)
 
     result = {
         "max_seq_length": embed.MAX_SEQ_LENGTH,
         "dense_body_chars": corpus_mod.DENSE_BODY_CHARS,
+        "min_dense_candidates": corpus_mod.MIN_DENSE_CANDIDATES,
         "skills": skills,
         "queries": len(rows),
         "index_seconds": round(index_seconds, 1),

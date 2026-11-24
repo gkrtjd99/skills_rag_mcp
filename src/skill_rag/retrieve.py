@@ -177,6 +177,11 @@ def shortlist(query: str, n: int, model_name: str = DEFAULT_MODEL) -> list[dict]
     return [row for row, _ in _rank(query, n, model_name, gated=False)[:n]]
 
 
+def corpus_size() -> int:
+    """Number of indexed skills (from the cached metadata rows)."""
+    return len(_list_indexed())
+
+
 def _rank(
     query: str, k: int, model_name: str, *, gated: bool
 ) -> list[tuple[dict, float]]:

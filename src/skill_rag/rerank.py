@@ -3,7 +3,10 @@
 Off by default: without ``SKILL_RAG_RERANK`` every search is the local hybrid
 gate in ``retrieve.py`` and nothing leaves the machine.
 
-When enabled, the local hybrid ranking only proposes a shortlist. A judge
+When enabled, the judge first scans every skill with a short description and
+keeps the most likely ones (corpora up to ``RERANK_SCAN_MAX`` skills); larger
+corpora, or ``RERANK_SCAN_MAX=0``, use the local hybrid ranking as the
+shortlist instead. A judge
 (``skill_rag.judges``: ``jev``, ``openai``, or your own ``module:factory``)
 returns, per shortlisted skill, the probability that it fits the query. Skills
 at or above ``RERANK_THRESHOLD`` are returned in order of that probability,
@@ -56,6 +59,11 @@ RERANK_COOLDOWN_SECONDS = float(os.environ.get("SKILL_RAG_RERANK_COOLDOWN", "60"
 # A judged hit no longer needs its description to be re-judged by the agent,
 # only recognized, so it is returned shorter than a local-gate hit (280).
 RERANK_DESCRIPTION_CHARS = int(os.environ.get("SKILL_RAG_RERANK_DESCRIPTION_CHARS", "120"))
+# Largest corpus the judge scans whole to build the shortlist. The local
+# hybrid shortlist loses the right skill as the corpus grows (in the top 16 for
+# 74% of dev queries at 350 skills); a scan kept it for 97%. A scan costs about
+# 51 input tokens per skill per search, so it is bounded. 0 disables it.
+RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "500"))
 
 _retry_after: float = 0.0  # monotonic deadline of the current cooldown
 
@@ -97,6 +105,33 @@ def judge(query: str, candidates: list[dict]) -> list[float]:
     return judges.checked(current_judge().fits(query, candidates), len(candidates))
 
 
+def scan(query: str, candidates: list[dict]) -> list[float]:
+    """Coarse probability for every candidate, aligned with ``candidates``."""
+    current = current_judge()
+    coarse = getattr(current, "scan", None)
+    if coarse is None:
+        # A judge without a scan method: same question, shorter descriptions.
+        cut = judges.SCAN_DESCRIPTION_CHARS
+        candidates = [{**c, "description": c["description"][:cut]} for c in candidates]
+        coarse = current.fits
+    return judges.checked(coarse(query, candidates), len(candidates))
+
+
+def _shortlist(query: str, size: int) -> list[dict]:
+    """Candidates for the fit judgment: scanned by the judge when the corpus
+    is small enough, otherwise the local hybrid ranking."""
+    total = retrieve.corpus_size()
+    if not size < total <= RERANK_SCAN_MAX:
+        return retrieve.shortlist(query, size)
+    everything = retrieve.shortlist(query, total)
+    if len(everything) <= size:
+        return everything
+    coarse = scan(query, everything)
+    # Stable sort: equal probabilities keep the hybrid order.
+    order = sorted(range(len(everything)), key=lambda i: coarse[i], reverse=True)
+    return [everything[i] for i in order[:size]]
+
+
 def search(query: str, k: int = 5, agent: str | None = None) -> dict:
     """``retrieve.search`` contract, with a judge deciding fit when enabled."""
     if not enabled():
@@ -104,11 +139,11 @@ def search(query: str, k: int = 5, agent: str | None = None) -> dict:
     global _retry_after
     if _monotonic() < _retry_after:
         return retrieve.search(query, k=k, agent=agent)
-    candidates = retrieve.shortlist(query, max(k, RERANK_CANDIDATES))
-    if not candidates:
+    if not query.strip() or retrieve.corpus_size() == 0:
         # Empty query or corpus: keep the local path's own messages.
         return retrieve.search(query, k=k, agent=agent)
     try:
+        candidates = _shortlist(query, max(k, RERANK_CANDIDATES))
         fits = judge(query, candidates)
     except Exception as exc:
         _retry_after = _monotonic() + RERANK_COOLDOWN_SECONDS

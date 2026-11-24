@@ -104,6 +104,8 @@ def cell(stat: tuple[float, float, float]) -> str:
 
 def main() -> int:
     strict_only = "--strict" in sys.argv
+    # --prefix final scores var/bench/scale/final-<size>.json instead of out-<size>.json
+    prefix = sys.argv[sys.argv.index("--prefix") + 1] if "--prefix" in sys.argv else "out"
     manifest = json.loads((HERE / "manifest.json").read_text(encoding="utf-8"))["accepted"]
     split = json.loads((HERE / "split.json").read_text(encoding="utf-8"))
     skills = {}
@@ -113,7 +115,7 @@ def main() -> int:
 
     runs = {}
     for size in split["sizes"]:
-        path = WORK / f"out-{size}.json"
+        path = WORK / f"{prefix}-{size}.json"
         if path.exists():
             runs[size] = json.loads(path.read_text(encoding="utf-8"))["records"]
     arms = [a for a in ("gate", "jev", "openai") if runs and a in next(iter(runs.values()))[0]["hits"]]
@@ -176,7 +178,7 @@ def main() -> int:
                     f"{cell(stats['no_match'])} | {adj} | {stats['resp_chars']:.0f} | {stats['p50_ms']:.0f} |"
                 )
         print()
-    (WORK / "report.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
+    (WORK / f"report-{prefix}.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
     return 0
 
 

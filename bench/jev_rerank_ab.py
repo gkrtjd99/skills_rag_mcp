@@ -78,6 +78,8 @@ def load_replay(path: Path) -> dict[tuple[str, str], dict[str, float]]:
         by_judge = fits if all(isinstance(v, dict) for v in fits.values()) and fits else {"jev": fits}
         for name, mapping in by_judge.items():
             recorded[(name, r["query"])] = mapping
+        for name, mapping in (r.get("scan") or {}).items():
+            recorded[(name + "/scan", r["query"])] = mapping
     return recorded
 
 
@@ -199,6 +201,18 @@ def main() -> int:
         return fits
 
     rerank.judge = recording_judge
+    real_scan = rerank.scan
+
+    def recording_scan(query, candidates):
+        if recorded is not None:
+            mapping = recorded[(rerank.RERANK_PROVIDER + "/scan", query)]
+            coarse = [mapping[c["name"]] for c in candidates]
+        else:
+            coarse = real_scan(query, candidates)
+        judged["scan"] = {c["name"]: round(p, 4) for c, p in zip(candidates, coarse)}
+        return coarse
+
+    rerank.scan = recording_scan
 
     arms = LOCAL_ARMS + args.judge
     records: list[dict] = []
@@ -219,7 +233,7 @@ def main() -> int:
 
             for i, row in enumerate(rows, 1):
                 q = row["query"]
-                rec = {**row, "hits": {}, "ms": {}, "resp_chars": {}, "fits": {}}
+                rec = {**row, "hits": {}, "ms": {}, "resp_chars": {}, "fits": {}, "scan": {}}
 
                 rerank.RERANK_PROVIDER = ""
                 t0 = time.monotonic()
@@ -246,12 +260,17 @@ def main() -> int:
                     rec["ms"][name] = (time.monotonic() - t0) * 1000.0
                     rec["hits"][name] = [h["name"] for h in res.get("hits", [])]
                     rec["resp_chars"][name] = len(json.dumps(res, ensure_ascii=False))
+                    if "scan" in judged:
+                        rec["scan"][name] = dict(judged["scan"])
                     if "fits" in judged:
                         rec["fits"][name] = dict(judged["fits"])
                         if recorded is None:
-                            usage = getattr(rerank.current_judge(), "last_usage", None) or {}
-                            if usage.get("input_tokens") is not None:
-                                tokens[name].append(int(usage["input_tokens"]))
+                            current = rerank.current_judge()
+                            usage = getattr(current, "last_usage", None) or {}
+                            spent = int(usage.get("input_tokens") or 0)
+                            if "scan" in judged:
+                                spent += int((getattr(current, "last_scan_usage", None) or {}).get("input_tokens") or 0)
+                            tokens[name].append(spent)
                             models[name].add(str(usage.get("model")))
                     elif shortlist:
                         fallbacks[name] += 1  # judge failed; shipped path used the local gate
@@ -308,6 +327,10 @@ def main() -> int:
             )
         summary["sweep"][name] = sweep
 
+    summary["usage"] = {
+        name: {"requests": len(tokens[name]), "input_tokens": sum(tokens[name]), "fallbacks": fallbacks[name]}
+        for name in args.judge
+    }
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(

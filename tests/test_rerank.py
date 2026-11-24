@@ -168,6 +168,147 @@ def test_empty_corpus_and_empty_query_keep_local_messages(monkeypatch):
     assert calls == []
 
 
+# --- whole-corpus scan ------------------------------------------------------
+
+
+def _seed_many(n=6):
+    index_mod.upsert(
+        [
+            SkillRecord(
+                name=f"skill-{i}",
+                description=f"does thing number {i} " + "x" * 400,
+                path=f"/x/skill-{i}/SKILL.md",
+                body="b",
+                content_hash=str(i),
+            )
+            for i in range(n)
+        ]
+    )
+
+
+def test_scan_picks_the_shortlist_when_the_corpus_is_larger_than_it(monkeypatch):
+    _seed_many(6)
+    monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)
+    seen = {}
+
+    def fake_scan(query, candidates):
+        seen["scanned"] = [c["name"] for c in candidates]
+        return [0.9 if c["name"] in {"skill-4", "skill-1"} else 0.1 for c in candidates]
+
+    calls = _enable(monkeypatch, {"skill-4": 0.8, "skill-1": 0.2})
+    monkeypatch.setattr(rerank, "scan", fake_scan)
+    res = rerank.search("anything at all", k=1)
+    assert sorted(seen["scanned"]) == [f"skill-{i}" for i in range(6)]  # every skill
+    assert sorted(calls[0][1]) == ["skill-1", "skill-4"]  # only the scan's top 2 judged
+    assert [h["name"] for h in res["hits"]] == ["skill-4"]
+
+
+@pytest.mark.parametrize("scan_max", [0, 5])
+def test_scan_is_skipped_when_disabled_or_corpus_too_large(monkeypatch, scan_max):
+    _seed_many(6)
+    monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)
+    monkeypatch.setattr(rerank, "RERANK_SCAN_MAX", scan_max)
+    monkeypatch.setattr(rerank, "scan", lambda *a: pytest.fail("scan called"))
+    calls = _enable(monkeypatch, {})
+    rerank.search("anything at all", k=1)
+    assert calls[0][1] == [c["name"] for c in retrieve.shortlist("anything at all", 2)]
+
+
+def test_scan_is_skipped_when_every_skill_is_judged_anyway(monkeypatch):
+    _seed_many(3)
+    monkeypatch.setattr(rerank, "scan", lambda *a: pytest.fail("scan called"))
+    calls = _enable(monkeypatch, {})
+    rerank.search("anything at all")
+    assert len(calls[0][1]) == 3
+
+
+def test_judge_without_scan_is_scanned_through_fits_on_short_descriptions(monkeypatch):
+    _seed_many(6)
+    monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)
+    lengths = []
+
+    class NoScan(FakeJudge):
+        def fits(self, query, candidates):
+            lengths.append([len(c["description"]) for c in candidates])
+            return [0.9 if c["name"] == "skill-3" else 0.0 for c in candidates]
+
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", f"{__name__}:FakeJudge")
+    monkeypatch.setattr(rerank, "current_judge", lambda: NoScan(None))
+    res = rerank.search("anything at all", k=1)  # shortlist = max(k, RERANK_CANDIDATES) = 2
+    assert len(lengths[0]) == 6 and max(lengths[0]) == judges.SCAN_DESCRIPTION_CHARS
+    assert len(lengths[1]) == 2 and min(lengths[1]) > 400  # full descriptions for the fit
+    assert [h["name"] for h in res["hits"]] == ["skill-3"]
+
+
+def test_scan_failure_falls_back_to_local_gate(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
+    _seed_many(6)
+    monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)
+    _enable(monkeypatch, {"skill-1": 0.9})
+
+    def boom(query, candidates):
+        raise RuntimeError("scan failed")
+
+    monkeypatch.setattr(rerank, "scan", boom)
+    assert rerank.search("does thing number 1") == retrieve.search("does thing number 1")
+
+
+def test_jev_scan_uses_the_short_wording_in_batches(monkeypatch):
+    from skill_rag.judges import jev
+
+    monkeypatch.setattr(jev, "SCAN_BATCH", 2)
+    requests = []
+
+    class _Answer:
+        def __init__(self, noul):
+            self.noul = noul
+
+    class _Client:
+        def system_one(self, state, questions, **kwargs):
+            requests.append((state, questions))
+            names = [q["instructions"].split("? ")[1].split(":")[0] for q in questions.values()]
+
+            class _Response:
+                model = "jev-x"
+                usage = type("U", (), {"input_tokens": 10 * len(questions)})()
+                nouls = {f"s{i}": _Answer(int(n[-1]) / 10) for i, n in enumerate(names)}
+
+            return _Response()
+
+    judge = JevJudge(JudgeConfig())
+    judge._client = _Client()
+    candidates = [{"name": f"skill-{i}", "description": "d " * 300, "agent": "a"} for i in range(5)]
+    assert judge.scan("do it", candidates) == [0.0, 0.1, 0.2, 0.3, 0.4]  # input order kept
+    assert len(requests) == 3 and judge.last_scan_usage == {"model": "jev-x", "input_tokens": 50}
+    first = requests[0][1]["s0"]
+    assert set(first) == {"type", "instructions"}  # no criteria in a scan
+    assert first["instructions"].startswith("Does `request` call for this skill? skill-")
+    assert len(first["instructions"]) < 60 + judges.SCAN_DESCRIPTION_CHARS
+
+
+def test_openai_scan_batches_and_keeps_order(monkeypatch):
+    from skill_rag.judges import openai_decisions
+
+    monkeypatch.setattr(openai_decisions, "SCAN_BATCH", 2)
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    posted = []
+
+    def post(url, headers, payload, timeout):
+        posted.append(payload)
+        answers = [
+            {"type": "predicate", "name": q["name"], "probability": int(q["instructions"].split("skill-")[1][0]) / 10}
+            for q in payload["questions"]
+        ]
+        return {"model": "gpt-6-luna", "answers": answers, "usage": {"input_tokens": 7 * len(answers)}}
+
+    judge = OpenAIDecisionsJudge(JudgeConfig(), post=post)
+    candidates = [{"name": f"skill-{i}", "description": "d " * 300, "agent": "a"} for i in range(5)]
+    assert judge.scan("do it", candidates) == [0.0, 0.1, 0.2, 0.3, 0.4]
+    assert len(posted) == 3 and judge.last_scan_usage["input_tokens"] == 35
+    text = posted[0]["questions"][0]["instructions"]
+    assert text.startswith("Does the request call for this skill? skill-") and "Yes means" not in text
+
+
 # --- failure handling ------------------------------------------------------
 
 
