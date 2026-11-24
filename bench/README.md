@@ -122,3 +122,7 @@ uv run python bench/scale/report.py --prefix test2after
 `queries.jsonl` (first test set) is retired; do not tune against it or
 `test2-queries.jsonl`. New decisions need new dev data and, for final numbers,
 a new test set.
+
+`bench/scale/cards_dev.py` holds the skill-card experiment
+(`docs/benchmarks/2026-11-24-cards-protocol.md`), which ended in a negative
+result (`docs/benchmarks/2026-11-24-cards-results.md`).
