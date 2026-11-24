@@ -1,5 +1,36 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Opt-in second-stage rerank, `SKILL_RAG_RERANK`: a judge model returns the
+  probability that each of the top 16 hybrid candidates fits the query. Off by
+  default; falls back to the local gate on any failure.
+  - `jev`: TypeSafe Jev (`rerank` extra, `TYPESAFE_API_KEY`).
+  - `openai`: OpenAI Decisions API (`OPENAI_API_KEY`, no extra package).
+  - `package.module:factory`: any model implementing `skill_rag.judges.Judge`.
+  When on, the query plus shortlisted skill names and descriptions are sent to
+  the chosen provider.
+- Judged hits return descriptions capped at 120 characters
+  (`SKILL_RAG_RERANK_DESCRIPTION_CHARS`), cutting the mean search response
+  from 1,184 to about 235 characters on the held-out corpus.
+- `bench/jev_rerank_ab.py` (one arm per `--judge`) and held-out query sets for
+  measuring the gate and judges on a corpus the thresholds were not tuned on.
+- `skill-rag status` reports rerank readiness and where data would be sent.
+
+### Measured
+
+- On a held-out 45-skill corpus (133 queries) the default gate scored
+  recall@1 0.726 and no-match accuracy 0.395 (1.000 and 1.000 on the fixture).
+  With rerank: `jev` 0.979 / 1.000 at p50 211 ms; `openai` 0.968 / 0.947 at
+  p50 496 ms. See `docs/benchmarks/2026-11-24-heldout-jev-rerank.md`.
+
+### Changed
+
+- `skill-rag query` follows the same search path as the MCP tool, including
+  rerank when enabled.
+
 ## [0.3.0] - 2026-07-15
 
 ### Changed

@@ -1,7 +1,14 @@
 # Security and privacy
 
 skill-rag is local-first. Embeddings, translation, indexing, and MCP serving
-run on the user's machine. The repository must not contain a user's `~/.skills`
+run on the user's machine. The one exception is opt-in: with
+`SKILL_RAG_RERANK` set, each search sends the query text and the names and
+descriptions of up to 16 shortlisted skills to the chosen judge's provider
+(`jev`: TypeSafe API; `openai`: OpenAI API; a custom judge: wherever it sends
+them). Skill bodies, local paths, and the rest of the corpus are not sent, and
+nothing is sent when the variable is unset. `skill-rag status` names the
+destination. Keep `TYPESAFE_API_KEY` and `OPENAI_API_KEY` in the environment,
+never in the repository. The repository must not contain a user's `~/.skills`
 corpus, LanceDB indexes, model caches, or generated benchmark output.
 
 Do not add raw user queries, `SKILL.md` bodies, local paths, credentials, or

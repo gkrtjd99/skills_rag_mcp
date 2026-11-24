@@ -146,6 +146,48 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP 메타데이터 description 상한 (`0`이면 해제) |
 | `SKILL_RAG_TRANSLATE` | `0` | 인덱스 시 로컬 description 번역 (`1`이면 켬) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
+| `SKILL_RAG_RERANK` | (꺼짐) | 2단계 적합성 판정 모델: `jev`, `openai`, 또는 직접 만든 `패키지.모듈:팩토리` (클라우드 호출, 아래 참고) |
+| `SKILL_RAG_RERANK_CANDIDATES` | `16` | 판정 모델에게 보여줄 후보 스킬 수 |
+| `SKILL_RAG_RERANK_THRESHOLD` | `0.5` | 스킬을 반환하는 최소 적합 확률 |
+| `SKILL_RAG_RERANK_MODEL` | (제공사 기본) | 판정 모델 ID 고정 (예: `jev-1.14.0`, `gpt-6-luna`) |
+| `SKILL_RAG_RERANK_TIMEOUT` | `5` | 판정 요청 타임아웃 (초) |
+| `SKILL_RAG_RERANK_COOLDOWN` | `60` | 판정 호출 실패 후 로컬 판정만 쓰는 시간 (초) |
+| `SKILL_RAG_RERANK_DESCRIPTION_CHARS` | `120` | 판정을 거친 hit의 description 상한 (`0`이면 해제) |
+
+### 선택 기능: 판정 모델 재순위 (기본 꺼짐)
+
+기본 임계값은 공개 fixture에 맞춰져 있어 다른 코퍼스에서는 정확도가 떨어질 수 있음.
+켜면 로컬 하이브리드 검색은 후보만 뽑고, 판정 모델이 후보마다 "이 질의에 맞는 스킬인가"의
+확률을 돌려줌. held-out 스킬 45개, 질의 133개 기준 측정값:
+
+| | 기본 게이트 | `jev` | `openai` |
+| --- | ---: | ---: | ---: |
+| recall@1 | 0.726 | 0.979 | 0.968 |
+| no-match 정확도 | 0.395 | 1.000 | 0.947 |
+| 검색 응답 크기 (평균 문자 수) | 1,184 | 237 | 230 |
+| 지연 p50 | 31 ms | 211 ms | 496 ms |
+| 요청당 입력 토큰 | 없음 | 4,411 | 6,013 |
+
+측정 방법과 한계는 `docs/benchmarks/2026-11-24-heldout-jev-rerank.md` 참고.
+
+```bash
+# TypeSafe Jev
+uv sync --extra rerank
+export TYPESAFE_API_KEY=...
+export SKILL_RAG_RERANK=jev
+
+# 또는 OpenAI Decisions API (추가 패키지 없음)
+export OPENAI_API_KEY=...
+export SKILL_RAG_RERANK=openai
+```
+
+- 켜면 검색마다 **질의 문장과 후보 스킬의 이름·설명**이 선택한 제공사 API로 전송됨.
+  스킬 본문과 경로는 전송되지 않음. 끄면 아무것도 외부로 나가지 않음.
+- 입력 토큰이 과금됨.
+- SDK 미설치, 키 없음, 크레딧 소진, 타임아웃 등 어떤 실패든 로컬 판정 결과를 그대로 반환함.
+- 다른 모델을 붙이려면 `skill_rag.judges.Judge`(메서드 `fits`, `unavailable_reason`)를
+  구현하고 `SKILL_RAG_RERANK=내패키지.모듈:팩토리`로 지정.
+- `uv run skill-rag status`의 `rerank` 줄에서 현재 상태 확인.
 
 `skill-rag eval`은 기본적으로 `eval/fixtures/` 아래의 공개 fixture를 사용하므로
 GitHub에서 받은 사용자도 같은 기준으로 검증할 수 있음. Codex 기본 스킬 gold set은

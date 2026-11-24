@@ -1,0 +1,110 @@
+{"query": "Call Claude through the Converse API and add a knowledge base for retrieval", "expected": ["amazon-bedrock"], "lang": "en", "kind": "positive"}
+{"query": "베드락 에이전트를 AgentCore로 옮기고 싶어", "expected": ["amazon-bedrock"], "lang": "ko", "kind": "positive"}
+{"query": "Fine-tune an open-source LLM on SageMaker and deploy it to an endpoint", "expected": ["aws-ai-ml"], "lang": "en", "kind": "positive"}
+{"query": "세이지메이커 엔드포인트 지연시간이 너무 길어, 원인 좀 봐줘", "expected": ["aws-ai-ml"], "lang": "ko", "kind": "positive"}
+{"query": "Add sign-up and login with Cognito to my React app", "expected": ["aws-auth"], "lang": "en", "kind": "positive"}
+{"query": "소셜 로그인 붙였는데 redirect_uri 에러가 나, 코그니토 설정 봐줘", "expected": ["aws-auth"], "lang": "ko", "kind": "positive"}
+{"query": "Why did my AWS bill jump last month and where can I cut spend?", "expected": ["aws-billing-and-cost-management"], "lang": "en", "kind": "positive"}
+{"query": "Savings Plan이랑 예약 인스턴스 중에 뭐가 더 싼지 계산해줘", "expected": ["aws-billing-and-cost-management"], "lang": "ko", "kind": "positive"}
+{"query": "Pick the right Building Blocks for a realtime chat API with AWS Blocks", "expected": ["aws-blocks"], "lang": "en", "kind": "positive"}
+{"query": "AWS Blocks로 KVStore 쓰는 API 만들고 로컬에서 돌려보고 싶어", "expected": ["aws-blocks"], "lang": "ko", "kind": "positive"}
+{"query": "cdk deploy fails after I refactored my stacks, how do I avoid resource replacement?", "expected": ["aws-cdk"], "lang": "en", "kind": "positive"}
+{"query": "CDK 타입스크립트로 스택 구조 어떻게 나누는 게 좋을까", "expected": ["aws-cdk"], "lang": "ko", "kind": "positive"}
+{"query": "Validate this CloudFormation template with cfn-lint before deploying", "expected": ["aws-cloudformation"], "lang": "en", "kind": "positive"}
+{"query": "스택이 ROLLBACK_COMPLETE로 실패했는데 원인 찾아줘", "expected": ["aws-cloudformation", "aws-cdk"], "lang": "ko", "kind": "positive"}
+{"query": "My Auto Scaling group isn't replacing unhealthy EC2 instances", "expected": ["aws-compute"], "lang": "en", "kind": "positive"}
+{"query": "T3 인스턴스 CPU 크레딧이 바닥나서 느려지는 것 같아", "expected": ["aws-compute"], "lang": "ko", "kind": "positive"}
+{"query": "ECS Fargate service keeps restarting tasks, help me debug", "expected": ["aws-containers"], "lang": "en", "kind": "positive"}
+{"query": "EKS 클러스터에 애드온 설치하고 노드 스케일링 설정하려고 해", "expected": ["aws-containers"], "lang": "ko", "kind": "positive"}
+{"query": "Should I use DynamoDB or Aurora for this multi-tenant app?", "expected": ["aws-database"], "lang": "en", "kind": "positive"}
+{"query": "AWS에서 시계열 데이터 저장할 DB 추천해줘", "expected": ["aws-database"], "lang": "ko", "kind": "positive"}
+{"query": "Set up a CodePipeline that builds with CodeBuild and does blue/green deploys", "expected": ["aws-deployment"], "lang": "en", "kind": "positive"}
+{"query": "buildspec.yml에서 도커 캐시가 안 먹혀", "expected": ["aws-deployment"], "lang": "ko", "kind": "positive"}
+{"query": "Write a least-privilege IAM policy for this Lambda from its source code", "expected": ["aws-iam"], "lang": "en", "kind": "positive"}
+{"query": "교차 계정 역할 신뢰 정책에서 혼동된 대리인 문제 막으려면?", "expected": ["aws-iam"], "lang": "ko", "kind": "positive"}
+{"query": "An alarm fired at 3am — trace the failed requests across services from the logs", "expected": ["aws-investigation", "aws-observability"], "lang": "en", "kind": "positive"}
+{"query": "어제 배포 이후 에러가 급증했는데 계정에 남은 기록으로 원인 추적해줘", "expected": ["aws-investigation", "aws-observability"], "lang": "ko", "kind": "positive"}
+{"query": "SQS vs SNS vs EventBridge for fan-out to several consumers?", "expected": ["aws-messaging-and-streaming"], "lang": "en", "kind": "positive"}
+{"query": "키네시스 스트림 컨슈머가 밀리는데 샤드 늘려야 하나", "expected": ["aws-messaging-and-streaming"], "lang": "ko", "kind": "positive"}
+{"query": "Connect our on-prem datacenter to several VPCs — Direct Connect or VPN?", "expected": ["aws-networking"], "lang": "en", "kind": "positive"}
+{"query": "CloudFront 앞단에 WAF 규칙으로 봇 트래픽 막고 싶어", "expected": ["aws-networking"], "lang": "ko", "kind": "positive"}
+{"query": "Create a CloudWatch composite alarm and a dashboard for p99 latency", "expected": ["aws-observability"], "lang": "en", "kind": "positive"}
+{"query": "X-Ray 트레이싱 붙이고 Logs Insights 쿼리 짜줘", "expected": ["aws-observability"], "lang": "ko", "kind": "positive"}
+{"query": "Upload a file to S3 from Node using @aws-sdk/client-s3", "expected": ["aws-sdk-js-v3-usage"], "lang": "en", "kind": "positive"}
+{"query": "타입스크립트에서 AWS SDK v3로 DynamoDB 조회 코드 짜줘", "expected": ["aws-sdk-js-v3-usage"], "lang": "ko", "kind": "positive"}
+{"query": "Use a boto3 paginator to list every object in a bucket", "expected": ["aws-sdk-python-usage"], "lang": "en", "kind": "positive"}
+{"query": "boto3 ClientError 예외 처리랑 재시도 설정 어떻게 해", "expected": ["aws-sdk-python-usage"], "lang": "ko", "kind": "positive"}
+{"query": "Call S3 from an iOS app using the AWS SDK for Swift", "expected": ["aws-sdk-swift-usage"], "lang": "en", "kind": "positive"}
+{"query": "스위프트로 AWS 서비스 호출하는 코드 작성해줘", "expected": ["aws-sdk-swift-usage"], "lang": "ko", "kind": "positive"}
+{"query": "Summarize GuardDuty and Inspector findings and our Security Hub posture", "expected": ["aws-security"], "lang": "en", "kind": "positive"}
+{"query": "Macie가 찾은 민감 데이터 결과 정리해줘", "expected": ["aws-security"], "lang": "ko", "kind": "positive"}
+{"query": "Build a webhook backend — Lambda with API Gateway or something else?", "expected": ["aws-serverless"], "lang": "en", "kind": "positive"}
+{"query": "람다 콜드 스타트 줄이는 방법 알려줘", "expected": ["aws-serverless"], "lang": "ko", "kind": "positive"}
+{"query": "Cheapest way to archive 50 TB of logs we rarely read on AWS", "expected": ["aws-storage"], "lang": "en", "kind": "positive"}
+{"query": "EC2 여러 대가 같이 쓰는 공유 파일시스템 뭐 써야 해", "expected": ["aws-storage"], "lang": "ko", "kind": "positive"}
+{"query": "Run a Well-Architected review of this workload's IaC", "expected": ["aws-well-architected-review"], "lang": "en", "kind": "positive"}
+{"query": "우리 아키텍처를 웰아키텍티드 기준으로 필러별 평가해줘", "expected": ["aws-well-architected-review"], "lang": "ko", "kind": "positive"}
+{"query": "Is there a skill that can help me write changelogs?", "expected": ["find-skills"], "lang": "en", "kind": "positive"}
+{"query": "이런 작업 도와주는 스킬 있는지 찾아서 설치해줘", "expected": ["find-skills"], "lang": "ko", "kind": "positive"}
+{"query": "I built this app on Lovable, move it to AWS", "expected": ["launch-with-aws"], "lang": "en", "kind": "positive"}
+{"query": "Bolt로 만든 웹앱을 AWS에 올리고 싶어", "expected": ["launch-with-aws"], "lang": "ko", "kind": "positive"}
+{"query": "aws cli says my session token expired, how do I log in again", "expected": ["signing-in-to-aws"], "lang": "en", "kind": "positive"}
+{"query": "AWS 자격 증명이 없다고 나와, 로컬 개발용 로그인 설정해줘", "expected": ["signing-in-to-aws"], "lang": "ko", "kind": "positive"}
+{"query": "Replace this prompt-and-parse-JSON classifier with typed judgments and probabilities", "expected": ["typesafe-ai"], "lang": "en", "kind": "positive"}
+{"query": "Jev로 고객 문의 라우팅 만들어줘", "expected": ["typesafe-ai"], "lang": "ko", "kind": "positive"}
+{"query": "Open the staging site in your in-app browser and check the layout", "expected": ["built-in-browser"], "lang": "en", "kind": "positive"}
+{"query": "앱 안 브라우저 창으로 이 페이지 열어서 확인해봐", "expected": ["built-in-browser"], "lang": "ko", "kind": "positive"}
+{"query": "Use my Chrome with the extension to fill in this form", "expected": ["chrome-browser"], "lang": "en", "kind": "positive"}
+{"query": "내 크롬 브라우저에서 이 사이트 열어줘", "expected": ["chrome-browser"], "lang": "ko", "kind": "positive"}
+{"query": "Open System Settings on my Mac and turn on dark mode", "expected": ["computer-use"], "lang": "en", "kind": "positive"}
+{"query": "내 화면 보고 Finder에서 파일 정리해줘", "expected": ["computer-use"], "lang": "ko", "kind": "positive"}
+{"query": "Compare the top vector databases across multiple sources and summarize trade-offs", "expected": ["deep-research"], "lang": "en", "kind": "positive"}
+{"query": "전기차 배터리 시장 동향을 여러 자료로 조사해서 분석해줘", "expected": ["deep-research"], "lang": "ko", "kind": "positive"}
+{"query": "Draft a project proposal as a shareable doc my team can comment on", "expected": ["docs"], "lang": "en", "kind": "positive"}
+{"query": "팀이랑 같이 볼 회의록 문서 만들어줘", "expected": ["docs"], "lang": "ko", "kind": "positive"}
+{"query": "Turn these notes into a Word .docx with tracked changes", "expected": ["docx"], "lang": "en", "kind": "positive"}
+{"query": "이 워드 파일에서 문구 찾아 바꾸고 표 추가해줘", "expected": ["docx"], "lang": "ko", "kind": "positive"}
+{"query": "Create a Google Sheet with this budget and share it", "expected": ["google-workspace"], "lang": "en", "kind": "positive"}
+{"query": "구글 슬라이드로 발표 자료 만들어줘", "expected": ["google-workspace"], "lang": "ko", "kind": "positive"}
+{"query": "Import my memory export from ChatGPT", "expected": ["import-memory"], "lang": "en", "kind": "positive"}
+{"query": "다른 AI에서 내보낸 메모리 가져와줘", "expected": ["import-memory"], "lang": "ko", "kind": "positive"}
+{"query": "Show me my morning brief", "expected": ["morning"], "lang": "en", "kind": "positive"}
+{"query": "모닝 브리프 평일마다 받게 설정해줘", "expected": ["morning"], "lang": "ko", "kind": "positive"}
+{"query": "Merge these three PDFs and add a watermark", "expected": ["pdf"], "lang": "en", "kind": "positive"}
+{"query": "PDF에서 표만 뽑아서 정리해줘", "expected": ["pdf"], "lang": "ko", "kind": "positive"}
+{"query": "Make a pitch deck as a PowerPoint file", "expected": ["pptx"], "lang": "en", "kind": "positive"}
+{"query": "이 pptx 슬라이드 내용 읽고 요약해줘", "expected": ["pptx"], "lang": "ko", "kind": "positive"}
+{"query": "Create a new skill for our release checklist and benchmark it", "expected": ["skill-creator"], "lang": "en", "kind": "positive"}
+{"query": "기존 스킬 설명을 고쳐서 트리거가 더 잘 되게 해줘", "expected": ["skill-creator"], "lang": "ko", "kind": "positive"}
+{"query": "Add a summary column with totals to this .xlsx", "expected": ["xlsx"], "lang": "en", "kind": "positive"}
+{"query": "이 CSV 파일 열어서 열 추가하고 합계 계산해줘", "expected": ["xlsx"], "lang": "ko", "kind": "positive"}
+{"query": "What's the capital of Australia?", "expected": [], "lang": "en", "kind": "no_match_offtopic"}
+{"query": "Write a haiku about rain", "expected": [], "lang": "en", "kind": "no_match_offtopic"}
+{"query": "Solve the integral of x squared times e to the x", "expected": [], "lang": "en", "kind": "no_match_offtopic"}
+{"query": "Translate this paragraph into Japanese", "expected": [], "lang": "en", "kind": "no_match_offtopic"}
+{"query": "Explain the difference between TCP and UDP", "expected": [], "lang": "en", "kind": "no_match_offtopic"}
+{"query": "오늘 저녁 메뉴 추천해줘", "expected": [], "lang": "ko", "kind": "no_match_offtopic"}
+{"query": "가을에 대한 시 한 편 써줘", "expected": [], "lang": "ko", "kind": "no_match_offtopic"}
+{"query": "제주도 2박 3일 여행 코스 짜줘", "expected": [], "lang": "ko", "kind": "no_match_offtopic"}
+{"query": "이 문장 영어로 자연스럽게 바꿔줘", "expected": [], "lang": "ko", "kind": "no_match_offtopic"}
+{"query": "상대성 이론을 쉽게 설명해줘", "expected": [], "lang": "ko", "kind": "no_match_offtopic"}
+{"query": "Tune cold starts for my Azure Functions app", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Set up autoscaling for a Kubernetes deployment on GKE", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Add Google sign-in with Firebase Auth", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Deploy my Next.js app to Vercel with preview URLs", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Bind a KV namespace in my Cloudflare Worker", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Implement function calling with the OpenAI API", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Fine-tune a LoRA adapter on my local GPU with Hugging Face", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Animate a card flip in SwiftUI", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Fix this TypeScript generic constraint error", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Write a Python function that merges two sorted lists", "expected": [], "lang": "en", "kind": "no_match_near"}
+{"query": "Terraform으로 GCP VPC랑 서브넷 만들어줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "BigQuery 파티션 테이블 쿼리 비용 줄이는 법", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "MongoDB Atlas 연결 문자열이 계속 타임아웃 나", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "git rebase 하다가 충돌 났는데 해결해줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "React useEffect가 무한 렌더링돼, 고쳐줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "리눅스 cron으로 로그 로테이션 설정해줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "Stripe 결제 웹훅 서명 검증 구현해줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "ESLint랑 Prettier 설정 충돌 정리해줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "Rust 라이프타임 에러 원인 설명해줘", "expected": [], "lang": "ko", "kind": "no_match_near"}
+{"query": "Jira 티켓 자동 생성 스크립트 짜줘", "expected": [], "lang": "ko", "kind": "no_match_near"}

@@ -1,0 +1,35 @@
+# OpenAI Decisions API quick reference
+
+Used only by skill_rag/judges/openai_decisions.py when SKILL_RAG_RERANK=openai.
+Called with httpx; the openai SDK is not a dependency.
+Guide: https://developers.openai.com/api/docs/guides/decisions.md
+
+POST https://api.openai.com/v1/decisions     (OPENAI_BASE_URL is honored)
+Authorization: Bearer $OPENAI_API_KEY
+
+{
+  "model": "gpt-6-luna",                 # the only supported model today
+  "input": "shared evidence as text",    # or an array of messages
+  "questions": [                          # 1 to 400, answered independently
+    {"type": "predicate", "name": "fit_0", "instructions": "Is ...?"},
+    {"type": "choice",    "name": "...",   "instructions": "...", ...},
+    {"type": "score",     "name": "...",   "instructions": "...", ...}
+  ]
+}
+
+Response:
+{
+  "model": "gpt-6-luna",
+  "answers": [
+    {"type": "predicate", "name": "fit_0", "probability": 0.92},
+    {"type": "refusal",   "name": "fit_1"}
+  ],
+  "usage": {"input_tokens": 353, "input_tokens_details": {"cached_tokens": 0}}
+}
+
+- predicate: probability (0 to 1) that the condition is true.
+- choice / score: a probabilities array plus a separate confidence.
+- A question can come back as type "refusal" with no probability.
+- Answers echo each question's name; match by name, not position.
+- Pricing: $0.10 per 1M uncached input tokens; output tokens are not charged.
+- Shared input of 1,024+ tokens is prompt-cached; question text is not.

@@ -21,7 +21,9 @@ src/skill_rag/
 ├── translate.py    # local ko<->en description translation
 ├── sparse.py       # cached BM25 + Korean-aware tokenization
 ├── index.py        # LanceDB CRUD + hot table/metadata cache (schema v11)
-├── retrieve.py     # hybrid search + threshold/status response
+├── retrieve.py     # hybrid search + threshold/status response; ungated shortlist
+├── rerank.py       # opt-in judge policy: shortlist -> fit probabilities -> hits; fail-open
+├── judges/         # swappable fit judges: Judge protocol, jev, openai_decisions
 ├── sync.py         # disk<->index diff; TTL cache (only stateful module)
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
 ├── collect.py      # symlink harness skills into ~/.skills/
@@ -64,6 +66,16 @@ package-managed index write.
    (default 0.30).
 7. Kept candidates are ordered by reciprocal rank fusion (`RRF_K`, default 60).
 8. Returns `{status: "ok", hits}` or `{status: "no_match", hits: [], message}`.
+
+With `SKILL_RAG_RERANK` set (`jev`, `openai`, or `package.module:factory`),
+steps 6-7 are replaced after sync: `retrieve.shortlist` returns the top 16 by
+fused rank with no thresholds, the configured `judges.Judge` returns one fit
+probability per candidate from a single request, and candidates at or above
+0.5 are returned in order of that probability (which becomes the hit `score`)
+with descriptions capped at 120 characters. `rerank.py` owns that policy; a
+judge only scores, so swapping the model is a new `Judge` class. Any failure
+returns the local result above and pauses rerank for 60 s. Only the query and
+the shortlisted names and descriptions are sent.
 
 Hits contain `{name, description, score, agent}`. Descriptions are capped at
 280 characters by default to keep MCP metadata responses small; the full
@@ -151,7 +163,8 @@ The bootstrap skill and server response shapes jointly prevent retry loops:
 
 ## Constraints
 
-- Local-first: no cloud APIs at index or query time.
+- Local-first: no cloud APIs at index or query time by default. The only
+  cloud call is the opt-in rerank judge (`SKILL_RAG_RERANK`).
 - Python 3.13 + uv. No `pip` or raw `venv`.
 - Single user, single corpus.
 - `~/.skills/` is user-managed and never committed.

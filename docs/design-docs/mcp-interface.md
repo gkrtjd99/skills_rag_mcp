@@ -87,6 +87,23 @@ Search is hybrid:
   across unrelated queries. Dense and BM25 thresholds remain internal
   filtering signals.
 
+### Opt-in rerank
+
+With `SKILL_RAG_RERANK` set (`jev`, `openai`, or a custom
+`package.module:factory`) the keep rule and ordering above are replaced. The
+top `SKILL_RAG_RERANK_CANDIDATES` (default 16) by fused rank, with no
+thresholds, are each judged by the configured model for fit to the query.
+Candidates with probability >= `SKILL_RAG_RERANK_THRESHOLD` (default 0.5) are
+returned in order of probability; none qualifying is `no_match`. Statuses and
+hit fields are unchanged, with two differences in content: `score` is that
+probability (comparable across queries, and no longer 1.0 for the first hit by
+construction), and `description` is capped at
+`SKILL_RAG_RERANK_DESCRIPTION_CHARS` (default 120) because the fit decision
+has already been made. `skip`, empty-query, and empty-corpus responses never
+trigger a request. On any failure the local result is returned. This sends the
+query and the shortlisted names and descriptions to the judge's provider; see
+`docs/superpowers/specs/2026-11-24-jev-rerank-opt-in.md`.
+
 `text` is built from name, description, optional translated description, and
 body. Translation is local ko<->en only, disabled by default, and happens at
 index time for added/changed records when `SKILL_RAG_TRANSLATE=1`. Search hit

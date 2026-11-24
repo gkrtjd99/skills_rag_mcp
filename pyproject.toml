@@ -16,6 +16,14 @@ dependencies = [
     "tomlkit>=0.13.0",
     "sentencepiece>=0.2.0",
     "sacremoses>=0.1.1",
+    # Used directly by the opt-in OpenAI judge; already required by mcp.
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+# Only for the opt-in Jev judge (SKILL_RAG_RERANK=jev). Never needed by default.
+rerank = [
+    "typesafe-sdk>=0.7.5",
 ]
 
 [project.scripts]
