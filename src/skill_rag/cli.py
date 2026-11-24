@@ -155,6 +155,7 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "rerank": rerank_mod.readiness(),
         "rerank_candidates": rerank_mod.RERANK_CANDIDATES,
         "rerank_threshold": rerank_mod.RERANK_THRESHOLD,
+        "rerank_max_hits": rerank_mod.RERANK_MAX_HITS,
         "rerank_scan_max": rerank_mod.RERANK_SCAN_MAX,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
     }
@@ -182,8 +183,10 @@ def status(json_out: bool = typer.Option(False, "--json")):
     if rerank_mod.enabled():
         typer.echo(
             f"rerank shortlist: {payload['rerank_candidates']} / fit >= {payload['rerank_threshold']}"
+            f" / returns at most {payload['rerank_max_hits'] or 'k'}"
         )
-        typer.echo(f"rerank scan     : whole corpus up to {payload['rerank_scan_max']} skills")
+        scan = payload["rerank_scan_max"]
+        typer.echo(f"rerank scan     : {'off' if scan <= 0 else f'whole corpus up to {scan} skills'}")
     typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")
 
 

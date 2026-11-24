@@ -167,6 +167,8 @@ def main() -> int:
     )
     ap.add_argument("--candidates", type=int, default=rerank.RERANK_CANDIDATES)
     ap.add_argument("--fit-threshold", type=float, default=rerank.RERANK_THRESHOLD)
+    ap.add_argument("--max-hits", type=int, default=rerank.RERANK_MAX_HITS, help="0 = up to k")
+    ap.add_argument("--scan-max", type=int, default=rerank.RERANK_SCAN_MAX, help="0 = no whole-corpus scan")
     ap.add_argument(
         "--replay",
         type=Path,
@@ -186,6 +188,8 @@ def main() -> int:
 
     rerank.RERANK_CANDIDATES = args.candidates
     rerank.RERANK_THRESHOLD = args.fit_threshold
+    rerank.RERANK_MAX_HITS = args.max_hits
+    rerank.RERANK_SCAN_MAX = args.scan_max
     rerank.RERANK_COOLDOWN_SECONDS = 0.0  # measure every query independently
     recorded = load_replay(args.replay) if args.replay else None
     judged: dict = {}

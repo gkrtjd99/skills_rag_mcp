@@ -110,8 +110,29 @@ def test_shortlist_empty_for_empty_query_or_corpus():
     assert retrieve.shortlist("   ", 5) == []
 
 
+def test_defaults_are_precision_first(monkeypatch):
+    _seed()
+    assert rerank.RERANK_THRESHOLD == 0.9 and rerank.RERANK_MAX_HITS == 1
+    assert rerank.RERANK_SCAN_MAX == 0
+    _enable(monkeypatch, {"tdd": 0.89, "deploy": 0.6})
+    assert rerank.search("ship it") == retrieve.no_match_response()  # likely is not enough
+    _enable(monkeypatch, {"tdd": 0.95, "deploy": 0.97, "brainstorming": 0.92})
+    res = rerank.search("ship it", k=5)
+    assert [h["name"] for h in res["hits"]] == ["deploy"]  # only the best one
+
+
+def test_max_hits_zero_returns_up_to_k(monkeypatch):
+    _seed()
+    monkeypatch.setattr(rerank, "RERANK_MAX_HITS", 0)
+    _enable(monkeypatch, {"tdd": 0.95, "deploy": 0.97, "brainstorming": 0.92})
+    assert len(rerank.search("ship it", k=2)["hits"]) == 2
+    assert len(rerank.search("ship it", k=5)["hits"]) == 3
+
+
 def test_enabled_keeps_only_fitting_skills_ordered_by_probability(monkeypatch):
     _seed()
+    monkeypatch.setattr(rerank, "RERANK_THRESHOLD", 0.5)
+    monkeypatch.setattr(rerank, "RERANK_MAX_HITS", 0)
     calls = _enable(monkeypatch, {"tdd": 0.61, "deploy": 0.97, "brainstorming": 0.04})
     res = rerank.search("ship it", k=5)
     assert res["status"] == "ok"
@@ -153,6 +174,8 @@ def test_enabled_returns_no_match_when_nothing_fits(monkeypatch):
 
 def test_k_caps_hits_and_widens_shortlist(monkeypatch):
     _seed()
+    monkeypatch.setattr(rerank, "RERANK_THRESHOLD", 0.5)
+    monkeypatch.setattr(rerank, "RERANK_MAX_HITS", 0)
     monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 1)
     calls = _enable(monkeypatch, {"tdd": 0.9, "deploy": 0.8, "brainstorming": 0.7})
     res = rerank.search("anything", k=2)
@@ -186,7 +209,12 @@ def _seed_many(n=6):
     )
 
 
-def test_scan_picks_the_shortlist_when_the_corpus_is_larger_than_it(monkeypatch):
+@pytest.fixture
+def scan_on(monkeypatch):
+    monkeypatch.setattr(rerank, "RERANK_SCAN_MAX", 500)
+
+
+def test_scan_picks_the_shortlist_when_the_corpus_is_larger_than_it(monkeypatch, scan_on):
     _seed_many(6)
     monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)
     seen = {}
@@ -195,7 +223,7 @@ def test_scan_picks_the_shortlist_when_the_corpus_is_larger_than_it(monkeypatch)
         seen["scanned"] = [c["name"] for c in candidates]
         return [0.9 if c["name"] in {"skill-4", "skill-1"} else 0.1 for c in candidates]
 
-    calls = _enable(monkeypatch, {"skill-4": 0.8, "skill-1": 0.2})
+    calls = _enable(monkeypatch, {"skill-4": 0.95, "skill-1": 0.2})
     monkeypatch.setattr(rerank, "scan", fake_scan)
     res = rerank.search("anything at all", k=1)
     assert sorted(seen["scanned"]) == [f"skill-{i}" for i in range(6)]  # every skill
@@ -214,7 +242,7 @@ def test_scan_is_skipped_when_disabled_or_corpus_too_large(monkeypatch, scan_max
     assert calls[0][1] == [c["name"] for c in retrieve.shortlist("anything at all", 2)]
 
 
-def test_scan_is_skipped_when_every_skill_is_judged_anyway(monkeypatch):
+def test_scan_is_skipped_when_every_skill_is_judged_anyway(monkeypatch, scan_on):
     _seed_many(3)
     monkeypatch.setattr(rerank, "scan", lambda *a: pytest.fail("scan called"))
     calls = _enable(monkeypatch, {})
@@ -222,7 +250,7 @@ def test_scan_is_skipped_when_every_skill_is_judged_anyway(monkeypatch):
     assert len(calls[0][1]) == 3
 
 
-def test_judge_without_scan_is_scanned_through_fits_on_short_descriptions(monkeypatch):
+def test_judge_without_scan_is_scanned_through_fits_on_short_descriptions(monkeypatch, scan_on):
     _seed_many(6)
     monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)
     lengths = []
@@ -240,7 +268,7 @@ def test_judge_without_scan_is_scanned_through_fits_on_short_descriptions(monkey
     assert [h["name"] for h in res["hits"]] == ["skill-3"]
 
 
-def test_scan_failure_falls_back_to_local_gate(monkeypatch):
+def test_scan_failure_falls_back_to_local_gate(monkeypatch, scan_on):
     monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
     _seed_many(6)
     monkeypatch.setattr(rerank, "RERANK_CANDIDATES", 2)

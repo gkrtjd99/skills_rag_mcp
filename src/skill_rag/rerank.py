@@ -3,16 +3,20 @@
 Off by default: without ``SKILL_RAG_RERANK`` every search is the local hybrid
 gate in ``retrieve.py`` and nothing leaves the machine.
 
-When enabled, the judge first scans every skill with a short description and
-keeps the most likely ones (corpora up to ``RERANK_SCAN_MAX`` skills); larger
-corpora, or ``RERANK_SCAN_MAX=0``, use the local hybrid ranking as the
-shortlist instead. A judge
+When enabled, the local hybrid ranking only proposes a shortlist. A judge
 (``skill_rag.judges``: ``jev``, ``openai``, or your own ``module:factory``)
-returns, per shortlisted skill, the probability that it fits the query. Skills
-at or above ``RERANK_THRESHOLD`` are returned in order of that probability,
-which is also the hit ``score``. The built-in judges are cloud calls: they send
-the query text and the shortlisted skills' names and descriptions to the
-provider. Skill bodies, paths, and the rest of the corpus are never sent.
+returns, per shortlisted skill, the probability that it fits the query. The
+policy is precision first: a wrong skill costs the agent a skill body's worth
+of tokens and can steer it wrong, while no skill costs only the help it would
+have given. So only a skill at or above ``RERANK_THRESHOLD`` (0.9) is
+returned, and by default only the single best one; its probability is the hit
+``score``. The built-in judges are cloud calls: they send the query text and
+the shortlisted skills' names and descriptions to the provider. Skill bodies,
+paths, and the rest of the corpus are never sent.
+
+``RERANK_SCAN_MAX`` > 0 additionally lets the judge scan the whole corpus to
+build the shortlist. It finds the right skill more often but also returns more
+skills that do not fit, so it is off by default.
 
 Any failure (unknown provider, missing package or key, no API credits, timeout,
 API error, malformed answer) falls back to the local gate, so enabling this can
@@ -46,9 +50,15 @@ RERANK_PROVIDER = os.environ.get("SKILL_RAG_RERANK", "").strip()
 # corpus grows. Search runs once per task, so the default favors not missing
 # the skill.
 RERANK_CANDIDATES = int(os.environ.get("SKILL_RAG_RERANK_CANDIDATES", "16"))
-# Probability midpoint, fixed before measuring. Accuracy was flat from 0.4 to
-# 0.7 at 16 candidates (0.2 to 0.7 at 8), so this is not a tuned value.
-RERANK_THRESHOLD = float(os.environ.get("SKILL_RAG_RERANK_THRESHOLD", "0.5"))
+# Chosen on a dev set for precision first
+# (docs/benchmarks/2026-11-24-precision-results.md). At 0.5 a skill that does
+# not fit was returned for 41% of dev requests with no matching skill and 12%
+# of those with one; at 0.9 for 9% and 3%, while a useful skill was returned
+# for 67% of requests that had one instead of 80%.
+RERANK_THRESHOLD = float(os.environ.get("SKILL_RAG_RERANK_THRESHOLD", "0.9"))
+# Skills returned per search. One by default: every extra hit is another
+# chance to hand the agent a skill that does not fit. 0 means up to ``k``.
+RERANK_MAX_HITS = int(os.environ.get("SKILL_RAG_RERANK_MAX_HITS", "1"))
 RERANK_TIMEOUT = float(os.environ.get("SKILL_RAG_RERANK_TIMEOUT", "5"))
 # Empty means the provider's default model. Pin a version for stable scores.
 RERANK_MODEL = os.environ.get("SKILL_RAG_RERANK_MODEL", "").strip()
@@ -59,11 +69,12 @@ RERANK_COOLDOWN_SECONDS = float(os.environ.get("SKILL_RAG_RERANK_COOLDOWN", "60"
 # A judged hit no longer needs its description to be re-judged by the agent,
 # only recognized, so it is returned shorter than a local-gate hit (280).
 RERANK_DESCRIPTION_CHARS = int(os.environ.get("SKILL_RAG_RERANK_DESCRIPTION_CHARS", "120"))
-# Largest corpus the judge scans whole to build the shortlist. The local
-# hybrid shortlist loses the right skill as the corpus grows (in the top 16 for
-# 74% of dev queries at 350 skills); a scan kept it for 97%. A scan costs about
-# 51 input tokens per skill per search, so it is bounded. 0 disables it.
-RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "500"))
+# Largest corpus the judge scans whole to build the shortlist; 0 (default)
+# turns the scan off. On the dev set a scan put the right skill in the top 16
+# for 97% of queries against 74% for the local shortlist, but at every
+# threshold it also returned more skills that do not fit, so it lost the
+# precision-first selection. A scan costs about 51 input tokens per skill.
+RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "0"))
 
 _retry_after: float = 0.0  # monotonic deadline of the current cooldown
 
@@ -168,6 +179,6 @@ def search(query: str, k: int = 5, agent: str | None = None) -> dict:
         retrieve.format_hit(
             c["name"], c["description"], p, c["agent"], max_chars=RERANK_DESCRIPTION_CHARS
         )
-        for c, p in kept[:k]
+        for c, p in kept[: min(k, RERANK_MAX_HITS) if RERANK_MAX_HITS > 0 else k]
     ]
     return {"status": "ok", "hits": hits}
