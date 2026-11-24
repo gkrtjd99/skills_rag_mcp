@@ -11,7 +11,7 @@ from . import collect as collect_mod
 from . import corpus as corpus_mod
 from . import index as index_mod
 from . import lifecycle
-from . import retrieve
+from . import rerank as rerank_mod
 from . import sync as sync_mod
 from . import embed as embed_mod
 from . import translate as translate_mod
@@ -69,7 +69,7 @@ def query(
     json_out: bool = typer.Option(False, "--json"),
 ):
     """Return top-k skills for the query."""
-    res = retrieve.search(text, k=k)
+    res = rerank_mod.search(text, k=k)
     if json_out:
         typer.echo(json.dumps(res, ensure_ascii=False, indent=2))
         return
@@ -151,6 +151,9 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "min_dense_candidates": MIN_DENSE_CANDIDATES,
         "max_hit_description_chars": MAX_HIT_DESCRIPTION_CHARS,
         "translation_enabled": translate_mod.TRANSLATE_ENABLED,
+        "rerank": rerank_mod.readiness(),
+        "rerank_candidates": rerank_mod.RERANK_CANDIDATES,
+        "rerank_threshold": rerank_mod.RERANK_THRESHOLD,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
     }
     if json_out:
@@ -172,6 +175,11 @@ def status(json_out: bool = typer.Option(False, "--json")):
     typer.echo(f"dense candidates: {payload['dense_candidate_multiplier']}x / min {payload['min_dense_candidates']}")
     typer.echo(f"hit desc cap    : {payload['max_hit_description_chars']} chars")
     typer.echo(f"translation     : {payload['translation_enabled']}")
+    typer.echo(f"rerank          : {payload['rerank']}")
+    if rerank_mod.enabled():
+        typer.echo(
+            f"rerank shortlist: {payload['rerank_candidates']} / fit >= {payload['rerank_threshold']}"
+        )
     typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")
 
 

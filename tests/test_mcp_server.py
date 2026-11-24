@@ -145,3 +145,31 @@ def test_interactive_flow_searches_once_then_skips(tmp_path):
         res = mcp_server.search_skills(reply, k=5)
         assert res["status"] == "skip", f"{reply!r} should skip"
         assert res["hits"] == []
+
+
+def test_search_skills_uses_rerank_when_enabled(tmp_path, monkeypatch):
+    from skill_rag import rerank
+
+    corpus_root = tmp_path / "skills"
+    _mk(corpus_root, "brainstorming", desc="explore ideas before implementation")
+    _mk(corpus_root, "tdd", desc="write failing tests first")
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "jev")
+    monkeypatch.setattr(
+        rerank,
+        "judge",
+        lambda query, candidates: [0.9 if c["name"] == "tdd" else 0.1 for c in candidates],
+    )
+    res = mcp_server.search_skills("explore ideas", k=5)
+    assert res["status"] == "ok"
+    assert [h["name"] for h in res["hits"]] == ["tdd"]
+    assert res["hits"][0]["score"] == 0.9
+
+
+def test_search_skills_skip_never_reaches_rerank(monkeypatch):
+    from skill_rag import rerank
+
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "jev")
+    monkeypatch.setattr(
+        rerank, "judge", lambda *a, **k: pytest.fail("judge called for a skip")
+    )
+    assert mcp_server.search_skills("네", k=5)["status"] == "skip"

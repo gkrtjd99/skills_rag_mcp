@@ -35,7 +35,9 @@ Antigravity, etc.) on the same machine.
 - Warm retrieval reuses the LanceDB table, indexed metadata, and BM25
   structure in-process; search responses cap descriptions to avoid spending
   agent context on repeated metadata.
-- No cloud API calls happen during indexing or querying.
+- No cloud API calls happen during indexing or querying by default. An
+  opt-in rerank judge (`SKILL_RAG_RERANK`) sends the query and shortlisted
+  skill names and descriptions to the chosen provider for a fit judgment.
 - `make install` and `skill-rag uninstall` provide a symmetric setup/teardown
   path for bootstrap links, collected symlinks, the local index, and MCP
   registration.
@@ -43,7 +45,8 @@ Antigravity, etc.) on the same machine.
 ## Out of Scope
 
 - Multi-user or shared corpora.
-- Cloud embedding, translation, reranking, or LLM-based relevance scoring.
+- Cloud embedding or translation, and any cloud or model-based relevance
+  scoring on the default path.
 - Real-time filesystem watchers.
 - Languages beyond Korean and English translation support.
 - Native-skill exclusion by caller harness. `agent` is currently attribution
@@ -60,4 +63,4 @@ Antigravity, etc.) on the same machine.
 - `p95 < 1 s` search latency on a roughly 50-skill corpus.
 - The public no-match fixture reports no-match accuracy separately and reaches
   1.0 with the default retrieval profile.
-- No cloud API calls in indexing or query paths.
+- No cloud API calls in indexing or default query paths.

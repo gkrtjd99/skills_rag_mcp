@@ -150,6 +150,52 @@ It is auto-indexed within 30s on the next `search_skills` call.
 | `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP metadata description cap (`0` disables the cap) |
 | `SKILL_RAG_TRANSLATE` | `0` | Optional local description translation at index time (`1` enables) |
 | `SKILL_RAG_SYNC_TTL` | `30` | Sync cache TTL (seconds) |
+| `SKILL_RAG_RERANK` | (off) | Second-stage fit judge: `jev`, `openai`, or your own `package.module:factory` (cloud call, see below) |
+| `SKILL_RAG_RERANK_CANDIDATES` | `16` | Candidate skills shown to the judge |
+| `SKILL_RAG_RERANK_THRESHOLD` | `0.5` | Minimum fit probability for a skill to be returned |
+| `SKILL_RAG_RERANK_MODEL` | (provider default) | Pin the judge model id (for example `jev-1.14.0`, `gpt-6-luna`) |
+| `SKILL_RAG_RERANK_TIMEOUT` | `5` | Judge request timeout (seconds) |
+| `SKILL_RAG_RERANK_COOLDOWN` | `60` | Seconds to stay on the local gate after a failed judge call |
+| `SKILL_RAG_RERANK_DESCRIPTION_CHARS` | `120` | Description cap for judged hits (`0` disables the cap) |
+
+### Optional: judge rerank (off by default)
+
+The default thresholds are calibrated on the public fixture and can lose
+accuracy on other corpora. When enabled, local hybrid search only proposes
+candidates and a judge model returns, per candidate, the probability that it
+fits the query. Measured on a held-out corpus of 45 skills and 133 queries:
+
+| | Default gate | `jev` | `openai` |
+| --- | ---: | ---: | ---: |
+| recall@1 | 0.726 | 0.979 | 0.968 |
+| no-match accuracy | 0.395 | 1.000 | 0.947 |
+| Search response size (mean characters) | 1,184 | 237 | 230 |
+| Latency p50 | 31 ms | 211 ms | 496 ms |
+| Input tokens per request | none | 4,411 | 6,013 |
+
+Method and limits: `docs/benchmarks/2026-11-24-heldout-jev-rerank.md`.
+
+```bash
+# TypeSafe Jev
+uv sync --extra rerank
+export TYPESAFE_API_KEY=...
+export SKILL_RAG_RERANK=jev
+
+# or the OpenAI Decisions API (no extra package)
+export OPENAI_API_KEY=...
+export SKILL_RAG_RERANK=openai
+```
+
+- When on, every search sends **the query text and the candidate skills'
+  names and descriptions** to the chosen provider's API. Skill bodies and
+  paths are not sent. When off, nothing leaves the machine.
+- Input tokens are billed.
+- Any failure (SDK missing, no key, no credits, timeout) returns the local
+  gate's result.
+- To plug in another model, implement `skill_rag.judges.Judge` (methods
+  `fits` and `unavailable_reason`) and set
+  `SKILL_RAG_RERANK=your_package.module:factory`.
+- Check the `rerank` line of `uv run skill-rag status`.
 
 `skill-rag eval` defaults to repository-owned fixtures under `eval/fixtures/`
 so GitHub users get the same benchmark. The Codex system-skill gold set targets

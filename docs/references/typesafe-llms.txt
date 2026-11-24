@@ -1,0 +1,34 @@
+# TypeSafe SDK quick reference
+
+Optional dependency (extra: rerank). Used only by skill_rag/rerank.py when
+SKILL_RAG_RERANK=jev. Full docs index: https://docs.typesafe.ai/llms.txt
+
+Install:  uv sync --extra rerank        (package: typesafe-sdk, import: typesafe_sdk)
+Auth:     TYPESAFE_API_KEY env var. Endpoint: POST https://api.typesafe.ai/v1/systemone
+
+from typesafe_sdk import RetryPolicy, TypeSafeClient
+
+client = TypeSafeClient(timeout=5.0, retry=RetryPolicy(max_retries=1, timeout=5.0))
+response = client.system_one(state, questions, model="jev-1.14.0")   # model optional
+
+state      string, dict, or list. Content to judge. Refer to fields in
+           instructions with backticks, e.g. `request`.
+questions  dict of id -> question. Ids are for code only; the model never sees
+           them. Questions in one request are answered independently.
+
+Question forms (plain dicts are accepted):
+  {"type": "noul",   "instructions": "...", "criteria": {"true": "...", "false": "..."}}
+  {"type": "choice", "instructions": "...", "criteria": {"option": "description or None"}}
+  {"type": "score",  "instructions": "...", "criteria": ["lowest level", ..., "highest"]}
+
+Answers:
+  response.nouls[id].noul            float 0..1, probability of yes (no confidence field)
+  response.choices[id].choice        plus .probabilities and .confidence
+  response.scores[id].score          plus .probabilities and .confidence
+  response.usage.input_tokens        billed; output tokens are not
+  response.model                     resolved model id
+
+Errors: TypeSafeError (bad input / key at construction), TypeSafeAPIError
+(.status, .request_id), TypeSafeAPIConnectionError (connection or timeout).
+Seen statuses: 401 bad key, 402 no credits, 422 malformed question, 429 rate
+limit, 529 overloaded. Limits: 32 MiB body, up to 255 choice options.

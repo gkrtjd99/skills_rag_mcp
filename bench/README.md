@@ -51,3 +51,30 @@ uv run skill-rag eval \
   --corpus eval/fixtures/skills \
   --k 1
 ```
+
+## Held-out gate vs. opt-in rerank
+
+`bench/jev_rerank_ab.py` compares the default gate, the ungated shortlist, and
+one arm per `--judge` (the shipped `SKILL_RAG_RERANK` path) on any corpus and
+query file. It runs on the host (not Docker). Cloud judges call their API with
+`TYPESAFE_API_KEY` / `OPENAI_API_KEY`; with no `--judge`, or with `--replay`,
+nothing is sent.
+
+```bash
+uv run --extra rerank python bench/jev_rerank_ab.py \
+  --corpus <flat dir of skills> \
+  --dataset bench/heldout/claude-skills-45.jsonl \
+  --judge jev --judge openai \
+  --out var/bench/heldout-45.json
+```
+
+`bench/heldout/claude-skills.jsonl` (110 queries) targets a 40-skill Claude
+Code corpus; `claude-skills-45.jsonl` (133 queries) targets the same corpus
+plus `claude-api`, `openai-docs`, `gemini-api-dev`, `uv`, and
+`typescript-advanced-types`. Gold labels depend on which skills are present,
+so use the file that matches the corpus. The flat `--corpus` directory must
+contain those skills; skills installed in nested folders need to be symlinked
+into one directory first. `--replay <earlier --out file>` re-scores recorded
+probabilities without spending credits. The table reports `resp_chars`, the
+size of the JSON an agent receives per search. Keep `--out` under `var/`; it
+records local paths.

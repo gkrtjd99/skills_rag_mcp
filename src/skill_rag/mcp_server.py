@@ -1,6 +1,6 @@
 """MCP server exposing two tools: search_skills, get_skill.
 
-search_skills: ranked metadata via vector search (auto-syncs on TTL).
+search_skills: ranked metadata via hybrid search (auto-syncs on TTL).
 get_skill:     full SKILL.md body for a single skill.
 
 Response shapes (mirrored in bootstrap-skill/using-skill-rag/SKILL.md):
@@ -18,6 +18,7 @@ from pathlib import Path
 from mcp.server.fastmcp import FastMCP
 
 from . import index as index_mod
+from . import rerank
 from . import retrieve
 from . import sync as sync_mod
 from .corpus import MAX_SEARCH_K, MIN_SEARCH_K
@@ -51,7 +52,8 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     if retrieve.is_conversational(query):
         return retrieve.skip_response()
     sync_mod.sync_if_stale()
-    return retrieve.search(query, k=k, agent=agent)
+    # Local hybrid gate by default; opt-in Jev fit judgment (SKILL_RAG_RERANK).
+    return rerank.search(query, k=k, agent=agent)
 
 
 @server.tool()
