@@ -115,6 +115,7 @@ description: 한 줄 설명. 검색 정확도가 여기 품질에 좌우됨.
 | `uv run skill-rag adopt [이름...] [--from 폴더] [--dry-run]` | 스킬을 `~/.skills/`로 **이동** (하네스가 더는 로드하지 않음) |
 | `uv run skill-rag restore [이름...] [--dry-run]` | adopt한 스킬을 원래 위치로 되돌림 |
 | `uv run skill-rag sync` | 인덱스 수동 동기화 |
+| `uv run skill-rag usage [--json]` | 스킬이 추천된 횟수와 추천 뒤 실제로 읽힌 횟수 |
 | `uv run skill-rag query "<text>"` | 검색 결과 확인 |
 | `uv run skill-rag list-skills` | 인덱스된 스킬 목록 |
 | `uv run skill-rag eval` | 공개 fixture 평가셋으로 recall@5 측정 |
@@ -146,6 +147,14 @@ uv run skill-rag restore                              # 전부 원래 위치로
 - 이동 후 하네스를 재시작해야 목록에서 빠짐. 옮긴 스킬은 `/스킬이름` 직접 호출이 안 됨.
 - `get_skill`이 스킬 폴더 `path`를 함께 돌려주므로 스킬에 딸린 스크립트·참고 파일도 사용 가능.
 
+### 사용 기록
+
+`search_skills`가 무엇을 추천했고 그 뒤 에이전트가 `get_skill`로 실제로 읽었는지를 로컬 파일에
+남김. 기계 밖으로 나가지 않음. 기본 모드(`stats`)는 스킬 이름과 점수만 남기고 질의 문장은 남기지
+않음. 실제 질의로 평가셋을 만들려면 `SKILL_RAG_USAGE_LOG=full`. `uv run skill-rag usage`로 스킬별
+추천 횟수와 추천 뒤 읽힌 횟수를 볼 수 있음. 같은 세션(MCP 서버 프로세스 하나)에서 이미 읽은 스킬은
+다시 추천하지 않음.
+
 ## 환경 변수
 
 | 변수 | 기본 | 설명 |
@@ -154,8 +163,8 @@ uv run skill-rag restore                              # 전부 원래 위치로
 | `SKILL_RAG_INDEX_PATH` | `./var/index.lance` | LanceDB 경로 |
 | `SKILL_RAG_MODEL` | `intfloat/multilingual-e5-base` | 임베딩 모델 |
 | `SKILL_RAG_LOCAL_FILES_ONLY` | `1` | 로컬 캐시에서만 임베딩·번역 모델 로드 |
-| `SKILL_RAG_MAX_SEQ_LENGTH` | `64` | 임베딩 입력 토큰 상한 |
-| `SKILL_RAG_DENSE_BODY_CHARS` | `0` | dense 임베딩에 추가할 본문 앞부분 문자 수 (기본은 name/description만 사용) |
+| `SKILL_RAG_MAX_SEQ_LENGTH` | `128` | 임베딩 입력 토큰 상한 (질의와 스킬 설명 모두) |
+| `SKILL_RAG_DENSE_BODY_CHARS` | `300` | dense 임베딩에 추가할 본문 앞부분 문자 수 (`0`이면 name/description만 사용) |
 | `SKILL_RAG_SCORE_THRESHOLD` | `0.78` | 양성·부정 fixture로 보정한 dense 매칭 임계값 |
 | `SKILL_RAG_DENSE_ONLY_THRESHOLD` | `0.86` | 의미 있는 lexical 근거가 없을 때 dense 단독 매칭에 필요한 높은 confidence |
 | `SKILL_RAG_DENSE_ONLY_MARGIN_THRESHOLD` | `0.05` | 작은 corpus에서 강한 dense 매칭으로 인정할 top-2 cosine 차이 |
@@ -167,9 +176,14 @@ uv run skill-rag restore                              # 전부 원래 위치로
 | `SKILL_RAG_MAX_HIT_DESCRIPTION_CHARS` | `280` | MCP 메타데이터 description 상한 (`0`이면 해제) |
 | `SKILL_RAG_TRANSLATE` | `0` | 인덱스 시 로컬 description 번역 (`1`이면 켬) |
 | `SKILL_RAG_SYNC_TTL` | `30` | sync 캐시 TTL (초) |
+| `SKILL_RAG_USAGE_LOG` | `stats` | 로컬 사용 기록: `stats`(스킬 이름·점수만), `full`(질의 문장 포함), `off` |
+| `SKILL_RAG_USAGE_PATH` | `./var/usage.jsonl` | 사용 기록 파일 경로 |
+| `SKILL_RAG_EXCLUDE_LOADED` | `1` | 이번 세션에서 이미 읽은 스킬을 추천에서 제외 (`0`이면 끔) |
 | `SKILL_RAG_RERANK` | (꺼짐) | 2단계 적합성 판정 모델: `jev`, `openai`, 또는 직접 만든 `패키지.모듈:팩토리` (클라우드 호출, 아래 참고) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | 판정 모델에게 보여줄 후보 스킬 수 |
-| `SKILL_RAG_RERANK_THRESHOLD` | `0.5` | 스킬을 반환하는 최소 적합 확률 |
+| `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | 스킬을 반환하는 최소 적합 확률 (`jev` 기준으로 고른 값) |
+| `SKILL_RAG_RERANK_MAX_HITS` | `1` | 검색당 반환할 최대 스킬 수 (`0`이면 `k`까지) |
+| `SKILL_RAG_RERANK_SCAN_MAX` | `0` | 판정 모델이 전체 스킬을 훑어 후보를 뽑을 최대 코퍼스 크기 (`0`이면 끔) |
 | `SKILL_RAG_RERANK_MODEL` | (제공사 기본) | 판정 모델 ID 고정 (예: `jev-1.14.0`, `gpt-6-luna`) |
 | `SKILL_RAG_RERANK_TIMEOUT` | `5` | 판정 요청 타임아웃 (초) |
 | `SKILL_RAG_RERANK_COOLDOWN` | `60` | 판정 호출 실패 후 로컬 판정만 쓰는 시간 (초) |
@@ -178,38 +192,33 @@ uv run skill-rag restore                              # 전부 원래 위치로
 ### 선택 기능: 판정 모델 재순위 (기본 꺼짐)
 
 기본 임계값은 공개 fixture에 맞춰져 있어 다른 코퍼스에서는 정확도가 떨어짐.
-켜면 로컬 하이브리드 검색은 후보만 뽑고, 판정 모델이 후보마다 "이 질의에 맞는 스킬인가"의
-확률을 돌려줌.
+켜면 로컬 하이브리드 검색은 후보 16개만 뽑고, 판정 모델이 후보마다 "이 질의에 맞는 스킬인가"의
+확률을 돌려줌. **확실할 때만 준다**가 기준: 확률 0.9 이상인 스킬 하나만 반환하고, 아니면 아무것도
+주지 않음. 맞지 않는 스킬을 주면 에이전트가 본문을 읽느라 토큰을 쓰고 잘못된 지침을 따를 수 있기 때문.
 
-**벤치마크 (규칙을 먼저 커밋한 뒤 측정).** skills.sh 트렌딩·전체 순위에서 받은 스킬 433개
-(79개 저장소) 중 50개를 정답 대상으로, 50개를 코퍼스에서 뺀 no-match 대상으로 두고 코퍼스를
-50 → 350개로 늘림. 질의 283개는 다른 모델이 스킬 본문만 보고 작성 (한·영).
+**벤치마크 (규칙과 설정을 먼저 커밋한 뒤, 처음 보는 테스트셋으로 1회 측정).** skills.sh에서 받은
+스킬 350개 코퍼스, 다른 모델이 스킬 본문만 보고 쓴 질의 293개 (맞는 스킬 있음 196, 없음 97, 한·영).
+"엉뚱한 스킬"은 첫 번째로 반환한 스킬이 실제로 맞지 않는 경우 (별도 모델이 판정).
 
-recall@1, 엄격 채점 (괄호는 보정 채점: 정답이 아니어도 실제로 맞는 스킬이면 인정):
+| | 맞는 스킬이 없는데 엉뚱한 스킬 반환 | 맞는 스킬이 있는데 엉뚱한 스킬 반환 | 쓸모 있는 스킬 반환 | 반환 개수 | 응답 크기 | 지연 p50 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 기본 게이트 | 88.7% | 46.4% | 50.5% | 4.83 | 1,559자 | 45 ms |
+| `jev` (기본값) | 9.3% | 3.6% | 67.9% | 0.55 | 171자 | 207 ms |
+| `jev`, 임계값 0.5·`k`개까지 | 34.0% | 13.3% | 79.6% | 1.95 | 426자 | 207 ms |
+| `openai` (기본값) | 26.8% | 10.2% | 79.6% | 0.77 | 196자 | 466 ms |
 
-| 스킬 수 | 기본 게이트 | `jev` | `openai` |
-| ---: | ---: | ---: | ---: |
-| 50 | 0.619 (0.646) | 0.862 (0.915) | 0.857 (0.915) |
-| 100 | 0.529 (0.577) | 0.841 (0.899) | 0.794 (0.878) |
-| 200 | 0.460 (0.519) | 0.730 (0.836) | 0.693 (0.820) |
-| 350 | 0.450 (0.503) | 0.672 (0.788) | 0.646 (0.788) |
+- `jev` 기본값은 엉뚱한 스킬을 9% / 4%로 줄이는 대신, 쓸모 있는 스킬을 주는 비율이 80% → 68%로 내려감.
+  더 많이 찾는 쪽이 필요하면 `SKILL_RAG_RERANK_THRESHOLD=0.5 SKILL_RAG_RERANK_MAX_HITS=0`.
+- 임계값 0.9는 `jev`로 고른 값이라 `openai`에는 맞지 않음 (확률이 0과 1에 더 몰림). 개발셋에서는
+  임계값을 0.999까지 올려도 `openai`는 맞는 스킬이 없는 질의의 22%에 엉뚱한 스킬을 반환함. 엉뚱한
+  스킬을 피하는 것이 중요하면 `jev`를 쓸 것.
+- 한국어 질의는 영어보다 약함 (`jev` 쓸모 있는 스킬 반환 58% 대 78%).
+- 판정 모델이 전체 스킬을 훑는 방식(`SKILL_RAG_RERANK_SCAN_MAX`)은 정답을 더 자주 찾지만 엉뚱한 스킬도
+  더 많이 줘서 기본으로 꺼져 있음.
+- 검색당 입력 토큰: `jev` 약 3,400, `openai` 약 5,100.
 
-no-match 정확도, 엄격 채점 (괄호는 보정 채점: 아무것도 안 주거나, 준 스킬이 실제로 맞음):
-
-| 스킬 수 | 기본 게이트 | `jev` | `openai` |
-| ---: | ---: | ---: | ---: |
-| 50 | 0.064 (0.160) | 0.351 (0.574) | 0.394 (0.638) |
-| 350 | 0.021 (0.191) | 0.266 (0.702) | 0.319 (0.723) |
-
-- 판정 모델은 모든 크기에서 게이트보다 확실히 나음 (95% 구간이 겹치지 않음). 두 판정 모델
-  사이는 구분되지 않음. 지연은 `jev` 약 205ms, `openai` 약 465ms.
-- 스킬이 늘수록 정확도가 떨어짐. 주원인은 1단계 검색: 정답이 후보 16개 안에 든 비율이
-  96% → 79%로 내려감.
-- 비슷한 스킬에 대한 오탐이 남음: 보정 후에도 no-match 질의의 28~43%에서 맞지 않는 스킬을 반환.
-- 검색 응답 크기는 게이트 1,360~1,550자, 판정 모델 330~400자.
-
-전체 표·오차 범위·한계는 `docs/benchmarks/2026-11-24-scale-results.md`, 측정 규칙은
-`docs/benchmarks/2026-11-24-scale-protocol.md`. 앞서 직접 쓴 질의로 잰 수치
+전체 표·선택 과정·한계: `docs/benchmarks/2026-11-24-precision-results.md`. 코퍼스 크기별(50~350)
+결과는 `docs/benchmarks/2026-11-24-scale-results.md` (임계값 0.5 시절 측정). 직접 쓴 질의로 잰 초기 수치
 (`2026-11-24-heldout-jev-rerank.md`, `jev` recall@1 0.979)는 쉬운 질의에서의 상한으로만 볼 것.
 
 ```bash

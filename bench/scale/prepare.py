@@ -3,7 +3,7 @@
 Rules live in docs/benchmarks/2026-11-24-scale-protocol.md; this file only
 implements them. Steps cache under var/bench/scale/ and are safe to rerun.
 
-    uv run python bench/scale/prepare.py pool      # needs `gh` signed in
+    uv run python bench/scale/prepare.py pool      # needs `gh` signed in; the versions pinned in manifest.json
     uv run python bench/scale/prepare.py split
     uv run python bench/scale/prepare.py queries   # needs OPENAI_API_KEY
 """
@@ -11,6 +11,7 @@ implements them. Steps cache under var/bench/scale/ and are safe to rerun.
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 import os
 import random
@@ -81,7 +82,46 @@ def skill_md_entry(tree: dict | None, skill_id: str) -> dict | None:
     return None
 
 
+def restore_pool() -> None:
+    """Download exactly the SKILL.md versions the committed manifest pins.
+
+    Reads manifest.json and never writes it, so the committed split and query
+    labels keep referring to the same skill texts whatever upstream does.
+    """
+    accepted = json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]
+
+    def fetch(a: dict) -> str | None:
+        blob = cached(
+            WORK / "blobs" / f"{a['blob_sha']}.json",
+            lambda: gh_json(f"repos/{a['source']}/git/blobs/{a['blob_sha']}") or {},
+        )
+        if "content" not in blob:
+            (WORK / "blobs" / f"{a['blob_sha']}.json").unlink(missing_ok=True)  # do not cache a failure
+            return f"{a['source']} {a['path']}: blob {a['blob_sha']} could not be fetched"
+        data = base64.b64decode(blob["content"])
+        if hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest() != a["blob_sha"]:
+            return f"{a['source']} {a['path']}: content does not match blob {a['blob_sha']}"
+        skill_md = WORK / "pool" / a["dir"] / "SKILL.md"
+        skill_md.parent.mkdir(parents=True, exist_ok=True)
+        skill_md.write_bytes(data)
+        return None
+
+    with ThreadPoolExecutor(8) as pool:
+        problems = [p for p in pool.map(fetch, accepted) if p]
+    print(f"restored {len(accepted) - len(problems)} of {len(accepted)} pinned skills")
+    if problems:
+        sys.exit("pool is incomplete; the published results cannot be reproduced from it:\n" + "\n".join(problems))
+
+
+def pool() -> None:
+    if MANIFEST.exists():
+        restore_pool()
+    else:
+        build_pool()
+
+
 def build_pool() -> None:
+    """Discover a new pool from each repository's current HEAD and write a new manifest."""
     candidates = json.loads(CANDIDATES.read_text(encoding="utf-8"))["candidates"]
     github = [c for c in candidates if GITHUB_SOURCE.fullmatch(c["source"])]
     sources = sorted({c["source"] for c in github})
@@ -285,5 +325,167 @@ def make_queries() -> None:
     print(f"wrote {len(rows)} queries {dict(kinds)}; dropped for naming the skill: {dropped}")
 
 
+DEV_SEED = 20261125
+DEV_SPLIT = HERE / "dev-split.json"
+DEV_QUERIES = HERE / "dev-queries.jsonl"
+
+
+def make_dev_queries() -> None:
+    """Dev set for choosing first-stage settings; see 2026-11-24-first-stage-protocol.md."""
+    accepted = {a["name"]: a for a in json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    dev_targets = random.Random(DEV_SEED).sample(parts["distractors"][:150], 50)
+    DEV_SPLIT.write_text(json.dumps({"seed": DEV_SEED, "targets": dev_targets}, indent=1), encoding="utf-8")
+
+    def run(name: str):
+        record = parse_skill_file(WORK / "pool" / accepted[name]["dir"] / "SKILL.md")
+
+        def attempt(tag: str):
+            return cached(WORK / "gen" / f"{accepted[name]['dir']}.dev{tag}.json", lambda: generate(record.body, 2))
+
+        first = attempt("")
+        if not any(mentions(q, name) for lang in ("en", "ko") for q in first[lang]):
+            return first, 0
+        second = attempt(".retry")
+        kept = {lang: [q for q in second[lang] if not mentions(q, name)] for lang in ("en", "ko")}
+        return kept, sum(2 - len(kept[lang]) for lang in ("en", "ko"))
+
+    with ThreadPoolExecutor(6) as pool:
+        results = list(pool.map(run, dev_targets))
+    rows = [
+        {"query": query, "expected": [name], "lang": lang, "kind": "positive", "from_skill": name}
+        for name, (generated, _) in zip(dev_targets, results)
+        for lang in ("en", "ko")
+        for query in generated[lang]
+    ]
+    DEV_QUERIES.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+    print(f"wrote {len(rows)} dev queries; dropped for naming the skill: {sum(lost for _, lost in results)}")
+
+
+def _generated_rows(jobs: list[tuple[str, Path, int, str]], tag: str) -> tuple[list[dict], int]:
+    """``jobs`` are (name, SKILL.md path, requests per language, kind)."""
+
+    def run(job):
+        name, skill_md, n, _ = job
+        record = parse_skill_file(skill_md)
+        key = skill_md.parent.name
+
+        def attempt(suffix: str):
+            return cached(WORK / "gen" / f"{key}.{tag}{suffix}.json", lambda: generate(record.body, n))
+
+        first = attempt("")
+        if not any(mentions(q, name) for lang in ("en", "ko") for q in first[lang]):
+            return first, 0
+        second = attempt(".retry")
+        kept = {lang: [q for q in second[lang] if not mentions(q, name)] for lang in ("en", "ko")}
+        return kept, sum(n - len(kept[lang]) for lang in ("en", "ko"))
+
+    with ThreadPoolExecutor(6) as pool:
+        results = list(pool.map(run, jobs))
+    rows = [
+        {
+            "query": query,
+            "expected": [name] if kind == "positive" else [],
+            "lang": lang,
+            "kind": kind,
+            "from_skill": name,
+        }
+        for (name, _, _, kind), (generated, _) in zip(jobs, results)
+        for lang in ("en", "ko")
+        for query in generated[lang]
+    ]
+    return rows, sum(lost for _, lost in results)
+
+
+def make_dev_negatives() -> None:
+    """Dev negatives for the precision protocol: distractors never placed in a corpus."""
+    accepted = {a["name"]: a for a in json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    unused = parts["distractors"][max(parts["sizes"]) - N_TARGETS :]
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 1, "no_match_heldout") for n in unused]
+    rows, dropped = _generated_rows(jobs, "devneg")
+    (HERE / "dev-negatives.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    print(f"wrote {len(rows)} dev negatives from {len(unused)} skills; dropped for naming the skill: {dropped}")
+
+
+TEST2_SEED = 20261126
+
+
+def make_test2() -> None:
+    """Fresh test set of the precision protocol. Run once, after the configuration is committed."""
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]
+    accepted = {a["name"]: a for a in manifest}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    dev_targets = set(json.loads(DEV_SPLIT.read_text(encoding="utf-8"))["targets"])
+    rng = random.Random(TEST2_SEED)
+    eligible = [n for n in parts["distractors"][: max(parts["sizes"]) - N_TARGETS] if n not in dev_targets]
+    targets = rng.sample(eligible, 50)
+
+    # Negatives: candidates that never entered the pool, same content rules.
+    candidates = json.loads(CANDIDATES.read_text(encoding="utf-8"))["candidates"]
+    pooled_ids = {a["skill_id"].lower() for a in manifest}
+    pooled_names = {a["name"].lower() for a in manifest}
+    outside = [
+        c for c in candidates
+        if GITHUB_SOURCE.fullmatch(c["source"]) and c["skill_id"].lower() not in pooled_ids
+    ]
+    rng.shuffle(outside)
+    extra_dir = WORK / "outside"
+    negatives: list[tuple[str, Path]] = []
+    seen: set[str] = set()
+    for c in outside:
+        if len(negatives) == 50:
+            break
+        key = c["source"].replace("/", "__")
+        tree = cached(WORK / "trees" / f"{key}.json", lambda: gh_json(f"repos/{c['source']}/git/trees/HEAD?recursive=1") or {})
+        entry = skill_md_entry(tree, c["skill_id"])
+        if not entry:
+            continue
+        blob = cached(WORK / "blobs" / f"{entry['sha']}.json", lambda: gh_json(f"repos/{c['source']}/git/blobs/{entry['sha']}") or {})
+        if "content" not in blob:
+            continue
+        skill_md = extra_dir / f"{key}__{re.sub(r'[^A-Za-z0-9_.-]', '_', c['skill_id'])}" / "SKILL.md"
+        skill_md.parent.mkdir(parents=True, exist_ok=True)
+        skill_md.write_text(base64.b64decode(blob["content"]).decode("utf-8", "replace"), encoding="utf-8")
+        record = parse_skill_file(skill_md)
+        if (
+            record is None
+            or len(record.description) < MIN_DESCRIPTION
+            or len(record.body) < MIN_BODY
+            or record.name.lower() in pooled_names
+            or record.name.lower() in seen
+        ):
+            continue
+        seen.add(record.name.lower())
+        negatives.append((record.name, skill_md, c["source"]))
+
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 2, "positive") for n in targets] + [
+        (name, path, 1, "no_match_heldout") for name, path, _ in negatives
+    ]
+    rows, dropped = _generated_rows(jobs, "test2")
+    (HERE / "test2-queries.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    (HERE / "test2-split.json").write_text(
+        json.dumps(
+            {"seed": TEST2_SEED, "targets": targets, "negatives": [{"name": n, "source": s} for n, _, s in negatives]},
+            indent=1,
+        ),
+        encoding="utf-8",
+    )
+    kinds = Counter(r["kind"] for r in rows)
+    print(f"wrote {len(rows)} test-2 queries {dict(kinds)}; dropped for naming the skill: {dropped}")
+
+
 if __name__ == "__main__":
-    {"pool": build_pool, "split": split, "queries": make_queries}[sys.argv[1]]()
+    {
+        "pool": pool,  # the pinned pool when manifest.json exists
+        "discover": build_pool,  # new benchmark only: overwrites manifest.json
+        "split": split,
+        "queries": make_queries,
+        "dev-queries": make_dev_queries,
+        "dev-negatives": make_dev_negatives,
+        "test2": make_test2,
+    }[sys.argv[1]]()

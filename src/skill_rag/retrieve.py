@@ -117,7 +117,11 @@ def _compact_description(description: str, max_chars: int | None = None) -> str:
 
 
 def search(
-    query: str, k: int = 5, model_name: str = DEFAULT_MODEL, agent: str | None = None
+    query: str,
+    k: int = 5,
+    model_name: str = DEFAULT_MODEL,
+    agent: str | None = None,
+    exclude: frozenset[str] = frozenset(),
 ) -> dict:
     """Hybrid search over the skill corpus: dense cosine + BM25, fused by RRF.
 
@@ -141,7 +145,7 @@ def search(
     if not query:
         return {"status": "no_match", "hits": [], "message": "Empty query. Proceed without using a skill."}
 
-    ranked = _rank(query, k, model_name, gated=True)
+    ranked = _rank(query, k, model_name, gated=True, exclude=exclude)
     if not ranked:
         return no_match_response()
 
@@ -163,7 +167,9 @@ def search(
     return {"status": "ok", "hits": hits}
 
 
-def shortlist(query: str, n: int, model_name: str = DEFAULT_MODEL) -> list[dict]:
+def shortlist(
+    query: str, n: int, model_name: str = DEFAULT_MODEL, exclude: frozenset[str] = frozenset()
+) -> list[dict]:
     """Top ``n`` skills by fused hybrid rank with every threshold disabled.
 
     This is the recall-oriented input for a downstream judge (see
@@ -174,16 +180,24 @@ def shortlist(query: str, n: int, model_name: str = DEFAULT_MODEL) -> list[dict]
     query = query.strip()
     if not query or n < 1:
         return []
-    return [row for row, _ in _rank(query, n, model_name, gated=False)[:n]]
+    return [row for row, _ in _rank(query, n, model_name, gated=False, exclude=exclude)[:n]]
+
+
+def corpus_size() -> int:
+    """Number of indexed skills (from the cached metadata rows)."""
+    return len(_list_indexed())
 
 
 def _rank(
-    query: str, k: int, model_name: str, *, gated: bool
+    query: str, k: int, model_name: str, *, gated: bool, exclude: frozenset[str] = frozenset()
 ) -> list[tuple[dict, float]]:
     """Hybrid candidates as ``({name, description, agent}, rrf_score)`` in
     result order. ``gated`` applies the dense/BM25 keep rules; ungated keeps
     every indexed skill."""
-    rows = _list_indexed()
+    # ``exclude`` names skills the session already loaded; they are dropped
+    # before ranking so they neither take a slot nor reach a judge.
+    indexed = _list_indexed()
+    rows = [r for r in indexed if r["name"] not in exclude]
     if not rows:
         return []
 
@@ -194,7 +208,13 @@ def _rank(
     dense_limit = min(
         len(rows), max(k * DENSE_CANDIDATE_MULTIPLIER, MIN_DENSE_CANDIDATES)
     )
-    dense = _index_search(vec, k=dense_limit, model_name=model_name)
+    # The index knows nothing about ``exclude``: fetch that many extra and drop
+    # them here, so an excluded skill cannot use up the limit or set the margin.
+    dense = [
+        h
+        for h in _index_search(vec, k=dense_limit + len(indexed) - len(rows), model_name=model_name)
+        if h.name not in exclude
+    ][:dense_limit]
     cosine = {h.name: h.score for h in dense}
     dense_rank = {h.name: i for i, h in enumerate(dense)}
     dense_margin = (

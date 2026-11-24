@@ -104,6 +104,8 @@ def cell(stat: tuple[float, float, float]) -> str:
 
 def main() -> int:
     strict_only = "--strict" in sys.argv
+    # --prefix final scores var/bench/scale/final-<size>.json instead of out-<size>.json
+    prefix = sys.argv[sys.argv.index("--prefix") + 1] if "--prefix" in sys.argv else "out"
     manifest = json.loads((HERE / "manifest.json").read_text(encoding="utf-8"))["accepted"]
     split = json.loads((HERE / "split.json").read_text(encoding="utf-8"))
     skills = {}
@@ -113,10 +115,14 @@ def main() -> int:
 
     runs = {}
     for size in split["sizes"]:
-        path = WORK / f"out-{size}.json"
+        path = WORK / f"{prefix}-{size}.json"
         if path.exists():
             runs[size] = json.loads(path.read_text(encoding="utf-8"))["records"]
     arms = [a for a in ("gate", "jev", "openai") if runs and a in next(iter(runs.values()))[0]["hits"]]
+    for records in runs.values():  # the negatives of a later test set are outside the pool
+        for r in records:
+            for arm in arms:
+                assert all(n in skills for n in r["hits"][arm][:1])
 
     verdict: dict[tuple[str, str], bool] = {}
     if not strict_only:
@@ -140,8 +146,8 @@ def main() -> int:
     summary: dict = {}
     for scope, keep in (("all", lambda r: True), ("en", lambda r: r["lang"] == "en"), ("ko", lambda r: r["lang"] == "ko")):
         print(f"### {scope}\n")
-        head = "| Skills | Arm | recall@1 | recall@5 | no-match | adj. recall@1 | adj. no-match | resp. chars | p50 ms |"
-        print(head + "\n|" + "---:|" * 2 + "---:|" * 7)
+        head = "| Skills | Arm | recall@1 | recall@5 | no-match | adj. recall@1 | adj. no-match | junk on positives | junk on negatives | hits | resp. chars | p50 ms |"
+        print(head + "\n|" + "---:|" * 12)
         for size, records in runs.items():
             records = [r for r in records if keep(r)]
             pos = [r for r in records if r["expected"]]
@@ -152,6 +158,10 @@ def main() -> int:
                 none = [not r["hits"][arm] for r in neg]
                 adj1 = [a or fits(r, arm) for a, r in zip(top1, pos)]
                 adjn = [a or fits(r, arm) for a, r in zip(none, neg)]
+                # Junk: the first returned skill does not fit (precision protocol).
+                junk_pos = [bool(r["hits"][arm]) and not a for a, r in zip(adj1, pos)]
+                junk_neg = [not a for a in adjn]
+                returned = [len(r["hits"][arm]) for r in records]
                 chars = [r["resp_chars"][arm] for r in records]
                 lat = sorted(r["ms"][arm] for r in records)
                 stats = {
@@ -160,6 +170,9 @@ def main() -> int:
                     "no_match": interval(none),
                     "adj_recall@1": interval(adj1),
                     "adj_no_match": interval(adjn),
+                    "junk_pos": interval(junk_pos),
+                    "junk_neg": interval(junk_neg),
+                    "hits": sum(returned) / len(returned),
                     "resp_chars": sum(chars) / len(chars),
                     "p50_ms": lat[len(lat) // 2],
                     "n_pos": len(pos),
@@ -167,16 +180,17 @@ def main() -> int:
                 }
                 summary[f"{scope}/{size}/{arm}"] = stats
                 adj = (
-                    f"{cell(stats['adj_recall@1'])} | {cell(stats['adj_no_match'])}"
+                    f"{cell(stats['adj_recall@1'])} | {cell(stats['adj_no_match'])} | "
+                    f"{cell(stats['junk_pos'])} | {cell(stats['junk_neg'])}"
                     if not strict_only
-                    else "- | -"
+                    else "- | - | - | -"
                 )
                 print(
                     f"| {size} | {arm} | {cell(stats['recall@1'])} | {stats['recall@5'][0]:.3f} | "
-                    f"{cell(stats['no_match'])} | {adj} | {stats['resp_chars']:.0f} | {stats['p50_ms']:.0f} |"
+                    f"{cell(stats['no_match'])} | {adj} | {stats['hits']:.2f} | {stats['resp_chars']:.0f} | {stats['p50_ms']:.0f} |"
                 )
         print()
-    (WORK / "report.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
+    (WORK / f"report-{prefix}.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
     return 0
 
 

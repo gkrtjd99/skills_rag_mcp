@@ -8,8 +8,12 @@ from __future__ import annotations
 import importlib.util
 import os
 from collections.abc import Sequence
+from concurrent.futures import ThreadPoolExecutor
 
-from . import FIT_FALSE, FIT_TRUE, Candidate, JudgeConfig, fit_question
+from . import FIT_FALSE, FIT_TRUE, Candidate, JudgeConfig, batches, fit_question, scan_question
+
+# Well inside the 64k-token request limit at about 51 tokens per skill.
+SCAN_BATCH = 400
 
 
 class JevJudge:
@@ -21,6 +25,7 @@ class JevJudge:
         self._client = None
         #: ``{"model", "input_tokens"}`` of the most recent call, for benchmarks.
         self.last_usage: dict | None = None
+        self.last_scan_usage: dict | None = None
 
     def unavailable_reason(self) -> str | None:
         if importlib.util.find_spec("typesafe_sdk") is None:
@@ -60,3 +65,32 @@ class JevJudge:
             "input_tokens": getattr(usage, "input_tokens", None),
         }
         return [float(response.nouls[f"fit_{i}"].noul) for i in range(len(candidates))]
+
+    def scan(self, query: str, candidates: Sequence[Candidate]) -> list[float]:
+        """Coarse pass over many skills: one short Noul each, no criteria."""
+        client = self._get_client()
+        kwargs = {"model": self._config.model} if self._config.model else {}
+
+        def one(batch: Sequence[Candidate]):
+            questions = {
+                f"s{i}": {
+                    "type": "noul",
+                    "instructions": scan_question(c["name"], c["description"], "`request`"),
+                }
+                for i, c in enumerate(batch)
+            }
+            response = client.system_one({"request": query}, questions, **kwargs)
+            tokens = getattr(getattr(response, "usage", None), "input_tokens", None) or 0
+            return [float(response.nouls[f"s{i}"].noul) for i in range(len(batch))], tokens, getattr(response, "model", None)
+
+        parts = batches(candidates, SCAN_BATCH)
+        if len(parts) == 1:
+            results = [one(parts[0])]
+        else:
+            with ThreadPoolExecutor(min(4, len(parts))) as pool:
+                results = list(pool.map(one, parts))
+        self.last_scan_usage = {
+            "model": results[0][2] if results else None,
+            "input_tokens": sum(tokens for _, tokens, _ in results),
+        }
+        return [p for values, _, _ in results for p in values]

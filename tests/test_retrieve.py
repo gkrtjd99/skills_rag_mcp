@@ -72,6 +72,23 @@ def test_dense_only_candidate_needs_lexical_signal_or_high_confidence(monkeypatc
     assert res["hits"] == []
 
 
+def test_excluded_skill_does_not_use_up_the_dense_results(monkeypatch):
+    """Review finding: the index ignores `exclude`, so the dense fetch must
+    over-fetch, or an excluded top hit takes the only slot."""
+    _seed()
+    monkeypatch.setattr(retrieve, "encode_one", lambda *args, **kwargs: None)
+    hits = [
+        type("Hit", (), {"name": "brainstorming", "description": "", "score": 0.95})(),
+        type("Hit", (), {"name": "tdd", "description": "", "score": 0.90})(),
+    ]
+    monkeypatch.setattr(retrieve, "_index_search", lambda vec, k, model_name: hits[:k])
+
+    res = retrieve.search("qz-nonsense-token", exclude=frozenset({"brainstorming"}))
+
+    assert res["status"] == "ok"
+    assert [h["name"] for h in res["hits"]] == ["tdd"]
+
+
 def test_empty_corpus_returns_no_match():
     res = retrieve.search("anything")
     assert res["status"] == "no_match"

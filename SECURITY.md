@@ -11,6 +11,10 @@ destination. Keep `TYPESAFE_API_KEY` and `OPENAI_API_KEY` in the environment,
 never in the repository. The repository must not contain a user's `~/.skills`
 corpus, LanceDB indexes, model caches, or generated benchmark output.
 
+A local usage log (`var/usage.jsonl`) records which skills were suggested and
+loaded. By default it holds no request text; `SKILL_RAG_USAGE_LOG=full` adds
+it, on the user's machine only, and `off` disables the log.
+
 Do not add raw user queries, `SKILL.md` bodies, local paths, credentials, or
 tokens to logs, traces, metrics, fixtures, or issue reports. Optional local
 OpenTelemetry/AgentOTelStack experiments belong in a private branch or patch

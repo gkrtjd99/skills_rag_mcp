@@ -20,10 +20,13 @@ LOCAL_FILES_ONLY = os.environ.get("SKILL_RAG_LOCAL_FILES_ONLY", "1").lower() not
 }
 # Hard cap on input length. Skill names, descriptions, and the leading trigger
 # section carry the retrieval signal; indexing all 512 tokens made a 1,925-skill
-# first MCP search take about 51 seconds. Description-only passages fit
-# comfortably in 64 tokens for the measured corpus and retain 1.0 recall on
-# the bilingual fixture.
-MAX_SEQ_LENGTH = int(os.environ.get("SKILL_RAG_MAX_SEQ_LENGTH", "64"))
+# first MCP search take about 51 seconds. 64 tokens was enough for the
+# fixture, but it also cut long community descriptions and one-or-two-sentence
+# queries: on a 350-skill dev set, 128 tokens with a 300-character body prefix
+# put the expected skill in the top 16 for 78.7% of queries against 74.2% at
+# 64 (docs/benchmarks/2026-11-24-precision-results.md), for about twice the
+# indexing time. The fixture gates are unchanged at 1.0.
+MAX_SEQ_LENGTH = int(os.environ.get("SKILL_RAG_MAX_SEQ_LENGTH", "128"))
 
 
 def _uses_e5_prompt(name: str) -> bool:

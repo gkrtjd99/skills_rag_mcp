@@ -25,6 +25,7 @@ src/skill_rag/
 ├── rerank.py       # opt-in judge policy: shortlist -> fit probabilities -> hits; fail-open
 ├── judges/         # swappable fit judges: Judge protocol, jev, openai_decisions
 ├── sync.py         # disk<->index diff; TTL cache (only stateful module)
+├── usage.py        # local log of suggestions and loads; session's loaded set
 ├── mcp_server.py   # FastMCP tools: search_skills, get_skill
 ├── collect.py      # symlink harness skills into ~/.skills/
 ├── mcp_config.py   # Claude/Codex MCP registration helpers
@@ -70,9 +71,10 @@ package-managed index write.
 With `SKILL_RAG_RERANK` set (`jev`, `openai`, or `package.module:factory`),
 steps 6-7 are replaced after sync: `retrieve.shortlist` returns the top 16 by
 fused rank with no thresholds, the configured `judges.Judge` returns one fit
-probability per candidate from a single request, and candidates at or above
-0.5 are returned in order of that probability (which becomes the hit `score`)
-with descriptions capped at 120 characters. `rerank.py` owns that policy; a
+probability per candidate from a single request, and the best candidate at or
+above 0.9 is returned (its probability becomes the hit `score`) with the
+description capped at 120 characters. The rule is precision first: returning a
+skill that does not fit costs more than returning none. `rerank.py` owns that policy; a
 judge only scores, so swapping the model is a new `Judge` class. Any failure
 returns the local result above and pauses rerank for 60 s. Only the query and
 the shortlisted names and descriptions are sent.
@@ -151,6 +153,18 @@ skill-rag install`. The CLI command:
 recorded footprint and collected symlinks but preserves untracked user entries
 under `~/.skills`. Installation ownership is recorded locally in
 `~/.skills/.skill-rag-install-state.json`.
+
+## Usage Log
+
+`mcp_server` records each `search_skills` result and each `get_skill` call
+through `usage.py` into a local JSONL file (`var/usage.jsonl`): skill names,
+scores, status, provider, a per-process session id, and for loads whether the
+skill had been suggested in that session. Request text is stored only in
+`full` mode. Skills loaded in the current session are passed as `exclude` to
+the search path, where they are dropped before ranking, so they take no
+shortlist slot and are never sent to a judge. `skill-rag usage` aggregates the
+log per skill. This is the only source of real-use data; every benchmark so
+far used model-written requests.
 
 ## Adopt and Restore
 

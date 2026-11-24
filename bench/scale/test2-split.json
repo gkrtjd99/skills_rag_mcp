@@ -1,0 +1,257 @@
+{
+ "seed": 20261126,
+ "targets": [
+  "remotion-license",
+  "convex-verify",
+  "domain-modeling",
+  "ai-research-explore",
+  "verify-and-stop",
+  "firecrawl-search",
+  "discover-analytics-patterns",
+  "agentix-ceo",
+  "workers-development",
+  "runcomfy-cli",
+  "run-train",
+  "app-store-screenshots",
+  "cf-cli",
+  "nano-banana-edit",
+  "playwright-cli",
+  "prisma-cli",
+  "accessibility-engineering",
+  "dispatching-parallel-agents",
+  "supabase-postgres-best-practices",
+  "workers-best-practices",
+  "self-hosted-funnel-launch",
+  "add-analytics-instrumentation",
+  "azure-app-onboard",
+  "agents-sdk",
+  "xlsx",
+  "wan-2-7",
+  "video-edit",
+  "firestore-rules-creation",
+  "convex-env",
+  "taxonomy",
+  "turnstile-spin",
+  "performance-optimization",
+  "convex-test",
+  "banner-design",
+  "prisma-orm-setup",
+  "style-sampling",
+  "lark-slides",
+  "paper-context-resolver",
+  "choreograph",
+  "convex-insights",
+  "web-perf",
+  "writing-for-agents",
+  "lark-drive",
+  "cold-email",
+  "caveman-discover",
+  "design",
+  "diagram-design",
+  "product-photography",
+  "firecrawl-crawl",
+  "emil-design-eng"
+ ],
+ "negatives": [
+  {
+   "name": "convex-self-heal",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "constraint-driven-development",
+   "source": "addyosmani/agent-skills"
+  },
+  {
+   "name": "software-factory",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "video",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "convex-domains",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "convex-cost",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "conversion-tracking",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "lead-magnets",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "migration",
+   "source": "juliusbrussee/caveman"
+  },
+  {
+   "name": "link-building",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "convex-monitor",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "co-marketing",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "setup-pre-commit",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "convex-sentinel",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "appinsights-instrumentation",
+   "source": "microsoft/azure-skills"
+  },
+  {
+   "name": "azure-resource-lookup",
+   "source": "microsoft/azure-skills"
+  },
+  {
+   "name": "caveman-setup",
+   "source": "juliusbrussee/caveman"
+  },
+  {
+   "name": "azure-cloud-migrate",
+   "source": "microsoft/azure-skills"
+  },
+  {
+   "name": "video-outpainting",
+   "source": "prime-skills/runcomfy-agent-skills"
+  },
+  {
+   "name": "directory-submissions",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "chief-of-staff",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "sms",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "community-marketing",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "image-outpainting",
+   "source": "prime-skills/runcomfy-agent-skills"
+  },
+  {
+   "name": "azure-compute",
+   "source": "microsoft/azure-skills"
+  },
+  {
+   "name": "writing-fragments",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "prospecting",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "writing-beats",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "ab-testing",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "revops",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "lark-okr",
+   "source": "larksuite/cli"
+  },
+  {
+   "name": "implement-spec",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "competitors",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "marketing-council",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "programmatic-seo",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "image",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "azure-reliability",
+   "source": "microsoft/azure-skills"
+  },
+  {
+   "name": "wait-what",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "reverse-engineer-marketing",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "git-guardrails-claude-code",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "onboarding",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "scaffold-exercises",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "convex-suggest",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "emails",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "convex-billing",
+   "source": "convex/agent-skills"
+  },
+  {
+   "name": "deprecation-and-migration",
+   "source": "addyosmani/agent-skills"
+  },
+  {
+   "name": "signup",
+   "source": "coreyhaines31/marketingskills"
+  },
+  {
+   "name": "azure-kusto",
+   "source": "microsoft/azure-skills"
+  },
+  {
+   "name": "claude-handoff",
+   "source": "mattpocock/skills"
+  },
+  {
+   "name": "influencer-marketing",
+   "source": "coreyhaines31/marketingskills"
+  }
+ ]
+}

@@ -109,7 +109,7 @@ def test_status_json_includes_retrieval_and_runtime_settings():
     assert payload["min_dense_candidates"] == 20
     assert payload["max_hit_description_chars"] == 280
     assert payload["local_files_only"] is True
-    assert payload["max_seq_length"] == 64
+    assert payload["max_seq_length"] == 128
     assert payload["translation_enabled"] is False
 
 

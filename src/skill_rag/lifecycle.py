@@ -335,7 +335,9 @@ def adopt(
     so ``restore`` and ``uninstall`` can put the skill back where it was.
     Symlinked entries are skipped: something else owns them.
     """
-    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    # Absolute paths: the record must mean the same place whatever directory
+    # restore or uninstall is later run from.
+    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser().absolute()
     sources = sources if sources is not None else default_harness_skill_dirs()
     wanted = set(names) if names else None
     state = _load_state(corpus_path)
@@ -344,7 +346,7 @@ def adopt(
     planned: set[str] = set()
 
     for root in sources:
-        for source in _direct_skill_dirs(Path(root).expanduser()):
+        for source in _direct_skill_dirs(Path(root).expanduser().absolute()):
             name = source.name
             if name == corpus_mod.BOOTSTRAP_SKILL_NAME or (wanted is not None and name not in wanted):
                 continue

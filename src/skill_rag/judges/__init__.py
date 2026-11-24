@@ -58,6 +58,11 @@ class Judge(Protocol):
         candidates' names and descriptions.
         """
 
+    # Optional: ``scan(query, candidates) -> list[float]`` with the same
+    # contract as ``fits``, for a cheap coarse pass over the whole corpus
+    # (short wording, descriptions cut to ``SCAN_DESCRIPTION_CHARS``). A judge
+    # without it is scanned through ``fits`` on shortened descriptions.
+
 
 #: Built-in providers: ``SKILL_RAG_RERANK`` value -> ``module:factory``.
 BUILTIN = {
@@ -85,6 +90,23 @@ def fit_question(name: str, description: str) -> str:
         "the task in the request? The request may be written in any language. "
         f"Skill description: {description[:MAX_DESCRIPTION_CHARS]}"
     )
+
+
+# The whole-corpus scan sees this much of each description. Chosen on the dev
+# set (docs/benchmarks/2026-11-24-precision-results.md): 120 characters with
+# the bare wording below put the expected skill in the top 16 for 97% of dev
+# queries at 350 skills, for about 51 input tokens per skill.
+SCAN_DESCRIPTION_CHARS = 120
+
+
+def scan_question(name: str, description: str, subject: str = "the request") -> str:
+    """Short wording for scanning every skill; ``subject`` names the query."""
+    brief = " ".join(description.split())[:SCAN_DESCRIPTION_CHARS]
+    return f"Does {subject} call for this skill? {name}: {brief}"
+
+
+def batches(items: Sequence, size: int) -> list[Sequence]:
+    return [items[i : i + size] for i in range(0, len(items), size)]
 
 
 def is_known(spec: str) -> bool:

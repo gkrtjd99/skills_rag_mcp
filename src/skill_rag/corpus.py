@@ -49,6 +49,7 @@ MAX_HIT_DESCRIPTION_CHARS = int(
 )
 # Dense retrieval needs the skill's trigger vocabulary, not its entire
 # instruction body. BM25 keeps the full body in `text` for exact rescue.
-# Descriptions are the canonical discovery surface; a short body prefix can be
-# opted into for corpora with sparse descriptions.
-DENSE_BODY_CHARS = int(os.environ.get("SKILL_RAG_DENSE_BODY_CHARS", "0"))
+# Descriptions are the canonical discovery surface; a short body prefix adds
+# the concrete task vocabulary that descriptions summarize away (chosen on a
+# dev set together with the sequence cap; see embed.MAX_SEQ_LENGTH).
+DENSE_BODY_CHARS = int(os.environ.get("SKILL_RAG_DENSE_BODY_CHARS", "300"))

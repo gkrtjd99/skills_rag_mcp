@@ -87,7 +87,7 @@ queries nobody on the project wrote. The rules are in
 data was fetched; results are in `docs/benchmarks/2026-11-24-scale-results.md`.
 
 ```bash
-uv run python bench/scale/prepare.py pool      # download SKILL.md files listed on skills.sh (needs gh)
+uv run python bench/scale/prepare.py pool      # download the SKILL.md versions pinned in manifest.json (needs gh)
 uv run python bench/scale/prepare.py split     # seeded split, corpora of 50/100/200/350
 uv run python bench/scale/prepare.py queries   # model-written queries (needs OPENAI_API_KEY)
 for n in 50 100 200 350; do
@@ -102,3 +102,35 @@ Downloaded skills live only under `var/bench/scale/` and are never installed or
 executed. `manifest.json` records each accepted skill's repository, path, and
 blob SHA; `split.json` and `queries.jsonl` are the exact inputs of the
 published run.
+
+Later work on the same pool, each with its protocol committed first
+(`docs/benchmarks/2026-11-24-first-stage-protocol.md`,
+`docs/benchmarks/2026-11-24-precision-protocol.md`; results in
+`docs/benchmarks/2026-11-24-precision-results.md`):
+
+```bash
+uv run python bench/scale/prepare.py dev-queries      # dev positives (new targets)
+uv run python bench/scale/prepare.py dev-negatives    # dev no-match requests
+uv run python bench/scale/shortlist_recall.py --corpus var/bench/scale/corpus-350 \
+  --dataset bench/scale/dev-queries.jsonl             # first stage only, no API
+uv run --extra rerank python bench/scale/precision_dev.py record    # judge once per dev query
+uv run python bench/scale/precision_dev.py evaluate                 # score decision rules offline
+uv run python bench/scale/prepare.py test2            # fresh test set, built after the config is fixed
+uv run python bench/scale/report.py --prefix test2after
+```
+
+`queries.jsonl` (first test set) is retired; do not tune against it or
+`test2-queries.jsonl`. New decisions need new dev data and, for final numbers,
+a new test set.
+
+`bench/scale/cards_dev.py` holds the skill-card experiment
+(`docs/benchmarks/2026-11-24-cards-protocol.md`), which ended in a negative
+result (`docs/benchmarks/2026-11-24-cards-results.md`).
+
+`bench/scale/structure_dev.py` holds the decision-structure experiments
+(`docs/benchmarks/2026-11-24-structure-protocol.md`), also a negative result
+(`docs/benchmarks/2026-11-24-structure-results.md`).
+
+`bench/scale/retrieval_dev.py` holds the embedder and synthetic-request
+experiment (`docs/benchmarks/2026-11-24-retrieval-protocol.md`, results in
+`docs/benchmarks/2026-11-24-retrieval-results.md`).

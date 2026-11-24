@@ -3,10 +3,15 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 
 # uv / venv
 .venv/
 dist/
+build/
 
 # LanceDB indexes and disposable benchmark output (rebuild/regenerate locally)
 var/
@@ -31,3 +36,11 @@ hf-cache/
 CLAUDE.md
 .claude/
 .codex/
+
+# Secrets (keys live in the shell environment, never in the repo)
+.env
+.env.*
+
+# Research output written by agent sessions (local-only)
+reports/
+research_notes/

@@ -65,7 +65,7 @@ Search is hybrid:
   (`intfloat/multilingual-e5-base` by default), with E5 `query:`/`passage:`
   prompts and cosine search in LanceDB over normalized `text`. Dense passages
   use name/description by default, while full bodies remain available to BM25;
-  inputs are capped at 64 tokens by default so first indexing remains bounded
+  inputs are capped at 128 tokens by default so first indexing remains bounded
   on large corpora.
 - Korean queries get a small local intent-vocabulary expansion before dense
   and sparse retrieval; no network translation is involved.
@@ -93,8 +93,10 @@ With `SKILL_RAG_RERANK` set (`jev`, `openai`, or a custom
 `package.module:factory`) the keep rule and ordering above are replaced. The
 top `SKILL_RAG_RERANK_CANDIDATES` (default 16) by fused rank, with no
 thresholds, are each judged by the configured model for fit to the query.
-Candidates with probability >= `SKILL_RAG_RERANK_THRESHOLD` (default 0.5) are
-returned in order of probability; none qualifying is `no_match`. Statuses and
+Candidates with probability >= `SKILL_RAG_RERANK_THRESHOLD` (default 0.9) are
+kept in order of probability and at most `SKILL_RAG_RERANK_MAX_HITS` (default
+1) are returned; none qualifying is `no_match`. An `ok` response under rerank
+therefore usually carries a single hit, and `no_match` is common by design. Statuses and
 hit fields are unchanged, with two differences in content: `score` is that
 probability (comparable across queries, and no longer 1.0 for the first hit by
 construction), and `description` is capped at
@@ -108,6 +110,11 @@ query and the shortlisted names and descriptions to the judge's provider; see
 body. Translation is local ko<->en only, disabled by default, and happens at
 index time for added/changed records when `SKILL_RAG_TRANSLATE=1`. Search hit
 descriptions are capped at 280 characters by default to limit MCP context use.
+
+A skill that `get_skill` already returned in the current session (one server
+process) is left out of later `search_skills` results unless
+`SKILL_RAG_EXCLUDE_LOADED=0`, so a follow-up search can return `no_match`
+where the first one returned that skill.
 
 ## `get_skill(name: str) -> dict`
 
