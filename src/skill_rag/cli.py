@@ -138,6 +138,7 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "corpus_exists": corpus_mod.CORPUS_PATH.exists(),
         "index_path": str(index_mod.index_path()),
         "indexed_count": index_mod.indexed_count(),
+        "adopted_count": len(lifecycle.adopted_names()),
         "model": embed_mod.DEFAULT_MODEL,
         "local_files_only": embed_mod.LOCAL_FILES_ONLY,
         "max_seq_length": embed_mod.MAX_SEQ_LENGTH,
@@ -163,6 +164,7 @@ def status(json_out: bool = typer.Option(False, "--json")):
     typer.echo(f"corpus exists   : {payload['corpus_exists']}")
     typer.echo(f"index path      : {payload['index_path']}")
     typer.echo(f"indexed skills  : {payload['indexed_count']}")
+    typer.echo(f"adopted skills  : {payload['adopted_count']}")
     typer.echo(f"embedding model : {payload['model']}")
     typer.echo(f"local files only: {payload['local_files_only']}")
     typer.echo(f"max seq length  : {payload['max_seq_length']}")
@@ -199,10 +201,18 @@ def install(
         "--refresh-bootstrap",
         help="Overwrite an existing ~/.skills/using-skill-rag from the repo template.",
     ),
+    no_collect: bool = typer.Option(
+        False,
+        "--no-collect",
+        help="Do not link harness and plugin skills into ~/.skills; serve only "
+        "what is already there or adopted.",
+    ),
     json_out: bool = typer.Option(False, "--json"),
 ):
     """Install the bootstrap skill, collect+index skills, register the MCP server."""
-    report = lifecycle.install(dry_run=dry_run, refresh_bootstrap=refresh_bootstrap)
+    report = lifecycle.install(
+        dry_run=dry_run, refresh_bootstrap=refresh_bootstrap, collect_skills=not no_collect
+    )
     if json_out:
         typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
         return
@@ -244,8 +254,82 @@ def uninstall(
     typer.echo(f"corpus symlinks     : {len(c['removed_links'])}")
     typer.echo(f"corpus dirs removed : {len(c['removed_dirs'])}")
     typer.echo(f"corpus kept         : {len(c['kept'])}")
+    typer.echo(f"adopted restored    : {len(report.get('adopted_restored', []))}")
+    for item in report.get("adopted_conflicts", []):
+        typer.echo(f"  ! {item['name']} left in the store: {item['reason']} ({item['origin']})")
     if dry_run:
         typer.echo("\n(dry-run — nothing written)")
+
+
+@app.command()
+def adopt(
+    names: list[str] = typer.Argument(None, help="Skill names to adopt (default: all found)."),
+    source: list[_Path] = typer.Option(
+        None,
+        "--from",
+        help="Skill root to adopt from, e.g. a project's .claude/skills. Repeatable. "
+        "Default: ~/.claude/skills and ~/.codex/skills.",
+    ),
+    yes: bool = typer.Option(False, "--yes", "-y", help="Skip the confirmation prompt."),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Show actions without writing."),
+    json_out: bool = typer.Option(False, "--json"),
+):
+    """Move skills into ~/.skills so they are served only through skill-rag.
+
+    The harness stops loading their descriptions into every session.
+    `skill-rag restore` (or `uninstall`) moves them back.
+    """
+    sources = [p.expanduser() for p in source] if source else None
+    if not dry_run and not yes:
+        preview = lifecycle.adopt(sources=sources, names=names or None, dry_run=True)
+        if not preview["adopted"]:
+            typer.echo("nothing to adopt.")
+            raise typer.Exit(0)
+        typer.echo(f"About to move {len(preview['adopted'])} skill directories into {corpus_mod.CORPUS_PATH}:")
+        for item in preview["adopted"]:
+            typer.echo(f"  {item['origin']}")
+        if not typer.confirm("Continue?"):
+            typer.echo("aborted.")
+            raise typer.Exit(1)
+    report = lifecycle.adopt(sources=sources, names=names or None, dry_run=dry_run)
+    if json_out:
+        typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
+        return
+    verb = "would adopt" if dry_run else "adopted"
+    typer.echo(f"{verb}: {len(report['adopted'])}")
+    for item in report["adopted"]:
+        typer.echo(f"  + {item['name']}  (from {item['origin']})")
+    if report["skipped"]:
+        typer.echo(f"skipped: {len(report['skipped'])}")
+        for item in report["skipped"]:
+            typer.echo(f"  - {item['name']}: {item['reason']}")
+    if dry_run:
+        typer.echo("\n(dry-run — nothing moved)")
+    elif report["adopted"]:
+        typer.echo("\nRestart the harness so it stops loading the moved skills.")
+
+
+@app.command()
+def restore(
+    names: list[str] = typer.Argument(None, help="Skill names to restore (default: all adopted)."),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Show actions without writing."),
+    json_out: bool = typer.Option(False, "--json"),
+):
+    """Move adopted skills back to where `adopt` found them."""
+    report = lifecycle.restore(names=names or None, dry_run=dry_run)
+    if json_out:
+        typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
+        return
+    verb = "would restore" if dry_run else "restored"
+    typer.echo(f"{verb}: {len(report['restored'])}")
+    for item in report["restored"]:
+        typer.echo(f"  + {item['name']}  (to {item['origin']})")
+    if report["conflicts"]:
+        typer.echo(f"left in the store: {len(report['conflicts'])}")
+        for item in report["conflicts"]:
+            typer.echo(f"  ! {item['name']}: {item['reason']} ({item['origin']})")
+    if dry_run:
+        typer.echo("\n(dry-run — nothing moved)")
 
 
 @app.command()

@@ -17,6 +17,7 @@
 | 2026-07-14 | Stabilize release hygiene, isolate test clocks, serialize sync, and add positive/negative evaluation gates. | `../../docs/superpowers/specs/2026-07-14-maintenance-release.md`, `../../CHANGELOG.md` |
 | 2026-07-15 | Calibrate no-match behavior, use E5 query/passage prompts, cache warm retrieval, add Korean intent hints, cap MCP metadata, and make local translation opt-in. | `../../docs/superpowers/specs/2026-07-15-fast-multilingual-retrieval.md`, `../../ARCHITECTURE.md`, `mcp-interface.md` |
 | 2026-11-24 | Add opt-in rerank with swappable judges (`SKILL_RAG_RERANK=jev|openai|module:factory`) after a held-out corpus showed the fixture-calibrated gate does not transfer; amend Local-First to allow this one off-by-default cloud call. | `../../docs/superpowers/specs/2026-11-24-jev-rerank-opt-in.md`, `../../docs/benchmarks/2026-11-24-heldout-jev-rerank.md`, `core-beliefs.md` |
+| 2026-11-24 | Add `adopt`/`restore` so the store can be a skill's only home (no native loading), and return the skill directory from `get_skill`. | `../../docs/superpowers/specs/2026-11-24-adopt-store-only.md`, `../../ARCHITECTURE.md`, `mcp-interface.md` |
 
 Detailed dated implementation plans are intentionally not kept as active docs.
 Active future work belongs under `docs/superpowers/specs/` and

@@ -1,4 +1,4 @@
-"""Orchestrate install / uninstall. Paths are injectable for testing."""
+"""Orchestrate install / uninstall / adopt / restore. Paths are injectable for testing."""
 
 from __future__ import annotations
 
@@ -25,7 +25,14 @@ def _state_path(corpus_path: Path) -> Path:
 
 
 def _empty_state() -> dict:
-    return {"version": 1, "bootstrap": None, "harness_links": {}, "collected_links": {}, "mcp": {}}
+    return {
+        "version": 1,
+        "bootstrap": None,
+        "harness_links": {},
+        "collected_links": {},
+        "mcp": {},
+        "adopted": {},
+    }
 
 
 def _load_state(corpus_path: Path) -> dict:
@@ -38,6 +45,9 @@ def _load_state(corpus_path: Path) -> dict:
     for key in ("harness_links", "collected_links", "mcp"):
         if not isinstance(state.get(key), dict):
             return _empty_state()
+    # Added after version 1 shipped; absent in older state files.
+    if not isinstance(state.get("adopted"), dict):
+        state["adopted"] = {}
     return state
 
 
@@ -75,7 +85,9 @@ def default_harness_skill_dirs() -> list[Path]:
     return [home / ".claude" / "skills", home / ".codex" / "skills"]
 
 
-def _clean_corpus(target: Path, state: dict, *, purge: bool, dry_run: bool) -> dict:
+def _clean_corpus(
+    target: Path, state: dict, *, purge: bool, dry_run: bool, protected: frozenset[str] = frozenset()
+) -> dict:
     removed_links: list[str] = []
     removed_dirs: list[str] = []
     kept: list[str] = []
@@ -85,6 +97,11 @@ def _clean_corpus(target: Path, state: dict, *, purge: bool, dry_run: bool) -> d
         name = child.name
         is_bootstrap = name == corpus_mod.BOOTSTRAP_SKILL_NAME
         if child.name == STATE_FILE:
+            continue
+        if name in protected:
+            # An adopted skill that could not be moved back is the only copy.
+            # Not even --purge deletes it.
+            kept.append(name)
             continue
         expected = state["collected_links"].get(str(child))
         bootstrap = state.get("bootstrap") or {}
@@ -142,13 +159,30 @@ def uninstall(
         index_mod.reset()
         sync.reset_cache()
 
-    corpus_report = _clean_corpus(corpus_path, state, purge=purge, dry_run=dry_run)
+    # Adopted skills go home before anything is removed: the store holds their
+    # only copy, so uninstalling must never strand or delete them.
+    restore_report = restore(corpus_path=corpus_path, dry_run=dry_run, sync_index=False)
+    stranded = frozenset(item["name"] for item in restore_report["conflicts"])
     if not dry_run:
-        _state_path(corpus_path).unlink(missing_ok=True)
+        state = _load_state(corpus_path)  # restore() rewrote the adopted records
+
+    corpus_report = _clean_corpus(
+        corpus_path, state, purge=purge, dry_run=dry_run, protected=stranded
+    )
+    if not dry_run:
+        if stranded:
+            # Keep only what a later `skill-rag restore` needs.
+            leftover = _empty_state()
+            leftover["adopted"] = state["adopted"]
+            _write_state(corpus_path, leftover)
+        else:
+            _state_path(corpus_path).unlink(missing_ok=True)
     return {
         "mcp": mcp,
         "harness_links_removed": links_removed,
         "index_dropped": not dry_run,
+        "adopted_restored": [item["name"] for item in restore_report["restored"]],
+        "adopted_conflicts": restore_report["conflicts"],
         "corpus": corpus_report,
         "dry_run": dry_run,
         "purge": purge,
@@ -204,8 +238,14 @@ def install(
     harness_skill_dirs: list[Path] | None = None,
     dry_run: bool = False,
     refresh_bootstrap: bool = False,
+    collect_skills: bool = True,
 ) -> dict:
-    """Install bootstrap + collect/index + register MCP for one corpus."""
+    """Install bootstrap + collect/index + register MCP for one corpus.
+
+    ``collect_skills=False`` skips linking harness and plugin skills into the
+    store, for a store that should hold only what the user puts or adopts
+    there.
+    """
     repo = (repo or PROJECT_ROOT).expanduser()
     corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
     harness_skill_dirs = (
@@ -221,13 +261,14 @@ def install(
     collect_ran = sync_ran = False
     if not dry_run:
         mcp: dict = {}
-        _, collect_report = collect.plan(target=corpus_path)
-        collect.apply(target=corpus_path)
-        collect_ran = True
-        for name in collect_report.linked:
-            link = corpus_path / name
-            if link.is_symlink():
-                state["collected_links"][str(link)] = str(link.resolve())
+        if collect_skills:
+            _, collect_report = collect.plan(target=corpus_path)
+            collect.apply(target=corpus_path)
+            collect_ran = True
+            for name in collect_report.linked:
+                link = corpus_path / name
+                if link.is_symlink():
+                    state["collected_links"][str(link)] = str(link.resolve())
         for link in links:
             state["harness_links"][link] = str(
                 (corpus_path / corpus_mod.BOOTSTRAP_SKILL_NAME).resolve()
@@ -261,3 +302,141 @@ def install(
         "mcp": mcp,
         "dry_run": dry_run,
     }
+
+
+# --- adopt / restore: make ~/.skills the only home of a skill ---------------
+#
+# `collect` leaves a skill where the harness installed it and links to it, so
+# the harness keeps loading its description into every session. Adopting moves
+# the directory into the store instead: the harness no longer sees it, and the
+# skill is served only through search_skills / get_skill.
+
+
+def _direct_skill_dirs(root: Path) -> list[Path]:
+    """``root/<name>`` entries that are skills. No recursion: nested or
+    plugin-managed layouts are not this command's to move."""
+    if not root.is_dir():
+        return []
+    return [c for c in sorted(root.iterdir()) if c.is_dir() and (c / "SKILL.md").is_file()]
+
+
+def adopt(
+    *,
+    sources: list[Path] | None = None,
+    names: list[str] | None = None,
+    corpus_path: Path | None = None,
+    dry_run: bool = False,
+    sync_index: bool = True,
+) -> dict:
+    """Move skills out of harness (or project) skill directories into the store.
+
+    ``sources`` are skill roots whose direct children are skill directories;
+    the default is the user-level harness directories. Every move is recorded
+    so ``restore`` and ``uninstall`` can put the skill back where it was.
+    Symlinked entries are skipped: something else owns them.
+    """
+    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    sources = sources if sources is not None else default_harness_skill_dirs()
+    wanted = set(names) if names else None
+    state = _load_state(corpus_path)
+    adopted: list[dict] = []
+    skipped: list[dict] = []
+    planned: set[str] = set()
+
+    for root in sources:
+        for source in _direct_skill_dirs(Path(root).expanduser()):
+            name = source.name
+            if name == corpus_mod.BOOTSTRAP_SKILL_NAME or (wanted is not None and name not in wanted):
+                continue
+            dest = corpus_path / name
+
+            def skip(reason: str) -> None:
+                skipped.append({"name": name, "source": str(source), "reason": reason})
+
+            if source.is_symlink():
+                skip("is a symlink; managed elsewhere")
+                continue
+            replaces_link = False
+            if dest.is_symlink():
+                # `collect` linked this very directory earlier: swap the link
+                # for the real thing.
+                if dest.resolve() != source.resolve():
+                    skip(f"{dest} links to a different skill")
+                    continue
+                replaces_link = True
+            elif dest.exists() or name in planned:
+                skip(f"{dest} already exists")
+                continue
+
+            planned.add(name)
+            adopted.append({"name": name, "origin": str(source)})
+            if dry_run:
+                continue
+            # Record intent first: if the move is interrupted, restore() can
+            # still tell where the skill belongs.
+            state["adopted"][name] = {"origin": str(source), "store": str(dest)}
+            if replaces_link:
+                state["collected_links"].pop(str(dest), None)
+            _write_state(corpus_path, state)
+            if replaces_link:
+                dest.unlink()
+            corpus_path.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(source), str(dest))
+
+    sync_ran = False
+    if adopted and not dry_run and sync_index:
+        sync.run_sync(corpus_path=corpus_path)
+        sync_ran = True
+    return {"adopted": adopted, "skipped": skipped, "sync_ran": sync_ran, "dry_run": dry_run}
+
+
+def restore(
+    *,
+    names: list[str] | None = None,
+    corpus_path: Path | None = None,
+    dry_run: bool = False,
+    sync_index: bool = True,
+) -> dict:
+    """Move adopted skills back to where ``adopt`` found them.
+
+    A skill whose original location is occupied again stays in the store and
+    is reported as a conflict; nothing is overwritten.
+    """
+    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    wanted = set(names) if names else None
+    state = _load_state(corpus_path)
+    restored: list[dict] = []
+    conflicts: list[dict] = []
+
+    for name, record in sorted(state["adopted"].items()):
+        if wanted is not None and name not in wanted:
+            continue
+        store, origin = Path(record["store"]), Path(record["origin"])
+        occupied = origin.exists() or origin.is_symlink()
+        if not store.exists():
+            if not occupied:
+                conflicts.append({"name": name, "origin": str(origin), "reason": "missing from the store"})
+                continue
+            # Already back (interrupted adopt, or moved by hand): just forget it.
+        elif occupied:
+            conflicts.append({"name": name, "origin": str(origin), "reason": "original location is occupied"})
+            continue
+        restored.append({"name": name, "origin": str(origin)})
+        if dry_run:
+            continue
+        if store.exists():
+            origin.parent.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(store), str(origin))
+        del state["adopted"][name]
+        _write_state(corpus_path, state)
+
+    sync_ran = False
+    if restored and not dry_run and sync_index:
+        sync.run_sync(corpus_path=corpus_path)
+        sync_ran = True
+    return {"restored": restored, "conflicts": conflicts, "sync_ran": sync_ran, "dry_run": dry_run}
+
+
+def adopted_names(corpus_path: Path | None = None) -> list[str]:
+    corpus_path = (corpus_path or corpus_mod.CORPUS_PATH).expanduser()
+    return sorted(_load_state(corpus_path)["adopted"])
