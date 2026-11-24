@@ -130,7 +130,9 @@ other skills are in the corpus, which is the hard case by design.
 ## What is still open
 
 Sharper per-skill descriptions were tried next and did not help; see
-`2026-11-24-cards-results.md`.
+`2026-11-24-cards-results.md`. Picking by comparison with a separate
+"whether to return" signal, a score-list model, and a higher threshold for
+`openai` did not help either; see `2026-11-24-structure-results.md`.
 
 1. A threshold for `openai`, chosen on dev data with that judge.
 2. Korean requests: the useful rate is 20 points below English.

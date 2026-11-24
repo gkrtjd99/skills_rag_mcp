@@ -126,3 +126,7 @@ a new test set.
 `bench/scale/cards_dev.py` holds the skill-card experiment
 (`docs/benchmarks/2026-11-24-cards-protocol.md`), which ended in a negative
 result (`docs/benchmarks/2026-11-24-cards-results.md`).
+
+`bench/scale/structure_dev.py` holds the decision-structure experiments
+(`docs/benchmarks/2026-11-24-structure-protocol.md`), also a negative result
+(`docs/benchmarks/2026-11-24-structure-results.md`).

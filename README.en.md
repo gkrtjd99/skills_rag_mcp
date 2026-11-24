@@ -212,8 +212,9 @@ does not actually fit, as judged by a separate model.
   useful skill for 68% of matching requests instead of 80%. For more recall
   use `SKILL_RAG_RERANK_THRESHOLD=0.5 SKILL_RAG_RERANK_MAX_HITS=0`.
 - The 0.9 threshold was chosen with `jev` and does not suit `openai`, whose
-  probabilities sit closer to 0 and 1. The same precision with `openai` needs
-  a higher threshold, chosen on data.
+  probabilities sit closer to 0 and 1. On dev data `openai` still returns a
+  wrong skill for 22% of no-match requests at a threshold of 0.999. Use `jev`
+  when avoiding wrong skills matters.
 - Korean requests are weaker than English (`jev` useful rate 58% against 78%).
 - Letting the judge scan the whole corpus (`SKILL_RAG_RERANK_SCAN_MAX`) finds
   the right skill more often but also returns more wrong ones, so it is off by
