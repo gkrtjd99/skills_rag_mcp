@@ -137,14 +137,16 @@ def record() -> None:
     print(f"recorded {len(list(RECORDS.glob('*.json')))} dev queries")
 
 
-def decide(rec: dict, source: str, threshold: float, margin: float, verify: str, verify_at: float) -> list[str]:
+def decide(
+    rec: dict, source: str, threshold: float, margin: float, verify: str, verify_at: float, max_hits: int = 0
+) -> list[str]:
     kept = sorted((n for n in rec[source] if rec["fits"][n] >= threshold), key=lambda n: rec["fits"][n], reverse=True)
     if not kept:
         return []
     if margin and len(kept) > 1 and rec["fits"][kept[0]] - rec["fits"][kept[1]] < margin:
         return []
     if verify == "none":
-        return kept
+        return kept[:max_hits] if max_hits else kept
     for name in kept[: 1 if verify == "top1" else VERIFY_TOP]:
         if rec["verify"].get(name, 0.0) >= verify_at:
             return [name]
@@ -180,11 +182,15 @@ def evaluate() -> None:
         return name in r["expected"] or verdicts.get((r["query"], name), False)
 
     rows = []
-    grid = itertools.product(("local", "scan"), THRESHOLDS, MARGINS, ("none", "top1", "top3"), VERIFY_AT)
-    for source, threshold, margin, verify, verify_at in grid:
+    # max_hits: 0 returns every candidate over the threshold, 1 returns the
+    # best one only. Verification always returns at most one.
+    grid = itertools.product(("local", "scan"), THRESHOLDS, MARGINS, ("none", "top1", "top3"), VERIFY_AT, (0, 1))
+    for source, threshold, margin, verify, verify_at, max_hits in grid:
         if verify == "none" and verify_at != VERIFY_AT[0]:
             continue
-        out = {r["query"]: decide(r, source, threshold, margin, verify, verify_at) for r in records}
+        if verify != "none" and max_hits != 1:
+            continue
+        out = {r["query"]: decide(r, source, threshold, margin, verify, verify_at, max_hits) for r in records}
         useful = sum(1 for r in pos if out[r["query"]] and ok(r, out[r["query"]][0])) / len(pos)
         junk_pos = sum(1 for r in pos if out[r["query"]] and not ok(r, out[r["query"]][0])) / len(pos)
         junk_neg = sum(1 for r in neg if out[r["query"]] and not ok(r, out[r["query"]][0])) / len(neg)
@@ -201,7 +207,7 @@ def evaluate() -> None:
         rows.append(
             {
                 "source": source, "threshold": threshold, "margin": margin, "verify": verify,
-                "verify_at": verify_at if verify != "none" else None,
+                "verify_at": verify_at if verify != "none" else None, "max_hits": max_hits,
                 "useful": useful, "junk_pos": junk_pos, "junk_neg": junk_neg, "strict_recall1": strict,
                 "nothing_on_neg": nothing_neg, "hits": hits, "requests": requests, "tokens": tokens,
             }
@@ -209,29 +215,39 @@ def evaluate() -> None:
 
     def show(title: str, selection: list[dict]) -> None:
         print(title)
-        print(f"  {'source':6} {'thr':>5} {'margin':>6} {'verify':>10} {'useful':>7} {'junk+':>6} {'junk-':>6} {'strict@1':>8} {'none-':>6} {'hits':>5} {'req':>3} {'tokens':>7}")
+        print(f"  {'source':6} {'thr':>5} {'margin':>6} {'verify':>10} {'max':>3} {'useful':>7} {'junk+':>6} {'junk-':>6} {'strict@1':>8} {'none-':>6} {'hits':>5} {'req':>3} {'tokens':>7}")
         for c in selection:
             v = c["verify"] if c["verify"] == "none" else f"{c['verify']}@{c['verify_at']}"
             print(
-                f"  {c['source']:6} {c['threshold']:5.2f} {c['margin']:6.1f} {v:>10} {c['useful']:7.3f} {c['junk_pos']:6.3f} "
+                f"  {c['source']:6} {c['threshold']:5.2f} {c['margin']:6.1f} {v:>10} {c['max_hits']:3d} {c['useful']:7.3f} {c['junk_pos']:6.3f} "
                 f"{c['junk_neg']:6.3f} {c['strict_recall1']:8.3f} {c['nothing_on_neg']:6.3f} {c['hits']:5.2f} {c['requests']:3d} {c['tokens']:7.0f}"
             )
         print()
 
-    plain = [c for c in rows if c["margin"] == 0 and c["verify"] == "none"]
+    plain = [c for c in rows if c["margin"] == 0 and c["verify"] == "none" and c["max_hits"] == 0]
     show("threshold only (no margin, no verification):", plain)
     qualifying = [c for c in rows if c["junk_neg"] <= 0.10 and c["junk_pos"] <= 0.05]
     order = lambda c: (-c["useful"], c["hits"], c["requests"], c["tokens"])
+    def select(pool: list[dict]) -> dict:
+        best = max(c["useful"] for c in pool)
+        return min((c for c in pool if c["useful"] >= best - 0.01), key=lambda c: (c["hits"], c["requests"], c["tokens"]))
+
+    shipped = None
     if qualifying:
-        best = max(c["useful"] for c in qualifying)
-        chosen = min((c for c in qualifying if c["useful"] >= best - 0.01), key=lambda c: (c["hits"], c["requests"], c["tokens"]))
+        chosen = select(qualifying)
         show(f"qualifying configurations: {len(qualifying)}; top 12 by useful rate:", sorted(qualifying, key=order)[:12])
         show("SELECTED (rule 2):", [chosen])
+        # Verification shows skill body text to the provider, which the rerank
+        # path does not do; this is the selection that was shipped.
+        no_body = [c for c in qualifying if c["verify"] == "none"]
+        if no_body:
+            shipped = select(no_body)
+            show("SELECTED among configurations that send no body text (shipped):", [shipped])
     else:
         fallback = [c for c in rows if c["useful"] >= 0.60]
         chosen = min(fallback, key=lambda c: (c["junk_neg"], -c["useful"]))
         show("no configuration qualifies; lowest junk on negatives with useful >= 0.60 (rule 3):", [chosen])
-    (WORK / "precision-dev-grid.json").write_text(json.dumps({"rows": rows, "selected": chosen}, indent=1), encoding="utf-8")
+    (WORK / "precision-dev-grid.json").write_text(json.dumps({"rows": rows, "selected": chosen, "selected_no_body": shipped}, indent=1), encoding="utf-8")
 
 
 if __name__ == "__main__":

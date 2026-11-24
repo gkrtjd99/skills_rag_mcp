@@ -100,6 +100,23 @@ def test_loaded_skill_never_reaches_the_judge(tmp_path, monkeypatch):
     assert _events()[-1]["provider"] == "jev"
 
 
+def test_fallback_to_the_gate_is_logged_as_the_gate(tmp_path, monkeypatch):
+    """Review finding: a judge failure returns local-gate results, so the log
+    must not attribute them to the configured judge."""
+    _mk(tmp_path / "skills", "tdd", "write failing tests first")
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "jev")
+    monkeypatch.setattr(rerank, "_retry_after", 0.0)
+
+    def boom(query, candidates):
+        raise RuntimeError("judge down")
+
+    monkeypatch.setattr(rerank, "judge", boom)
+    mcp_server.search_skills("write failing tests", k=5)
+    assert _events()[-1]["provider"] == "gate"
+    mcp_server.search_skills("write failing tests again", k=5)  # cooldown: still the gate
+    assert _events()[-1]["provider"] == "gate"
+
+
 def test_stats_count_loads_after_suggestion_once_per_session(tmp_path):
     path = tmp_path / "log.jsonl"
     rows = [

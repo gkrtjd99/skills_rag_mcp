@@ -54,8 +54,11 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
         return retrieve.skip_response()
     sync_mod.sync_if_stale()
     # Local hybrid gate by default; opt-in Jev fit judgment (SKILL_RAG_RERANK).
-    result = rerank.search(query, k=k, agent=agent, exclude=usage.loaded_this_session())
-    usage.record_search(query, result, rerank.RERANK_PROVIDER if rerank.enabled() else "")
+    result, provider = rerank.search_traced(
+        query, k=k, agent=agent, exclude=usage.loaded_this_session()
+    )
+    # ``provider`` is what produced this result, so a fallback is logged as the gate.
+    usage.record_search(query, result, provider)
     return result
 
 

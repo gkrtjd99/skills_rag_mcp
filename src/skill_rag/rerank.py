@@ -147,7 +147,15 @@ def search(
     query: str, k: int = 5, agent: str | None = None, exclude: frozenset[str] = frozenset()
 ) -> dict:
     """``retrieve.search`` contract, with a judge deciding fit when enabled."""
-    local = lambda: retrieve.search(query, k=k, agent=agent, exclude=exclude)
+    return search_traced(query, k=k, agent=agent, exclude=exclude)[0]
+
+
+def search_traced(
+    query: str, k: int = 5, agent: str | None = None, exclude: frozenset[str] = frozenset()
+) -> tuple[dict, str]:
+    """``search`` plus what actually produced the result: the judge's provider
+    name, or ``""`` when the local gate did (rerank off, cooldown, failure)."""
+    local = lambda: (retrieve.search(query, k=k, agent=agent, exclude=exclude), "")
     if not enabled():
         return local()
     global _retry_after
@@ -159,7 +167,7 @@ def search(
     try:
         candidates = _shortlist(query, max(k, RERANK_CANDIDATES), exclude)
         if not candidates:
-            return retrieve.no_match_response()
+            return retrieve.no_match_response(), RERANK_PROVIDER
         fits = judge(query, candidates)
     except Exception as exc:
         _retry_after = _monotonic() + RERANK_COOLDOWN_SECONDS
@@ -177,7 +185,7 @@ def search(
 
     kept = [(c, p) for c, p in zip(candidates, fits) if p >= RERANK_THRESHOLD]
     if not kept:
-        return retrieve.no_match_response()
+        return retrieve.no_match_response(), RERANK_PROVIDER
     # Stable sort: equal probabilities keep the hybrid order.
     kept.sort(key=lambda pair: pair[1], reverse=True)
     hits = [
@@ -186,4 +194,4 @@ def search(
         )
         for c, p in kept[: min(k, RERANK_MAX_HITS) if RERANK_MAX_HITS > 0 else k]
     ]
-    return {"status": "ok", "hits": hits}
+    return {"status": "ok", "hits": hits}, RERANK_PROVIDER

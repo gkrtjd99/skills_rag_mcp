@@ -114,7 +114,10 @@ step, so it is off by default.
   should have excluded verification for that reason.
 - "At most one returned skill" without verification was missing from the first
   grid and was added before the final selection; it changes the returned count
-  only.
+  only. The committed script lacked that arm until a review pointed it out; it
+  now has it as a grid dimension and prints the selection among configurations
+  that send no body text, which reproduces the shipped policy from the
+  recorded dev data (`local`, 0.9, no margin, one skill).
 - 22 dev queries, 2 dev negatives, and 7 fresh-test queries named their skill
   twice and were dropped under the stated rule.
 
