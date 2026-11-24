@@ -196,7 +196,8 @@ def _rank(
     every indexed skill."""
     # ``exclude`` names skills the session already loaded; they are dropped
     # before ranking so they neither take a slot nor reach a judge.
-    rows = [r for r in _list_indexed() if r["name"] not in exclude]
+    indexed = _list_indexed()
+    rows = [r for r in indexed if r["name"] not in exclude]
     if not rows:
         return []
 
@@ -207,7 +208,13 @@ def _rank(
     dense_limit = min(
         len(rows), max(k * DENSE_CANDIDATE_MULTIPLIER, MIN_DENSE_CANDIDATES)
     )
-    dense = _index_search(vec, k=dense_limit, model_name=model_name)
+    # The index knows nothing about ``exclude``: fetch that many extra and drop
+    # them here, so an excluded skill cannot use up the limit or set the margin.
+    dense = [
+        h
+        for h in _index_search(vec, k=dense_limit + len(indexed) - len(rows), model_name=model_name)
+        if h.name not in exclude
+    ][:dense_limit]
     cosine = {h.name: h.score for h in dense}
     dense_rank = {h.name: i for i, h in enumerate(dense)}
     dense_margin = (
