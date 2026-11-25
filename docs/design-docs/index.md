@@ -23,3 +23,4 @@
 Detailed dated implementation plans are intentionally not kept as active docs.
 Active future work belongs under `docs/superpowers/specs/` and
 `docs/superpowers/plans/`.
+| 2026-11-25 | Add the `uncertain` status: with a judge, the best candidate between 0.7 and the threshold goes to the calling agent to accept or decline; a skill the request names outright is returned without a judgment. | `../../docs/superpowers/specs/2026-11-25-uncertain-and-explicit.md`, `../../docs/benchmarks/2026-11-25-agent2-results.md`, `mcp-interface.md` |

@@ -124,10 +124,11 @@ def explicit_matches(query: str) -> list[dict]:
             continue
         name = re.escape(row["name"])
         # ASCII boundaries only, so a Korean particle may follow ("tdd를").
-        token = rf"(?<![A-Za-z0-9_-]){name}(?![A-Za-z0-9_-])"
+        # A name followed by ".ext" is a file ("deploy.log", "/tdd.py").
+        token = rf"(?<![A-Za-z0-9_-]){name}(?![A-Za-z0-9_-]|\.[A-Za-z0-9])"
         patterns = (
             rf"^\s*{name}\s*$",
-            rf"(?:^|(?<=\s))[/$]{name}(?![A-Za-z0-9_\-/])",
+            rf"(?:^|(?<=\s))[/$]{name}(?![A-Za-z0-9_\-/]|\.[A-Za-z0-9])",
             rf"{token}[`'\"]?\s*(?:skill(?![a-z])|스킬)",
             rf"(?:(?<![a-z])skill|스킬)\s*:?\s*[`'\"]?{token}",
         )

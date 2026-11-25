@@ -589,6 +589,7 @@ def test_readiness_names_where_data_goes(monkeypatch):
         "tdd 스킬로 파서 추가해줘",
         "스킬 tdd를 써서 진행해줘",
         "skill: tdd",
+        "Run /tdd.",  # sentence-final period, not a file extension
     ],
 )
 def test_a_named_skill_is_returned_without_a_judge(monkeypatch, query):
@@ -609,6 +610,9 @@ def test_a_named_skill_is_returned_without_a_judge(monkeypatch, query):
         "run the predeploy check",  # inside another word
         "what does tdd-lite do",  # inside a longer name
         "run the `tdd` package tests",  # code formatting is not a choice of skill
+        "read /deploy.log to diagnose the outage",  # a file, not a command
+        "open /tdd.py",
+        "the skill deploy.sh script fails",
     ],
 )
 def test_a_bare_mention_is_not_an_explicit_choice(query):
