@@ -23,6 +23,17 @@ def isolated_index(tmp_path, monkeypatch):
     index_mod.reset()
 
 
+SHIPPED_SCAN_MAX = rerank.RERANK_SCAN_MAX  # read before the fixture below turns the scan off
+
+
+@pytest.fixture(autouse=True)
+def scan_off(monkeypatch):
+    """The whole-corpus scan would call the real judge (and the network, when
+    a key is in the environment). Tests that want it use ``scan_on`` and a
+    fake ``scan``."""
+    monkeypatch.setattr(rerank, "RERANK_SCAN_MAX", 0)
+
+
 def _seed():
     index_mod.upsert(
         [
@@ -121,7 +132,7 @@ def _local(query: str, k: int = 5) -> dict:
 def test_default_style_shows_the_agent_several_candidates(monkeypatch):
     _seed()
     assert (rerank.RERANK_STYLE, rerank.RERANK_FLOOR, rerank.RERANK_SHOWN) == ("candidates", 0.5, 8)
-    assert rerank.RERANK_SCAN_MAX == 500
+    assert SHIPPED_SCAN_MAX == 500
     _enable(monkeypatch, {"tdd": 0.62, "deploy": 0.93, "brainstorming": 0.49})
     monkeypatch.setattr(rerank, "RERANK_STYLE", "candidates")
     res = rerank.search("ship it", k=1)  # k does not cap what is shown
