@@ -77,6 +77,10 @@ RERANK_DESCRIPTION_CHARS = int(os.environ.get("SKILL_RAG_RERANK_DESCRIPTION_CHAR
 # for 97% of queries against 74% for the local shortlist, but at every
 # threshold it also returned more skills that do not fit, so it lost the
 # precision-first selection. A scan costs about 51 input tokens per skill.
+# Measured again with an agent deciding what to load
+# (docs/benchmarks/2026-11-25-scan-results.md) the scan raised useful loads
+# from 77% to 82%, all of it on Korean requests, with wrong loads inside the
+# limits, but missed the adoption bar by one request; it stays opt-in.
 RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "0"))
 
 # Below the threshold the judge cannot tell right from wrong, but the calling
