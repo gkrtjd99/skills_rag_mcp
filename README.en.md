@@ -10,6 +10,29 @@ skills are searched per new task via MCP, and only matching bodies are fetched.
 The native skill-loader settings of Claude/Codex are independent and remain
 available as a fallback.
 
+## Compared with loading every skill (read this first)
+
+Search is **not** "the same accuracy for less context". At 350 skills, with a
+model acting as the agent and counting what it chose to load (194 requests
+with a matching skill, 97 without):
+
+| | Useful skill loaded | Wrong skill loaded when none matches | Skill metadata in context |
+| --- | ---: | ---: | --- |
+| Search + `jev` (this project's default) | 67.0% | 8.2% | about 110 characters per search |
+| Search, no judge | 69.6% | 14.4% | about 1,210 characters per search |
+| **No search, all 350 descriptions in context** | 93.8% | 34.0% | about 33,750 tokens, always |
+
+- With every description in view the agent finds the right skill far more
+  often (+27 points) and loads a wrong one far more often when nothing
+  matches (+26 points).
+- What search buys is about 34,000 tokens of standing context and fewer wrong
+  loads; what it costs is one right skill in four.
+- With a few dozen skills the full list is about 2,000 tokens and search has
+  little to offer.
+- The agent is one model call with an empty context and may differ from a
+  real harness. Details:
+  `docs/benchmarks/2026-11-25-native-baseline-results.md`.
+
 ## How it works
 
 ```

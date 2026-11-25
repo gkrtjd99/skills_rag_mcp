@@ -149,3 +149,8 @@ adopted, local candidates without a judge were not.
 agent in the loop (`docs/benchmarks/2026-11-25-scan-protocol.md`). It missed
 the adoption bar by one request and stays opt-in; results in
 `docs/benchmarks/2026-11-25-scan-results.md`.
+
+`bench/scale/native_baseline.py` measures the alternative to search: every
+description in the agent's context
+(`docs/benchmarks/2026-11-25-native-baseline-protocol.md`, results in
+`docs/benchmarks/2026-11-25-native-baseline-results.md`).

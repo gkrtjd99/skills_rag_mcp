@@ -37,6 +37,10 @@
 - `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
   top N of the local ranking as uncertain candidates instead of the gate's
   hits. Fewer wrong loads, fewer useful ones.
+- Measured the alternative to search, every description in the agent's
+  context: 93.8% useful loads against 67.0% for search with `jev`, and 34.0%
+  wrong loads on no-match requests against 8.2%, at about 33,750 tokens of
+  standing context. The READMEs now open with this comparison.
 - Optional whole-corpus scan by the judge (`SKILL_RAG_RERANK_SCAN_MAX`, off by
   default): finds the right skill more often and returns more wrong ones.
 - `skill-rag adopt [names] [--from DIR]` moves skills out of harness or

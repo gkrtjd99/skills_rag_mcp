@@ -57,29 +57,13 @@ def ask(model: str, developer: str, query: str) -> dict:
     import httpx
 
     for attempt in range(6):
-        response = httpx.post(
-            os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/") + "/responses",
-            headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
-            json={
-                "model": model,
-                # The list comes first and is identical for every request, so the provider can cache it.
-                "input": [{"role": "developer", "content": developer}, {"role": "user", "content": f"User request: {query}"}],
-                "text": {
-                    "format": {
-                        "type": "json_schema",
-                        "name": "decision",
-                        "strict": True,
-                        "schema": {
-                            "type": "object",
-                            "properties": {"load": {"type": ["string", "null"]}},
-                            "required": ["load"],
-                            "additionalProperties": False,
-                        },
-                    }
-                },
-            },
-            timeout=180,
-        )
+        try:
+            response = _post(httpx, model, developer, query)
+        except httpx.TransportError:  # dropped connection, TLS reset, timeout
+            if attempt == 5:
+                raise
+            time.sleep(5 * (attempt + 1))
+            continue
         if response.status_code in (429, 500, 502, 503) and attempt < 5:
             time.sleep(5 * (attempt + 1))
             continue
@@ -102,6 +86,32 @@ def ask(model: str, developer: str, query: str) -> dict:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(answer, ensure_ascii=False), encoding="utf-8")
     return answer
+
+
+def _post(httpx, model: str, developer: str, query: str):
+    return httpx.post(
+        os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/") + "/responses",
+        headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
+        json={
+            "model": model,
+            # The list comes first and is identical for every request, so the provider can cache it.
+            "input": [{"role": "developer", "content": developer}, {"role": "user", "content": f"User request: {query}"}],
+            "text": {
+                "format": {
+                    "type": "json_schema",
+                    "name": "decision",
+                    "strict": True,
+                    "schema": {
+                        "type": "object",
+                        "properties": {"load": {"type": ["string", "null"]}},
+                        "required": ["load"],
+                        "additionalProperties": False,
+                    },
+                }
+            },
+        },
+        timeout=180,
+    )
 
 
 def run(set_name: str, arms: list[str], model: str) -> None:
