@@ -159,3 +159,10 @@ description in the agent's context
 candidates for the agent to choose from
 (`docs/benchmarks/2026-11-25-candidates-protocol.md`). Adopted as the default
 with a judge; results in `docs/benchmarks/2026-11-25-candidates-results.md`.
+
+`bench/scale2.py` runs the shipped default once on a second corpus of 350
+skills from repositories nothing earlier used
+(`docs/benchmarks/2026-11-25-second-corpus-protocol.md`). The numbers held;
+results in `docs/benchmarks/2026-11-25-second-corpus-results.md`. Its inputs
+are in `bench/scale2/`; `uv run python bench/scale2.py restore` downloads the
+pinned skills.

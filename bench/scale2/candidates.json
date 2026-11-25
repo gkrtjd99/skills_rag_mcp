@@ -1,0 +1,6942 @@
+{
+ "pages": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
+ ],
+ "candidates": [
+  {
+   "list": "all-time/3",
+   "source": "agent.qq.com",
+   "skill_id": "agently-mail",
+   "installs": 75642
+  },
+  {
+   "list": "all-time/3",
+   "source": "squirrelscan/skills",
+   "skill_id": "audit-website",
+   "installs": 75398
+  },
+  {
+   "list": "all-time/3",
+   "source": "degausai/wonda",
+   "skill_id": "wonda-cli",
+   "installs": 74605
+  },
+  {
+   "list": "all-time/3",
+   "source": "addyosmani/web-quality-skills",
+   "skill_id": "accessibility",
+   "installs": 74284
+  },
+  {
+   "list": "all-time/3",
+   "source": "vercel/ai",
+   "skill_id": "ai-sdk",
+   "installs": 71902
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "landing-page-design",
+   "installs": 69384
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "product-photography",
+   "installs": 68581
+  },
+  {
+   "list": "all-time/3",
+   "source": "momentic-ai/skills",
+   "skill_id": "momentic-test",
+   "installs": 68572
+  },
+  {
+   "list": "all-time/3",
+   "source": "momentic-ai/skills",
+   "skill_id": "momentic-result-classification",
+   "installs": 68514
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "app-store-screenshots",
+   "installs": 68486
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "storyboard-creation",
+   "installs": 68429
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "character-design-sheet",
+   "installs": 68422
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "video-ad-specs",
+   "installs": 68367
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "youtube-thumbnail-design",
+   "installs": 68333
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "competitor-teardown",
+   "installs": 68289
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "image-to-video",
+   "installs": 68261
+  },
+  {
+   "list": "all-time/3",
+   "source": "101-skills/superpowers",
+   "skill_id": "product-hunt-launch",
+   "installs": 68243
+  },
+  {
+   "list": "all-time/3",
+   "source": "insforge/insforge-skills",
+   "skill_id": "insforge",
+   "installs": 68196
+  },
+  {
+   "list": "all-time/3",
+   "source": "insforge/insforge-skills",
+   "skill_id": "insforge-cli",
+   "installs": 68084
+  },
+  {
+   "list": "all-time/3",
+   "source": "msmps/opentui-skill",
+   "skill_id": "opentui",
+   "installs": 64638
+  },
+  {
+   "list": "all-time/3",
+   "source": "insforge/insforge-skills",
+   "skill_id": "insforge-debug",
+   "installs": 64270
+  },
+  {
+   "list": "all-time/3",
+   "source": "anthropics/claude-code",
+   "skill_id": "frontend-design",
+   "installs": 63897
+  },
+  {
+   "list": "all-time/3",
+   "source": "insforge/insforge-skills",
+   "skill_id": "insforge-integrations",
+   "installs": 63525
+  },
+  {
+   "list": "all-time/3",
+   "source": "firecrawl/skills",
+   "skill_id": "firecrawl-build-scrape",
+   "installs": 63449
+  },
+  {
+   "list": "all-time/3",
+   "source": "firecrawl/skills",
+   "skill_id": "firecrawl-build-search",
+   "installs": 63363
+  },
+  {
+   "list": "all-time/3",
+   "source": "nexscope-ai/ecommerce-skills",
+   "skill_id": "cross-border-ecommerce",
+   "installs": 63189
+  },
+  {
+   "list": "all-time/3",
+   "source": "firecrawl/skills",
+   "skill_id": "firecrawl-build-onboarding",
+   "installs": 63085
+  },
+  {
+   "list": "all-time/3",
+   "source": "firecrawl/skills",
+   "skill_id": "firecrawl-build-interact",
+   "installs": 63050
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "youtube-thumbnail-design",
+   "installs": 61269
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "landing-page-design",
+   "installs": 61264
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "image-to-video",
+   "installs": 61233
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "product-photography",
+   "installs": 61232
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "app-store-screenshots",
+   "installs": 61214
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "competitor-teardown",
+   "installs": 61202
+  },
+  {
+   "list": "all-time/3",
+   "source": "genkit-ai/skills",
+   "skill_id": "developing-genkit-js",
+   "installs": 61196
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "product-hunt-launch",
+   "installs": 61190
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "video-ad-specs",
+   "installs": 61184
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "character-design-sheet",
+   "installs": 61178
+  },
+  {
+   "list": "all-time/3",
+   "source": "magentosh/superpowers",
+   "skill_id": "storyboard-creation",
+   "installs": 61163
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-setup",
+   "installs": 60642
+  },
+  {
+   "list": "all-time/3",
+   "source": "op7418/humanizer-zh",
+   "skill_id": "humanizer-zh",
+   "installs": 59951
+  },
+  {
+   "list": "all-time/3",
+   "source": "tencent/wechatreading",
+   "skill_id": "weread-skills",
+   "installs": 59430
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-custom-ui",
+   "installs": 59048
+  },
+  {
+   "list": "all-time/3",
+   "source": "resciencelab/opc-skills",
+   "skill_id": "seo-geo",
+   "installs": 58677
+  },
+  {
+   "list": "all-time/3",
+   "source": "useosint/skills",
+   "skill_id": "is-this-photo-real",
+   "installs": 58331
+  },
+  {
+   "list": "all-time/3",
+   "source": "useosint/skills",
+   "skill_id": "investigate-without-getting-made",
+   "installs": 58247
+  },
+  {
+   "list": "all-time/3",
+   "source": "addyosmani/web-quality-skills",
+   "skill_id": "seo",
+   "installs": 58095
+  },
+  {
+   "list": "all-time/3",
+   "source": "useosint/skills",
+   "skill_id": "what-leaked-about-you",
+   "installs": 57841
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-backend-api",
+   "installs": 57680
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-nextjs-patterns",
+   "installs": 56937
+  },
+  {
+   "list": "all-time/3",
+   "source": "useosint/skills",
+   "skill_id": "find-the-original-image",
+   "installs": 56621
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-webhooks",
+   "installs": 56619
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "storyboard-creation",
+   "installs": 56607
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "landing-page-design",
+   "installs": 56569
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "video-ad-specs",
+   "installs": 56559
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "youtube-thumbnail-design",
+   "installs": 56516
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "image-to-video",
+   "installs": 56507
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "competitor-teardown",
+   "installs": 56502
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "product-photography",
+   "installs": 56483
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "product-hunt-launch",
+   "installs": 56469
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "character-design-sheet",
+   "installs": 56439
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills-shell/superpowers",
+   "skill_id": "app-store-screenshots",
+   "installs": 56408
+  },
+  {
+   "list": "all-time/3",
+   "source": "nozomio-labs/nia-skill",
+   "skill_id": "nia",
+   "installs": 56316
+  },
+  {
+   "list": "all-time/3",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "binance-agentic-wallet",
+   "installs": 55563
+  },
+  {
+   "list": "all-time/3",
+   "source": "alchaincyf/huashu-design",
+   "skill_id": "huashu-design",
+   "installs": 55043
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-orgs",
+   "installs": 54777
+  },
+  {
+   "list": "all-time/3",
+   "source": "momentic-ai/skills",
+   "skill_id": "momentic-mobile-test",
+   "installs": 54371
+  },
+  {
+   "list": "all-time/3",
+   "source": "skills.volces.com",
+   "skill_id": "byted-web-search",
+   "installs": 53616
+  },
+  {
+   "list": "all-time/3",
+   "source": "better-auth/skills",
+   "skill_id": "better-auth-security-best-practices",
+   "installs": 52741
+  },
+  {
+   "list": "all-time/3",
+   "source": "better-auth/skills",
+   "skill_id": "email-and-password-best-practices",
+   "installs": 51574
+  },
+  {
+   "list": "all-time/3",
+   "source": "axelfreeman/marketing-mindset",
+   "skill_id": "marketing-mindset",
+   "installs": 50138
+  },
+  {
+   "list": "all-time/3",
+   "source": "othmanadi/planning-with-files",
+   "skill_id": "planning-with-files",
+   "installs": 49766
+  },
+  {
+   "list": "all-time/3",
+   "source": "clerk/skills",
+   "skill_id": "clerk-testing",
+   "installs": 49655
+  },
+  {
+   "list": "all-time/3",
+   "source": "antfu/skills",
+   "skill_id": "vitest",
+   "installs": 49470
+  },
+  {
+   "list": "all-time/3",
+   "source": "github/awesome-copilot",
+   "skill_id": "git-commit",
+   "installs": 49238
+  },
+  {
+   "list": "all-time/3",
+   "source": "multica-ai/andrej-karpathy-skills",
+   "skill_id": "karpathy-guidelines",
+   "installs": 49019
+  },
+  {
+   "list": "all-time/3",
+   "source": "jane-o-o-o-o/agent-pulse-skill",
+   "skill_id": "agent-pulse",
+   "installs": 47558
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-code-style",
+   "installs": 47386
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-testing",
+   "installs": 46711
+  },
+  {
+   "list": "all-time/4",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-best-practices",
+   "installs": 46675
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-error-handling",
+   "installs": 46657
+  },
+  {
+   "list": "all-time/4",
+   "source": "addyosmani/web-quality-skills",
+   "skill_id": "performance",
+   "installs": 46567
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-ios-simulator",
+   "installs": 45831
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-xcode",
+   "installs": 45810
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-expo-development",
+   "installs": 45788
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-detox-testing",
+   "installs": 45785
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-xcode-bazel",
+   "installs": 45766
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-security",
+   "installs": 45386
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-design-patterns",
+   "installs": 44874
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-concurrency",
+   "installs": 44802
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-performance",
+   "installs": 44728
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-maestro-testing",
+   "installs": 43852
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-context",
+   "installs": 43851
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-database",
+   "installs": 43604
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-naming",
+   "installs": 43555
+  },
+  {
+   "list": "all-time/4",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "square-post",
+   "installs": 43520
+  },
+  {
+   "list": "all-time/4",
+   "source": "shadcn/improve",
+   "skill_id": "improve",
+   "installs": 43444
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-safety",
+   "installs": 43279
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-project-layout",
+   "installs": 43111
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-modernize",
+   "installs": 42935
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-documentation",
+   "installs": 42919
+  },
+  {
+   "list": "all-time/4",
+   "source": "antfu/skills",
+   "skill_id": "vite",
+   "installs": 42906
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-lint",
+   "installs": 42901
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-data-structures",
+   "installs": 42766
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-gradle",
+   "installs": 42723
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-observability",
+   "installs": 42513
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-troubleshooting",
+   "installs": 42493
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-dependency-management",
+   "installs": 42337
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-structs-interfaces",
+   "installs": 42291
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "build-tam",
+   "installs": 42023
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "niche-signal-discovery",
+   "installs": 42011
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-cli",
+   "installs": 42006
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-benchmark",
+   "installs": 41975
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-dependency-injection",
+   "installs": 41926
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "portfolio-prospecting",
+   "installs": 41915
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-feedback",
+   "installs": 41914
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "clay-to-deepline",
+   "installs": 41905
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "linkedin-url-lookup",
+   "installs": 41877
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-popular-libraries",
+   "installs": 41866
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-stretchr-testify",
+   "installs": 41785
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-continuous-integration",
+   "installs": 41764
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-quickstart",
+   "installs": 41671
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-gtm",
+   "installs": 41655
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-grpc",
+   "installs": 41632
+  },
+  {
+   "list": "all-time/4",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-android-emulator",
+   "installs": 41473
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "app-store-screenshots",
+   "installs": 41254
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "video-ad-specs",
+   "installs": 41224
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "product-photography",
+   "installs": 41220
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "product-hunt-launch",
+   "installs": 41219
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "landing-page-design",
+   "installs": 41206
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "competitor-teardown",
+   "installs": 41205
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "character-design-sheet",
+   "installs": 41203
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "storyboard-creation",
+   "installs": 41187
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "youtube-thumbnail-design",
+   "installs": 41183
+  },
+  {
+   "list": "all-time/4",
+   "source": "bankai-skills/superpowers",
+   "skill_id": "image-to-video",
+   "installs": 41158
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-lo",
+   "installs": 40833
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-stay-updated",
+   "installs": 40803
+  },
+  {
+   "list": "all-time/4",
+   "source": "pexoai/pexo-skills",
+   "skill_id": "pexo-agent",
+   "installs": 40712
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-do",
+   "installs": 40666
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-slog",
+   "installs": 40610
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-oops",
+   "installs": 40511
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-mo",
+   "installs": 40480
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-hot",
+   "installs": 40471
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-samber-ro",
+   "installs": 40402
+  },
+  {
+   "list": "all-time/4",
+   "source": "tavily-ai/skills",
+   "skill_id": "tavily-search",
+   "installs": 40346
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "product-photography",
+   "installs": 39906
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "competitor-teardown",
+   "installs": 39879
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "landing-page-design",
+   "installs": 39853
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "youtube-thumbnail-design",
+   "installs": 39847
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "storyboard-creation",
+   "installs": 39846
+  },
+  {
+   "list": "all-time/4",
+   "source": "addyosmani/web-quality-skills",
+   "skill_id": "web-quality-audit",
+   "installs": 39836
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "character-design-sheet",
+   "installs": 39807
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "video-ad-specs",
+   "installs": 39797
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "image-to-video",
+   "installs": 39796
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "product-hunt-launch",
+   "installs": 39776
+  },
+  {
+   "list": "all-time/4",
+   "source": "its-a-skill-issue/superpowers",
+   "skill_id": "app-store-screenshots",
+   "installs": 39774
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-spf13-cobra",
+   "installs": 39499
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-swagger",
+   "installs": 39437
+  },
+  {
+   "list": "all-time/4",
+   "source": "twostraws/swiftui-agent-skill",
+   "skill_id": "swiftui-pro",
+   "installs": 39385
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-graphql",
+   "installs": 39285
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-google-wire",
+   "installs": 39176
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-spf13-viper",
+   "installs": 39127
+  },
+  {
+   "list": "all-time/4",
+   "source": "better-auth/skills",
+   "skill_id": "organization-best-practices",
+   "installs": 39097
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-uber-fx",
+   "installs": 38898
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-how-to",
+   "installs": 38846
+  },
+  {
+   "list": "all-time/4",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-uber-dig",
+   "installs": 38826
+  },
+  {
+   "list": "all-time/4",
+   "source": "anysearch-ai/anysearch-skill",
+   "skill_id": "anysearch",
+   "installs": 38732
+  },
+  {
+   "list": "all-time/4",
+   "source": "better-auth/skills",
+   "skill_id": "two-factor-authentication-best-practices",
+   "installs": 37585
+  },
+  {
+   "list": "all-time/4",
+   "source": "clerk/skills",
+   "skill_id": "clerk-cli",
+   "installs": 37368
+  },
+  {
+   "list": "all-time/4",
+   "source": "addyosmani/web-quality-skills",
+   "skill_id": "core-web-vitals",
+   "installs": 37346
+  },
+  {
+   "list": "all-time/4",
+   "source": "avdlee/swiftui-agent-skill",
+   "skill_id": "swiftui-expert-skill",
+   "installs": 37273
+  },
+  {
+   "list": "all-time/4",
+   "source": "antfu/skills",
+   "skill_id": "vue",
+   "installs": 37178
+  },
+  {
+   "list": "all-time/4",
+   "source": "replicas-group/skill",
+   "skill_id": "replicas-agent",
+   "installs": 36754
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-analytics",
+   "installs": 36549
+  },
+  {
+   "list": "all-time/4",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-deep-research",
+   "installs": 36322
+  },
+  {
+   "list": "all-time/4",
+   "source": "zhaono1/agent-playbook",
+   "skill_id": "self-improving-agent",
+   "installs": 36167
+  },
+  {
+   "list": "all-time/4",
+   "source": "hugmouse/skills",
+   "skill_id": "value",
+   "installs": 35538
+  },
+  {
+   "list": "all-time/4",
+   "source": "sanity-io/agent-toolkit",
+   "skill_id": "sanity-best-practices",
+   "installs": 35496
+  },
+  {
+   "list": "all-time/4",
+   "source": "code.deepline.com",
+   "skill_id": "find-qualified-titles",
+   "installs": 35349
+  },
+  {
+   "list": "all-time/4",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-post-to-wechat",
+   "installs": 35176
+  },
+  {
+   "list": "all-time/5",
+   "source": "github/awesome-copilot",
+   "skill_id": "excalidraw-diagram-generator",
+   "installs": 34890
+  },
+  {
+   "list": "all-time/5",
+   "source": "dammyjay93/interface-design",
+   "skill_id": "interface-design",
+   "installs": 34851
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-image-gen",
+   "installs": 34663
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-icp-definition",
+   "installs": 34649
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-pipeline-coverage-modeling",
+   "installs": 34571
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-account-tiering",
+   "installs": 34529
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-market-sizing",
+   "installs": 34500
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-kickoff",
+   "installs": 34416
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-hiring",
+   "installs": 34403
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-radar",
+   "installs": 34390
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-career",
+   "installs": 34384
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-research-papers",
+   "installs": 34350
+  },
+  {
+   "list": "all-time/5",
+   "source": "mcp-use/mcp-use",
+   "skill_id": "mcp-apps-builder",
+   "installs": 34324
+  },
+  {
+   "list": "all-time/5",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-plays",
+   "installs": 34100
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-infographic",
+   "installs": 33924
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-objection-handling",
+   "installs": 33922
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-discovery-questions",
+   "installs": 33860
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-outbound-sequence",
+   "installs": 33795
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-outreach-personalization",
+   "installs": 33786
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-email-calendar-events",
+   "installs": 33769
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-website-design-clone",
+   "installs": 33704
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-call-review",
+   "installs": 33702
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-motion",
+   "installs": 33667
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-meeting-recap",
+   "installs": 33642
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-quota-setting",
+   "installs": 33637
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-org-structure",
+   "installs": 33621
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-comp-design",
+   "installs": 33590
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "sales-account-segmentation",
+   "installs": 33577
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-stripe",
+   "installs": 33547
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "cold-email-deliverability",
+   "installs": 33536
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-qr-code",
+   "installs": 33496
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-email-marketing",
+   "installs": 33486
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-camera",
+   "installs": 33478
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-authorization",
+   "installs": 33460
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-email-verification",
+   "installs": 33448
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-object-storage",
+   "installs": 33447
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-email",
+   "installs": 33442
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-core-infrastructure",
+   "installs": 33438
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-http-outcalls",
+   "installs": 33437
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-android-emulator-setup",
+   "installs": 33434
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-invite-links",
+   "installs": 33433
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-user-approval",
+   "installs": 33427
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-email-raw",
+   "installs": 33425
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-openai",
+   "installs": 33425
+  },
+  {
+   "list": "all-time/5",
+   "source": "docs.stripe.com",
+   "skill_id": "stripe-directory",
+   "installs": 33415
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "deal-champion-mapping",
+   "installs": 33414
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "negotiation-concession-planner",
+   "installs": 33382
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "cold-call-opener",
+   "installs": 33367
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "meddpicc-scorecard",
+   "installs": 33350
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "deal-red-flags",
+   "installs": 33347
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "cold-email-subject-line-tester",
+   "installs": 33333
+  },
+  {
+   "list": "all-time/5",
+   "source": "mbfinotti/sales-skills",
+   "skill_id": "deal-value-calc",
+   "installs": 33329
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-react-native-optimization",
+   "installs": 33307
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-ios-simulator-setup",
+   "installs": 33249
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-device-interact",
+   "installs": 33218
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-react-native-app-workflow",
+   "installs": 33158
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-knowledge-base",
+   "installs": 33155
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-react-native-profiler",
+   "installs": 33098
+  },
+  {
+   "list": "all-time/5",
+   "source": "addyosmani/web-quality-skills",
+   "skill_id": "best-practices",
+   "installs": 33076
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-workflows",
+   "installs": 33069
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-test-ui-flow",
+   "installs": 33043
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-metro-debugger",
+   "installs": 33019
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-native-profiler",
+   "installs": 33000
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-markdown-to-html",
+   "installs": 32990
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-oql",
+   "installs": 32987
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-cover-image",
+   "installs": 32964
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-market-research",
+   "installs": 32933
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-article-illustrator",
+   "installs": 32788
+  },
+  {
+   "list": "all-time/5",
+   "source": "petergyang/no-ai-slop",
+   "skill_id": "no-ai-slop",
+   "installs": 32640
+  },
+  {
+   "list": "all-time/5",
+   "source": "kadajett/agent-nestjs-skills",
+   "skill_id": "nestjs-best-practices",
+   "installs": 32510
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-seo-audit",
+   "installs": 32490
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-xhs-images",
+   "installs": 32197
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-slide-deck",
+   "installs": 32156
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-dashboard-reporting",
+   "installs": 32006
+  },
+  {
+   "list": "all-time/5",
+   "source": "github/awesome-copilot",
+   "skill_id": "multi-stage-dockerfile",
+   "installs": 31961
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-lead-gen",
+   "installs": 31816
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-lead-research",
+   "installs": 31790
+  },
+  {
+   "list": "all-time/5",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-screenshot-diff",
+   "installs": 31720
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-qa",
+   "installs": 31710
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-company-directories",
+   "installs": 31695
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-knowledge-ingest",
+   "installs": 31688
+  },
+  {
+   "list": "all-time/5",
+   "source": "clerk/skills",
+   "skill_id": "clerk",
+   "installs": 31679
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-shop",
+   "installs": 31674
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-competitive-intel",
+   "installs": 31603
+  },
+  {
+   "list": "all-time/5",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-ads-audiences",
+   "installs": 31571
+  },
+  {
+   "list": "all-time/5",
+   "source": "firecrawl/firecrawl-workflows",
+   "skill_id": "firecrawl-demo-walkthrough",
+   "installs": 31431
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-url-to-markdown",
+   "installs": 31048
+  },
+  {
+   "list": "all-time/5",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-comic",
+   "installs": 30717
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-googlemail",
+   "installs": 30322
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-querying-oql",
+   "installs": 30218
+  },
+  {
+   "list": "all-time/5",
+   "source": "ibelick/ui-skills",
+   "skill_id": "fixing-motion-performance",
+   "installs": 29988
+  },
+  {
+   "list": "all-time/5",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "review-pr",
+   "installs": 29915
+  },
+  {
+   "list": "all-time/5",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-posting-to-x",
+   "installs": 29794
+  },
+  {
+   "list": "all-time/5",
+   "source": "stripe/link-cli",
+   "skill_id": "create-payment-credential",
+   "installs": 29741
+  },
+  {
+   "list": "all-time/5",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "write-product-spec",
+   "installs": 29697
+  },
+  {
+   "list": "all-time/5",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "spec-driven-implementation",
+   "installs": 29687
+  },
+  {
+   "list": "all-time/5",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "write-tech-spec",
+   "installs": 29610
+  },
+  {
+   "list": "all-time/5",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "resolve-merge-conflicts",
+   "installs": 29578
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-post-to-x",
+   "installs": 29511
+  },
+  {
+   "list": "all-time/6",
+   "source": "mitsuhiko/gh-issue-sync",
+   "skill_id": "gh-issue-sync",
+   "installs": 29510
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "fix-errors",
+   "installs": 29490
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "implement-specs",
+   "installs": 29436
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "create-pr",
+   "installs": 29427
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "update-skill",
+   "installs": 29353
+  },
+  {
+   "list": "all-time/6",
+   "source": "op7418/guizang-ppt-skill",
+   "skill_id": "guizang-ppt-skill",
+   "installs": 29347
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "diagnose-ci-failures",
+   "installs": 29344
+  },
+  {
+   "list": "all-time/6",
+   "source": "limrun-inc/skills",
+   "skill_id": "limrun-bazel",
+   "installs": 29279
+  },
+  {
+   "list": "all-time/6",
+   "source": "better-auth/skills",
+   "skill_id": "create-auth-skill",
+   "installs": 29264
+  },
+  {
+   "list": "all-time/6",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-lens",
+   "installs": 29246
+  },
+  {
+   "list": "all-time/6",
+   "source": "lottiefiles/motion-design-skill",
+   "skill_id": "motion-design",
+   "installs": 29213
+  },
+  {
+   "list": "all-time/6",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-monitors",
+   "installs": 29187
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "pr-walkthrough",
+   "installs": 29093
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "brandalf",
+   "installs": 29064
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "council",
+   "installs": 28923
+  },
+  {
+   "list": "all-time/6",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-debug-guides",
+   "installs": 28897
+  },
+  {
+   "list": "all-time/6",
+   "source": "github/awesome-copilot",
+   "skill_id": "documentation-writer",
+   "installs": 28891
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-compress-image",
+   "installs": 28886
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-format-markdown",
+   "installs": 28845
+  },
+  {
+   "list": "all-time/6",
+   "source": "stripe/link-cli",
+   "skill_id": "financial-insights",
+   "installs": 28735
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-danger-x-to-markdown",
+   "installs": 28618
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-danger-gemini-web",
+   "installs": 28549
+  },
+  {
+   "list": "all-time/6",
+   "source": "momentic-ai/skills",
+   "skill_id": "momentic-spec",
+   "installs": 28318
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "writing-unit-tests",
+   "installs": 27969
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "principal-engineering",
+   "installs": 27933
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/multi-agent-review",
+   "skill_id": "multi-agent-review",
+   "installs": 27921
+  },
+  {
+   "list": "all-time/6",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-doc",
+   "installs": 27917
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "check-impl-against-spec",
+   "installs": 27911
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "grounding-before-coding",
+   "installs": 27877
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "guarding-architecture",
+   "installs": 27870
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "testing-changes",
+   "installs": 27860
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "verifying-before-done",
+   "installs": 27855
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "keeping-one-source-of-truth",
+   "installs": 27818
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "scoping-changes",
+   "installs": 27815
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "handling-failures",
+   "installs": 27813
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "operating-safely",
+   "installs": 27811
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "reproduce-bug-report",
+   "installs": 27749
+  },
+  {
+   "list": "all-time/6",
+   "source": "riekelt/principal-engineer",
+   "skill_id": "adding-dependencies",
+   "installs": 27743
+  },
+  {
+   "list": "all-time/6",
+   "source": "jakubantalik/transitions.dev",
+   "skill_id": "transitions-dev",
+   "installs": 27742
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revenue-kpi-framework",
+   "installs": 27722
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revenue-funnel",
+   "installs": 27693
+  },
+  {
+   "list": "all-time/6",
+   "source": "ibelick/ui-skills",
+   "skill_id": "baseline-ui",
+   "installs": 27655
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "sales-pipeline-hygiene",
+   "installs": 27655
+  },
+  {
+   "list": "all-time/6",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-todo",
+   "installs": 27653
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revops-kickoff",
+   "installs": 27646
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "pipeline-stage-definition-audit",
+   "installs": 27644
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revenue-leakage",
+   "installs": 27621
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revops-career",
+   "installs": 27609
+  },
+  {
+   "list": "all-time/6",
+   "source": "alchaincyf/nuwa-skill",
+   "skill_id": "huashu-nuwa",
+   "installs": 27607
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "sales-forecast-diagnostic",
+   "installs": 27593
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revops-radar",
+   "installs": 27591
+  },
+  {
+   "list": "all-time/6",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-tv-interact",
+   "installs": 27585
+  },
+  {
+   "list": "all-time/6",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-contact",
+   "installs": 27583
+  },
+  {
+   "list": "all-time/6",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-meeting",
+   "installs": 27578
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revops-hiring",
+   "installs": 27576
+  },
+  {
+   "list": "all-time/6",
+   "source": "sickn33/agentic-awesome-skills",
+   "skill_id": "docker-expert",
+   "installs": 27513
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "crm-data-governance",
+   "installs": 27436
+  },
+  {
+   "list": "all-time/6",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-googlecalendar",
+   "installs": 27419
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revenue-data-governance-strategy",
+   "installs": 27385
+  },
+  {
+   "list": "all-time/6",
+   "source": "momentic-ai/skills",
+   "skill_id": "momentic-maintain",
+   "installs": 27366
+  },
+  {
+   "list": "all-time/6",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-pre-research",
+   "installs": 27252
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-creative-brief",
+   "installs": 27021
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revops-stack-rationalization",
+   "installs": 26983
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "lead-scoring",
+   "installs": 26897
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "sales-to-cs-handoff",
+   "installs": 26893
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-creative-test-plan",
+   "installs": 26875
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-creative-fatigue",
+   "installs": 26864
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-account-diagnostic",
+   "installs": 26806
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "lead-routing",
+   "installs": 26800
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-swipe-file",
+   "installs": 26795
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "customer-health-score",
+   "installs": 26786
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "deal-desk-approval",
+   "installs": 26773
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "revenue-reporting",
+   "installs": 26766
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-spend-guardrails",
+   "installs": 26755
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-conversion-tracking",
+   "installs": 26751
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "paid-landing-page-audit",
+   "installs": 26749
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-audience-targeting",
+   "installs": 26743
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "paid-media-scaling",
+   "installs": 26742
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-spend-allocation",
+   "installs": 26728
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-budget-pacing",
+   "installs": 26727
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/revops-skills",
+   "skill_id": "customer-churn-signals",
+   "installs": 26718
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "lookalike-audience-seeds",
+   "installs": 26710
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "cac-roas-benchmark",
+   "installs": 26707
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-negative-keywords",
+   "installs": 26705
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "retargeting-funnel",
+   "installs": 26699
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-attribution-gap",
+   "installs": 26691
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-platform-selection",
+   "installs": 26690
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-hook-analyzer",
+   "installs": 26690
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "advertising-kickoff",
+   "installs": 26685
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "advertising-hiring",
+   "installs": 26666
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-buyer-group-mapper",
+   "installs": 26656
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "advertising-career",
+   "installs": 26652
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "advertising-radar",
+   "installs": 26650
+  },
+  {
+   "list": "all-time/6",
+   "source": "firecrawl/skills",
+   "skill_id": "firecrawl-research-index",
+   "installs": 26582
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ugc-ad-scripts",
+   "installs": 26513
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-bidding-strategy",
+   "installs": 26447
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-translate",
+   "installs": 26424
+  },
+  {
+   "list": "all-time/6",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "release-skills",
+   "installs": 26206
+  },
+  {
+   "list": "all-time/6",
+   "source": "aaron-he-zhu/seo-geo-claude-skills",
+   "skill_id": "backlink-analyzer",
+   "installs": 26064
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "respond-to-pr-comments-in-blocklist",
+   "installs": 26063
+  },
+  {
+   "list": "all-time/6",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "validate-changes-match-specs",
+   "installs": 26063
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-copy-variants",
+   "installs": 26039
+  },
+  {
+   "list": "all-time/6",
+   "source": "tavily-ai/skills",
+   "skill_id": "tavily-research",
+   "installs": 25987
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-format-fit",
+   "installs": 25971
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "conversational-ad-copy",
+   "installs": 25893
+  },
+  {
+   "list": "all-time/6",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-settings-permissions",
+   "installs": 25833
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "ad-campaign-consolidation",
+   "installs": 25817
+  },
+  {
+   "list": "all-time/6",
+   "source": "mbfinotti/advertising-skills",
+   "skill_id": "thought-leadership-ads",
+   "installs": 25811
+  },
+  {
+   "list": "all-time/6",
+   "source": "latent-spaces/brag",
+   "skill_id": "brag",
+   "installs": 25794
+  },
+  {
+   "list": "all-time/6",
+   "source": "kunchenguid/lavish-axi",
+   "skill_id": "lavish",
+   "installs": 25688
+  },
+  {
+   "list": "all-time/6",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-create-flow",
+   "installs": 25604
+  },
+  {
+   "list": "all-time/6",
+   "source": "cursor/plugins",
+   "skill_id": "thermo-nuclear-code-quality-review",
+   "installs": 25534
+  },
+  {
+   "list": "all-time/6",
+   "source": "kotot/byted-web-search",
+   "skill_id": "byted-web-search",
+   "installs": 25357
+  },
+  {
+   "list": "all-time/6",
+   "source": "resend/resend-skills",
+   "skill_id": "resend",
+   "installs": 25117
+  },
+  {
+   "list": "all-time/6",
+   "source": "sanity-io/agent-toolkit",
+   "skill_id": "sanity-migration",
+   "installs": 25107
+  },
+  {
+   "list": "all-time/6",
+   "source": "garrytan/gstack",
+   "skill_id": "gstack",
+   "installs": 25088
+  },
+  {
+   "list": "all-time/6",
+   "source": "antfu/skills",
+   "skill_id": "nuxt",
+   "installs": 25049
+  },
+  {
+   "list": "all-time/6",
+   "source": "github/awesome-copilot",
+   "skill_id": "prd",
+   "installs": 24837
+  },
+  {
+   "list": "all-time/6",
+   "source": "ibelick/ui-skills",
+   "skill_id": "fixing-accessibility",
+   "installs": 24751
+  },
+  {
+   "list": "all-time/6",
+   "source": "upstash/skills",
+   "skill_id": "upstash-redis-js",
+   "installs": 24683
+  },
+  {
+   "list": "all-time/6",
+   "source": "hugohe3/ppt-master",
+   "skill_id": "ppt-master",
+   "installs": 24650
+  },
+  {
+   "list": "all-time/6",
+   "source": "feature-sliced/skills",
+   "skill_id": "feature-sliced-design",
+   "installs": 24576
+  },
+  {
+   "list": "all-time/6",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-screen-recording",
+   "installs": 24463
+  },
+  {
+   "list": "all-time/6",
+   "source": "elevenlabs/skills",
+   "skill_id": "text-to-speech",
+   "installs": 24383
+  },
+  {
+   "list": "all-time/6",
+   "source": "upstash/skills",
+   "skill_id": "upstash-ratelimit-js",
+   "installs": 24263
+  },
+  {
+   "list": "all-time/6",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-plays-review",
+   "installs": 24101
+  },
+  {
+   "list": "all-time/6",
+   "source": "panniantong/agent-reach",
+   "skill_id": "agent-reach",
+   "installs": 23949
+  },
+  {
+   "list": "all-time/7",
+   "source": "clickhouse/agent-skills",
+   "skill_id": "clickhouse-best-practices",
+   "installs": 23561
+  },
+  {
+   "list": "all-time/7",
+   "source": "antfu/skills",
+   "skill_id": "pnpm",
+   "installs": 23403
+  },
+  {
+   "list": "all-time/7",
+   "source": "antfu/skills",
+   "skill_id": "vue-best-practices",
+   "installs": 23363
+  },
+  {
+   "list": "all-time/7",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-youtube-transcript",
+   "installs": 23312
+  },
+  {
+   "list": "all-time/7",
+   "source": "millionco/react-doctor",
+   "skill_id": "react-doctor",
+   "installs": 23265
+  },
+  {
+   "list": "all-time/7",
+   "source": "momentic-ai/skills",
+   "skill_id": "mo-qa",
+   "installs": 23259
+  },
+  {
+   "list": "all-time/7",
+   "source": "docs.stripe.com",
+   "skill_id": "stripe-docs",
+   "installs": 23178
+  },
+  {
+   "list": "all-time/7",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-smartsheet",
+   "installs": 23041
+  },
+  {
+   "list": "all-time/7",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "cross-critique",
+   "installs": 22934
+  },
+  {
+   "list": "all-time/7",
+   "source": "giuseppe-trisciuoglio/developer-kit",
+   "skill_id": "shadcn-ui",
+   "installs": 22892
+  },
+  {
+   "list": "all-time/7",
+   "source": "github/awesome-copilot",
+   "skill_id": "refactor",
+   "installs": 22868
+  },
+  {
+   "list": "all-time/7",
+   "source": "github/gh-stack",
+   "skill_id": "gh-stack",
+   "installs": 22848
+  },
+  {
+   "list": "all-time/7",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "research",
+   "installs": 22770
+  },
+  {
+   "list": "all-time/7",
+   "source": "openclaw/openclaw",
+   "skill_id": "summarize",
+   "installs": 22604
+  },
+  {
+   "list": "all-time/7",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-linter",
+   "installs": 22388
+  },
+  {
+   "list": "all-time/7",
+   "source": "github/awesome-copilot",
+   "skill_id": "java-springboot",
+   "installs": 22350
+  },
+  {
+   "list": "all-time/7",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-post-to-weibo",
+   "installs": 22219
+  },
+  {
+   "list": "all-time/7",
+   "source": "angular/skills",
+   "skill_id": "angular-new-app",
+   "installs": 22096
+  },
+  {
+   "list": "all-time/7",
+   "source": "jakubkrehel/skills",
+   "skill_id": "break",
+   "installs": 22081
+  },
+  {
+   "list": "all-time/7",
+   "source": "langfuse/skills",
+   "skill_id": "langfuse",
+   "installs": 21971
+  },
+  {
+   "list": "all-time/7",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-dex-market",
+   "installs": 21942
+  },
+  {
+   "list": "all-time/7",
+   "source": "callstack/agent-device",
+   "skill_id": "agent-device",
+   "installs": 21923
+  },
+  {
+   "list": "all-time/7",
+   "source": "lewislulu/html-ppt-skill",
+   "skill_id": "html-ppt",
+   "installs": 21864
+  },
+  {
+   "list": "all-time/7",
+   "source": "apidojo-io/social-media-skills",
+   "skill_id": "tiktok-scraper",
+   "installs": 21817
+  },
+  {
+   "list": "all-time/7",
+   "source": "jackwener/opencli",
+   "skill_id": "opencli-usage",
+   "installs": 21692
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-add-unit-test",
+   "installs": 21658
+  },
+  {
+   "list": "all-time/7",
+   "source": "apidojo-io/social-media-skills",
+   "skill_id": "x-scraper",
+   "installs": 21656
+  },
+  {
+   "list": "all-time/7",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "saga",
+   "installs": 21592
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-run-static-analysis",
+   "installs": 21445
+  },
+  {
+   "list": "all-time/7",
+   "source": "antfu/skills",
+   "skill_id": "vueuse-functions",
+   "installs": 21419
+  },
+  {
+   "list": "all-time/7",
+   "source": "brianlovin/agent-config",
+   "skill_id": "simplify",
+   "installs": 21417
+  },
+  {
+   "list": "all-time/7",
+   "source": "affaan-m/ecc",
+   "skill_id": "security-review",
+   "installs": 21357
+  },
+  {
+   "list": "all-time/7",
+   "source": "github/awesome-copilot",
+   "skill_id": "gh-cli",
+   "installs": 21236
+  },
+  {
+   "list": "all-time/7",
+   "source": "useai-pro/openclaw-skills-security",
+   "skill_id": "skill-vetter",
+   "installs": 21164
+  },
+  {
+   "list": "all-time/7",
+   "source": "morluto/rea",
+   "skill_id": "reverse-engineer-anything",
+   "installs": 21138
+  },
+  {
+   "list": "all-time/7",
+   "source": "vercel/ai-elements",
+   "skill_id": "ai-elements",
+   "installs": 21134
+  },
+  {
+   "list": "all-time/7",
+   "source": "clerk/skills",
+   "skill_id": "clerk-react-patterns",
+   "installs": 21119
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-use-pattern-matching",
+   "installs": 21067
+  },
+  {
+   "list": "all-time/7",
+   "source": "jackwener/opencli",
+   "skill_id": "opencli-browser",
+   "installs": 21054
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-fix-runtime-errors",
+   "installs": 21037
+  },
+  {
+   "list": "all-time/7",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-figure",
+   "installs": 20980
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-resolve-package-conflicts",
+   "installs": 20909
+  },
+  {
+   "list": "all-time/7",
+   "source": "rebelytics/one-skill-to-rule-them-all",
+   "skill_id": "task-observer",
+   "installs": 20812
+  },
+  {
+   "list": "all-time/7",
+   "source": "antfu/skills",
+   "skill_id": "pinia",
+   "installs": 20811
+  },
+  {
+   "list": "all-time/7",
+   "source": "hardikpandya/stop-slop",
+   "skill_id": "stop-slop",
+   "installs": 20756
+  },
+  {
+   "list": "all-time/7",
+   "source": "docs.stripe.com",
+   "skill_id": "connect-recommend",
+   "installs": 20721
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-collect-coverage",
+   "installs": 20698
+  },
+  {
+   "list": "all-time/7",
+   "source": "nuxt/ui",
+   "skill_id": "nuxt-ui",
+   "installs": 20646
+  },
+  {
+   "list": "all-time/7",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-market",
+   "installs": 20605
+  },
+  {
+   "list": "all-time/7",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-token",
+   "installs": 20576
+  },
+  {
+   "list": "all-time/7",
+   "source": "ibelick/ui-skills",
+   "skill_id": "fixing-metadata",
+   "installs": 20563
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-generate-test-mocks",
+   "installs": 20556
+  },
+  {
+   "list": "all-time/7",
+   "source": "astrolicious/agent-skills",
+   "skill_id": "astro",
+   "installs": 20421
+  },
+  {
+   "list": "all-time/7",
+   "source": "pilioai/skills",
+   "skill_id": "gpt-image-2",
+   "installs": 20371
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-migrate-to-checks-package",
+   "installs": 20305
+  },
+  {
+   "list": "all-time/7",
+   "source": "ast-grep/agent-skill",
+   "skill_id": "ast-grep",
+   "installs": 20278
+  },
+  {
+   "list": "all-time/7",
+   "source": "google/skills",
+   "skill_id": "bigquery-basics",
+   "installs": 20273
+  },
+  {
+   "list": "all-time/7",
+   "source": "bradautomates/claude-video",
+   "skill_id": "watch",
+   "installs": 20268
+  },
+  {
+   "list": "all-time/7",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-agentic-wallet",
+   "installs": 20264
+  },
+  {
+   "list": "all-time/7",
+   "source": "nanaism/yomiyasu",
+   "skill_id": "yomiyasu",
+   "installs": 20252
+  },
+  {
+   "list": "all-time/7",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-portfolio",
+   "installs": 20239
+  },
+  {
+   "list": "all-time/7",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-build-cli-app",
+   "installs": 20225
+  },
+  {
+   "list": "all-time/7",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "write-feature-docs",
+   "installs": 20116
+  },
+  {
+   "list": "all-time/7",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "deep-agents-memory",
+   "installs": 20058
+  },
+  {
+   "list": "all-time/7",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "scan-new-specs",
+   "installs": 20055
+  },
+  {
+   "list": "all-time/7",
+   "source": "anthropics/claude-plugins-official",
+   "skill_id": "frontend-design",
+   "installs": 19982
+  },
+  {
+   "list": "all-time/7",
+   "source": "vercel-labs/json-render",
+   "skill_id": "react",
+   "installs": 19951
+  },
+  {
+   "list": "all-time/7",
+   "source": "mintlify/docs",
+   "skill_id": "mintlify",
+   "installs": 19909
+  },
+  {
+   "list": "all-time/7",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-track",
+   "installs": 19880
+  },
+  {
+   "list": "all-time/7",
+   "source": "github/awesome-copilot",
+   "skill_id": "create-readme",
+   "installs": 19813
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-find-skills",
+   "installs": 19739
+  },
+  {
+   "list": "all-time/7",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-engine",
+   "installs": 19706
+  },
+  {
+   "list": "all-time/7",
+   "source": "claude-office-skills/skills",
+   "skill_id": "html-slides",
+   "installs": 19704
+  },
+  {
+   "list": "all-time/7",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-polishing",
+   "installs": 19671
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-long-write",
+   "installs": 19668
+  },
+  {
+   "list": "all-time/7",
+   "source": "google/skills",
+   "skill_id": "cloud-run-basics",
+   "installs": 19664
+  },
+  {
+   "list": "all-time/7",
+   "source": "anthropics/claude-code",
+   "skill_id": "skill-development",
+   "installs": 19662
+  },
+  {
+   "list": "all-time/7",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-slack",
+   "installs": 19654
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-deslop",
+   "installs": 19652
+  },
+  {
+   "list": "all-time/7",
+   "source": "citrolabs/ego-lite",
+   "skill_id": "ego-browser",
+   "installs": 19615
+  },
+  {
+   "list": "all-time/7",
+   "source": "anthropics/claude-code",
+   "skill_id": "agent-development",
+   "installs": 19596
+  },
+  {
+   "list": "all-time/7",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-swap",
+   "installs": 19587
+  },
+  {
+   "list": "all-time/7",
+   "source": "leonxlnx/taste-skill",
+   "skill_id": "design-taste-frontend-v2-experimental",
+   "installs": 19550
+  },
+  {
+   "list": "all-time/7",
+   "source": "lombiq/tailwind-agent-skills",
+   "skill_id": "tailwind-4-docs",
+   "installs": 19539
+  },
+  {
+   "list": "all-time/7",
+   "source": "price-win/pricewin-skills-hub",
+   "skill_id": "pricewin-hotel-deal-finder",
+   "installs": 19478
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-long-analyze",
+   "installs": 19433
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-short-write",
+   "installs": 19375
+  },
+  {
+   "list": "all-time/7",
+   "source": "tw93/waza",
+   "skill_id": "health",
+   "installs": 19354
+  },
+  {
+   "list": "all-time/7",
+   "source": "antfu/skills",
+   "skill_id": "web-design-guidelines",
+   "installs": 19342
+  },
+  {
+   "list": "all-time/7",
+   "source": "affaan-m/ecc",
+   "skill_id": "video-editing",
+   "installs": 19337
+  },
+  {
+   "list": "all-time/7",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langgraph-fundamentals",
+   "installs": 19270
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-long-scan",
+   "installs": 19223
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-short-analyze",
+   "installs": 19215
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-terraform-installer",
+   "installs": 19202
+  },
+  {
+   "list": "all-time/7",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langgraph-persistence",
+   "installs": 19145
+  },
+  {
+   "list": "all-time/7",
+   "source": "google/skills",
+   "skill_id": "gemini-api",
+   "installs": 19109
+  },
+  {
+   "list": "all-time/7",
+   "source": "modelstudioai/cli",
+   "skill_id": "bailian-cli",
+   "installs": 19074
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "browser-cdp",
+   "installs": 19062
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-short-scan",
+   "installs": 19051
+  },
+  {
+   "list": "all-time/7",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-pinia-best-practices",
+   "installs": 18985
+  },
+  {
+   "list": "all-time/7",
+   "source": "othmanadi/planning-with-files",
+   "skill_id": "planning-with-files-zh",
+   "installs": 18873
+  },
+  {
+   "list": "all-time/7",
+   "source": "ejirocodes/agent-skills",
+   "skill_id": "svelte5-best-practices",
+   "installs": 18846
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-cover",
+   "installs": 18814
+  },
+  {
+   "list": "all-time/7",
+   "source": "antfu/skills",
+   "skill_id": "vue-router-best-practices",
+   "installs": 18764
+  },
+  {
+   "list": "all-time/7",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langchain-rag",
+   "installs": 18670
+  },
+  {
+   "list": "all-time/7",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-cooking",
+   "installs": 18635
+  },
+  {
+   "list": "all-time/7",
+   "source": "tavily-ai/skills",
+   "skill_id": "tavily-extract",
+   "installs": 18634
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story",
+   "installs": 18588
+  },
+  {
+   "list": "all-time/7",
+   "source": "vercel-labs/json-render",
+   "skill_id": "core",
+   "installs": 18569
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-setup",
+   "installs": 18541
+  },
+  {
+   "list": "all-time/7",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-review",
+   "installs": 18541
+  },
+  {
+   "list": "all-time/7",
+   "source": "yizhiyanhua-ai/fireworks-tech-graph",
+   "skill_id": "fireworks-tech-graph",
+   "installs": 18517
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-billing-scout",
+   "installs": 18511
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-computing-query",
+   "installs": 18489
+  },
+  {
+   "list": "all-time/7",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langchain-fundamentals",
+   "installs": 18477
+  },
+  {
+   "list": "all-time/7",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "readout",
+   "installs": 18467
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-terraform-generator",
+   "installs": 18405
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-obs-upload",
+   "installs": 18405
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-network-query",
+   "installs": 18395
+  },
+  {
+   "list": "all-time/7",
+   "source": "giuseppe-trisciuoglio/developer-kit",
+   "skill_id": "tailwind-css-patterns",
+   "installs": 18389
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-iam-query",
+   "installs": 18386
+  },
+  {
+   "list": "all-time/7",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-storage-query",
+   "installs": 18381
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-monitoring-query",
+   "installs": 18377
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-obs-bucket-create",
+   "installs": 18369
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-obs-stats",
+   "installs": 18369
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-obs-website-host",
+   "installs": 18367
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-functiongraph-function-create",
+   "installs": 18366
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-functiongraph-trigger-create",
+   "installs": 18362
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-cci-instance-management",
+   "installs": 18362
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-vod-collector",
+   "installs": 18349
+  },
+  {
+   "list": "all-time/8",
+   "source": "heredotnow/skill",
+   "skill_id": "here-now",
+   "installs": 18345
+  },
+  {
+   "list": "all-time/8",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langgraph-human-in-the-loop",
+   "installs": 18343
+  },
+  {
+   "list": "all-time/8",
+   "source": "larksuite/meegle-cli",
+   "skill_id": "meegle",
+   "installs": 18324
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "playwright-generate-test",
+   "installs": 18314
+  },
+  {
+   "list": "all-time/8",
+   "source": "stripe/link-cli",
+   "skill_id": "use-link-identity",
+   "installs": 18277
+  },
+  {
+   "list": "all-time/8",
+   "source": "jackwener/opencli",
+   "skill_id": "opencli-autofix",
+   "installs": 18228
+  },
+  {
+   "list": "all-time/8",
+   "source": "elevenlabs/skills",
+   "skill_id": "sound-effects",
+   "installs": 18220
+  },
+  {
+   "list": "all-time/8",
+   "source": "zenstory-ai/oh-story-claudecode",
+   "skill_id": "story-import",
+   "installs": 18188
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "golang-patterns",
+   "installs": 18140
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-paper2ppt",
+   "installs": 18065
+  },
+  {
+   "list": "all-time/8",
+   "source": "clerk/skills",
+   "skill_id": "clerk-billing",
+   "installs": 18065
+  },
+  {
+   "list": "all-time/8",
+   "source": "avdlee/swift-concurrency-agent-skill",
+   "skill_id": "swift-concurrency",
+   "installs": 18033
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "backend-patterns",
+   "installs": 17916
+  },
+  {
+   "list": "all-time/8",
+   "source": "shopify/shopify-ai-toolkit",
+   "skill_id": "shopify-admin",
+   "installs": 17905
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "github-issues",
+   "installs": 17900
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-writing",
+   "installs": 17743
+  },
+  {
+   "list": "all-time/8",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-ios-device-interact",
+   "installs": 17722
+  },
+  {
+   "list": "all-time/8",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-ios-device-setup",
+   "installs": 17713
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "coding-standards",
+   "installs": 17703
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-payout-audit",
+   "installs": 17695
+  },
+  {
+   "list": "all-time/8",
+   "source": "schpet/linear-cli",
+   "skill_id": "linear-cli",
+   "installs": 17649
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "frontend-patterns",
+   "installs": 17606
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-disclosure-compliance",
+   "installs": 17574
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "conventional-commit",
+   "installs": 17569
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-performance-dashboard",
+   "installs": 17566
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-program-terms",
+   "installs": 17557
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-fraud-detection",
+   "installs": 17556
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "alliance-prioritization",
+   "installs": 17556
+  },
+  {
+   "list": "all-time/8",
+   "source": "antfu/skills",
+   "skill_id": "antfu",
+   "installs": 17546
+  },
+  {
+   "list": "all-time/8",
+   "source": "kotot/vision",
+   "skill_id": "vision",
+   "installs": 17539
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-recruitment-outreach",
+   "installs": 17535
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-onboarding-sequence",
+   "installs": 17511
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "affiliate-commission-structure",
+   "installs": 17504
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-citation",
+   "installs": 17413
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-openviking-agent-integration",
+   "installs": 17411
+  },
+  {
+   "list": "all-time/8",
+   "source": "huaweicloud/huaweicloud-skills",
+   "skill_id": "huawei-cloud-openviking-embedding-switch",
+   "installs": 17406
+  },
+  {
+   "list": "all-time/8",
+   "source": "eze-is/web-access",
+   "skill_id": "web-access",
+   "installs": 17389
+  },
+  {
+   "list": "all-time/8",
+   "source": "elevenlabs/skills",
+   "skill_id": "speech-to-text",
+   "installs": 17377
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "postgresql-optimization",
+   "installs": 17334
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "google-cloud-recipe-auth",
+   "installs": 17325
+  },
+  {
+   "list": "all-time/8",
+   "source": "sfkislev/the-news",
+   "skill_id": "the-news",
+   "installs": 17305
+  },
+  {
+   "list": "all-time/8",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-dapp-discovery",
+   "installs": 17277
+  },
+  {
+   "list": "all-time/8",
+   "source": "caffeinelabs/skills",
+   "skill_id": "extension-inference",
+   "installs": 17256
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-ecosystem-expansion",
+   "installs": 17245
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-academic-search",
+   "installs": 17235
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "influencer-campaign-brief",
+   "installs": 17219
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partnerships-kickoff",
+   "installs": 17218
+  },
+  {
+   "list": "all-time/8",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langchain-middleware",
+   "installs": 17217
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partnerships-hiring",
+   "installs": 17209
+  },
+  {
+   "list": "all-time/8",
+   "source": "jackwener/opencli",
+   "skill_id": "smart-search",
+   "installs": 17203
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-performance",
+   "installs": 17190
+  },
+  {
+   "list": "all-time/8",
+   "source": "antfu/skills",
+   "skill_id": "vue-testing-best-practices",
+   "installs": 17185
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-channel-conflict",
+   "installs": 17184
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-economics",
+   "installs": 17178
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-tiering",
+   "installs": 17174
+  },
+  {
+   "list": "all-time/8",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-router-best-practices",
+   "installs": 17173
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-marketplace-strategy",
+   "installs": 17161
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-channel-program",
+   "installs": 17157
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "influencer-discovery-brief",
+   "installs": 17155
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partnerships-career",
+   "installs": 17152
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-enablement",
+   "installs": 17139
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "partner-ecosystem",
+   "installs": 17137
+  },
+  {
+   "list": "all-time/8",
+   "source": "apify/agent-skills",
+   "skill_id": "apify-ultimate-scraper",
+   "installs": 17132
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "google-cloud-recipe-onboarding",
+   "installs": 17123
+  },
+  {
+   "list": "all-time/8",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "deep-agents-orchestration",
+   "installs": 17118
+  },
+  {
+   "list": "all-time/8",
+   "source": "coderabbitai/skills",
+   "skill_id": "code-review",
+   "installs": 17072
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "referral-abuse-guardrails",
+   "installs": 17062
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "referral-incentive-design",
+   "installs": 17047
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "influencer-measurement-framework",
+   "installs": 17045
+  },
+  {
+   "list": "all-time/8",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "langchain-dependencies",
+   "installs": 17017
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-data",
+   "installs": 17009
+  },
+  {
+   "list": "all-time/8",
+   "source": "lignertys/reddit-research-skills",
+   "skill_id": "reddapi",
+   "installs": 16989
+  },
+  {
+   "list": "all-time/8",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "runpodctl",
+   "installs": 16988
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "co-selling-strategy",
+   "installs": 16985
+  },
+  {
+   "list": "all-time/8",
+   "source": "langchain-ai/langchain-skills",
+   "skill_id": "deep-agents-core",
+   "installs": 16935
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-response",
+   "installs": 16931
+  },
+  {
+   "list": "all-time/8",
+   "source": "kotot/byted-ark-seedream-skill",
+   "skill_id": "byted-ark-seedream-skill",
+   "installs": 16927
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-reader",
+   "installs": 16853
+  },
+  {
+   "list": "all-time/8",
+   "source": "gargantuax/openskills",
+   "skill_id": "gpt-image-2",
+   "installs": 16842
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "docker-patterns",
+   "installs": 16825
+  },
+  {
+   "list": "all-time/8",
+   "source": "elevenlabs/skills",
+   "skill_id": "music",
+   "installs": 16791
+  },
+  {
+   "list": "all-time/8",
+   "source": "dmmulroy/anti-slop",
+   "skill_id": "install-anti-slop",
+   "installs": 16778
+  },
+  {
+   "list": "all-time/8",
+   "source": "jackwener/opencli",
+   "skill_id": "opencli-adapter-author",
+   "installs": 16715
+  },
+  {
+   "list": "all-time/8",
+   "source": "tw93/waza",
+   "skill_id": "check",
+   "installs": 16685
+  },
+  {
+   "list": "all-time/8",
+   "source": "clerk/skills",
+   "skill_id": "clerk-tanstack-patterns",
+   "installs": 16679
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "influencer-negotiation-playbook",
+   "installs": 16673
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "influencer-outreach",
+   "installs": 16669
+  },
+  {
+   "list": "all-time/8",
+   "source": "mbfinotti/partnerships-skills",
+   "skill_id": "joint-gtm-planning",
+   "installs": 16654
+  },
+  {
+   "list": "all-time/8",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-twilio",
+   "installs": 16565
+  },
+  {
+   "list": "all-time/8",
+   "source": "clerk/skills",
+   "skill_id": "clerk-react-router-patterns",
+   "installs": 16563
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "google-cloud-waf-security",
+   "installs": 16556
+  },
+  {
+   "list": "all-time/8",
+   "source": "parthjadhav/app-store-screenshots",
+   "skill_id": "app-store-screenshots",
+   "installs": 16540
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "cloud-sql-basics",
+   "installs": 16539
+  },
+  {
+   "list": "all-time/8",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-ats-optimizer",
+   "installs": 16526
+  },
+  {
+   "list": "all-time/8",
+   "source": "fastapi/fastapi",
+   "skill_id": "fastapi",
+   "installs": 16519
+  },
+  {
+   "list": "all-time/8",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-agent-payments-protocol",
+   "installs": 16503
+  },
+  {
+   "list": "all-time/8",
+   "source": "antfu/skills",
+   "skill_id": "unocss",
+   "installs": 16503
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "golang-testing",
+   "installs": 16500
+  },
+  {
+   "list": "all-time/8",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "parallel-deep-research",
+   "installs": 16489
+  },
+  {
+   "list": "all-time/8",
+   "source": "claude-office-skills/skills",
+   "skill_id": "excel-automation",
+   "installs": 16453
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "dotnet-best-practices",
+   "installs": 16401
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "sql-optimization",
+   "installs": 16378
+  },
+  {
+   "list": "all-time/8",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-msg",
+   "installs": 16358
+  },
+  {
+   "list": "all-time/8",
+   "source": "jimliu/baoyu-skills",
+   "skill_id": "baoyu-diagram",
+   "installs": 16303
+  },
+  {
+   "list": "all-time/8",
+   "source": "tw93/waza",
+   "skill_id": "write",
+   "installs": 16171
+  },
+  {
+   "list": "all-time/8",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-schedule",
+   "installs": 16169
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "google-cloud-waf-cost-optimization",
+   "installs": 16119
+  },
+  {
+   "list": "all-time/8",
+   "source": "base44/skills",
+   "skill_id": "base44-sdk",
+   "installs": 16041
+  },
+  {
+   "list": "all-time/8",
+   "source": "aminblg/simpleenglish",
+   "skill_id": "simple-english",
+   "installs": 16011
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "firebase-basics",
+   "installs": 15970
+  },
+  {
+   "list": "all-time/8",
+   "source": "base44/skills",
+   "skill_id": "base44-cli",
+   "installs": 15940
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "google-cloud-waf-reliability",
+   "installs": 15870
+  },
+  {
+   "list": "all-time/8",
+   "source": "earthtojake/text-to-cad",
+   "skill_id": "cad",
+   "installs": 15868
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "sql-code-review",
+   "installs": 15844
+  },
+  {
+   "list": "all-time/8",
+   "source": "anthropics/claude-plugins-official",
+   "skill_id": "claude-md-improver",
+   "installs": 15844
+  },
+  {
+   "list": "all-time/8",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-testing-best-practices",
+   "installs": 15784
+  },
+  {
+   "list": "all-time/8",
+   "source": "wecomteam/wecom-unified",
+   "skill_id": "wecom-unified",
+   "installs": 15751
+  },
+  {
+   "list": "all-time/8",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-reviewer",
+   "installs": 15703
+  },
+  {
+   "list": "all-time/8",
+   "source": "madteacher/mad-agents-skills",
+   "skill_id": "flutter-animations",
+   "installs": 15687
+  },
+  {
+   "list": "all-time/8",
+   "source": "google/skills",
+   "skill_id": "gke-basics",
+   "installs": 15684
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "python-patterns",
+   "installs": 15622
+  },
+  {
+   "list": "all-time/8",
+   "source": "elevenlabs/skills",
+   "skill_id": "agents",
+   "installs": 15609
+  },
+  {
+   "list": "all-time/8",
+   "source": "affaan-m/ecc",
+   "skill_id": "springboot-patterns",
+   "installs": 15592
+  },
+  {
+   "list": "all-time/8",
+   "source": "tw93/waza",
+   "skill_id": "think",
+   "installs": 15588
+  },
+  {
+   "list": "all-time/8",
+   "source": "better-auth/skills",
+   "skill_id": "create-auth",
+   "installs": 15576
+  },
+  {
+   "list": "all-time/8",
+   "source": "anthropics/claude-code",
+   "skill_id": "mcp-integration",
+   "installs": 15554
+  },
+  {
+   "list": "all-time/8",
+   "source": "github/awesome-copilot",
+   "skill_id": "chrome-devtools",
+   "installs": 15552
+  },
+  {
+   "list": "all-time/8",
+   "source": "tw93/waza",
+   "skill_id": "hunt",
+   "installs": 15512
+  },
+  {
+   "list": "all-time/8",
+   "source": "vuejs-ai/skills",
+   "skill_id": "create-adaptable-composable",
+   "installs": 15503
+  },
+  {
+   "list": "all-time/8",
+   "source": "vercel/components.build",
+   "skill_id": "building-components",
+   "installs": 15498
+  },
+  {
+   "list": "all-time/8",
+   "source": "docs.stripe.com",
+   "skill_id": "stripe-apps",
+   "installs": 15485
+  },
+  {
+   "list": "all-time/8",
+   "source": "clerk/skills",
+   "skill_id": "clerk-swift",
+   "installs": 15479
+  },
+  {
+   "list": "all-time/8",
+   "source": "backnotprop/plannotator",
+   "skill_id": "plannotator-visual-explainer",
+   "installs": 15462
+  },
+  {
+   "list": "all-time/9",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-shared",
+   "installs": 15439
+  },
+  {
+   "list": "all-time/9",
+   "source": "lignertys/reddit-research-skills",
+   "skill_id": "reddit-leads",
+   "installs": 15424
+  },
+  {
+   "list": "all-time/9",
+   "source": "anthropics/knowledge-work-plugins",
+   "skill_id": "data-visualization",
+   "installs": 15420
+  },
+  {
+   "list": "all-time/9",
+   "source": "halthelobster/proactive-agent",
+   "skill_id": "proactive-agent",
+   "installs": 15398
+  },
+  {
+   "list": "all-time/9",
+   "source": "linear/linear-release",
+   "skill_id": "linear-release-setup",
+   "installs": 15380
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "api-design",
+   "installs": 15376
+  },
+  {
+   "list": "all-time/9",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "runpod",
+   "installs": 15366
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "market-research",
+   "installs": 15363
+  },
+  {
+   "list": "all-time/9",
+   "source": "jakubantalik/transitions.dev",
+   "skill_id": "transitions-polish",
+   "installs": 15362
+  },
+  {
+   "list": "all-time/9",
+   "source": "clerk/skills",
+   "skill_id": "clerk-chrome-extension-patterns",
+   "installs": 15356
+  },
+  {
+   "list": "all-time/9",
+   "source": "clerk/skills",
+   "skill_id": "clerk-expo",
+   "installs": 15353
+  },
+  {
+   "list": "all-time/9",
+   "source": "clerk/skills",
+   "skill_id": "clerk-android",
+   "installs": 15336
+  },
+  {
+   "list": "all-time/9",
+   "source": "inkeep/open-knowledge-skills",
+   "skill_id": "open-knowledge-discovery",
+   "installs": 15325
+  },
+  {
+   "list": "all-time/9",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "runpod-usage",
+   "installs": 15307
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "postgres-patterns",
+   "installs": 15292
+  },
+  {
+   "list": "all-time/9",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "runpod-mcp",
+   "installs": 15275
+  },
+  {
+   "list": "all-time/9",
+   "source": "kylezantos/design-motion-principles",
+   "skill_id": "design-motion-principles",
+   "installs": 15263
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "frontend-slides",
+   "installs": 15261
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "django-patterns",
+   "installs": 15254
+  },
+  {
+   "list": "all-time/9",
+   "source": "clerk/skills",
+   "skill_id": "clerk-astro-patterns",
+   "installs": 15247
+  },
+  {
+   "list": "all-time/9",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "parallel-web-search",
+   "installs": 15245
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "microsoft-docs",
+   "installs": 15180
+  },
+  {
+   "list": "all-time/9",
+   "source": "101-skills/superpowers",
+   "skill_id": "happyhorse",
+   "installs": 15166
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "remember",
+   "installs": 15150
+  },
+  {
+   "list": "all-time/9",
+   "source": "101-skills/superpowers",
+   "skill_id": "gpt-image",
+   "installs": 15129
+  },
+  {
+   "list": "all-time/9",
+   "source": "101-skills/superpowers",
+   "skill_id": "p-image",
+   "installs": 15085
+  },
+  {
+   "list": "all-time/9",
+   "source": "101-skills/superpowers",
+   "skill_id": "p-video",
+   "installs": 15065
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "tdd-workflow",
+   "installs": 15064
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "recall",
+   "installs": 15046
+  },
+  {
+   "list": "all-time/9",
+   "source": "101-skills/superpowers",
+   "skill_id": "seedance",
+   "installs": 15011
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "azure-devops-cli",
+   "installs": 15001
+  },
+  {
+   "list": "all-time/9",
+   "source": "latent-spaces/brag",
+   "skill_id": "brag-slim",
+   "installs": 14998
+  },
+  {
+   "list": "all-time/9",
+   "source": "101-skills/superpowers",
+   "skill_id": "p-video-avatar",
+   "installs": 14997
+  },
+  {
+   "list": "all-time/9",
+   "source": "solana-mobile/solana-mobile-skills",
+   "skill_id": "solana-mobile",
+   "installs": 14990
+  },
+  {
+   "list": "all-time/9",
+   "source": "solana-mobile/solana-mobile-skills",
+   "skill_id": "solana-mobile-wallet",
+   "installs": 14987
+  },
+  {
+   "list": "all-time/9",
+   "source": "solana-mobile/solana-mobile-skills",
+   "skill_id": "seeker-genesis-token",
+   "installs": 14974
+  },
+  {
+   "list": "all-time/9",
+   "source": "solana-mobile/solana-mobile-skills",
+   "skill_id": "seeker-domains",
+   "installs": 14973
+  },
+  {
+   "list": "all-time/9",
+   "source": "solana-mobile/solana-mobile-skills",
+   "skill_id": "integration-privy",
+   "installs": 14967
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "forget",
+   "installs": 14960
+  },
+  {
+   "list": "all-time/9",
+   "source": "clerk/skills",
+   "skill_id": "clerk-vue-patterns",
+   "installs": 14957
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "session-history",
+   "installs": 14956
+  },
+  {
+   "list": "all-time/9",
+   "source": "elevenlabs/skills",
+   "skill_id": "setup-api-key",
+   "installs": 14930
+  },
+  {
+   "list": "all-time/9",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "complain",
+   "installs": 14924
+  },
+  {
+   "list": "all-time/9",
+   "source": "warpdotdev/common-skills",
+   "skill_id": "suggestion-box",
+   "installs": 14923
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "playwright-explore-website",
+   "installs": 14882
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "rust-testing",
+   "installs": 14881
+  },
+  {
+   "list": "all-time/9",
+   "source": "clerk/skills",
+   "skill_id": "clerk-nuxt-patterns",
+   "installs": 14871
+  },
+  {
+   "list": "all-time/9",
+   "source": "elysiajs/skills",
+   "skill_id": "elysiajs",
+   "installs": 14854
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "recap",
+   "installs": 14845
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "commit-context",
+   "installs": 14820
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "commit-history",
+   "installs": 14770
+  },
+  {
+   "list": "all-time/9",
+   "source": "tw93/waza",
+   "skill_id": "read",
+   "installs": 14754
+  },
+  {
+   "list": "all-time/9",
+   "source": "base44/skills",
+   "skill_id": "base44-troubleshooter",
+   "installs": 14753
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "javascript-typescript-jest",
+   "installs": 14734
+  },
+  {
+   "list": "all-time/9",
+   "source": "anthropics/claude-code",
+   "skill_id": "command-development",
+   "installs": 14726
+  },
+  {
+   "list": "all-time/9",
+   "source": "resend/resend-skills",
+   "skill_id": "email-best-practices",
+   "installs": 14724
+  },
+  {
+   "list": "all-time/9",
+   "source": "momentic-ai/skills",
+   "skill_id": "momentic-explore-prompt",
+   "installs": 14705
+  },
+  {
+   "list": "all-time/9",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-sheet",
+   "installs": 14693
+  },
+  {
+   "list": "all-time/9",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-bullet-writer",
+   "installs": 14693
+  },
+  {
+   "list": "all-time/9",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "flash",
+   "installs": 14690
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "nuget-manager",
+   "installs": 14682
+  },
+  {
+   "list": "all-time/9",
+   "source": "google/skills",
+   "skill_id": "alloydb-basics",
+   "installs": 14677
+  },
+  {
+   "list": "all-time/9",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-smartpage",
+   "installs": 14633
+  },
+  {
+   "list": "all-time/9",
+   "source": "sveltejs/ai-tools",
+   "skill_id": "svelte-code-writer",
+   "installs": 14617
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "web-design-reviewer",
+   "installs": 14585
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "prompt-optimizer",
+   "installs": 14574
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "java-coding-standards",
+   "installs": 14559
+  },
+  {
+   "list": "all-time/9",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-scoring",
+   "installs": 14545
+  },
+  {
+   "list": "all-time/9",
+   "source": "github/awesome-copilot",
+   "skill_id": "microsoft-code-reference",
+   "installs": 14526
+  },
+  {
+   "list": "all-time/9",
+   "source": "marimo-team/marimo-pair",
+   "skill_id": "marimo-pair",
+   "installs": 14490
+  },
+  {
+   "list": "all-time/9",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "handoff",
+   "installs": 14487
+  },
+  {
+   "list": "all-time/9",
+   "source": "anthropics/claude-code",
+   "skill_id": "hook-development",
+   "installs": 14480
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "django-security",
+   "installs": 14468
+  },
+  {
+   "list": "all-time/9",
+   "source": "blader/humanizer",
+   "skill_id": "humanizer",
+   "installs": 14426
+  },
+  {
+   "list": "all-time/9",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-googledrive",
+   "installs": 14405
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "python-testing",
+   "installs": 14399
+  },
+  {
+   "list": "all-time/9",
+   "source": "resend/resend-skills",
+   "skill_id": "resend-cli",
+   "installs": 14398
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "laravel-security",
+   "installs": 14396
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "android-clean-architecture",
+   "installs": 14388
+  },
+  {
+   "list": "all-time/9",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "parallel-web-extract",
+   "installs": 14366
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "article-writing",
+   "installs": 14366
+  },
+  {
+   "list": "all-time/9",
+   "source": "software-mansion/argent",
+   "skill_id": "argent-qa-flows",
+   "installs": 14361
+  },
+  {
+   "list": "all-time/9",
+   "source": "resend/resend-skills",
+   "skill_id": "agent-email-inbox",
+   "installs": 14344
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "cpp-coding-standards",
+   "installs": 14341
+  },
+  {
+   "list": "all-time/9",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "companion-clis",
+   "installs": 14330
+  },
+  {
+   "list": "all-time/9",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "parallel-data-enrichment",
+   "installs": 14297
+  },
+  {
+   "list": "all-time/9",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-use-ffigen",
+   "installs": 14284
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "springboot-security",
+   "installs": 14280
+  },
+  {
+   "list": "all-time/9",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-paper-to-patent",
+   "installs": 14272
+  },
+  {
+   "list": "all-time/9",
+   "source": "slidevjs/slidev",
+   "skill_id": "slidev",
+   "installs": 14268
+  },
+  {
+   "list": "all-time/9",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "linkedin-profile-optimizer",
+   "installs": 14264
+  },
+  {
+   "list": "all-time/9",
+   "source": "saadeghi/daisyui",
+   "skill_id": "daisyui",
+   "installs": 14262
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "liquid-glass-design",
+   "installs": 14260
+  },
+  {
+   "list": "all-time/9",
+   "source": "code.deepline.com",
+   "skill_id": "deepline-research",
+   "installs": 14242
+  },
+  {
+   "list": "all-time/9",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-setup-ffi-assets",
+   "installs": 14238
+  },
+  {
+   "list": "all-time/9",
+   "source": "backnotprop/plannotator",
+   "skill_id": "plannotator-compound",
+   "installs": 14230
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-pkg-go-dev",
+   "installs": 14172
+  },
+  {
+   "list": "all-time/9",
+   "source": "mindrally/skills",
+   "skill_id": "fastapi-python",
+   "installs": 14170
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "database-migrations",
+   "installs": 14162
+  },
+  {
+   "list": "all-time/9",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "status",
+   "installs": 14158
+  },
+  {
+   "list": "all-time/9",
+   "source": "lignertys/reddit-research-skills",
+   "skill_id": "reddit-research",
+   "installs": 14157
+  },
+  {
+   "list": "all-time/9",
+   "source": "sickn33/agentic-awesome-skills",
+   "skill_id": "nodejs-best-practices",
+   "installs": 14126
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "e2e-testing",
+   "installs": 14126
+  },
+  {
+   "list": "all-time/9",
+   "source": "referodesign/refero_skill",
+   "skill_id": "refero-design",
+   "installs": 14120
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "technical-video-script",
+   "installs": 14119
+  },
+  {
+   "list": "all-time/9",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "result",
+   "installs": 14113
+  },
+  {
+   "list": "all-time/9",
+   "source": "firecrawl/anydoc",
+   "skill_id": "convert-documents-to-markdown",
+   "installs": 14110
+  },
+  {
+   "list": "all-time/9",
+   "source": "lignertys/reddit-research-skills",
+   "skill_id": "reddit-search-api",
+   "installs": 14109
+  },
+  {
+   "list": "all-time/9",
+   "source": "tw93/kami",
+   "skill_id": "kami",
+   "installs": 14097
+  },
+  {
+   "list": "all-time/9",
+   "source": "haydenbleasel/ultracite",
+   "skill_id": "ultracite",
+   "installs": 14071
+  },
+  {
+   "list": "all-time/9",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "job-description-analyzer",
+   "installs": 14069
+  },
+  {
+   "list": "all-time/9",
+   "source": "openai/skills",
+   "skill_id": "pdf",
+   "installs": 14044
+  },
+  {
+   "list": "all-time/9",
+   "source": "benjitaylor/agentation",
+   "skill_id": "agentation",
+   "installs": 14032
+  },
+  {
+   "list": "all-time/9",
+   "source": "affaan-m/ecc",
+   "skill_id": "strategic-compact",
+   "installs": 14018
+  },
+  {
+   "list": "all-time/9",
+   "source": "sanyuan0704/sanyuan-skills",
+   "skill_id": "code-review-expert",
+   "installs": 14005
+  },
+  {
+   "list": "all-time/9",
+   "source": "backnotprop/plannotator",
+   "skill_id": "plannotator-setup-goal",
+   "installs": 13993
+  },
+  {
+   "list": "all-time/9",
+   "source": "antfu/skills",
+   "skill_id": "tsdown",
+   "installs": 13967
+  },
+  {
+   "list": "all-time/9",
+   "source": "docs.stripe.com",
+   "skill_id": "connect-required-verification-information",
+   "installs": 13963
+  },
+  {
+   "list": "all-time/9",
+   "source": "ceorkm/mobile-app-ui-design",
+   "skill_id": "mobile-app-ui-design",
+   "installs": 13953
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devtools-pricing-strategy",
+   "installs": 13905
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-budget-allocation",
+   "installs": 13894
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-hiring",
+   "installs": 13893
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-launch",
+   "installs": 13875
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-relations-kickoff",
+   "installs": 13872
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-strategy",
+   "installs": 13870
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-career",
+   "installs": 13869
+  },
+  {
+   "list": "all-time/9",
+   "source": "anthropics/claude-code",
+   "skill_id": "plugin-structure",
+   "installs": 13852
+  },
+  {
+   "list": "all-time/9",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-community-launch",
+   "installs": 13851
+  },
+  {
+   "list": "all-time/9",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-tailor",
+   "installs": 13845
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-radar",
+   "installs": 13835
+  },
+  {
+   "list": "all-time/10",
+   "source": "hashicorp/agent-skills",
+   "skill_id": "terraform-style-guide",
+   "installs": 13830
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "laravel-patterns",
+   "installs": 13816
+  },
+  {
+   "list": "all-time/10",
+   "source": "antfu/skills",
+   "skill_id": "slidev",
+   "installs": 13796
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-refactoring",
+   "installs": 13792
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-education-strategy",
+   "installs": 13786
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "open-source-company-strategy",
+   "installs": 13780
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-sponsors-brand-strategy",
+   "installs": 13762
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "playwright-automation-fill-in-form",
+   "installs": 13755
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-quickstart-guide",
+   "installs": 13749
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "open-standards-strategy",
+   "installs": 13748
+  },
+  {
+   "list": "all-time/10",
+   "source": "tw93/waza",
+   "skill_id": "learn",
+   "installs": 13743
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-docs-structure-audit",
+   "installs": 13733
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-distribution-strategy",
+   "installs": 13733
+  },
+  {
+   "list": "all-time/10",
+   "source": "tencentcloudbase/cloudbase-skills",
+   "skill_id": "cloudbase",
+   "installs": 13727
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-ecosystem-strategy",
+   "installs": 13719
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-meetup-program",
+   "installs": 13716
+  },
+  {
+   "list": "all-time/10",
+   "source": "resend/resend-skills",
+   "skill_id": "react-email",
+   "installs": 13715
+  },
+  {
+   "list": "all-time/10",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-ref-verifier",
+   "installs": 13713
+  },
+  {
+   "list": "all-time/10",
+   "source": "shopify/shopify-ai-toolkit",
+   "skill_id": "shopify-storefront-graphql",
+   "installs": 13711
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-governance",
+   "installs": 13710
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "verification-loop",
+   "installs": 13710
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-license-strategy",
+   "installs": 13705
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-contributor-onboarding",
+   "installs": 13695
+  },
+  {
+   "list": "all-time/10",
+   "source": "anthropics/claude-code",
+   "skill_id": "plugin-settings",
+   "installs": 13684
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "create-specification",
+   "installs": 13683
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "game-engine",
+   "installs": 13674
+  },
+  {
+   "list": "all-time/10",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-downloader",
+   "installs": 13658
+  },
+  {
+   "list": "all-time/10",
+   "source": "deckardger/tanstack-agent-skills",
+   "skill_id": "tanstack-query-best-practices",
+   "installs": 13652
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "readme-optimization",
+   "installs": 13643
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "codebase-onboarding",
+   "installs": 13640
+  },
+  {
+   "list": "all-time/10",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "runpod-migrate",
+   "installs": 13627
+  },
+  {
+   "list": "all-time/10",
+   "source": "shadcn/ui",
+   "skill_id": "migrate-radix-to-base",
+   "installs": 13626
+  },
+  {
+   "list": "all-time/10",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-statistics",
+   "installs": 13616
+  },
+  {
+   "list": "all-time/10",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "tech-resume-optimizer",
+   "installs": 13593
+  },
+  {
+   "list": "all-time/10",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "researchwrite",
+   "installs": 13592
+  },
+  {
+   "list": "all-time/10",
+   "source": "google/skills",
+   "skill_id": "google-cloud-networking-observability",
+   "installs": 13589
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-metrics",
+   "installs": 13574
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-competitor-analysis",
+   "installs": 13569
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-content-calendar",
+   "installs": 13550
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-team-structure",
+   "installs": 13522
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devrel-analytics",
+   "installs": 13518
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "tech-press-relations",
+   "installs": 13493
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "engineering-blog-post",
+   "installs": 13493
+  },
+  {
+   "list": "all-time/10",
+   "source": "vercel-labs/agent-desktop",
+   "skill_id": "agent-desktop",
+   "installs": 13489
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "tech-podcast-interview-prep",
+   "installs": 13487
+  },
+  {
+   "list": "all-time/10",
+   "source": "pilioai/skills",
+   "skill_id": "nano-banana-2",
+   "installs": 13485
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-tutorial",
+   "installs": 13482
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-case-study",
+   "installs": 13478
+  },
+  {
+   "list": "all-time/10",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-literature-pipeline",
+   "installs": 13475
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-first-gtm",
+   "installs": 13472
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "github-profile-optimization",
+   "installs": 13459
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "coding-agent-docs-optimization",
+   "installs": 13451
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "devtools-business-model",
+   "installs": 13450
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "changelog-writing",
+   "installs": 13449
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "tech-talk-outline",
+   "installs": 13447
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-issue-triage",
+   "installs": 13447
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "tech-employer-branding",
+   "installs": 13445
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-keyword-research",
+   "installs": 13443
+  },
+  {
+   "list": "all-time/10",
+   "source": "callstack/agent-device",
+   "skill_id": "dogfood",
+   "installs": 13440
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "springboot-tdd",
+   "installs": 13433
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-live-demo-design",
+   "installs": 13428
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-champions",
+   "installs": 13428
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "docs-seo",
+   "installs": 13426
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-community-moderation",
+   "installs": 13425
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "conference-cfp-submission",
+   "installs": 13421
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "version-migration-guide",
+   "installs": 13421
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "oss-sponsors-fundraising",
+   "installs": 13417
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-event-sponsorship",
+   "installs": 13415
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-journey-map",
+   "installs": 13415
+  },
+  {
+   "list": "all-time/10",
+   "source": "twostraws/swift-concurrency-agent-skill",
+   "skill_id": "swift-concurrency-pro",
+   "installs": 13413
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "security-scan",
+   "installs": 13403
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "django-tdd",
+   "installs": 13396
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-segmentation",
+   "installs": 13395
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-troubleshooting-docs",
+   "installs": 13388
+  },
+  {
+   "list": "all-time/10",
+   "source": "minimax-ai/minimax-h3",
+   "skill_id": "h3-prompt-writing",
+   "installs": 13387
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "create-agentsmd",
+   "installs": 13380
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "deployment-patterns",
+   "installs": 13369
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "build-in-public",
+   "installs": 13365
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "docs-code-sample-standards",
+   "installs": 13352
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/developer-relations-skills",
+   "skill_id": "developer-community-health",
+   "installs": 13349
+  },
+  {
+   "list": "all-time/10",
+   "source": "samber/cc-skills-golang",
+   "skill_id": "golang-gopls",
+   "installs": 13336
+  },
+  {
+   "list": "all-time/10",
+   "source": "antfu/skills",
+   "skill_id": "turborepo",
+   "installs": 13334
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "search-first",
+   "installs": 13317
+  },
+  {
+   "list": "all-time/10",
+   "source": "openai/skills",
+   "skill_id": "security-best-practices",
+   "installs": 13311
+  },
+  {
+   "list": "all-time/10",
+   "source": "google/skills",
+   "skill_id": "gcloud",
+   "installs": 13308
+  },
+  {
+   "list": "all-time/10",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-guide",
+   "installs": 13298
+  },
+  {
+   "list": "all-time/10",
+   "source": "anthropics/claude-code",
+   "skill_id": "writing-hookify-rules",
+   "installs": 13251
+  },
+  {
+   "list": "all-time/10",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-experiment-log",
+   "installs": 13241
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "deep-research",
+   "installs": 13216
+  },
+  {
+   "list": "all-time/10",
+   "source": "base44/skills",
+   "skill_id": "base44-remote-dev",
+   "installs": 13189
+  },
+  {
+   "list": "all-time/10",
+   "source": "sickn33/agentic-awesome-skills",
+   "skill_id": "clean-code",
+   "installs": 13189
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "eval-harness",
+   "installs": 13180
+  },
+  {
+   "list": "all-time/10",
+   "source": "base44/skills",
+   "skill_id": "base44-sandbox",
+   "installs": 13129
+  },
+  {
+   "list": "all-time/10",
+   "source": "shopify/shopify-ai-toolkit",
+   "skill_id": "shopify-liquid",
+   "installs": 13120
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "pytest-coverage",
+   "installs": 13118
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "continuous-learning",
+   "installs": 13091
+  },
+  {
+   "list": "all-time/10",
+   "source": "claude-office-skills/skills",
+   "skill_id": "ppt-visual",
+   "installs": 13079
+  },
+  {
+   "list": "all-time/10",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "parallel-findall",
+   "installs": 13076
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "cpp-testing",
+   "installs": 13071
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "refactor-plan",
+   "installs": 13068
+  },
+  {
+   "list": "all-time/10",
+   "source": "parallel-web/parallel-agent-skills",
+   "skill_id": "parallel-monitor",
+   "installs": 13063
+  },
+  {
+   "list": "all-time/10",
+   "source": "heroui-inc/heroui",
+   "skill_id": "heroui-react",
+   "installs": 13053
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "jpa-patterns",
+   "installs": 13042
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "rust-patterns",
+   "installs": 12994
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "penpot-uiux-design",
+   "installs": 12992
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "postgresql-code-review",
+   "installs": 12986
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "kotlin-coroutines-flows",
+   "installs": 12982
+  },
+  {
+   "list": "all-time/10",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-options-api-best-practices",
+   "installs": 12972
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "configure-ecc",
+   "installs": 12954
+  },
+  {
+   "list": "all-time/10",
+   "source": "runpod/runpod-plugins-official",
+   "skill_id": "runpod-templates",
+   "installs": 12926
+  },
+  {
+   "list": "all-time/10",
+   "source": "gmgnai/gmgn-skills",
+   "skill_id": "gmgn-holder-analysis",
+   "installs": 12920
+  },
+  {
+   "list": "all-time/10",
+   "source": "gargantuax/gemini-watermark-remover",
+   "skill_id": "gemini-watermark-remover",
+   "installs": 12907
+  },
+  {
+   "list": "all-time/10",
+   "source": "github/awesome-copilot",
+   "skill_id": "memory-merger",
+   "installs": 12901
+  },
+  {
+   "list": "all-time/10",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-connection",
+   "installs": 12900
+  },
+  {
+   "list": "all-time/10",
+   "source": "sickn33/agentic-awesome-skills",
+   "skill_id": "typescript-expert",
+   "installs": 12892
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "laravel-tdd",
+   "installs": 12879
+  },
+  {
+   "list": "all-time/10",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-x",
+   "installs": 12839
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "agentic-engineering",
+   "installs": 12829
+  },
+  {
+   "list": "all-time/10",
+   "source": "sveltejs/ai-tools",
+   "skill_id": "svelte-core-bestpractices",
+   "installs": 12782
+  },
+  {
+   "list": "all-time/10",
+   "source": "shopify/shopify-ai-toolkit",
+   "skill_id": "shopify-dev",
+   "installs": 12763
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "clickhouse-io",
+   "installs": 12755
+  },
+  {
+   "list": "all-time/10",
+   "source": "magentosh/superpowers",
+   "skill_id": "p-video-avatar",
+   "installs": 12752
+  },
+  {
+   "list": "all-time/10",
+   "source": "magentosh/superpowers",
+   "skill_id": "gpt-image",
+   "installs": 12745
+  },
+  {
+   "list": "all-time/10",
+   "source": "magentosh/superpowers",
+   "skill_id": "seedance",
+   "installs": 12712
+  },
+  {
+   "list": "all-time/10",
+   "source": "affaan-m/ecc",
+   "skill_id": "cost-aware-llm-pipeline",
+   "installs": 12703
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "kotlin-patterns",
+   "installs": 12698
+  },
+  {
+   "list": "all-time/11",
+   "source": "magentosh/superpowers",
+   "skill_id": "p-image",
+   "installs": 12694
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "iterative-retrieval",
+   "installs": 12690
+  },
+  {
+   "list": "all-time/11",
+   "source": "github/awesome-copilot",
+   "skill_id": "create-implementation-plan",
+   "installs": 12669
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "django-verification",
+   "installs": 12645
+  },
+  {
+   "list": "all-time/11",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-weatherapi",
+   "installs": 12640
+  },
+  {
+   "list": "all-time/11",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-ai",
+   "installs": 12637
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "nextjs-turbopack",
+   "installs": 12637
+  },
+  {
+   "list": "all-time/11",
+   "source": "magentosh/superpowers",
+   "skill_id": "happyhorse",
+   "installs": 12632
+  },
+  {
+   "list": "all-time/11",
+   "source": "yusukebe/hono-skill",
+   "skill_id": "hono",
+   "installs": 12623
+  },
+  {
+   "list": "all-time/11",
+   "source": "github/awesome-copilot",
+   "skill_id": "webapp-testing",
+   "installs": 12614
+  },
+  {
+   "list": "all-time/11",
+   "source": "magentosh/superpowers",
+   "skill_id": "p-video",
+   "installs": 12610
+  },
+  {
+   "list": "all-time/11",
+   "source": "sfkislev/flue",
+   "skill_id": "flue",
+   "installs": 12601
+  },
+  {
+   "list": "all-time/11",
+   "source": "okx/onchainos-skills",
+   "skill_id": "okx-defi",
+   "installs": 12596
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "content-engine",
+   "installs": 12589
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "springboot-verification",
+   "installs": 12579
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "context-budget",
+   "installs": 12578
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "nutrient-document-processing",
+   "installs": 12558
+  },
+  {
+   "list": "all-time/11",
+   "source": "sugarforever/01coder-agent-skills",
+   "skill_id": "china-stock-analysis",
+   "installs": 12544
+  },
+  {
+   "list": "all-time/11",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "trading-signal",
+   "installs": 12506
+  },
+  {
+   "list": "all-time/11",
+   "source": "czlonkowski/n8n-skills",
+   "skill_id": "n8n-workflow-patterns",
+   "installs": 12495
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "autonomous-loops",
+   "installs": 12472
+  },
+  {
+   "list": "all-time/11",
+   "source": "gracefullight/stock-checker",
+   "skill_id": "stock-analysis",
+   "installs": 12467
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "architecture-decision-records",
+   "installs": 12464
+  },
+  {
+   "list": "all-time/11",
+   "source": "cursor/plugins",
+   "skill_id": "typescript-best-practices",
+   "installs": 12462
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "investor-materials",
+   "installs": 12447
+  },
+  {
+   "list": "all-time/11",
+   "source": "superdesigndev/superdesign-skill",
+   "skill_id": "superdesign",
+   "installs": 12432
+  },
+  {
+   "list": "all-time/11",
+   "source": "github/awesome-copilot",
+   "skill_id": "architecture-blueprint-generator",
+   "installs": 12417
+  },
+  {
+   "list": "all-time/11",
+   "source": "blackforge-so/skill",
+   "skill_id": "blackforge",
+   "installs": 12413
+  },
+  {
+   "list": "all-time/11",
+   "source": "coderabbitai/skills",
+   "skill_id": "autofix",
+   "installs": 12406
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "swiftui-patterns",
+   "installs": 12405
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "pytorch-patterns",
+   "installs": 12376
+  },
+  {
+   "list": "all-time/11",
+   "source": "vuejs-ai/skills",
+   "skill_id": "vue-jsx-best-practices",
+   "installs": 12370
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "bun-runtime",
+   "installs": 12361
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "ai-first-engineering",
+   "installs": 12329
+  },
+  {
+   "list": "all-time/11",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "query-token-audit",
+   "installs": 12322
+  },
+  {
+   "list": "all-time/11",
+   "source": "volcengine/mediakit-cli",
+   "skill_id": "byted-mediakit-audio",
+   "installs": 12320
+  },
+  {
+   "list": "all-time/11",
+   "source": "anthropics/claude-plugins-official",
+   "skill_id": "claude-automation-recommender",
+   "installs": 12317
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin",
+   "installs": 12314
+  },
+  {
+   "list": "all-time/11",
+   "source": "volcengine/mediakit-cli",
+   "skill_id": "byted-mediakit-shared",
+   "installs": 12301
+  },
+  {
+   "list": "all-time/11",
+   "source": "volcengine/mediakit-cli",
+   "skill_id": "byted-mediakit-video",
+   "installs": 12298
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "perl-security",
+   "installs": 12296
+  },
+  {
+   "list": "all-time/11",
+   "source": "antfu/skills",
+   "skill_id": "vitepress",
+   "installs": 12288
+  },
+  {
+   "list": "all-time/11",
+   "source": "arkdocs.tos-cn-beijing.volces.com",
+   "skill_id": "sd25-pe",
+   "installs": 12286
+  },
+  {
+   "list": "all-time/11",
+   "source": "volcengine/mediakit-cli",
+   "skill_id": "byted-mediakit-image",
+   "installs": 12283
+  },
+  {
+   "list": "all-time/11",
+   "source": "volcengine/mediakit-cli",
+   "skill_id": "byted-mediakit-editing",
+   "installs": 12281
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "flutter-dart-code-review",
+   "installs": 12278
+  },
+  {
+   "list": "all-time/11",
+   "source": "openai/skills",
+   "skill_id": "gh-fix-ci",
+   "installs": 12250
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "regex-vs-llm-structured-text",
+   "installs": 12245
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "compose-multiplatform-patterns",
+   "installs": 12238
+  },
+  {
+   "list": "all-time/11",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "cover-letter-generator",
+   "installs": 12228
+  },
+  {
+   "list": "all-time/11",
+   "source": "skills.volces.com",
+   "skill_id": "byted-supabase",
+   "installs": 12217
+  },
+  {
+   "list": "all-time/11",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-formatter",
+   "installs": 12212
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "continuous-agent-loop",
+   "installs": 12199
+  },
+  {
+   "list": "all-time/11",
+   "source": "yuan1z0825/nature-skills",
+   "skill_id": "nature-paper-card",
+   "installs": 12197
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "content-hash-cache-pattern",
+   "installs": 12190
+  },
+  {
+   "list": "all-time/11",
+   "source": "google/skills",
+   "skill_id": "gemini-interactions-api",
+   "installs": 12182
+  },
+  {
+   "list": "all-time/11",
+   "source": "jakubkrehel/skills",
+   "skill_id": "state-machine",
+   "installs": 12180
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "kotlin-testing",
+   "installs": 12174
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "ai-regression-testing",
+   "installs": 12170
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "browser-qa",
+   "installs": 12158
+  },
+  {
+   "list": "all-time/11",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "interview-prep-generator",
+   "installs": 12135
+  },
+  {
+   "list": "all-time/11",
+   "source": "github/awesome-copilot",
+   "skill_id": "typescript-mcp-server-generator",
+   "installs": 12128
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "design-system",
+   "installs": 12124
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-gtm",
+   "installs": 12099
+  },
+  {
+   "list": "all-time/11",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "agentmemory-agents",
+   "installs": 12089
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-ai",
+   "installs": 12087
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-workspace-management",
+   "installs": 12082
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "jira-integration",
+   "installs": 12080
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-orchestration",
+   "installs": 12076
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "investor-outreach",
+   "installs": 12073
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-analytics",
+   "installs": 12071
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-storage",
+   "installs": 12071
+  },
+  {
+   "list": "all-time/11",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "meme-rush",
+   "installs": 12070
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-billing",
+   "installs": 12066
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "remotion-video-creation",
+   "installs": 12059
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "documentation-lookup",
+   "installs": 12055
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "swift-actor-persistence",
+   "installs": 12044
+  },
+  {
+   "list": "all-time/11",
+   "source": "github/awesome-copilot",
+   "skill_id": "java-junit",
+   "installs": 12040
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "swift-protocol-di-testing",
+   "installs": 12038
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "blueprint",
+   "installs": 12031
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-context",
+   "installs": 12026
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin-commit",
+   "installs": 12011
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin-compress",
+   "installs": 12000
+  },
+  {
+   "list": "all-time/11",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "agentmemory-mcp-tools",
+   "installs": 11993
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo",
+   "installs": 11989
+  },
+  {
+   "list": "all-time/11",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "agentmemory-config",
+   "installs": 11987
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "git-workflow",
+   "installs": 11987
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin-help",
+   "installs": 11984
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "foundation-models-on-device",
+   "installs": 11980
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "exa-search",
+   "installs": 11979
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin-review",
+   "installs": 11977
+  },
+  {
+   "list": "all-time/11",
+   "source": "hexiaochun/seedance2-api",
+   "skill_id": "seedance2-api",
+   "installs": 11970
+  },
+  {
+   "list": "all-time/11",
+   "source": "earthtojake/text-to-cad",
+   "skill_id": "step-parts",
+   "installs": 11970
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "swift-concurrency-6-2",
+   "installs": 11969
+  },
+  {
+   "list": "all-time/11",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-spotify",
+   "installs": 11966
+  },
+  {
+   "list": "all-time/11",
+   "source": "jakubkrehel/skills",
+   "skill_id": "build-design",
+   "installs": 11965
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "nestjs-patterns",
+   "installs": 11961
+  },
+  {
+   "list": "all-time/11",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-quantifier",
+   "installs": 11958
+  },
+  {
+   "list": "all-time/11",
+   "source": "diffusionstudio/lottie",
+   "skill_id": "text-to-lottie",
+   "installs": 11947
+  },
+  {
+   "list": "all-time/11",
+   "source": "franalgaba/grimoire",
+   "skill_id": "grimoire-polymarket",
+   "installs": 11941
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "data-scraper-agent",
+   "installs": 11936
+  },
+  {
+   "list": "all-time/11",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-content",
+   "installs": 11935
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin-crew",
+   "installs": 11933
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "hexagonal-architecture",
+   "installs": 11933
+  },
+  {
+   "list": "all-time/11",
+   "source": "interfacex-co-jp/genshijin",
+   "skill_id": "genshijin-stats",
+   "installs": 11922
+  },
+  {
+   "list": "all-time/11",
+   "source": "klingai-tech/skills",
+   "skill_id": "kling-cli",
+   "installs": 11918
+  },
+  {
+   "list": "all-time/11",
+   "source": "analogjs/angular-skills",
+   "skill_id": "angular-component",
+   "installs": 11917
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "mcp-server-patterns",
+   "installs": 11906
+  },
+  {
+   "list": "all-time/11",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "agentmemory-rest-api",
+   "installs": 11905
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "plankton-code-quality",
+   "installs": 11895
+  },
+  {
+   "list": "all-time/11",
+   "source": "affaan-m/ecc",
+   "skill_id": "fal-ai-media",
+   "installs": 11890
+  },
+  {
+   "list": "all-time/12",
+   "source": "patricio0312rev/skills",
+   "skill_id": "framer-motion-animator",
+   "installs": 11881
+  },
+  {
+   "list": "all-time/12",
+   "source": "getcargohq/cargo-skills",
+   "skill_id": "cargo-hosting",
+   "installs": 11875
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "visa-doc-translate",
+   "installs": 11875
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "inventory-demand-planning",
+   "installs": 11872
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "customs-trade-compliance",
+   "installs": 11859
+  },
+  {
+   "list": "all-time/12",
+   "source": "github/awesome-copilot",
+   "skill_id": "dotnet-upgrade",
+   "installs": 11846
+  },
+  {
+   "list": "all-time/12",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "query-token-info",
+   "installs": 11844
+  },
+  {
+   "list": "all-time/12",
+   "source": "amazonappdev/devices-agent-skills",
+   "skill_id": "vega-multi-tv-migration",
+   "installs": 11843
+  },
+  {
+   "list": "all-time/12",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "agentmemory-architecture",
+   "installs": 11835
+  },
+  {
+   "list": "all-time/12",
+   "source": "pluginagentmarketplace/custom-plugin-java",
+   "skill_id": "java-spring-boot",
+   "installs": 11830
+  },
+  {
+   "list": "all-time/12",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "agentmemory-hooks",
+   "installs": 11821
+  },
+  {
+   "list": "all-time/12",
+   "source": "anthropics/claude-code",
+   "skill_id": "claude-opus-4-5-migration",
+   "installs": 11820
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "brand-voice",
+   "installs": 11810
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "seo",
+   "installs": 11796
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "kotlin-ktor-patterns",
+   "installs": 11786
+  },
+  {
+   "list": "all-time/12",
+   "source": "github/awesome-copilot",
+   "skill_id": "dotnet-design-pattern-review",
+   "installs": 11778
+  },
+  {
+   "list": "all-time/12",
+   "source": "rohitg00/agentmemory",
+   "skill_id": "write-agentmemory-skill",
+   "installs": 11771
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "enterprise-agent-ops",
+   "installs": 11765
+  },
+  {
+   "list": "all-time/12",
+   "source": "binance/binance-skills-hub",
+   "skill_id": "crypto-market-rank",
+   "installs": 11753
+  },
+  {
+   "list": "all-time/12",
+   "source": "skills-shell/superpowers",
+   "skill_id": "p-video",
+   "installs": 11744
+  },
+  {
+   "list": "all-time/12",
+   "source": "google/skills",
+   "skill_id": "agent-platform-skill-registry",
+   "installs": 11743
+  },
+  {
+   "list": "all-time/12",
+   "source": "skills-shell/superpowers",
+   "skill_id": "gpt-image",
+   "installs": 11721
+  },
+  {
+   "list": "all-time/12",
+   "source": "skills-shell/superpowers",
+   "skill_id": "p-video-avatar",
+   "installs": 11719
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "quality-nonconformance",
+   "installs": 11702
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "ralphinho-rfc-pipeline",
+   "installs": 11700
+  },
+  {
+   "list": "all-time/12",
+   "source": "skills-shell/superpowers",
+   "skill_id": "p-image",
+   "installs": 11699
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "crosspost",
+   "installs": 11697
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "agent-eval",
+   "installs": 11695
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "production-scheduling",
+   "installs": 11686
+  },
+  {
+   "list": "all-time/12",
+   "source": "skills-shell/superpowers",
+   "skill_id": "happyhorse",
+   "installs": 11680
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "videodb",
+   "installs": 11667
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-general",
+   "installs": 11664
+  },
+  {
+   "list": "all-time/12",
+   "source": "skills-shell/superpowers",
+   "skill_id": "seedance",
+   "installs": 11654
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-scripting",
+   "installs": 11649
+  },
+  {
+   "list": "all-time/12",
+   "source": "shopify/shopify-ai-toolkit",
+   "skill_id": "shopify-custom-data",
+   "installs": 11648
+  },
+  {
+   "list": "all-time/12",
+   "source": "zhjiang22/openclaw-xhs",
+   "skill_id": "xiaohongshu",
+   "installs": 11647
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-defaultplayer",
+   "installs": 11645
+  },
+  {
+   "list": "all-time/12",
+   "source": "elevenlabs/skills",
+   "skill_id": "voice-isolator",
+   "installs": 11640
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "nanoclaw-repl",
+   "installs": 11636
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-search",
+   "installs": 11635
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "kotlin-exposed-patterns",
+   "installs": 11626
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "logistics-exception-management",
+   "installs": 11626
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "carrier-relationship-management",
+   "installs": 11623
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-avatar",
+   "installs": 11621
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-combat-system",
+   "installs": 11618
+  },
+  {
+   "list": "all-time/12",
+   "source": "github/awesome-copilot",
+   "skill_id": "apple-appstore-reviewer",
+   "installs": 11615
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "energy-procurement",
+   "installs": 11615
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "portfolio-case-study-writer",
+   "installs": 11614
+  },
+  {
+   "list": "all-time/12",
+   "source": "alchaincyf/zhangxuefeng-skill",
+   "skill_id": "zhangxuefeng-perspective",
+   "installs": 11590
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "nuxt4-patterns",
+   "installs": 11574
+  },
+  {
+   "list": "all-time/12",
+   "source": "alchaincyf/darwin-skill",
+   "skill_id": "darwin-skill",
+   "installs": 11573
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-section-builder",
+   "installs": 11568
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "team-builder",
+   "installs": 11557
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "returns-reverse-logistics",
+   "installs": 11557
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "x-api",
+   "installs": 11554
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "dmux-workflows",
+   "installs": 11553
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-painter",
+   "installs": 11550
+  },
+  {
+   "list": "all-time/12",
+   "source": "heroui-inc/heroui",
+   "skill_id": "heroui-native",
+   "installs": 11548
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "accessibility",
+   "installs": 11544
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "perl-patterns",
+   "installs": 11525
+  },
+  {
+   "list": "all-time/12",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-tmdb",
+   "installs": 11521
+  },
+  {
+   "list": "all-time/12",
+   "source": "earthtojake/text-to-cad",
+   "skill_id": "sdf",
+   "installs": 11510
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-packages",
+   "installs": 11510
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-ui-system",
+   "installs": 11509
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-sprite-ruid",
+   "installs": 11494
+  },
+  {
+   "list": "all-time/12",
+   "source": "starchild-ai-agent/official-skills",
+   "skill_id": "coinglass",
+   "installs": 11485
+  },
+  {
+   "list": "all-time/12",
+   "source": "phuryn/pm-skills",
+   "skill_id": "create-prd",
+   "installs": 11484
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "perl-testing",
+   "installs": 11484
+  },
+  {
+   "list": "all-time/12",
+   "source": "earthtojake/text-to-cad",
+   "skill_id": "urdf",
+   "installs": 11480
+  },
+  {
+   "list": "all-time/12",
+   "source": "msw-git/msw-ai-coding-plugins-official",
+   "skill_id": "msw-behaviourtree",
+   "installs": 11478
+  },
+  {
+   "list": "all-time/12",
+   "source": "clickhouse/agent-skills",
+   "skill_id": "clickhouse-architecture-advisor",
+   "installs": 11468
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-shared",
+   "installs": 11466
+  },
+  {
+   "list": "all-time/12",
+   "source": "caffeinelabs/skills",
+   "skill_id": "connector-quickbooks",
+   "installs": 11463
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "laravel-verification",
+   "installs": 11454
+  },
+  {
+   "list": "all-time/12",
+   "source": "wondelai/skills",
+   "skill_id": "ux-heuristics",
+   "installs": 11431
+  },
+  {
+   "list": "all-time/12",
+   "source": "earthtojake/text-to-cad",
+   "skill_id": "sendcutsend",
+   "installs": 11428
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "manim-video",
+   "installs": 11411
+  },
+  {
+   "list": "all-time/12",
+   "source": "google/skills",
+   "skill_id": "google-cloud-waf-operational-excellence",
+   "installs": 11407
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-doc-manage",
+   "installs": 11391
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "ui-demo",
+   "installs": 11388
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "academic-cv-builder",
+   "installs": 11373
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-disk",
+   "installs": 11372
+  },
+  {
+   "list": "all-time/12",
+   "source": "danyuchn/asd-ste100-skill",
+   "skill_id": "asd-ste100",
+   "installs": 11371
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "token-budget-advisor",
+   "installs": 11365
+  },
+  {
+   "list": "all-time/12",
+   "source": "earthtojake/text-to-cad",
+   "skill_id": "srdf",
+   "installs": 11364
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "rules-distill",
+   "installs": 11349
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "creative-portfolio-resume",
+   "installs": 11348
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-calendar",
+   "installs": 11337
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-media",
+   "installs": 11334
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-email",
+   "installs": 11328
+  },
+  {
+   "list": "all-time/12",
+   "source": "wecomteam/wecom-cli",
+   "skill_id": "wecomcli-message",
+   "installs": 11327
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "skill-comply",
+   "installs": 11325
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "click-path-audit",
+   "installs": 11310
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "salary-negotiation-prep",
+   "installs": 11280
+  },
+  {
+   "list": "all-time/12",
+   "source": "mblode/agent-skills",
+   "skill_id": "ui-animation",
+   "installs": 11279
+  },
+  {
+   "list": "all-time/12",
+   "source": "ljagiello/ctf-skills",
+   "skill_id": "ctf-reverse",
+   "installs": 11264
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "resume-version-manager",
+   "installs": 11258
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "council",
+   "installs": 11256
+  },
+  {
+   "list": "all-time/12",
+   "source": "google/skills",
+   "skill_id": "google-cloud-waf-performance-optimization",
+   "installs": 11251
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "healthcare-phi-compliance",
+   "installs": 11242
+  },
+  {
+   "list": "all-time/12",
+   "source": "shopify/shopify-ai-toolkit",
+   "skill_id": "shopify-use-shopify-cli",
+   "installs": 11240
+  },
+  {
+   "list": "all-time/12",
+   "source": "trailofbits/skills",
+   "skill_id": "semgrep",
+   "installs": 11238
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "dashboard-builder",
+   "installs": 11237
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "dart-flutter-patterns",
+   "installs": 11232
+  },
+  {
+   "list": "all-time/12",
+   "source": "github/awesome-copilot",
+   "skill_id": "csharp-async",
+   "installs": 11223
+  },
+  {
+   "list": "all-time/12",
+   "source": "molezzz/openclaw-stock-skill",
+   "skill_id": "akshare-stock",
+   "installs": 11220
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "santa-method",
+   "installs": 11213
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "career-changer-translator",
+   "installs": 11207
+  },
+  {
+   "list": "all-time/12",
+   "source": "cursor/plugins",
+   "skill_id": "deslop",
+   "installs": 11206
+  },
+  {
+   "list": "all-time/12",
+   "source": "google/skills",
+   "skill_id": "gemini-agents-api",
+   "installs": 11202
+  },
+  {
+   "list": "all-time/12",
+   "source": "elevenlabs/skills",
+   "skill_id": "voice-changer",
+   "installs": 11185
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "benchmark",
+   "installs": 11166
+  },
+  {
+   "list": "all-time/12",
+   "source": "paramchoudhary/resumeskills",
+   "skill_id": "executive-resume-writer",
+   "installs": 11154
+  },
+  {
+   "list": "all-time/12",
+   "source": "github/awesome-copilot",
+   "skill_id": "review-and-refactor",
+   "installs": 11142
+  },
+  {
+   "list": "all-time/12",
+   "source": "affaan-m/ecc",
+   "skill_id": "healthcare-emr-patterns",
+   "installs": 11130
+  },
+  {
+   "list": "all-time/12",
+   "source": "github/awesome-copilot",
+   "skill_id": "update-implementation-plan",
+   "installs": 11125
+  },
+  {
+   "list": "all-time/12",
+   "source": "brightdata/skills",
+   "skill_id": "scrape",
+   "installs": 11122
+  },
+  {
+   "list": "all-time/12",
+   "source": "dart-lang/skills",
+   "skill_id": "dart-use-primary-constructors",
+   "installs": 11120
+  }
+ ],
+ "snapshot": "2026-11-25",
+ "origin": "https://skills.sh/api/skills/all-time/<page>"
+}
