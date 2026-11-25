@@ -96,6 +96,11 @@ RERANK_UNCERTAIN_FROM = float(os.environ.get("SKILL_RAG_RERANK_UNCERTAIN_FROM", 
 LOCAL_CANDIDATES = int(os.environ.get("SKILL_RAG_LOCAL_CANDIDATES", "0"))
 LOCAL_DESCRIPTION_CHARS = 300
 
+# A skill the request names outright (``/name``, a quoted name, "the name
+# skill"; see ``retrieve.explicit_matches``) is returned without a judgment:
+# the user has already chosen. Set to 0 to judge such requests like any other.
+EXPLICIT = os.environ.get("SKILL_RAG_EXPLICIT", "1") != "0"
+
 _retry_after: float = 0.0  # monotonic deadline of the current cooldown
 
 
@@ -174,7 +179,21 @@ def search_traced(
     query: str, k: int = 5, agent: str | None = None, exclude: frozenset[str] = frozenset()
 ) -> tuple[dict, str]:
     """``search`` plus what actually produced the result: the judge's provider
-    name, or ``""`` when the local gate did (rerank off, cooldown, failure)."""
+    name, ``"explicit"`` when the request named the skill, or ``""`` when the
+    local gate did (rerank off, cooldown, failure)."""
+    if EXPLICIT:
+        # Not filtered by ``exclude``: asking for a skill by name is a request
+        # to have it, even if it was loaded earlier in the session.
+        named = retrieve.explicit_matches(query)
+        if named:
+            hits = [
+                retrieve.format_hit(
+                    row["name"], row["description"], 1.0, row["agent"], max_chars=RERANK_DESCRIPTION_CHARS
+                )
+                for row in named[:k]
+            ]
+            return {"status": "ok", "hits": hits}, "explicit"
+
     def local() -> tuple[dict, str]:
         if LOCAL_CANDIDATES > 0 and query.strip() and retrieve.corpus_size() > 0:
             rows = retrieve.shortlist(query, min(k, LOCAL_CANDIDATES), exclude=exclude)

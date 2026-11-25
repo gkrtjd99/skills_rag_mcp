@@ -30,6 +30,10 @@
   simulated agent loaded a useful skill for 67.0% of matching requests instead
   of 60.3%, and a wrong one for 8.2% of no-match requests instead of 4.1%.
   The bootstrap skill tells agents how to treat the new status.
+- A skill the request names outright (`/name`, `$name`, "the name skill",
+  "name 스킬") is returned without a judgment, with or without a judge.
+  A bare mention of a name does not count. `SKILL_RAG_EXPLICIT=0` turns it
+  off. Not covered by the benchmarks, whose requests never name a skill.
 - `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
   top N of the local ranking as uncertain candidates instead of the gate's
   hits. Fewer wrong loads, fewer useful ones.

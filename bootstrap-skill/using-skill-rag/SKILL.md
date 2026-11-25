@@ -28,6 +28,10 @@ Concretely:
   The task context was fixed in the first turn; the reply can't need a new
   skill. Resume searching only when the user introduces a genuinely new task.
 
+**The user names a skill** ("use the tdd skill", `/tdd`): keep that wording
+in the query (`"/tdd add a parser"`). A skill named that way is returned
+directly, whatever its score would have been.
+
 If you are unsure whether the topic shifted, searching once is fine — the cost
 is one call. The rule exists to stop searching on every turn of a conversation
 whose skill needs never change.

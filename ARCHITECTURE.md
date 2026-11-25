@@ -49,6 +49,9 @@ package-managed index write.
    (single letter, all digits, or a curated ko/en affirmation/ack token) returns
    `{status: "skip"}` immediately — no sync, no embedding, no search.
 1. `sync.sync_if_stale()` runs at most once per TTL window (default 30 s).
+   If the query names an indexed skill outright (`/name`, `name skill`; see
+   `retrieve.explicit_matches`), that skill is returned here and the steps
+   below are skipped.
 2. `retrieve.search` reads indexed metadata and text.
 3. The query is normalized, augmented with a small Korean intent bridge when
    useful, and encoded as an E5 `query:` with the local embedding model

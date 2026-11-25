@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from functools import lru_cache
 
 from .corpus import (
@@ -93,6 +94,49 @@ _UNCERTAIN = (
     "No skill was confirmed for this request. These are uncertain candidates: load "
     "one only if its description clearly covers the task; otherwise proceed without a skill."
 )
+
+
+def explicit_matches(query: str) -> list[dict]:
+    """Indexed skills the query names outright, in order of appearance.
+
+    Rows are ``{name, description, agent}``. A skill name is often an ordinary
+    word (``deploy``, ``tdd``), so a bare mention does not count. The name
+    must appear as a whole token, case-insensitively, in one of these forms:
+
+    - the whole query is the name;
+    - invoked like a command: ``/name`` or ``$name`` at the start of a word;
+    - next to the word skill: ``name skill``, ``name 스킬``, ``skill name``,
+      ``스킬 name`` (not the plural ``skills``).
+
+    A quoted or backticked name does not count: on 1,372 benchmark requests
+    the only matches of that form were a package called ``convex-test`` written
+    as code, where the user was not choosing the skill of the same name.
+    """
+    text = query.strip()
+    if not text:
+        return []
+    found: list[tuple[int, dict]] = []
+    lowered = text.lower()
+    for row in _list_indexed():
+        # Cheap substring test first: almost no name occurs in a given query,
+        # and compiling five patterns per skill would cost more than the search.
+        if row["name"].lower() not in lowered:
+            continue
+        name = re.escape(row["name"])
+        # ASCII boundaries only, so a Korean particle may follow ("tdd를").
+        token = rf"(?<![A-Za-z0-9_-]){name}(?![A-Za-z0-9_-])"
+        patterns = (
+            rf"^\s*{name}\s*$",
+            rf"(?:^|(?<=\s))[/$]{name}(?![A-Za-z0-9_\-/])",
+            rf"{token}[`'\"]?\s*(?:skill(?![a-z])|스킬)",
+            rf"(?:(?<![a-z])skill|스킬)\s*:?\s*[`'\"]?{token}",
+        )
+        positions = [
+            m.start() for p in patterns if (m := re.search(p, text, flags=re.IGNORECASE))
+        ]
+        if positions:
+            found.append((min(positions), {"name": row["name"], "description": row["description"], "agent": row.get("agent", "unknown")}))
+    return [row for _, row in sorted(found, key=lambda pair: pair[0])]
 
 
 def uncertain_response(rows: list[dict], max_chars: int) -> dict:

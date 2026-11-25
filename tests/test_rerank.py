@@ -572,3 +572,54 @@ def test_readiness_names_where_data_goes(monkeypatch):
     assert rerank.readiness() == (
         "openai (unavailable: OPENAI_API_KEY not set; using local gate)"
     )
+
+
+# --- a skill the request names outright -------------------------------------
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "tdd",
+        "/tdd add a parser",
+        "$tdd add a parser",
+        "use the `tdd` skill for this",
+        "use the tdd skill to add a parser",
+        "TDD skill please",
+        "tdd 스킬로 파서 추가해줘",
+        "스킬 tdd를 써서 진행해줘",
+        "skill: tdd",
+    ],
+)
+def test_a_named_skill_is_returned_without_a_judge(monkeypatch, query):
+    _seed()
+    calls = _enable(monkeypatch, {})  # the judge would reject everything
+    res, provider = rerank.search_traced(query)
+    assert [h["name"] for h in res["hits"]] == ["tdd"] and res["status"] == "ok"
+    assert res["hits"][0]["score"] == 1.0
+    assert provider == "explicit" and calls == []
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "deploy the website to production",  # an ordinary word
+        "improve my deploy skills",  # plural: the user's own skills
+        "open src/deploy/main.py",  # a path, not a command
+        "run the predeploy check",  # inside another word
+        "what does tdd-lite do",  # inside a longer name
+        "run the `tdd` package tests",  # code formatting is not a choice of skill
+    ],
+)
+def test_a_bare_mention_is_not_an_explicit_choice(query):
+    _seed()
+    assert retrieve.explicit_matches(query) == []
+
+
+def test_named_skills_keep_their_order_and_ignore_the_loaded_exclusion(monkeypatch):
+    _seed()
+    res = rerank.search("use the deploy skill, then the tdd skill", exclude=frozenset({"tdd"}))
+    assert [h["name"] for h in res["hits"]] == ["deploy", "tdd"]
+    assert [h["name"] for h in rerank.search("/deploy and /tdd", k=1)["hits"]] == ["deploy"]
+    monkeypatch.setattr(rerank, "EXPLICIT", False)
+    assert rerank.search("/deploy") == retrieve.search("/deploy")

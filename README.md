@@ -179,6 +179,7 @@ uv run skill-rag restore                              # 전부 원래 위치로
 | `SKILL_RAG_USAGE_LOG` | `stats` | 로컬 사용 기록: `stats`(스킬 이름·점수만), `full`(질의 문장 포함), `off` |
 | `SKILL_RAG_USAGE_PATH` | `./var/usage.jsonl` | 사용 기록 파일 경로 |
 | `SKILL_RAG_EXCLUDE_LOADED` | `1` | 이번 세션에서 이미 읽은 스킬을 추천에서 제외 (`0`이면 끔) |
+| `SKILL_RAG_EXPLICIT` | `1` | 요청이 스킬을 이름으로 지정하면(`/이름`, `이름 스킬`) 판정 없이 그 스킬을 반환 (`0`이면 끔) |
 | `SKILL_RAG_RERANK` | (꺼짐) | 2단계 적합성 판정 모델: `jev`, `openai`, 또는 직접 만든 `패키지.모듈:팩토리` (클라우드 호출, 아래 참고) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | 판정 모델에게 보여줄 후보 스킬 수 |
 | `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | 스킬을 반환하는 최소 적합 확률 (`jev` 기준으로 고른 값) |

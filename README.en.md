@@ -190,6 +190,7 @@ MCP server process) is not suggested again.
 | `SKILL_RAG_USAGE_LOG` | `stats` | Local usage log: `stats` (skill names and scores only), `full` (also request text), `off` |
 | `SKILL_RAG_USAGE_PATH` | `./var/usage.jsonl` | Usage log file |
 | `SKILL_RAG_EXCLUDE_LOADED` | `1` | Leave skills already loaded in this session out of suggestions (`0` disables) |
+| `SKILL_RAG_EXPLICIT` | `1` | When the request names a skill outright (`/name`, `name skill`), return it without a judgment (`0` turns it off) |
 | `SKILL_RAG_RERANK` | (off) | Second-stage fit judge: `jev`, `openai`, or your own `package.module:factory` (cloud call, see below) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | Candidate skills shown to the judge |
 | `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | Minimum fit probability for a skill to be returned (chosen with `jev`) |

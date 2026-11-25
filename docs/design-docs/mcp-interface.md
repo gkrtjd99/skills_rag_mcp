@@ -73,6 +73,14 @@ no `agent`, only `"confidence": "low"`. It is returned in two cases:
 The wording and shape were measured with a model acting as the caller
 (`docs/benchmarks/2026-11-25-agent2-results.md`).
 
+A skill the query names outright is returned as `ok` with `score` 1.0 before
+any ranking or judgment, with or without a judge, and even if it was loaded
+earlier in the session. A bare mention does not count, because skill names
+are often ordinary words. The name must be the whole query, be written as a
+command (`/name`, `$name`), or stand next to the word skill (`name skill`,
+`name 스킬`, `skill name`, `스킬 name`). `SKILL_RAG_EXPLICIT=0` turns this
+off.
+
 `no_match` covers an empty query, an empty corpus, the local gate when
 candidates fail both retrieval thresholds, and a judge that puts no skill at
 or above the uncertain bound.
