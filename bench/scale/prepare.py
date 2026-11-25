@@ -481,7 +481,15 @@ def make_test2() -> None:
 
 # Later request sets built like test2: (seed, earlier sets of this kind whose
 # skills must not be reused). See docs/benchmarks/2026-11-25-agent2-protocol.md.
-FRESH = {"dev2": (20261128, []), "test3": (20261127, ["dev2"])}
+FRESH = {
+    "dev2": (20261128, []),
+    "test3": (20261127, ["dev2"]),
+    # docs/benchmarks/2026-11-25-scan-protocol.md: no-match sources come from a
+    # second skills.sh snapshot, because the first one was used up.
+    "dev3": (20261129, ["dev2", "test3"]),
+    "test4": (20261130, ["dev2", "test3", "dev3"]),
+}
+FRESH_CANDIDATES = {"dev3": "candidates-2026-11-25.json", "test4": "candidates-2026-11-25.json"}
 
 
 def make_fresh(tag: str) -> None:
@@ -500,7 +508,7 @@ def make_fresh(tag: str) -> None:
     eligible = [n for n in parts["distractors"][: max(parts["sizes"]) - N_TARGETS] if n not in used_targets]
     targets = rng.sample(eligible, 50)
 
-    candidates = json.loads(CANDIDATES.read_text(encoding="utf-8"))["candidates"]
+    candidates = json.loads((HERE / FRESH_CANDIDATES.get(tag, CANDIDATES.name)).read_text(encoding="utf-8"))["candidates"]
     pooled_ids = {a["skill_id"].lower() for a in manifest}
     pooled_names = {a["name"].lower() for a in manifest}
     outside = [
