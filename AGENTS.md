@@ -29,7 +29,7 @@ Read documents in the order below before writing code.
 
 ## Done When
 
-- `mcp__skill-rag__search_skills` returns `{status: "ok"|"no_match", hits, [message]}`.
+- `mcp__skill-rag__search_skills` returns `{status: "ok"|"no_match", hits, [message]}`, plus `"candidates"` and `"uncertain"` when a judge is configured.
 - `mcp__skill-rag__get_skill` returns `{status: "ok"|"not_found", body+path|message}`.
 - One bootstrap skill in `~/.skills/`, symlinked into Claude Code + Codex, auto-loads in both.
 - File added to `~/.skills/` is reflected in the next `search_skills` call after 30 s.

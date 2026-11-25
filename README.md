@@ -120,6 +120,14 @@ export TYPESAFE_API_KEY=...
 export SKILL_RAG_RERANK=jev
 ```
 
+터미널에서 실행한 Claude Code나 Codex는 그 셸의 환경 변수를 물려받음. 앱으로 실행하는 경우처럼
+셸 환경이 전달되지 않으면 MCP 서버 등록에 환경 변수를 직접 넣어야 함 (API 키가 설정 파일에 남는
+점에 주의).
+
+설정이 맞는지는 `uv run skill-rag status`의 마지막 `note` 줄로 확인. 판정 모델이 꺼져 있거나,
+스킬이 너무 적거나, 설치된 안내 스킬이 예전 버전이면 여기에 표시됨. 같은 내용이 `make install`
+끝에도 나옴.
+
 하네스를 재시작하면 그다음부터는 따로 할 일이 없음. 에이전트가 새 작업을 시작할 때
 `search_skills`를 부르고, 맞는 스킬이 있으면 `get_skill`로 읽음. 특정 스킬을 쓰게 하려면
 요청에 `/스킬이름`이나 `스킬이름 스킬`이라고 적으면 됨.
@@ -132,6 +140,22 @@ export SKILL_RAG_RERANK=jev
 uv run skill-rag adopt --dry-run
 uv run skill-rag adopt
 ```
+
+### 업그레이드
+
+```bash
+git pull
+make install
+uv sync --extra rerank
+uv run skill-rag install --refresh-bootstrap
+```
+
+- `make install`은 `uv sync`를 다시 실행해 판정 모델용 추가 패키지를 지우므로, `jev`를 쓰면
+  `uv sync --extra rerank`를 다시 실행해야 함.
+- `--refresh-bootstrap`은 설치된 안내 스킬(`~/.skills/using-skill-rag`)을 새 버전으로 덮어씀.
+  0.4.0에서 검색 응답에 `candidates`, `uncertain` 상태가 추가됐고, 예전 안내 스킬은 이를 다루는 법을
+  모름. 그 스킬을 직접 고쳐 썼다면 덮어쓰기 전에 백업할 것.
+- 끝나면 하네스를 재시작.
 
 ## 동작 방식
 

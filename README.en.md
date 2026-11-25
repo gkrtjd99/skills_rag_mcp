@@ -152,6 +152,16 @@ export TYPESAFE_API_KEY=...
 export SKILL_RAG_RERANK=jev
 ```
 
+Claude Code or Codex started from a terminal inherits that shell's
+environment. If the shell environment does not reach it, as when it is
+started as an app, put the variables into the MCP server registration (note
+that the API key then sits in a configuration file).
+
+Check the setup with the `note` lines at the end of `uv run skill-rag
+status`. They appear when no judge is active, when there are too few skills
+for search to pay, or when the installed guide skill is from an older
+version. `make install` prints the same notes.
+
 Restart the harness; nothing else is needed after that. The agent calls
 `search_skills` when a new task starts and reads a fitting skill with
 `get_skill`. To make it use a particular skill, write `/skill-name` or
@@ -166,6 +176,23 @@ With `collect` alone the harness still loads every description.
 uv run skill-rag adopt --dry-run
 uv run skill-rag adopt
 ```
+
+### Upgrading
+
+```bash
+git pull
+make install
+uv sync --extra rerank
+uv run skill-rag install --refresh-bootstrap
+```
+
+- `make install` runs `uv sync` again, which removes the judge's extra
+  package, so run `uv sync --extra rerank` again if you use `jev`.
+- `--refresh-bootstrap` overwrites the installed guide skill
+  (`~/.skills/using-skill-rag`) with the new version. 0.4.0 added the
+  `candidates` and `uncertain` search statuses, and an older guide skill does
+  not know how to handle them. Back the skill up first if you edited it.
+- Restart the harness afterwards.
 
 ## How it works
 

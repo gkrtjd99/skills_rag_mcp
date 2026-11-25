@@ -134,6 +134,17 @@ def collect(
         typer.echo("\n(dry-run — no symlinks created)")
 
 
+BOOTSTRAP_NOTE = (
+    "the installed using-skill-rag skill differs from this version's template, so agents may "
+    "not know the current search statuses. Update it with `skill-rag install "
+    "--refresh-bootstrap` (overwrites local edits to that skill)."
+)
+
+
+def _notes(indexed: int, bootstrap_outdated: bool) -> list[str]:
+    return rerank_mod.notes(indexed) + ([BOOTSTRAP_NOTE] if bootstrap_outdated else [])
+
+
 @app.command()
 def status(json_out: bool = typer.Option(False, "--json")):
     """Show corpus, index, model, retrieval, and sync settings."""
@@ -168,6 +179,7 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "local_candidates": rerank_mod.LOCAL_CANDIDATES,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
     }
+    payload["notes"] = _notes(payload["indexed_count"], lifecycle.bootstrap_outdated())
     if json_out:
         typer.echo(json.dumps(payload, ensure_ascii=False, indent=2))
         return
@@ -198,6 +210,8 @@ def status(json_out: bool = typer.Option(False, "--json")):
         scan = payload["rerank_scan_max"]
         typer.echo(f"rerank scan     : {'off' if scan <= 0 else f'whole corpus up to {scan} skills'}")
     typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")
+    for note in payload["notes"]:
+        typer.echo(f"note            : {note}")
 
 
 @app.command()
@@ -228,6 +242,7 @@ def install(
     report = lifecycle.install(
         dry_run=dry_run, refresh_bootstrap=refresh_bootstrap, collect_skills=not no_collect
     )
+    report["notes"] = _notes(index_mod.indexed_count(), report.get("bootstrap_outdated", False))
     if json_out:
         typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
         return
@@ -237,6 +252,8 @@ def install(
     typer.echo(f"collect ran         : {report['collect_ran']}")
     typer.echo(f"sync ran            : {report['sync_ran']}")
     typer.echo(f"mcp                 : {report['mcp']}")
+    for note in report["notes"]:
+        typer.echo(f"note                : {note}")
     if dry_run:
         typer.echo("\n(dry-run — nothing written)")
 

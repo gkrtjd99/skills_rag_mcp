@@ -155,6 +155,36 @@ def readiness() -> str:
     return f"{RERANK_PROVIDER} ({sends})"
 
 
+SMALL_CORPUS = 50
+
+
+def notes(indexed: int) -> list[str]:
+    """What a user should know about this setup before relying on it.
+
+    The figures are from docs/benchmarks/ (350 skills, simulated agent).
+    """
+    out = []
+    state = readiness()
+    if state == "off" or state.startswith("off ") or "unavailable" in state:
+        out.append(
+            "no judge model is active. At 350 skills, search without a judge loaded a useful "
+            "skill for about 70% of requests; a harness that loads every skill description "
+            "did so for about 94%. Set SKILL_RAG_RERANK=jev (README) where the MCP server "
+            "runs, or keep loading skills natively."
+        )
+    elif 0 < RERANK_SCAN_MAX < indexed and RERANK_STYLE != "single":
+        out.append(
+            f"{indexed} skills exceed SKILL_RAG_RERANK_SCAN_MAX={RERANK_SCAN_MAX}: the judge "
+            "sees the local shortlist only, which was not measured in the candidates style."
+        )
+    if 0 < indexed < SMALL_CORPUS:
+        out.append(
+            f"{indexed} skills are indexed. A list this short costs a harness about "
+            f"{indexed * 100:,} tokens to load in full, so search saves little."
+        )
+    return out
+
+
 def judge(query: str, candidates: list[dict]) -> list[float]:
     """Probability that each candidate fits ``query``, aligned with ``candidates``."""
     return judges.checked(current_judge().fits(query, candidates), len(candidates))
