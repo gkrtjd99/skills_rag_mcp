@@ -559,7 +559,22 @@ def make_fresh(tag: str) -> None:
     print(f"wrote {len(rows)} {tag} queries {dict(kinds)}; dropped for naming the skill: {dropped}")
 
 
+def make_test3_negatives() -> None:
+    """No-match half of test3; see the addendum of 2026-11-25-agent2-protocol.md."""
+    accepted = {a["name"]: a for a in json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]}
+    heldout = json.loads(SPLIT.read_text(encoding="utf-8"))["heldout"]
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 1, "no_match_heldout") for n in heldout]
+    rows, dropped = _generated_rows(jobs, "test3neg")
+    (HERE / "test3neg-queries.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    print(f"wrote {len(rows)} test3 no-match queries from {len(heldout)} skills; dropped for naming the skill: {dropped}")
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "test3neg":
+        make_test3_negatives()
+        sys.exit()
     if sys.argv[1] in FRESH:
         make_fresh(sys.argv[1])
         sys.exit()

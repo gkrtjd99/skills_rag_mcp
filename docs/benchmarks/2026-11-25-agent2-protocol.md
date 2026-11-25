@@ -87,3 +87,23 @@ in the middle of a task; the agent models are not the ones in the targeted
 harnesses; requests are model-written; agents and adjudicator share a vendor.
 The wording M1 was written after seeing the first dev result, so it is tested
 only on requests that did not exist then.
+
+## Addendum: no-match requests for the fresh test (written before any existed)
+
+Added on 2026-11-25 after `prepare.py test3` produced 194 matching requests
+and no no-match request: every candidate skill outside the pool had been used
+by `test2` or `dev2`. The matching half of `test3` has been scored; no
+no-match request for the test has been generated or scored at the time of
+this commit.
+
+Deviation: the no-match half is generated from the 50 `heldout` skills of
+`split.json` (`prepare.py test3neg`, one request per language). These skills
+are not in the 350-skill corpus. They were the no-match sources of the first
+scale test set, which is retired; they were never part of a dev set, so no
+threshold, wording, or configuration was chosen on them. The requests are
+newly generated. This is weaker than the protocol's "skills no earlier set
+used" and is reported as such.
+
+Decision on these requests, primary agent: B stays if its junk rate on them is
+at most 13% (the limit plus three points). K is already rejected by the
+matching half (its useful rate is below G1's) and is reported only.
