@@ -1,0 +1,3058 @@
+{
+"snapshot": "2026-11-25",
+"origin": [
+"https://skills.sh/hot",
+"https://skills.sh/trending"
+],
+"note": "entries not in candidates-2026-11-24.json, in page order",
+"candidates": [
+{
+"list": "hot",
+"source": "remotion-dev/skills",
+"skill_id": "remotion-elements",
+"installs": 238
+},
+{
+"list": "hot",
+"source": "cloudflare/skills",
+"skill_id": "artifacts",
+"installs": 32
+},
+{
+"list": "hot",
+"source": "cloudflare/skills",
+"skill_id": "flagship",
+"installs": 32
+},
+{
+"list": "hot",
+"source": "google-gemini/demolab",
+"skill_id": "gemini-frontend-design",
+"installs": 26
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "land",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "ci-triage",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "test-prover",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "end-session",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "handoff",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "docs-updater",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "open-pr",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "records-audit",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "what-next",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "lets-go",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jwh3times/skills",
+"skill_id": "dependabot",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "skymavis/skills",
+"skill_id": "decision-records",
+"installs": 11
+},
+{
+"list": "hot",
+"source": "volcengine/volcengine-agent-toolkit",
+"skill_id": "volcengine-cli",
+"installs": 11
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-company-deck",
+"installs": 9
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-flyer",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-resume",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-cv",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "blast-radius",
+"installs": 18
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "poteto-mode",
+"installs": 18
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "correct",
+"installs": 18
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "interrogate",
+"installs": 18
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "arena",
+"installs": 18
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-typography",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-ui",
+"installs": 13
+},
+{
+"list": "hot",
+"source": "angular/skills",
+"skill_id": "angular-developer",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "mengto/skills",
+"skill_id": "build-awwwards-quality-sites",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-conference-handout",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "in-your-own-words",
+"installs": 17
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "figure-it-out",
+"installs": 17
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "how",
+"installs": 17
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "sharpen",
+"installs": 17
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "reframe",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-colors",
+"installs": 12
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-interface",
+"installs": 11
+},
+{
+"list": "hot",
+"source": "trailofbits/skills",
+"skill_id": "differential-review",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "samber/developer-relations-skills",
+"skill_id": "devrel-exec-reporting",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-sales-deck",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-core",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "developing-applications-on-managed-service-for-apache-flink",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-investigation",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "querying-aws-cloudwatch",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-lambda-web-functions",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "apollographql/skills",
+"skill_id": "rust-best-practices",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-aurora-postgresql",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-sdk-js-v3-usage",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-observability",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "fetcher-sh/fetcher-skills",
+"skill_id": "instagram-api",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-lambda-durable-functions",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "create-verification-skill",
+"installs": 17
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "maintain-verification-skill",
+"installs": 17
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "automate-me",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "ketchup-video",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "no-comments",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-boundary-discipline",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "ketchup",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "poteto-help",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-attack-the-premise",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "maintain-formal-verification-skill",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "make-bot-ui",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "bro",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "architect",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "create-formal-verification-skill",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "google-gemini/gemini-skills",
+"skill_id": "gemini-api-cli",
+"installs": 11
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-writing",
+"installs": 10
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-motion",
+"installs": 10
+},
+{
+"list": "hot",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "level-design",
+"installs": 10
+},
+{
+"list": "hot",
+"source": "iart-ai/tiktok-video-skills",
+"skill_id": "lower-thirds",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "iart-ai/tiktok-video-skills",
+"skill_id": "caption-animation",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-law-search",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-add-widget-test",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-add-integration-test",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-add-widget-preview",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-implement-json-serialization",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-setup-localization",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-setup-declarative-routing",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-use-http-package",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "getsentry/skills",
+"skill_id": "security-review",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-modeling",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "graphify-labs/graphify",
+"skill_id": "graphify",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "mengto/skills",
+"skill_id": "cinematic-gsap-lenis-motion-system",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "fix-security-vulnerabilities-with-strix",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "find-security-vulnerabilities-in-code",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "ericjujianzou/rederive",
+"skill_id": "rederive",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "writing-agentcore-policy",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "migrating-hive-tables-to-s3-tables",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "resilience-hub-getting-started",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-sdk-python-usage",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "waf",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "timestream-influxdb",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "ci-security-scanning-with-strix",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "redshift-guide",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-resilience-lifecycle",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "setting-up-cloudwatch-alarm-notifications",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-workspaces-agent-access",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-marketplace-metering",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "connecting-vpcs-with-peering",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "querying-aws-athena",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "resilience-hub-failure-mode-assessment",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-networking",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-storage",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "troubleshooting-aws-device-farm-runs",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "getpaseo/paseo",
+"skill_id": "paseo",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-emulator",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "managing-amazon-kinesis-data-streams",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "querying-aws-s3",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "creating-data-lake-table",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "wechatpay-apiv3/wechatpay-skills",
+"skill_id": "wechatpay-payment-integration",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "connecting-lambda-to-dynamodb",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "getpaseo/paseo",
+"skill_id": "paseo-advisor",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-lambda-managed-instances",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "recovery-controller-setup",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "troubleshooting-efs",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-geometry-nodes",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "setting-up-workspaces-applications",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-iam",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "troubleshoot-spark-job",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "application-security-testing",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "managing-amazon-msk",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "creating-production-vpc-multi-az",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-pro-workflow",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-ec2-image-builder",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "securing-s3-buckets",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "finding-aws-customer-stories",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "migrate-to-msk",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-elasticache",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-fault-injection-service",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "ocr-document-processing-skill",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-opensearch-memory",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "creating-amazon-aurora-db-cluster-with-instances",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-ai-ml",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-keyspaces",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-transform",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-neptune",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-containers",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "arc-region-switch",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-deployment",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "setting-up-cloudwatch-observability",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "launch-with-aws",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-cleanrooms",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "creating-api-gateway-stage",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "ingesting-into-data-lake",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-step-functions",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "processing-s3-uploads-with-step-functions",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "getpaseo/paseo",
+"skill_id": "paseo-committee",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "configuring-vpc-endpoints-for-private-aws-service-access",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-ses",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-sdk-swift-usage",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "debugging-mwaa-workflow",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-opensearch-service",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-billing-and-cost-management",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "exporting-rds-to-s3",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-well-architected-review",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "troubleshooting-application-failures",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "rds-sqlserver",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "connecting-lambda-to-api-gateway",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "getpaseo/paseo",
+"skill_id": "paseo-handoff",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-dynamodb",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-database",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "testing-mwaa-workflow",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "launching-ec2-instance-with-best-practices",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-bedrock",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "distributed-kv-caching",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-marketplace-agentic-commerce",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "route53",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "cloudfront",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "signing-in-to-aws",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-network-monitoring",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "creating-secrets-using-best-practices",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-braket",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "enabling-lambda-vpc-internet-access",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "odb-aws",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "upgrading-mwaa-environments",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-media-services",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "storing-and-querying-vectors",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-sms-voice",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "deploying-containers-to-amazon-lightsail",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "finding-data-lake-assets",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aurora-dsql",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-security",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "managing-glue-jobs",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-serverless",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-eventbridge-event-bus",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-social-messaging",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "querying-aws-sagemaker-catalog",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-messaging-and-streaming",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "setting-up-cloudtrail-multi-region",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-cloudformation",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "authoring-mwaa-workflow",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "rds-db2",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "fetcher-sh/fetcher-skills",
+"skill_id": "tiktok-scraper",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "shieldadvanced",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "rds-oss",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-amplify",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "sitetositevpn",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-documentdb",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "migrating-to-amazon-redshift",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "rds-oracle",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "transitgateway",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "dms-schema-conversion",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-compute",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-auth",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "directconnect",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-exam-paper",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-cdk-blocks",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "resilience-program-design",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "exploring-data-catalog",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "managing-data-catalog",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-lighting",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "managing-data-asset-access",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-scene-setup",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "debugging-lambda-timeouts",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "amazon-aurora-mysql",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "resilience-hub-multi-account",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "deploying-custom-domain-rest-api",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "connecting-to-data-source",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "troubleshooting-s3-files",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "setting-up-ec2-instance-profiles",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "querying-aws-redshift",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-lambda-microvms",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "unslop",
+"installs": 16
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "show-me-your-work",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "benchmark-checklist",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-exhaust-the-design-space",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-redesign-from-first-principles",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-encode-lessons-in-structure",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-build-the-lever",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-fix-root-causes",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-experience-first",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "apidojo-io/social-media-skills",
+"skill_id": "instagram-scraper",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "why",
+"installs": 15
+},
+{
+"list": "hot",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "performance-optimization",
+"installs": 10
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-layout",
+"installs": 10
+},
+{
+"list": "hot",
+"source": "miqdadbadjuber/anti-slop",
+"skill_id": "antislop-ui",
+"installs": 9
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "better-accessibility",
+"installs": 9
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "explain-interface",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "miqdadbadjuber/anti-slop",
+"skill_id": "antislop-human",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "iart-ai/tiktok-video-skills",
+"skill_id": "short-form-video",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "variant",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "iros-registry-automation",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "iart-ai/tiktok-video-skills",
+"skill_id": "countdown-video",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-fix-layout-issues",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "housing-official-price",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "building-register-search",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-humanizer",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-build-responsive-layout",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "sh-notice-search",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "real-estate-search",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "lh-notice-search",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "flutter-apply-architecture-best-practices",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kakao-map",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-transit-route",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "daangn-realty-search",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-migrate-to-checks-package",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-fix-runtime-errors",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-use-ffigen",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "ayghri/i-have-adhd",
+"skill_id": "i-have-adhd",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-run-static-analysis",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-generate-test-mocks",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-write-documentation",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-build-cli-app",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-add-unit-test",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-use-primary-constructors",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-use-doc-examples",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-collect-coverage",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-resolve-package-conflicts",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-use-pattern-matching",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-use-path-package",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "flutter/agent-plugins",
+"skill_id": "dart-setup-ffi-assets",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "meshy-dev/meshy-3d-agent",
+"skill_id": "meshy-3d-generation",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "design-md",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "atl-paas/net",
+"skill_id": "pr-risk-assessment",
+"installs": 5
+},
+{
+"list": "hot",
+"source": "leonxlnx/earshot",
+"skill_id": "real-sound",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "stitch-loop",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "stitch::manage-design-system",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "shadcn-ui",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "stitch::extract-static-html",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-rendering",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "docker/skills",
+"skill_id": "docker-build-strategies",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "taste-design",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-cameras",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "aws-cdk",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "aws/agent-toolkit-for-aws",
+"skill_id": "querying-data-lake",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "docker/skills",
+"skill_id": "docker-compose-patterns",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-animation",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "stitch::code-to-design",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "remotion",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "egonex-ai/understand-anything",
+"skill_id": "understand",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "stitch::generate-design",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "stitch::extract-design-md",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google/skills",
+"skill_id": "google-ads-api-quickstart",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "supabase/server",
+"skill_id": "supabase-server",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "site-md",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "callstackincubator/agent-skills",
+"skill_id": "react-native-best-practices",
+"installs": 4
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-sync-to-dondon",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-jtbd",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "fit-repair-optimizer",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-goal",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "contour-to-mesh",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "imbad0202/academic-research-skills",
+"skill_id": "academic-paper",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-resonate",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "cesartevisual/threejs-skills",
+"skill_id": "threejs-geometry",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "texture-state-animation",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-workflow-recipes",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-diagnosis",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "imbad0202/academic-research-skills",
+"skill_id": "academic-paper-reviewer",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "owasp-top-10-testing",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "texture-driven-mesh-fitting",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "amelnagdy/delegate-skills",
+"skill_id": "codex-delegate",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-human-dispatch",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-computer-use",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-report",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "multiview-fit-loop",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-knowledge",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "penetration-testing-with-strix",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "onsager-ai/agent-workbench",
+"skill_id": "orchestrate-harnesses",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "wireframe-to-3d",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "landmark-fit-repair",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-environment-kits",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "reference-look-calibration",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-standard-answer",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-plain-writing",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-lighting-lookdev",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "text-to-blender",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-video-extract",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "apidojo-io/apidojo-skills",
+"skill_id": "finding-content-gaps-from-google-serp",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "ronykax/skills",
+"skill_id": "draw-icons",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "reference-analysis-validator",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "managed-pentesting-with-strix",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-addon-development",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-update",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-speak-human",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-save",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-decision",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "animation-quality-gate",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-video-navigation",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-action",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-theory-grounding",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "nilbuild/stick-scene",
+"skill_id": "stick-scene",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-install-skill",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "source-part-segmentation",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "orbital-hud-motion",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-restore",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "star23/elon-musk",
+"skill_id": "elon-musk",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-wechat-html",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-chatroom",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "suzheng/k2f",
+"skill_id": "k2f-worksheet",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "minimax-ai/cli",
+"skill_id": "mmx-cli",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-good-question",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-content-system",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-skill-maker",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "web-app-penetration-testing",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-uv-texturing",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "amelnagdy/delegate-skills",
+"skill_id": "delegate-setup",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "usestrix/strix",
+"skill_id": "api-security-testing",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-pbr-materials",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-pipeline-automation",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-learning",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "nexu-io/openmotion",
+"skill_id": "openmotion-game",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "orthographic-registration",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-deconstruct",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "nexu-io/openmotion",
+"skill_id": "openmotion-recreate",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "el4cteo/blender-skills",
+"skill_id": "blender-rendering",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "googlecolab/google-colab-cli",
+"skill_id": "colab-operator",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-chatroom-austrian",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "quality-refinement-autoloop",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "onsager-ai/agent-workbench",
+"skill_id": "workbench-setup",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "reference-to-3d",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "cesartevisual/threejs-skills",
+"skill_id": "threejs-materials",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-spread",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "multiview-constraint-solver",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "pixijs/pixijs-skills",
+"skill_id": "pixijs",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-content-value",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "blender-skill-harmonizer",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-content",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "dontbesilent2025/dbskill",
+"skill_id": "dbs-benchmark",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "closed-surface-uv-coverage",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "atlas-uv-fitting",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "roble3/cc-blender-skill",
+"skill_id": "mascot-logo-reconstruction",
+"installs": 3
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-sequence-verifiable-units",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-subtract-before-you-add",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-model-the-domain",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-laziness-protocol",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "statechart",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-minimize-reader-load",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-never-block-on-the-human",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "typescript-best-practices",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "swarm",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-make-operations-idempotent",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "teach",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-prove-it-works",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-type-system-discipline",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "reflect",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "recall",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-explain-the-number",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-separate-before-serializing-shared-state",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-test-behavior-not-implementation",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-foundational-thinking",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-guard-the-context-window",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-migrate-callers-then-delete-legacy-apis",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "setup-pstack",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "principle-outcome-oriented-execution",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "backnotprop/pstack",
+"skill_id": "tdd",
+"installs": 14
+},
+{
+"list": "hot",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmod-core-tools",
+"installs": 13
+},
+{
+"list": "hot",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "save-systems",
+"installs": 9
+},
+{
+"list": "hot",
+"source": "google-gemini/gemini-skills",
+"skill_id": "gemini-api-dev",
+"installs": 9
+},
+{
+"list": "hot",
+"source": "digitalsamba/claude-code-video-toolkit",
+"skill_id": "ffmpeg",
+"installs": 9
+},
+{
+"list": "hot",
+"source": "miqdadbadjuber/anti-slop",
+"skill_id": "antislop-copywriting",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "godot-gdscript-headless-testing",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "procedural-gen",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "miqdadbadjuber/anti-slop",
+"skill_id": "antislop-code",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "miqdadbadjuber/anti-slop",
+"skill_id": "antislop-layoutmobile",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "gamedev-skills/awesome-gamedev-agent-skills",
+"skill_id": "game-ai",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "jakubkrehel/skills",
+"skill_id": "interface-review",
+"installs": 8
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "rhwp-edit",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "hwp",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "kie.ai",
+"skill_id": "kie-chat-agents",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "dickwu/apple-design-skill",
+"skill_id": "apple-design",
+"installs": 7
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "household-waste-info",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "corporate-registration-consulting",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "market-kurly-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "k-skill-cleaner",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "mfds-food-safety",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "zipcode-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "saju-fortune",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-patent-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "komsa-ferry-info",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kosis-stats",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "han-river-water-level",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "k-skill-setup",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "ev-subsidy-status",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "daangn-used-goods-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "daangn-jobs-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "company-analysis",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "google-labs-code/stitch-skills",
+"skill_id": "enhance-prompt",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-middle-korean",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "express-bus-booking",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "d2b-notice-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "jobkorea-talent-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "ticket-availability",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "naver-news-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "court-auction-notice-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "seoul-subway-arrival",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "g2b-order-plan-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "boim-business-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kakaotalk-mac",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kbo-results",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "delivery-tracking",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "subway-lost-property",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "geeknews-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kleague-results",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-character-count",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "donation-place-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "localdata-business-status",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "bok-ecos-stats",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "animal-pharmacy-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kbl-results",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "intercity-bus-booking",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korea-weather",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-holiday-calendar",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "government-support-survey",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "job-posting-match",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-marathon-schedule",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "hankookilbo-news",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "bunjang-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "korean-heritage-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "myrealtrip-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "flight-ticket-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "coupang-product-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "daiso-product-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kstartup-search",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "kamis-food-price",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "government-bond-analysis",
+"installs": 6
+},
+{
+"list": "hot",
+"source": "nomadamas/k-skill",
+"skill_id": "lotto-results",
+"installs": 6
+},
+{
+"list": "trending",
+"source": "uxpilot-ai/user-interview-skill",
+"skill_id": "user-interview-guide",
+"installs": 1223
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad",
+"installs": 482
+},
+{
+"list": "trending",
+"source": "humanlayer/skills",
+"skill_id": "show-me",
+"installs": 462
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmod-method",
+"installs": 455
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-facilitate",
+"installs": 451
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-build",
+"installs": 447
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-brainstorming",
+"installs": 447
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-deep-recon",
+"installs": 444
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-customize",
+"installs": 444
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-agent-po",
+"installs": 444
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-advanced-elicitation",
+"installs": 443
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-party-mode",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-forge-idea",
+"installs": 442
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-review",
+"installs": 440
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-shard-pro",
+"installs": 439
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-ingest",
+"installs": 439
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-agent-ux-designer",
+"installs": 435
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-retrospective",
+"installs": 435
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-walkthrough",
+"installs": 434
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-agent-pm",
+"installs": 434
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-code-review",
+"installs": 434
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-build-auto",
+"installs": 432
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-agent-analyst",
+"installs": 432
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-ux",
+"installs": 431
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-agent-architect",
+"installs": 431
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-qa-generate-e2e-tests",
+"installs": 431
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-agent-dev",
+"installs": 430
+},
+{
+"list": "trending",
+"source": "bmad-code-org/bmad-method",
+"skill_id": "bmad-project-context",
+"installs": 429
+},
+{
+"list": "trending",
+"source": "hypit-ai/hypit",
+"skill_id": "hypit",
+"installs": 427
+},
+{
+"list": "trending",
+"source": "cloudai-x/threejs-skills",
+"skill_id": "threejs-animation",
+"installs": 413
+}
+]
+}

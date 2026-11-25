@@ -233,9 +233,16 @@ does not actually fit, as judged by a separate model.
   wrong skill for 22% of no-match requests at a threshold of 0.999. Use `jev`
   when avoiding wrong skills matters.
 - Korean requests are weaker than English (`jev` useful rate 58% against 78%).
-- Letting the judge scan the whole corpus (`SKILL_RAG_RERANK_SCAN_MAX`) finds
-  the right skill more often but also returns more wrong ones, so it is off by
-  default.
+- Letting the judge scan the whole corpus (`SKILL_RAG_RERANK_SCAN_MAX`) is off
+  by default. Measured again with an agent deciding what to load, it raised
+  useful loads from 77.2% to 82.1% (Korean requests 71.0% to 80.6%, English
+  unchanged) with wrong loads inside the limits, but it missed the adoption
+  bar set in advance (+5 points) by one request and was not confirmed on a
+  test set. Worth trying with `SKILL_RAG_RERANK_SCAN_MAX=500` if many requests
+  are Korean. Cost at 350 skills: about 17,800 more input tokens and 0.37 s
+  per search, and every skill's name and first 120 characters of description
+  are sent to the provider on every search. Details:
+  `docs/benchmarks/2026-11-25-scan-results.md`.
 - Input tokens per search: about 3,400 for `jev`, 5,100 for `openai`.
 
 **The agent decides the uncertain cases.** When no skill reaches 0.9 but one

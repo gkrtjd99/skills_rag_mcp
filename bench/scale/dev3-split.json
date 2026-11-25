@@ -1,0 +1,307 @@
+{
+ "seed": 20261129,
+ "targets": [
+  "offers",
+  "lark-contact",
+  "post-purchase-upsell-flow",
+  "systematic-debugging",
+  "write-swift",
+  "find-skills",
+  "mastra",
+  "seo-audit",
+  "higgsfield-faceless-video",
+  "caveman-evidence-review",
+  "prisma-database-setup",
+  "happyhorse-1-0",
+  "flux-2-klein",
+  "firebase-ai-logic-basics",
+  "test-driven-development",
+  "landing-page-conversion-audit",
+  "cloudflare-one-migrations",
+  "lipsync",
+  "python-executor",
+  "cloudflare",
+  "triage",
+  "safe-refactor",
+  "lark-im",
+  "repo-intake-and-plan",
+  "vercel-optimize",
+  "defuddle",
+  "slack-gif-creator",
+  "lark-openapi-explorer",
+  "reverse-any-video",
+  "agent-browser",
+  "product-hunt-launch",
+  "turborepo",
+  "sales-enablement",
+  "brand-guidelines",
+  "ponytail-review",
+  "to-tickets",
+  "orchestration",
+  "slides",
+  "using-superpowers",
+  "ai-music",
+  "azure-kubernetes",
+  "azure-ai",
+  "make-interfaces-feel-better",
+  "animation-performance",
+  "marketing-psychology",
+  "google-agents-cli-scaffold",
+  "canvas-design",
+  "anti-detect-browser",
+  "hyperframes-cli",
+  "firecrawl-map"
+ ],
+ "negatives": [
+  {
+   "name": "subway-lost-property",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "99437b084b01ba4fbdd09d3c17fcb1eab7090038"
+  },
+  {
+   "name": "fit-repair-optimizer",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "6c0e32c0d5580731de21de720b161e4c18580ffd"
+  },
+  {
+   "name": "flight-ticket-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "8467d24fac493d7255a110286d724086d706d57a"
+  },
+  {
+   "name": "swarm",
+   "source": "backnotprop/pstack",
+   "blob_sha": "cf6d20c87258bc7753076d86f26a22c5734aae93"
+  },
+  {
+   "name": "blender-modeling",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "e8df36fc279c92c2ba4714f0978eff7ad26501a0"
+  },
+  {
+   "name": "dbs-goal",
+   "source": "dontbesilent2025/dbskill",
+   "blob_sha": "fad6c5437d66e5f72a61d9fca5406ec9fe8406ef"
+  },
+  {
+   "name": "antislop-code",
+   "source": "miqdadbadjuber/anti-slop",
+   "blob_sha": "f53a5dab9edc8e3004d2d7e45dfdbe446710e24a"
+  },
+  {
+   "name": "deploying-containers-to-amazon-lightsail",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "d26bcb14981068adecd54e7b19c6100f2318bd2e"
+  },
+  {
+   "name": "k-skill-cleaner",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "ebd49d11f85c85c06bf6cade3cc74102300c6f95"
+  },
+  {
+   "name": "debugging-mwaa-workflow",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "533eaa99796c592da94c08a85c94a3e28f7bf9df"
+  },
+  {
+   "name": "bunjang-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "f90c2c7134afff1c411b40f4d07efd70ca53073d"
+  },
+  {
+   "name": "myrealtrip-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "4afb6d48c06253d303b204e2190bff69dbe4cdc2"
+  },
+  {
+   "name": "han-river-water-level",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "951983c45f21d921a019bebaec4c7d3fe8cc2eac"
+  },
+  {
+   "name": "no-comments",
+   "source": "backnotprop/pstack",
+   "blob_sha": "c1984e8ad81ae4577a409a8301b52ab54eb3a441"
+  },
+  {
+   "name": "daangn-used-goods-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "62c2faed8eb4bad09d84a49f844fc4cc92b6566b"
+  },
+  {
+   "name": "korean-marathon-schedule",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "81a2cfc44b0e26498d3573e31c7c0c0d615b01b2"
+  },
+  {
+   "name": "closed-surface-uv-coverage",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "5b18f697f3848766590165d0cfc4ea0771297297"
+  },
+  {
+   "name": "paseo-handoff",
+   "source": "getpaseo/paseo",
+   "blob_sha": "fac6793e5ed7ce6c9099e757e89aef34ea02415c"
+  },
+  {
+   "name": "animal-pharmacy-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "b9ee8a8a75c2e1c913017ba64e1a7f38fe396cf0"
+  },
+  {
+   "name": "orbital-hud-motion",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "ea01173b7672978b89b3d88452bf88de979111cc"
+  },
+  {
+   "name": "authoring-mwaa-workflow",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "766b938a847876f351bd369b87439831e4588b90"
+  },
+  {
+   "name": "site-md",
+   "source": "google-labs-code/stitch-skills",
+   "blob_sha": "6f62b44fc1c422d3a430268826fe8b00ccb3b33b"
+  },
+  {
+   "name": "principle-model-the-domain",
+   "source": "backnotprop/pstack",
+   "blob_sha": "88ba012f47bd51b2db0758c657610d56f871e1ba"
+  },
+  {
+   "name": "k2f-sales-deck",
+   "source": "suzheng/k2f",
+   "blob_sha": "070d1008fc080389ae2cb899c453fc43577211ca"
+  },
+  {
+   "name": "workbench-setup",
+   "source": "onsager-ai/agent-workbench",
+   "blob_sha": "aa5ab7afdb6180171fa919151e22c3304e4325c1"
+  },
+  {
+   "name": "paseo-committee",
+   "source": "getpaseo/paseo",
+   "blob_sha": "e41ca8ba81a6d5c002101b8d8e28916df37ce066"
+  },
+  {
+   "name": "setting-up-cloudtrail-multi-region",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "3a4de95ac467d4fb491b5e2e96a4f25bd14b5987"
+  },
+  {
+   "name": "automate-me",
+   "source": "backnotprop/pstack",
+   "blob_sha": "c316d723475091312b39e833d3fec1c9e65c0312"
+  },
+  {
+   "name": "migrating-hive-tables-to-s3-tables",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "3c61f445d320fb32b7b33824828a0c26fc162af4"
+  },
+  {
+   "name": "k2f-flyer",
+   "source": "suzheng/k2f",
+   "blob_sha": "dfcf0fc1e58f05c54bcbea0d852f34ce38ccd57e"
+  },
+  {
+   "name": "paseo",
+   "source": "getpaseo/paseo",
+   "blob_sha": "cb6fe4360f6a2fc930b9fc854f96695e867273cd"
+  },
+  {
+   "name": "animation-quality-gate",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "1932467d196bc695b6c5ee8a5ad4015811f32826"
+  },
+  {
+   "name": "dart-use-path-package",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "5f9fe324099a296237fa25fe7a65bbc6d176c64b"
+  },
+  {
+   "name": "aws-ai-ml",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "d705a4acc720574293f0741869df268785636de2"
+  },
+  {
+   "name": "waf",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "a7e06299c08d049d2881437ccf620a338f7e73a6"
+  },
+  {
+   "name": "benchmark-checklist",
+   "source": "backnotprop/pstack",
+   "blob_sha": "88546fa684c003625a13d61b975ced97b8fcb90e"
+  },
+  {
+   "name": "amazon-opensearch-memory",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "aa9436d151259830b04c8659f39f18330ddf2dff"
+  },
+  {
+   "name": "flutter-setup-localization",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "d3dd4596da225df783e1816c658125206566902b"
+  },
+  {
+   "name": "configuring-vpc-endpoints-for-private-aws-service-access",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "b05fccbb0a1bc001ea3e47eddedd417294e5dc03"
+  },
+  {
+   "name": "transitgateway",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "7aa107748bc57daeef38735efa95ec86152fdba6"
+  },
+  {
+   "name": "enabling-lambda-vpc-internet-access",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "6bcf0af45d3533d4786d0270df1441272684e356"
+  },
+  {
+   "name": "rederive",
+   "source": "ericjujianzou/rederive",
+   "blob_sha": "d683da1da6f42ffdc0c70233011b6d64526b4095"
+  },
+  {
+   "name": "design-md",
+   "source": "google-labs-code/stitch-skills",
+   "blob_sha": "c29a0feb9c06c2fb48dc9114988382e06b1f9d9b"
+  },
+  {
+   "name": "openmotion-game",
+   "source": "nexu-io/openmotion",
+   "blob_sha": "b1f490d417fe111ea42e3f1b3bc3387edac90dd3"
+  },
+  {
+   "name": "hypit",
+   "source": "hypit-ai/hypit",
+   "blob_sha": "99e1f054c0088f772d2ed9d41d4339c8250a3ef0"
+  },
+  {
+   "name": "market-kurly-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "8053cb1f69eb255aa08be99c4ce4319753793df1"
+  },
+  {
+   "name": "dbs-chatroom",
+   "source": "dontbesilent2025/dbskill",
+   "blob_sha": "36689aa36eff175c5dfa2315478371f9e0333a8b"
+  },
+  {
+   "name": "blender-pbr-materials",
+   "source": "el4cteo/blender-skills",
+   "blob_sha": "bf6672b927e80613024354e0217c1c264b1f05fa"
+  },
+  {
+   "name": "procedural-gen",
+   "source": "gamedev-skills/awesome-gamedev-agent-skills",
+   "blob_sha": "356e09cbf880d966768e9a7707aa58e2e06ef102"
+  },
+  {
+   "name": "aws-emulator",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "f0322b9514e194c8f8a2fd8debd9a72a03493b95"
+  }
+ ]
+}

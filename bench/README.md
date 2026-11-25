@@ -144,3 +144,8 @@ decides what to load. Not adopted; results in
 requests (`docs/benchmarks/2026-11-25-agent2-protocol.md`, results in
 `docs/benchmarks/2026-11-25-agent2-results.md`): the uncertain band was
 adopted, local candidates without a judge were not.
+
+`bench/scale/scan_agent.py` measures the judge's whole-corpus scan with the
+agent in the loop (`docs/benchmarks/2026-11-25-scan-protocol.md`). It missed
+the adoption bar by one request and stays opt-in; results in
+`docs/benchmarks/2026-11-25-scan-results.md`.
