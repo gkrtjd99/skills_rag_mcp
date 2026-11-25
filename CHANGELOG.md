@@ -37,6 +37,8 @@
 - `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
   top N of the local ranking as uncertain candidates instead of the gate's
   hits. Fewer wrong loads, fewer useful ones.
+- Removed the GitHub Actions workflow. `make check` runs the same steps
+  locally (lockfile, tests, build, dry-run install).
 - **Default with a judge changed** (`SKILL_RAG_RERANK_STYLE=candidates`): the
   judge scans every skill (`SKILL_RAG_RERANK_SCAN_MAX` now 500), and the
   shortlisted skills at or above 0.5 are returned best first, at most 8, as
