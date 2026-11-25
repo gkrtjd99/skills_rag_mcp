@@ -49,6 +49,9 @@ package-managed index write.
    (single letter, all digits, or a curated ko/en affirmation/ack token) returns
    `{status: "skip"}` immediately — no sync, no embedding, no search.
 1. `sync.sync_if_stale()` runs at most once per TTL window (default 30 s).
+   If the query names an indexed skill outright (`/name`, `name skill`; see
+   `retrieve.explicit_matches`), that skill is returned here and the steps
+   below are skipped.
 2. `retrieve.search` reads indexed metadata and text.
 3. The query is normalized, augmented with a small Korean intent bridge when
    useful, and encoded as an E5 `query:` with the local embedding model
@@ -67,6 +70,11 @@ package-managed index write.
    (default 0.30).
 7. Kept candidates are ordered by reciprocal rank fusion (`RRF_K`, default 60).
 8. Returns `{status: "ok", hits}` or `{status: "no_match", hits: [], message}`.
+
+Steps 6-8 are the threshold gate, the default without a judge. With
+`SKILL_RAG_LOCAL_CANDIDATES=3` the tool instead returns the top 3 of the
+fused ranking (no thresholds) as `{status: "uncertain", hits, message}` and
+the calling agent decides whether to load one.
 
 With `SKILL_RAG_RERANK` set (`jev`, `openai`, or `package.module:factory`),
 steps 6-7 are replaced after sync: `retrieve.shortlist` returns the top 16 by
@@ -196,6 +204,7 @@ The bootstrap skill and server response shapes jointly prevent retry loops:
 | `search_skills` | Empty query, empty corpus, or no candidate above thresholds | `no_match` | Respond directly. No reworded retry. |
 | `get_skill` | Missing skill after forced sync | `not_found` | Do not retry this name this turn. |
 | `search_skills` | Hits returned, none actually fit | `ok` (agent judges) | Proceed without a skill. |
+| `search_skills` | No skill confirmed; candidates offered | `uncertain` | Load at most one that clearly fits, else none. No reworded retry. |
 
 ## Constraints
 

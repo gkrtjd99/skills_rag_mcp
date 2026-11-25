@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from functools import lru_cache
 
 from .corpus import (
@@ -83,6 +84,81 @@ def skip_response() -> dict:
 def no_match_response() -> dict:
     """Terminal ``no_match`` response when no candidate is kept."""
     return {"status": "no_match", "hits": [], "message": _NO_MATCH}
+
+
+# Text of an ``uncertain`` response. This exact wording is what the
+# agent-in-the-loop benchmark measured
+# (docs/benchmarks/2026-11-25-agent2-results.md); a stricter wording lost
+# right skills without removing wrong ones.
+_UNCERTAIN = (
+    "No skill was confirmed for this request. These are uncertain candidates: load "
+    "one only if its description clearly covers the task; otherwise proceed without a skill."
+)
+
+
+def explicit_matches(query: str) -> list[dict]:
+    """Indexed skills the query names outright, in order of appearance.
+
+    Rows are ``{name, description, agent}``. A skill name is often an ordinary
+    word (``deploy``, ``tdd``), so a bare mention does not count. The name
+    must appear as a whole token, case-insensitively, in one of these forms:
+
+    - the whole query is the name;
+    - invoked like a command: ``/name`` or ``$name`` at the start of a word;
+    - next to the word skill: ``name skill``, ``name 스킬``, ``skill name``,
+      ``스킬 name`` (not the plural ``skills``).
+
+    A quoted or backticked name does not count: on 1,372 benchmark requests
+    the only matches of that form were a package called ``convex-test`` written
+    as code, where the user was not choosing the skill of the same name.
+    """
+    text = query.strip()
+    if not text:
+        return []
+    found: list[tuple[int, dict]] = []
+    lowered = text.lower()
+    for row in _list_indexed():
+        # Cheap substring test first: almost no name occurs in a given query,
+        # and compiling five patterns per skill would cost more than the search.
+        if row["name"].lower() not in lowered:
+            continue
+        name = re.escape(row["name"])
+        # ASCII boundaries only, so a Korean particle may follow ("tdd를").
+        # A name followed by ".ext" is a file ("deploy.log", "/tdd.py").
+        token = rf"(?<![A-Za-z0-9_-]){name}(?![A-Za-z0-9_-]|\.[A-Za-z0-9])"
+        patterns = (
+            rf"^\s*{name}\s*$",
+            rf"(?:^|(?<=\s))[/$]{name}(?![A-Za-z0-9_\-/]|\.[A-Za-z0-9])",
+            rf"{token}[`'\"]?\s*(?:skill(?![a-z])|스킬)",
+            rf"(?:(?<![a-z])skill|스킬)\s*:?\s*[`'\"]?{token}",
+        )
+        positions = [
+            m.start() for p in patterns if (m := re.search(p, text, flags=re.IGNORECASE))
+        ]
+        if positions:
+            found.append((min(positions), {"name": row["name"], "description": row["description"], "agent": row.get("agent", "unknown")}))
+    return [row for _, row in sorted(found, key=lambda pair: pair[0])]
+
+
+def uncertain_response(rows: list[dict], max_chars: int) -> dict:
+    """Unconfirmed candidates for the calling agent to accept or decline.
+
+    ``rows`` are ``{name, description, ...}``. The hits carry no score: they
+    are marked ``"confidence": "low"`` instead, and the agent decides from the
+    name and description.
+    """
+    return {
+        "status": "uncertain",
+        "hits": [
+            {
+                "name": row["name"],
+                "description": _compact_description(row["description"], max_chars),
+                "confidence": "low",
+            }
+            for row in rows
+        ],
+        "message": _UNCERTAIN,
+    }
 
 
 def format_hit(

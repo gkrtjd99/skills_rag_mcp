@@ -56,7 +56,8 @@ def _write(event: dict) -> None:
 
 
 def record_search(query: str, result: dict, provider: str) -> None:
-    hits = [{"name": h["name"], "score": h["score"]} for h in result.get("hits", [])]
+    # Uncertain candidates carry no score.
+    hits = [{"name": h["name"], "score": h.get("score")} for h in result.get("hits", [])]
     _suggested.update(h["name"] for h in hits)
     event = {"event": "search", "status": result.get("status"), "provider": provider or "gate", "hits": hits}
     if USAGE_LOG == "full":

@@ -65,7 +65,7 @@ After restarting the harness, in a fresh session:
 
 - Confirm the `using-skill-rag` meta-skill auto-loads at start
 - Confirm the `mcp__skill-rag__search_skills` tool is visible in any message
-- Try it directly: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
+- Try it directly: `search_skills(query="...", k=5)` → `{status: "ok"|"uncertain"|"no_match", hits, ...}`
 
 You can also verify the same search from the CLI:
 
@@ -190,6 +190,7 @@ MCP server process) is not suggested again.
 | `SKILL_RAG_USAGE_LOG` | `stats` | Local usage log: `stats` (skill names and scores only), `full` (also request text), `off` |
 | `SKILL_RAG_USAGE_PATH` | `./var/usage.jsonl` | Usage log file |
 | `SKILL_RAG_EXCLUDE_LOADED` | `1` | Leave skills already loaded in this session out of suggestions (`0` disables) |
+| `SKILL_RAG_EXPLICIT` | `1` | When the request names a skill outright (`/name`, `name skill`), return it without a judgment (`0` turns it off) |
 | `SKILL_RAG_RERANK` | (off) | Second-stage fit judge: `jev`, `openai`, or your own `package.module:factory` (cloud call, see below) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | Candidate skills shown to the judge |
 | `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | Minimum fit probability for a skill to be returned (chosen with `jev`) |
@@ -199,6 +200,8 @@ MCP server process) is not suggested again.
 | `SKILL_RAG_RERANK_TIMEOUT` | `5` | Judge request timeout (seconds) |
 | `SKILL_RAG_RERANK_COOLDOWN` | `60` | Seconds to stay on the local gate after a failed judge call |
 | `SKILL_RAG_RERANK_DESCRIPTION_CHARS` | `120` | Description cap for judged hits (`0` disables the cap) |
+| `SKILL_RAG_RERANK_UNCERTAIN_FROM` | `0.7` | Below the threshold, return the single best skill at or above this probability as an `uncertain` candidate (a value at or above the threshold turns it off) |
+| `SKILL_RAG_LOCAL_CANDIDATES` | `0` | Without a judge, return the top N of the local ranking as `uncertain` candidates (`0` keeps the default gate) |
 
 ### Optional: judge rerank (off by default)
 
@@ -234,6 +237,29 @@ does not actually fit, as judged by a separate model.
   the right skill more often but also returns more wrong ones, so it is off by
   default.
 - Input tokens per search: about 3,400 for `jev`, 5,100 for `openai`.
+
+**The agent decides the uncertain cases.** When no skill reaches 0.9 but one
+is at or above 0.7, the best one is returned as `status: "uncertain"` (no
+score, `"confidence": "low"`, a 120-character description) and the calling
+agent decides whether to load it. Measured with a model acting as the agent,
+counting what it chose to load (fresh test set, 194 matching and 97 no-match
+requests):
+
+| | Useful skill loaded | Wrong skill loaded when none matches | Wrong skill loaded when one matches |
+| --- | ---: | ---: | ---: |
+| `jev`, 0.9 and above only | 60.3% | 4.1% | 3.1% |
+| `jev` plus the uncertain candidate (default) | 67.0% | 8.2% | 2.1% |
+| No judge, agent reads the gate's result | 69.6% | 14.4% | 4.1% |
+| No judge, `SKILL_RAG_LOCAL_CANDIDATES=3` | 62.9% | 7.2% | 4.6% |
+
+- The useful rate rises by 6.7 points; wrong loads on no-match requests go
+  from 4 to 8 of 97. Turn it off with `SKILL_RAG_RERANK_UNCERTAIN_FROM=0.9`.
+- Without a judge, an agent filtering the gate's result loads a useful skill
+  about as often. What the judge buys is fewer wrong loads (8% against 14%)
+  and less metadata per search (about 110 characters against 1,210).
+- Limits: the agent is one model call with an empty context, not the model in
+  a real harness, and only `jev` was measured. Details:
+  `docs/benchmarks/2026-11-25-agent2-results.md`.
 
 Full tables, how the configuration was chosen, and limits:
 `docs/benchmarks/2026-11-24-precision-results.md`. Results by corpus size (50

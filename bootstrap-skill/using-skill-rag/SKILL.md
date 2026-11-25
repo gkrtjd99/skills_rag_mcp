@@ -28,6 +28,10 @@ Concretely:
   The task context was fixed in the first turn; the reply can't need a new
   skill. Resume searching only when the user introduces a genuinely new task.
 
+**The user names a skill** ("use the tdd skill", `/tdd`): keep that wording
+in the query (`"/tdd add a parser"`). A skill named that way is returned
+directly, whatever its score would have been.
+
 If you are unsure whether the topic shifted, searching once is fine — the cost
 is one call. The rule exists to stop searching on every turn of a conversation
 whose skill needs never change.
@@ -49,6 +53,14 @@ parent already framed, skip.
     debugging) before implementation skills.
   - If none of the descriptions actually fit despite being returned,
     proceed without a skill. Do not refetch with reworded queries.
+
+- `{status: "uncertain", hits: [{name, description, confidence: "low"}, ...], message: ...}`
+  - The search could not confirm any skill; these are candidates only, and
+    often none of them fits.
+  - Load **at most one**, and only if its name and description clearly cover
+    this specific task on the same product, platform, or technology.
+    Otherwise proceed without a skill. Do not search again with a reworded
+    query.
 
 - `{status: "no_match", hits: [], message: ...}`
   - No skill applies. Respond directly. **DO NOT call `search_skills` again

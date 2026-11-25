@@ -42,11 +42,14 @@ size: at 350 skills strict recall@1 is 0.450 for the gate and 0.672 / 0.646 for
    from 0.5 after the precision benchmark) are kept in order of probability
    and at most `SKILL_RAG_RERANK_MAX_HITS` (default 1) are returned. The hit `score` is that probability, and
    the hit `description` is capped at `SKILL_RAG_RERANK_DESCRIPTION_CHARS`
-   (default 120). If none qualify the response is the usual `no_match`.
+   (default 120). If none qualify the response is the usual `no_match`, or,
+   since `2026-11-25-uncertain-and-explicit.md`, an `uncertain` response
+   carrying the best candidate at or above 0.7.
 4. `skip`, empty-query, and empty-corpus responses are decided locally before
    any request.
 
-Response shapes are unchanged. The `score` field keeps its range but changes
+Response shapes were unchanged by this spec; `2026-11-25-uncertain-and-explicit.md`
+later added the `uncertain` status. The `score` field keeps its range but changes
 meaning when rerank is on: a per-skill probability, comparable across queries,
 instead of a query-relative fused rank.
 

@@ -23,6 +23,20 @@
   350-skill test set `jev` returns a skill that does not fit for 9.3% of
   requests with no matching skill (34.0% at the earlier 0.5 / up-to-`k`
   setting) and returns a useful skill for 67.9% of matching requests (79.6%).
+- `search_skills` can answer `status: "uncertain"`: with a judge, when no
+  skill reaches the threshold, the best one at or above
+  `SKILL_RAG_RERANK_UNCERTAIN_FROM` (0.7) is returned marked
+  `"confidence": "low"` and the calling agent decides. On a fresh test set a
+  simulated agent loaded a useful skill for 67.0% of matching requests instead
+  of 60.3%, and a wrong one for 8.2% of no-match requests instead of 4.1%.
+  The bootstrap skill tells agents how to treat the new status.
+- A skill the request names outright (`/name`, `$name`, "the name skill",
+  "name 스킬") is returned without a judgment, with or without a judge.
+  A bare mention of a name does not count. `SKILL_RAG_EXPLICIT=0` turns it
+  off. Not covered by the benchmarks, whose requests never name a skill.
+- `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
+  top N of the local ranking as uncertain candidates instead of the gate's
+  hits. Fewer wrong loads, fewer useful ones.
 - Optional whole-corpus scan by the judge (`SKILL_RAG_RERANK_SCAN_MAX`, off by
   default): finds the right skill more often and returns more wrong ones.
 - `skill-rag adopt [names] [--from DIR]` moves skills out of harness or

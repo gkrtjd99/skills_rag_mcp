@@ -479,7 +479,105 @@ def make_test2() -> None:
     print(f"wrote {len(rows)} test-2 queries {dict(kinds)}; dropped for naming the skill: {dropped}")
 
 
+# Later request sets built like test2: (seed, earlier sets of this kind whose
+# skills must not be reused). See docs/benchmarks/2026-11-25-agent2-protocol.md.
+FRESH = {"dev2": (20261128, []), "test3": (20261127, ["dev2"])}
+
+
+def make_fresh(tag: str) -> None:
+    """A request set on skills no earlier set used as targets or no-match sources."""
+    seed, earlier = FRESH[tag]
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]
+    accepted = {a["name"]: a for a in manifest}
+    parts = json.loads(SPLIT.read_text(encoding="utf-8"))
+    used_targets = set(json.loads(DEV_SPLIT.read_text(encoding="utf-8"))["targets"])
+    used_negatives: set[str] = set()
+    for name in ["test2", *earlier]:
+        done = json.loads((HERE / f"{name}-split.json").read_text(encoding="utf-8"))
+        used_targets |= set(done["targets"])
+        used_negatives |= {n["name"].lower() for n in done["negatives"]}
+    rng = random.Random(seed)
+    eligible = [n for n in parts["distractors"][: max(parts["sizes"]) - N_TARGETS] if n not in used_targets]
+    targets = rng.sample(eligible, 50)
+
+    candidates = json.loads(CANDIDATES.read_text(encoding="utf-8"))["candidates"]
+    pooled_ids = {a["skill_id"].lower() for a in manifest}
+    pooled_names = {a["name"].lower() for a in manifest}
+    outside = [
+        c for c in candidates
+        if GITHUB_SOURCE.fullmatch(c["source"]) and c["skill_id"].lower() not in pooled_ids
+    ]
+    rng.shuffle(outside)
+    negatives: list[tuple[str, Path, str, str]] = []
+    seen: set[str] = set()
+    for c in outside:
+        if len(negatives) == 50:
+            break
+        key = c["source"].replace("/", "__")
+        tree = cached(WORK / "trees" / f"{key}.json", lambda: gh_json(f"repos/{c['source']}/git/trees/HEAD?recursive=1") or {})
+        entry = skill_md_entry(tree, c["skill_id"])
+        if not entry:
+            continue
+        blob = cached(WORK / "blobs" / f"{entry['sha']}.json", lambda: gh_json(f"repos/{c['source']}/git/blobs/{entry['sha']}") or {})
+        if "content" not in blob:
+            continue
+        skill_md = WORK / "outside" / f"{key}__{re.sub(r'[^A-Za-z0-9_.-]', '_', c['skill_id'])}" / "SKILL.md"
+        skill_md.parent.mkdir(parents=True, exist_ok=True)
+        skill_md.write_text(base64.b64decode(blob["content"]).decode("utf-8", "replace"), encoding="utf-8")
+        record = parse_skill_file(skill_md)
+        if (
+            record is None
+            or len(record.description) < MIN_DESCRIPTION
+            or len(record.body) < MIN_BODY
+            or record.name.lower() in pooled_names
+            or record.name.lower() in used_negatives
+            or record.name.lower() in seen
+        ):
+            continue
+        seen.add(record.name.lower())
+        negatives.append((record.name, skill_md, c["source"], entry["sha"]))
+
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 2, "positive") for n in targets] + [
+        (name, path, 1, "no_match_heldout") for name, path, _, _ in negatives
+    ]
+    rows, dropped = _generated_rows(jobs, tag)
+    (HERE / f"{tag}-queries.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    (HERE / f"{tag}-split.json").write_text(
+        json.dumps(
+            {
+                "seed": seed,
+                "targets": targets,
+                "negatives": [{"name": n, "source": s, "blob_sha": sha} for n, _, s, sha in negatives],
+            },
+            indent=1,
+        ),
+        encoding="utf-8",
+    )
+    kinds = Counter(r["kind"] for r in rows)
+    print(f"wrote {len(rows)} {tag} queries {dict(kinds)}; dropped for naming the skill: {dropped}")
+
+
+def make_test3_negatives() -> None:
+    """No-match half of test3; see the addendum of 2026-11-25-agent2-protocol.md."""
+    accepted = {a["name"]: a for a in json.loads(MANIFEST.read_text(encoding="utf-8"))["accepted"]}
+    heldout = json.loads(SPLIT.read_text(encoding="utf-8"))["heldout"]
+    jobs = [(n, WORK / "pool" / accepted[n]["dir"] / "SKILL.md", 1, "no_match_heldout") for n in heldout]
+    rows, dropped = _generated_rows(jobs, "test3neg")
+    (HERE / "test3neg-queries.jsonl").write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8"
+    )
+    print(f"wrote {len(rows)} test3 no-match queries from {len(heldout)} skills; dropped for naming the skill: {dropped}")
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "test3neg":
+        make_test3_negatives()
+        sys.exit()
+    if sys.argv[1] in FRESH:
+        make_fresh(sys.argv[1])
+        sys.exit()
     {
         "pool": pool,  # the pinned pool when manifest.json exists
         "discover": build_pool,  # new benchmark only: overwrites manifest.json

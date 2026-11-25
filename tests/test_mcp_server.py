@@ -102,7 +102,7 @@ def test_search_skills_does_not_skip_real_query(tmp_path):
     corpus_root = tmp_path / "skills"
     _mk(corpus_root, "brainstorming", desc="explore ideas before implementation")
     res = mcp_server.search_skills("explore ideas before building", k=5)
-    assert res["status"] in {"ok", "no_match"}
+    assert res["status"] in {"ok", "uncertain", "no_match"}
     assert res["status"] != "skip"
 
 
@@ -139,7 +139,7 @@ def test_interactive_flow_searches_once_then_skips(tmp_path):
     opening = mcp_server.search_skills(
         "act as a PRD coach and interview me to draft a product spec", k=5
     )
-    assert opening["status"] in {"ok", "no_match"}  # a real retrieval ran
+    assert opening["status"] in {"ok", "uncertain", "no_match"}  # a real retrieval ran
 
     for reply in ["A", "B", "네", "잘 모르겠어요", "다음", "1", "done"]:
         res = mcp_server.search_skills(reply, k=5)
