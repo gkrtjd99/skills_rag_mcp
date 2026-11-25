@@ -212,6 +212,15 @@ def _copy_bootstrap(corpus_path: Path, dry_run: bool, refresh: bool) -> tuple[bo
     return True, False
 
 
+def bootstrap_outdated(corpus_path: Path | None = None) -> bool:
+    """True if the installed bootstrap skill differs from this checkout's template."""
+    installed = (corpus_path or corpus_mod.CORPUS_PATH) / corpus_mod.BOOTSTRAP_SKILL_NAME / "SKILL.md"
+    template = BOOTSTRAP_SRC / "SKILL.md"
+    if not installed.is_file() or not template.is_file():
+        return False
+    return _hash_file(installed) != _hash_file(template)
+
+
 def _link_bootstrap(harness_skill_dirs: list[Path], corpus_path: Path, dry_run: bool) -> tuple[list[str], list[str]]:
     target = corpus_path / corpus_mod.BOOTSTRAP_SKILL_NAME
     linked: list[str] = []
@@ -295,6 +304,7 @@ def install(
     return {
         "bootstrap_installed": bootstrap_installed,
         "bootstrap_refreshed": bootstrap_refreshed,
+        "bootstrap_outdated": not bootstrap_refreshed and bootstrap_outdated(corpus_path),
         "harness_links": links,
         "harness_conflicts": harness_conflicts,
         "collect_ran": collect_ran,

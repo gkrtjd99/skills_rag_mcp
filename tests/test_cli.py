@@ -237,3 +237,50 @@ def test_searching_commands_reject_out_of_range_k(command, k):
 
     assert result.exit_code != 0
     assert "Invalid value" in result.output
+
+
+def test_status_reports_notes_when_no_judge_is_active(monkeypatch):
+    from skill_rag import rerank
+
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "")
+    runner = CliRunner()
+    payload = json.loads(runner.invoke(app, ["status", "--json"]).stdout)
+    assert any("no judge model is active" in note for note in payload["notes"])
+    text = runner.invoke(app, ["status"]).stdout
+    assert "note            : no judge model is active" in text
+
+
+def test_status_reports_an_outdated_bootstrap_skill(monkeypatch):
+    monkeypatch.setattr(lifecycle_mod, "bootstrap_outdated", lambda *a, **k: True)
+    payload = json.loads(CliRunner().invoke(app, ["status", "--json"]).stdout)
+    assert any("--refresh-bootstrap" in note for note in payload["notes"])
+
+
+def test_install_prints_notes(monkeypatch):
+    from skill_rag import rerank
+
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "")
+    monkeypatch.setattr(
+        lifecycle_mod,
+        "install",
+        lambda **k: {"bootstrap_installed": False, "bootstrap_refreshed": False, "bootstrap_outdated": True,
+                     "harness_links": [], "collect_ran": True, "sync_ran": True, "mcp": {}, "dry_run": False},
+    )
+    out = CliRunner().invoke(app, ["install"]).stdout
+    assert "no judge model is active" in out
+    assert "--refresh-bootstrap" in out
+
+
+def test_install_dry_run_does_not_create_the_index(tmp_path, monkeypatch):
+    missing = tmp_path / "nowhere" / "index.lance"
+    monkeypatch.setenv("SKILL_RAG_INDEX_PATH", str(missing))
+    monkeypatch.setattr(
+        lifecycle_mod,
+        "install",
+        lambda **k: {"bootstrap_installed": True, "bootstrap_refreshed": False, "bootstrap_outdated": False,
+                     "harness_links": [], "collect_ran": False, "sync_ran": False, "mcp": {}, "dry_run": True},
+    )
+    result = CliRunner().invoke(app, ["install", "--dry-run"])
+    assert result.exit_code == 0
+    assert not missing.parent.exists()
+    assert index_mod.indexed_count() == 0

@@ -21,6 +21,7 @@
 | 2026-11-24 | Record suggestions and loads locally and stop re-suggesting skills loaded in the session; request text only on opt-in. | `../../docs/superpowers/specs/2026-11-24-usage-log.md`, `../../ARCHITECTURE.md` |
 | 2026-11-25 | Add the `uncertain` status: with a judge, the best candidate between 0.7 and the threshold goes to the calling agent to accept or decline; a skill the request names outright is returned without a judgment. | `../../docs/superpowers/specs/2026-11-25-uncertain-and-explicit.md`, `../../docs/benchmarks/2026-11-25-agent2-results.md`, `mcp-interface.md` |
 | 2026-11-25 | With a judge, return up to 8 judged candidates from a whole-corpus scan and let the calling agent choose (`candidates` style); the single-skill rule stays as `single`. The scan sends every skill name and 120 characters of description. | `../../docs/superpowers/specs/2026-11-25-candidates-style.md`, `../../docs/benchmarks/2026-11-25-candidates-results.md`, `../../SECURITY.md` |
+| 2026-11-26 | `install` and `status` print notes when the setup will not deliver the measured results: no active judge, a corpus too small for search to pay, a corpus above the scan limit, or an installed bootstrap skill that differs from the template. Notes never change behaviour. | `../../docs/superpowers/specs/2026-11-26-setup-notes.md` |
 
 Detailed dated implementation plans are intentionally not kept as active docs.
 Active future work belongs under `docs/superpowers/specs/` and

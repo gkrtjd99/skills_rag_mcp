@@ -273,3 +273,22 @@ def test_install_dry_run_previews_mcp(tmp_path, monkeypatch):
         harness_skill_dirs=[tmp_path / "h"], dry_run=True,
     )
     assert report["mcp"] == {"claude": "file", "codex": "file"}
+
+
+def test_install_reports_an_outdated_bootstrap_until_refreshed(tmp_path, monkeypatch):
+    corpus = tmp_path / "skills"
+    existing = corpus / "using-skill-rag"
+    existing.mkdir(parents=True)
+    (existing / "SKILL.md").write_text("an older bootstrap", encoding="utf-8")
+    monkeypatch.setattr(lifecycle, "collect", _FakeCollect(), raising=True)
+    monkeypatch.setattr(lifecycle, "sync", _FakeSync(), raising=True)
+    args = dict(repo=tmp_path / "repo", corpus_path=corpus, harness_skill_dirs=[])
+
+    assert lifecycle.install(**args)["bootstrap_outdated"] is True
+    assert lifecycle.bootstrap_outdated(corpus) is True
+    assert lifecycle.install(**args, refresh_bootstrap=True)["bootstrap_outdated"] is False
+    assert lifecycle.bootstrap_outdated(corpus) is False
+
+
+def test_bootstrap_outdated_is_false_when_nothing_is_installed(tmp_path):
+    assert lifecycle.bootstrap_outdated(tmp_path / "missing") is False

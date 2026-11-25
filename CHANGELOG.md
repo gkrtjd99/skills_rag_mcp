@@ -2,58 +2,33 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-26
+
+Search can now use a judge model, and with one it comes close to a harness
+that loads every skill description while loading far fewer wrong skills. A
+plain install has no judge and does not reach these numbers; `skill-rag
+status` says so.
+
 ### Added
 
-- Opt-in second-stage rerank, `SKILL_RAG_RERANK`: a judge model returns the
-  probability that each of the top 16 hybrid candidates fits the query. Off by
-  default; falls back to the local gate on any failure.
+- Opt-in judge model, `SKILL_RAG_RERANK`. Off by default; any failure falls
+  back to the local result.
   - `jev`: TypeSafe Jev (`rerank` extra, `TYPESAFE_API_KEY`).
   - `openai`: OpenAI Decisions API (`OPENAI_API_KEY`, no extra package).
   - `package.module:factory`: any model implementing `skill_rag.judges.Judge`.
-  When on, the query plus shortlisted skill names and descriptions are sent to
-  the chosen provider.
-- Judged hits return descriptions capped at 120 characters
-  (`SKILL_RAG_RERANK_DESCRIPTION_CHARS`), cutting the mean search response
-  from 1,184 to about 235 characters on the held-out corpus.
-- `bench/jev_rerank_ab.py` (one arm per `--judge`) and held-out query sets for
-  measuring the gate and judges on a corpus the thresholds were not tuned on.
-- `skill-rag status` reports rerank readiness and where data would be sent.
-- Rerank is precision first: threshold 0.9 and at most one skill returned
-  (`SKILL_RAG_RERANK_THRESHOLD`, `SKILL_RAG_RERANK_MAX_HITS`). On a fresh
-  350-skill test set `jev` returns a skill that does not fit for 9.3% of
-  requests with no matching skill (34.0% at the earlier 0.5 / up-to-`k`
-  setting) and returns a useful skill for 67.9% of matching requests (79.6%).
-- `search_skills` can answer `status: "uncertain"`: with a judge, when no
-  skill reaches the threshold, the best one at or above
-  `SKILL_RAG_RERANK_UNCERTAIN_FROM` (0.7) is returned marked
-  `"confidence": "low"` and the calling agent decides. On a fresh test set a
-  simulated agent loaded a useful skill for 67.0% of matching requests instead
-  of 60.3%, and a wrong one for 8.2% of no-match requests instead of 4.1%.
-  The bootstrap skill tells agents how to treat the new status.
+- With a judge, the default style is `candidates`
+  (`SKILL_RAG_RERANK_STYLE`): the judge scans every skill
+  (`SKILL_RAG_RERANK_SCAN_MAX`, up to 500), the 16 it ranks highest are
+  judged for fit, and those at or above 0.5 are returned best first, at most
+  8, as `status: "candidates"` with descriptions capped at 120 characters.
+  The calling agent chooses.
+- `SKILL_RAG_RERANK_STYLE=single`: one skill at or above 0.9
+  (`SKILL_RAG_RERANK_THRESHOLD`, `SKILL_RAG_RERANK_MAX_HITS`); otherwise the
+  best one at or above `SKILL_RAG_RERANK_UNCERTAIN_FROM` (0.7) as
+  `status: "uncertain"`, marked `"confidence": "low"`.
 - A skill the request names outright (`/name`, `$name`, "the name skill",
-  "name 스킬") is returned without a judgment, with or without a judge.
-  A bare mention of a name does not count. `SKILL_RAG_EXPLICIT=0` turns it
-  off. Not covered by the benchmarks, whose requests never name a skill.
-- `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
-  top N of the local ranking as uncertain candidates instead of the gate's
-  hits. Fewer wrong loads, fewer useful ones.
-- Removed the GitHub Actions workflow. `make check` runs the same steps
-  locally (lockfile, tests, build, dry-run install).
-- **Default with a judge changed** (`SKILL_RAG_RERANK_STYLE=candidates`): the
-  judge scans every skill (`SKILL_RAG_RERANK_SCAN_MAX` now 500), and the
-  shortlisted skills at or above 0.5 are returned best first, at most 8, as
-  `status: "candidates"` for the calling agent to choose from. On a fresh
-  test set a simulated agent loaded a useful skill for 91.1% of matching
-  requests (74.9% under the previous rule) and a wrong one for 9.4% of
-  no-match requests (0.0%). `SKILL_RAG_RERANK_STYLE=single` keeps the
-  previous rule. With the scan on, every search sends every skill's name and
-  first 120 characters of description to the provider.
-- Measured the alternative to search, every description in the agent's
-  context: 94.8% useful loads and 54.2% wrong loads on no-match requests on
-  the same test set, at about 33,750 tokens of standing context. The READMEs
-  now open with this comparison.
-- Optional whole-corpus scan by the judge (`SKILL_RAG_RERANK_SCAN_MAX`, off by
-  default): finds the right skill more often and returns more wrong ones.
+  "name 스킬") is returned without a judgment, with or without a judge. A
+  bare mention of a name does not count. `SKILL_RAG_EXPLICIT=0` turns it off.
 - `skill-rag adopt [names] [--from DIR]` moves skills out of harness or
   project skill directories into `~/.skills/`, so the harness stops loading
   their descriptions into every session; `skill-rag restore` moves them back.
@@ -64,23 +39,17 @@
 - Local usage log (`var/usage.jsonl`, `SKILL_RAG_USAGE_LOG=stats|full|off`) of
   what was suggested and what was then loaded, and `skill-rag usage` to
   summarize it per skill. No request text unless `full`.
-- Skills already loaded in the current session are no longer suggested again
+- Skills already loaded in the current session are not suggested again
   (`SKILL_RAG_EXCLUDE_LOADED`).
 - `get_skill` also returns `path`, the skill's directory, so bundled scripts
   and references resolve for skills no harness loads natively.
-
-### Measured
-
-- Scale benchmark with the protocol committed before any data was fetched:
-  433 skills from skills.sh, corpus sizes 50 to 350, 283 queries written by
-  another model. Strict recall@1 at 50 / 350 skills: gate 0.619 / 0.450, `jev`
-  0.862 / 0.672, `openai` 0.857 / 0.646. Strict no-match accuracy at 350:
-  0.021, 0.266, 0.319. The first-stage shortlist holds the expected skill 96%
-  of the time at 50 skills and 79% at 350. See
-  `docs/benchmarks/2026-11-24-scale-results.md`.
-- An earlier author-written set (45 skills, 133 queries) scored `jev` 0.979 /
-  1.000 and `openai` 0.968 / 0.947; it is an upper bound on easy queries
-  (`docs/benchmarks/2026-11-24-heldout-jev-rerank.md`).
+- `skill-rag status` reports the judge's readiness and where data would be
+  sent. `status` and `install` print notes when the setup will not deliver
+  the measured results: no active judge, fewer than 50 skills, a corpus above
+  the scan limit, or an installed bootstrap skill older than this version.
+- `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
+  top N of the local ranking as uncertain candidates instead of the gate's
+  hits. Fewer wrong loads, fewer useful ones.
 
 ### Changed
 
@@ -88,7 +57,58 @@
   and none); the index rebuilds itself on the next sync and indexing takes
   about twice as long. Fixture evaluations are unchanged at 1.000.
 - `skill-rag query` follows the same search path as the MCP tool, including
-  rerank when enabled.
+  the judge when enabled.
+- The bootstrap skill explains the `candidates` and `uncertain` statuses.
+  An existing install keeps its old copy until `skill-rag install
+  --refresh-bootstrap` is run.
+- The READMEs open with purpose, when to use it, features, and measured
+  effect.
+
+### Removed
+
+- The GitHub Actions workflow. `make check` runs the same steps locally
+  (lockfile, tests, build, dry-run install).
+
+### Privacy
+
+- Without a judge nothing leaves the machine, as before.
+- With a judge, every search sends the request text and the name and first
+  120 characters of description of every skill (scan on, the default) or of
+  the 16 shortlisted skills (scan off) to the chosen provider. Skill bodies
+  and paths are never sent. See `SECURITY.md`.
+
+### Upgrading from 0.3.0
+
+- `git pull`, `make install`, then `uv sync --extra rerank` if you use `jev`
+  (`make install` removes the extra).
+- `uv run skill-rag install --refresh-bootstrap` to replace the installed
+  bootstrap skill; back it up first if you edited it.
+- `search_skills` can now answer `candidates` and `uncertain` in addition to
+  `ok` and `no_match`, but only when a judge is configured.
+
+### Measured
+
+All with a model standing in for the calling agent (one call, empty context)
+and requests written by another model; 350 skills; `jev`. Each protocol was
+committed before its data existed. Rates are of what the agent loads.
+
+| | Useful skill loaded | Wrong skill loaded when none matches |
+|---|---|---|
+| `candidates` style, first corpus / second corpus | 91.1% / 88.8% | 9.4% / 10.4% |
+| `single` style | 74.9% / 71.4% | 0.0% / 4.2% |
+| No search, every description in context | 94.8% / 93.9% | 54.2% / 43.8% |
+
+- Without a judge, on another test set: 69.6% useful and 14.4% wrong loads,
+  against 93.8% and 34.0% for every description in context.
+- Cost with `jev` and the scan: about 18,000 to 21,000 input tokens and
+  0.55 s per search. Standing context: about 160 tokens per search instead of
+  about 34,000.
+- The second corpus shares no repository with the first; no setting was
+  changed for it (`docs/benchmarks/2026-11-25-second-corpus-results.md`).
+- Not measured: real harness sessions, the `openai` judge in the
+  `candidates` style, other corpus sizes.
+- Earlier measurements of retrieval alone, the scale benchmark (50 to 350
+  skills), and the negative results are in `docs/benchmarks/`.
 
 ## [0.3.0] - 2026-07-15
 

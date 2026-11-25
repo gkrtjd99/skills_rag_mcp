@@ -150,7 +150,9 @@ def list_indexed() -> list[dict]:
 
 
 def indexed_count() -> int:
-    """Return row count without creating a table or loading the embedding model."""
+    """Return row count without creating the index, a table, or loading the embedding model."""
+    if not index_path().exists():
+        return 0
     db = _open_db()
     if TABLE_NAME not in db.list_tables().tables:
         return 0

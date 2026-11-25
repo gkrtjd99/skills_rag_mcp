@@ -662,3 +662,40 @@ def test_named_skills_keep_their_order_and_ignore_the_loaded_exclusion(monkeypat
     assert [h["name"] for h in rerank.search("/deploy and /tdd", k=1)["hits"]] == ["deploy"]
     monkeypatch.setattr(rerank, "EXPLICIT", False)
     assert rerank.search("/deploy") == retrieve.search("/deploy")
+
+
+def test_notes_warn_when_no_judge_is_active(monkeypatch):
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "")
+    notes = rerank.notes(350)
+    assert len(notes) == 1
+    assert "no judge model is active" in notes[0]
+    assert "SKILL_RAG_RERANK=jev" in notes[0]
+
+
+def test_notes_warn_when_the_judge_is_unavailable(monkeypatch):
+    monkeypatch.setattr(rerank, "RERANK_PROVIDER", "jev")
+    monkeypatch.setattr(rerank, "readiness", lambda: "jev (unavailable: TYPESAFE_API_KEY is not set; using local gate)")
+    assert "no judge model is active" in rerank.notes(350)[0]
+
+
+def test_notes_are_empty_for_a_ready_judge_on_a_large_corpus(monkeypatch):
+    monkeypatch.setattr(rerank, "readiness", lambda: "jev (sends query and shortlisted descriptions to api.typesafe.ai)")
+    monkeypatch.setattr(rerank, "RERANK_SCAN_MAX", 500)
+    assert rerank.notes(350) == []
+
+
+def test_notes_mention_a_small_corpus(monkeypatch):
+    monkeypatch.setattr(rerank, "readiness", lambda: "jev (sends query and shortlisted descriptions to api.typesafe.ai)")
+    notes = rerank.notes(25)
+    assert len(notes) == 1
+    assert "25 skills are indexed" in notes[0]
+    assert "2,500 tokens" in notes[0]
+
+
+def test_notes_mention_a_corpus_beyond_the_scan_limit(monkeypatch):
+    monkeypatch.setattr(rerank, "readiness", lambda: "jev (sends query and shortlisted descriptions to api.typesafe.ai)")
+    monkeypatch.setattr(rerank, "RERANK_SCAN_MAX", 500)
+    monkeypatch.setattr(rerank, "RERANK_STYLE", "candidates")
+    notes = rerank.notes(800)
+    assert len(notes) == 1
+    assert "SKILL_RAG_RERANK_SCAN_MAX=500" in notes[0]
