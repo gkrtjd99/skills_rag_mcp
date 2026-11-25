@@ -1,0 +1,307 @@
+{
+ "seed": 20261130,
+ "targets": [
+  "lark-sheets",
+  "google-agents-cli-deploy",
+  "lark-workflow-meeting-summary",
+  "convex-reviewer",
+  "prisma-postgres-upgrade",
+  "playwright-stealth-verify",
+  "gpt-image-edit",
+  "caveman-commit",
+  "ponytail-gain",
+  "higgsfield-generate",
+  "agent-tools",
+  "browser-mcp-agent",
+  "fingerprint-ci-gate",
+  "retro",
+  "cloudflare-email-service",
+  "caveman-stats",
+  "competitor-teardown",
+  "schema",
+  "caveman-help",
+  "using-git-worktrees",
+  "hyperframes-registry",
+  "airunway-aks-setup",
+  "notion-api",
+  "gpt-image-2",
+  "lark-doc",
+  "lark-markdown",
+  "env-and-assets-bootstrap",
+  "codebase-design",
+  "animate-expo",
+  "just-scrape",
+  "hallmark",
+  "ad-creative",
+  "neon-ai-gateway",
+  "azure-deploy",
+  "google-agents-cli-workflow",
+  "ai-avatar-video",
+  "higgsfield-marketplace-cards",
+  "review-loop",
+  "prisma-postgres-setup",
+  "nx-workspace",
+  "code-simplification",
+  "animate",
+  "cloudflare-one",
+  "algorithmic-art",
+  "neon-realtime",
+  "api-and-interface-design",
+  "json-canvas",
+  "azure-upgrade",
+  "higgsfield-brandkit",
+  "browser-testing-with-devtools"
+ ],
+ "negatives": [
+  {
+   "name": "aws-media-services",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "d7d810587798196440862dbaa8826484af2da956"
+  },
+  {
+   "name": "aws-lambda-durable-functions",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "7476fea24763c37d9b6c148e32c25d222ac2365d"
+  },
+  {
+   "name": "flutter-fix-layout-issues",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "3804a3c1d9fd2b88ee1ddc74716799cf2cd770c1"
+  },
+  {
+   "name": "dart-resolve-package-conflicts",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "9a7ffdc5a79c14ad2e3d8dab6e257a28cfa40e3d"
+  },
+  {
+   "name": "dbs-restore",
+   "source": "dontbesilent2025/dbskill",
+   "blob_sha": "d0df7e3bb565517d0368aab2d3cc45aaf0e60a70"
+  },
+  {
+   "name": "querying-aws-athena",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "d3cca242e427ccc8b6d2d737927289526f741179"
+  },
+  {
+   "name": "upgrading-mwaa-environments",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "1c56580f6ea8a35a23e3371354244002a21bdc67"
+  },
+  {
+   "name": "dart-build-cli-app",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "c888b42c94118e953a48f82bdf6a8a5eba025b52"
+  },
+  {
+   "name": "flutter-add-widget-test",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "01ac7ac645a7f6f66603cb1c78a2a28dba3a5d32"
+  },
+  {
+   "name": "api-security-testing",
+   "source": "usestrix/strix",
+   "blob_sha": "d21a25da6167f79c3caff745abc142b2118c2691"
+  },
+  {
+   "name": "blender-environment-kits",
+   "source": "el4cteo/blender-skills",
+   "blob_sha": "8d52a526417063b0d97b63404319e6a1b2ddade6"
+  },
+  {
+   "name": "aws-lambda-web-functions",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "3fd78e982aff2039df754561c548653177fd8157"
+  },
+  {
+   "name": "rds-sqlserver",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "1d1f266a54b9f138b49671c5ec848028b3782fe3"
+  },
+  {
+   "name": "architect",
+   "source": "backnotprop/pstack",
+   "blob_sha": "0c1a1338ff46497bf9086abab9dd9c44d244cd66"
+  },
+  {
+   "name": "maintain-formal-verification-skill",
+   "source": "backnotprop/pstack",
+   "blob_sha": "5d2f7f2228a3b771ca5b03124fc265ddfc53c5fc"
+  },
+  {
+   "name": "dbs-report",
+   "source": "dontbesilent2025/dbskill",
+   "blob_sha": "889bb302771f344bbacba1fd6de1d6dba1fac12e"
+  },
+  {
+   "name": "aws-cloudformation",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "56fee4f8ac8522f63cf990966e64546f80553245"
+  },
+  {
+   "name": "dart-use-primary-constructors",
+   "source": "flutter/agent-plugins",
+   "blob_sha": "13ba91c54f875aca5676729257a57d9c545a1cb3"
+  },
+  {
+   "name": "reframe",
+   "source": "backnotprop/pstack",
+   "blob_sha": "57a219851a939cfb1ee46ed74b20a5196a983539"
+  },
+  {
+   "name": "migrate-to-msk",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "a00a6d3eae80428d4778d983ddbfad473630dc01"
+  },
+  {
+   "name": "orthographic-registration",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "7a113a1380abd125b212101b806daee8c2651ab0"
+  },
+  {
+   "name": "troubleshooting-application-failures",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "62b54c18fa2ffe260350b042188f317e2c337c25"
+  },
+  {
+   "name": "bmad-code-review",
+   "source": "bmad-code-org/bmad-method",
+   "blob_sha": "698d749951ce903dc7beefc28609f7b260886f2a"
+  },
+  {
+   "name": "dbs",
+   "source": "dontbesilent2025/dbskill",
+   "blob_sha": "dda930bb3595dcc832d1cf06bb14fba69a8e331a"
+  },
+  {
+   "name": "k2f-worksheet",
+   "source": "suzheng/k2f",
+   "blob_sha": "783ef73af00ca2e3fb5444a982bcae4b64661eb7"
+  },
+  {
+   "name": "create-verification-skill",
+   "source": "backnotprop/pstack",
+   "blob_sha": "442292dc607c81a421a2714066c14a338e061500"
+  },
+  {
+   "name": "react-native-best-practices",
+   "source": "callstackincubator/agent-skills",
+   "blob_sha": "86ec5ab5a4cadf454db8013293679891098efce1"
+  },
+  {
+   "name": "government-support-survey",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "e732e3996b4b97f0fa1b49c3439b0c9e2d667a53"
+  },
+  {
+   "name": "threejs-animation",
+   "source": "cloudai-x/threejs-skills",
+   "blob_sha": "88fed204523e82cebf2953b9c14944001d43cc31"
+  },
+  {
+   "name": "managing-amazon-msk",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "7f19d0fc9aedb62022300e0f31790c8c20b959d8"
+  },
+  {
+   "name": "komsa-ferry-info",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "5d774bf6a1277c9a23e3d46005bad6749f26bf5a"
+  },
+  {
+   "name": "volcengine-cli",
+   "source": "volcengine/volcengine-agent-toolkit",
+   "blob_sha": "75f2b6076262b83dc458a8f6d3c85f400fa698eb"
+  },
+  {
+   "name": "k2f-cv",
+   "source": "suzheng/k2f",
+   "blob_sha": "9fe59d6c2d5f8ea577402d1356609534205ddff2"
+  },
+  {
+   "name": "bmad-advanced-elicitation",
+   "source": "bmad-code-org/bmad-method",
+   "blob_sha": "83b023b690f9db9d5bf33e6abed72774e696383a"
+  },
+  {
+   "name": "lower-thirds",
+   "source": "iart-ai/tiktok-video-skills",
+   "blob_sha": "1ca8fbb1478de77124a227abbf7fac689846b46c"
+  },
+  {
+   "name": "bmad-party-mode",
+   "source": "bmad-code-org/bmad-method",
+   "blob_sha": "965b97bde70c92fa74429ab54a850b4f32da6a12"
+  },
+  {
+   "name": "aws-cdk",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "2365618bb11ade6f23e3cd1dab032f2d4af7ac30"
+  },
+  {
+   "name": "aws-sdk-python-usage",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "9ee37c716693b73e08d6656e2684d5471d832258"
+  },
+  {
+   "name": "draw-icons",
+   "source": "ronykax/skills",
+   "blob_sha": "4911669908f1d4030c978f923ec772ea6c6a608f"
+  },
+  {
+   "name": "cinematic-gsap-lenis-motion-system",
+   "source": "mengto/skills",
+   "blob_sha": "1aa69da8460ce0db325765de5ff14c1d6b92960f"
+  },
+  {
+   "name": "wechatpay-payment-integration",
+   "source": "wechatpay-apiv3/wechatpay-skills",
+   "blob_sha": "3c7c1a002b3efcb9c071ae2042d3aa874e7e93c5"
+  },
+  {
+   "name": "atlas-uv-fitting",
+   "source": "roble3/cc-blender-skill",
+   "blob_sha": "e1481d25b56e1948394acc71aa3e41024c09fb24"
+  },
+  {
+   "name": "exploring-data-catalog",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "50edc79e383e89fc02aebbfbcadc45074d3b860d"
+  },
+  {
+   "name": "aurora-dsql",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "3c4122bd30baa86d67b0e3165adce6d01b1d0d05"
+  },
+  {
+   "name": "principle-build-the-lever",
+   "source": "backnotprop/pstack",
+   "blob_sha": "8f9b5a931b10839ad5ef71ce43d5411c2c7a1f6b"
+  },
+  {
+   "name": "interrogate",
+   "source": "backnotprop/pstack",
+   "blob_sha": "7d9674b72b159e6c4ff5e6c177f583680b935242"
+  },
+  {
+   "name": "dms-schema-conversion",
+   "source": "aws/agent-toolkit-for-aws",
+   "blob_sha": "20131c414195ce929a8a8bf06d26b81f5c2da0fd"
+  },
+  {
+   "name": "gemini-api-dev",
+   "source": "google-gemini/gemini-skills",
+   "blob_sha": "c561f60c72c3551d1699c093e866b1a1345ab57a"
+  },
+  {
+   "name": "g2b-order-plan-search",
+   "source": "nomadamas/k-skill",
+   "blob_sha": "3be977a0a1aeccfe0615663d7f54003e97ce98b7"
+  },
+  {
+   "name": "ketchup",
+   "source": "backnotprop/pstack",
+   "blob_sha": "667af54bf460173288738ad88c5b83f79b3fa35e"
+  }
+ ]
+}

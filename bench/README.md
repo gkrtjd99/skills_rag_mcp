@@ -154,3 +154,8 @@ the adoption bar by one request and stays opt-in; results in
 description in the agent's context
 (`docs/benchmarks/2026-11-25-native-baseline-protocol.md`, results in
 `docs/benchmarks/2026-11-25-native-baseline-results.md`).
+
+`bench/scale/candidates_agent.py` measures returning several judged
+candidates for the agent to choose from
+(`docs/benchmarks/2026-11-25-candidates-protocol.md`). Adopted as the default
+with a judge; results in `docs/benchmarks/2026-11-25-candidates-results.md`.

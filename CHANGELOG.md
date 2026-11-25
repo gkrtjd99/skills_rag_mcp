@@ -37,10 +37,19 @@
 - `SKILL_RAG_LOCAL_CANDIDATES` (off by default): without a judge, return the
   top N of the local ranking as uncertain candidates instead of the gate's
   hits. Fewer wrong loads, fewer useful ones.
+- **Default with a judge changed** (`SKILL_RAG_RERANK_STYLE=candidates`): the
+  judge scans every skill (`SKILL_RAG_RERANK_SCAN_MAX` now 500), and the
+  shortlisted skills at or above 0.5 are returned best first, at most 8, as
+  `status: "candidates"` for the calling agent to choose from. On a fresh
+  test set a simulated agent loaded a useful skill for 91.1% of matching
+  requests (74.9% under the previous rule) and a wrong one for 9.4% of
+  no-match requests (0.0%). `SKILL_RAG_RERANK_STYLE=single` keeps the
+  previous rule. With the scan on, every search sends every skill's name and
+  first 120 characters of description to the provider.
 - Measured the alternative to search, every description in the agent's
-  context: 93.8% useful loads against 67.0% for search with `jev`, and 34.0%
-  wrong loads on no-match requests against 8.2%, at about 33,750 tokens of
-  standing context. The READMEs now open with this comparison.
+  context: 94.8% useful loads and 54.2% wrong loads on no-match requests on
+  the same test set, at about 33,750 tokens of standing context. The READMEs
+  now open with this comparison.
 - Optional whole-corpus scan by the judge (`SKILL_RAG_RERANK_SCAN_MAX`, off by
   default): finds the right skill more often and returns more wrong ones.
 - `skill-rag adopt [names] [--from DIR]` moves skills out of harness or

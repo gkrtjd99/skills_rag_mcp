@@ -77,15 +77,18 @@ fused ranking (no thresholds) as `{status: "uncertain", hits, message}` and
 the calling agent decides whether to load one.
 
 With `SKILL_RAG_RERANK` set (`jev`, `openai`, or `package.module:factory`),
-steps 6-7 are replaced after sync: `retrieve.shortlist` returns the top 16 by
-fused rank with no thresholds, the configured `judges.Judge` returns one fit
-probability per candidate from a single request, and the best candidate at or
-above 0.9 is returned (its probability becomes the hit `score`) with the
-description capped at 120 characters. The rule is precision first: returning a
-skill that does not fit costs more than returning none. `rerank.py` owns that policy; a
+steps 6-7 are replaced after sync. The configured `judges.Judge` scans every
+skill (corpora up to `SKILL_RAG_RERANK_SCAN_MAX`, default 500; otherwise
+`retrieve.shortlist` takes the top 16 by fused rank) to pick 16 candidates,
+then returns one fit probability per candidate. In the default `candidates`
+style every candidate at or above 0.5 is returned, best first, at most 8,
+with descriptions capped at 120 characters, and the calling agent chooses
+one or none. In the `single` style only the best candidate at or above 0.9
+is returned. `rerank.py` owns that policy; a
 judge only scores, so swapping the model is a new `Judge` class. Any failure
-returns the local result above and pauses rerank for 60 s. Only the query and
-the shortlisted names and descriptions are sent.
+returns the local result above and pauses rerank for 60 s. The query, every
+skill's name and first 120 characters of description (the scan), and the
+shortlisted names and descriptions are sent; never a body.
 
 Hits contain `{name, description, score, agent}`. Descriptions are capped at
 280 characters by default to keep MCP metadata responses small; the full

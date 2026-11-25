@@ -95,3 +95,10 @@ selected here.
 
 1,153 agent calls, 32.5 million input tokens, of which 32.3 million were
 served from the provider's cache.
+
+## Later
+
+The candidate list suggested above was measured and adopted
+(`2026-11-25-candidates-results.md`). On its fresh test set (`test4`: 191
+matching, 96 no-match) all descriptions in context scored 94.8% useful, 5.2%
+junk on matching, and 54.2% (52) junk on no-match requests.

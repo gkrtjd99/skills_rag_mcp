@@ -23,7 +23,7 @@ import agent_dev as base
 
 HERE, WORK = base.HERE, base.WORK
 ANSWERS = WORK / "native"
-SETS = {"test": ["agent2-test3", "agent2-test3neg"], "dev3": ["scan-dev3"]}
+SETS = {"test": ["agent2-test3", "agent2-test3neg"], "dev3": ["scan-dev3"], "test4": ["scan-test4"]}
 CHARS = {"ALL": 0, "ALL120": 120}
 PROMPT = (
     "You are an AI coding agent working on a user's request. The skills available to "
