@@ -134,3 +134,8 @@ result (`docs/benchmarks/2026-11-24-cards-results.md`).
 `bench/scale/retrieval_dev.py` holds the embedder and synthetic-request
 experiment (`docs/benchmarks/2026-11-24-retrieval-protocol.md`, results in
 `docs/benchmarks/2026-11-24-retrieval-results.md`).
+
+`bench/scale/agent_dev.py` holds the agent-in-the-loop experiment
+(`docs/benchmarks/2026-11-25-agent-protocol.md`): a model plays the caller and
+decides what to load. Not adopted; results in
+`docs/benchmarks/2026-11-25-agent-results.md`.
