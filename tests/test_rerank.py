@@ -111,9 +111,8 @@ def test_shortlist_empty_for_empty_query_or_corpus():
 
 
 def _local(query: str, k: int = 5) -> dict:
-    """What a search returns when no judge decides: uncertain local candidates."""
-    rows = retrieve.shortlist(query, min(k, rerank.LOCAL_CANDIDATES))
-    return retrieve.uncertain_response(rows, rerank.LOCAL_DESCRIPTION_CHARS)
+    """What a search returns when no judge decides: the local gate."""
+    return retrieve.search(query, k=k)
 
 
 def test_defaults_are_precision_first(monkeypatch):
@@ -144,14 +143,16 @@ def test_best_skill_below_the_threshold_is_offered_as_uncertain(monkeypatch):
     assert rerank.search("ship it") == retrieve.no_match_response()
 
 
-def test_without_a_judge_the_local_top_three_are_uncertain_candidates(monkeypatch):
+def test_local_candidates_are_opt_in(monkeypatch):
+    monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
     _seed()
+    assert rerank.LOCAL_CANDIDATES == 0  # default: the local gate
+    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
+    monkeypatch.setattr(rerank, "LOCAL_CANDIDATES", 3)
     res = rerank.search("write failing tests")
     assert res["status"] == "uncertain" and len(res["hits"]) == 3
     assert all(h["confidence"] == "low" and "score" not in h for h in res["hits"])
     assert len(rerank.search("write failing tests", k=2)["hits"]) == 2
-    monkeypatch.setattr(rerank, "LOCAL_CANDIDATES", 0)  # the old local gate
-    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
 
 
 def test_max_hits_zero_returns_up_to_k(monkeypatch):

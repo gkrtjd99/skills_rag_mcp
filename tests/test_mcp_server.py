@@ -34,8 +34,7 @@ def test_search_skills_returns_ok_for_match(tmp_path):
     corpus_root = tmp_path / "skills"
     _mk(corpus_root, "brainstorming", desc="explore ideas before implementation")
     res = mcp_server.search_skills("explore ideas", k=5)
-    # No judge configured: local candidates, for the agent to accept or decline.
-    assert res["status"] == "uncertain"
+    assert res["status"] == "ok"
     assert any(h["name"] == "brainstorming" for h in res["hits"])
 
 

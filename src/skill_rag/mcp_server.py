@@ -56,7 +56,7 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     if retrieve.is_conversational(query):
         return retrieve.skip_response()
     sync_mod.sync_if_stale()
-    # Local candidates by default; opt-in fit judgment by a model (SKILL_RAG_RERANK).
+    # Local hybrid gate by default; opt-in fit judgment by a model (SKILL_RAG_RERANK).
     result, provider = rerank.search_traced(
         query, k=k, agent=agent, exclude=usage.loaded_this_session()
     )

@@ -1,9 +1,7 @@
 """Opt-in second-stage fit judgment by a swappable model.
 
-Off by default: without ``SKILL_RAG_RERANK`` nothing leaves the machine and no
-judge runs. The top few skills of the local ranking are then returned as
-``uncertain`` candidates and the calling agent decides (see
-``LOCAL_CANDIDATES``).
+Off by default: without ``SKILL_RAG_RERANK`` every search is the local hybrid
+gate in ``retrieve.py`` and nothing leaves the machine.
 
 When enabled, the local hybrid ranking only proposes a shortlist. A judge
 (``skill_rag.judges``: ``jev``, ``openai``, or your own ``module:factory``)
@@ -24,7 +22,7 @@ build the shortlist. It finds the right skill more often but also returns more
 skills that do not fit, so it is off by default.
 
 Any failure (unknown provider, missing package or key, no API credits, timeout,
-API error, malformed answer) falls back to the local path, so enabling this can
+API error, malformed answer) falls back to the local gate, so enabling this can
 never make search unavailable. After a failure the judge is skipped for a short
 cooldown so a persistent outage does not add a failed round trip to every
 search.
@@ -82,17 +80,20 @@ RERANK_DESCRIPTION_CHARS = int(os.environ.get("SKILL_RAG_RERANK_DESCRIPTION_CHAR
 RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "0"))
 
 # Below the threshold the judge cannot tell right from wrong, but the calling
-# agent can. On a dev set and a fresh test set
+# agent can. On a fresh test set
 # (docs/benchmarks/2026-11-25-agent2-results.md) showing the best skill in
-# [0.7, 0.9) as an uncertain candidate raised the share of requests where the
-# agent loaded a useful skill without raising wrong loads. A value at or above
+# [0.7, 0.9) as an uncertain candidate raised the share of matching requests
+# where a simulated agent loaded a useful skill from 60% to 67%, and wrong
+# loads on requests with no matching skill from 4% to 8%. A value at or above
 # the threshold turns this off.
 RERANK_UNCERTAIN_FROM = float(os.environ.get("SKILL_RAG_RERANK_UNCERTAIN_FROM", "0.7"))
-# Without a judge: how many skills of the local ranking to return as uncertain
-# candidates, with up to LOCAL_DESCRIPTION_CHARS of description each. In the
-# same benchmark this halved wrong loads compared with returning the local
-# gate's hits. 0 restores the local gate (``retrieve.search``).
-LOCAL_CANDIDATES = int(os.environ.get("SKILL_RAG_LOCAL_CANDIDATES", "3"))
+# Without a judge: return this many skills of the local ranking as uncertain
+# candidates (up to LOCAL_DESCRIPTION_CHARS of description each) instead of
+# the local gate's hits. Off (0) by default: in the same benchmark 3
+# candidates halved wrong loads on requests with no matching skill (14% to 7%)
+# but the agent also loaded a useful skill less often (70% to 63%), so it
+# failed the test it had to pass to become the default.
+LOCAL_CANDIDATES = int(os.environ.get("SKILL_RAG_LOCAL_CANDIDATES", "0"))
 LOCAL_DESCRIPTION_CHARS = 300
 
 _retry_after: float = 0.0  # monotonic deadline of the current cooldown

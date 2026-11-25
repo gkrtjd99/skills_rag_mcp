@@ -61,16 +61,14 @@ sync or retrieval; an `ok` response always contains at least one hit.
 `uncertain` hands the decision to the caller. Its hits carry no `score` and
 no `agent`, only `"confidence": "low"`. It is returned in two cases:
 
-- No judge is configured (the default), or the judge failed: the top
-  `SKILL_RAG_LOCAL_CANDIDATES` (default 3, capped by `k`) of the local
-  ranking, descriptions capped at 300 characters. An install without a judge
-  therefore answers `uncertain` for any non-empty query on a non-empty corpus;
-  `SKILL_RAG_LOCAL_CANDIDATES=0` restores the threshold gate below and its
-  `ok` / `no_match` answers.
 - A judge is configured and no skill reaches its threshold: the single best
   skill at or above `SKILL_RAG_RERANK_UNCERTAIN_FROM` (default 0.7),
   description capped at 120 characters. A value at or above the rerank
   threshold turns this off.
+- Opt-in, without a judge (or when the judge failed):
+  `SKILL_RAG_LOCAL_CANDIDATES=3` returns the top 3 (capped by `k`) of the
+  local ranking with descriptions capped at 300 characters, instead of the
+  threshold gate's `ok` / `no_match`. Off by default.
 
 The wording and shape were measured with a model acting as the caller
 (`docs/benchmarks/2026-11-25-agent2-results.md`).

@@ -62,7 +62,7 @@ make install
 
 - 시작 시 `using-skill-rag` 메타-스킬이 자동 로드되는지 확인
 - 아무 메시지에서나 `mcp__skill-rag__search_skills` 도구가 보이는지 확인
-- 직접 호출해 보기: `search_skills(query="...", k=5)` → `{status: "ok"|"no_match", hits, ...}`
+- 직접 호출해 보기: `search_skills(query="...", k=5)` → `{status: "ok"|"uncertain"|"no_match", hits, ...}`
 
 CLI에서도 같은 검색이 동작하는지 빠르게 확인:
 
@@ -188,6 +188,8 @@ uv run skill-rag restore                              # 전부 원래 위치로
 | `SKILL_RAG_RERANK_TIMEOUT` | `5` | 판정 요청 타임아웃 (초) |
 | `SKILL_RAG_RERANK_COOLDOWN` | `60` | 판정 호출 실패 후 로컬 판정만 쓰는 시간 (초) |
 | `SKILL_RAG_RERANK_DESCRIPTION_CHARS` | `120` | 판정을 거친 hit의 description 상한 (`0`이면 해제) |
+| `SKILL_RAG_RERANK_UNCERTAIN_FROM` | `0.7` | 임계값에 못 미친 스킬 중 이 확률 이상인 최상위 1개를 `uncertain` 후보로 반환 (임계값 이상으로 두면 끔) |
+| `SKILL_RAG_LOCAL_CANDIDATES` | `0` | 판정 모델 없이 로컬 순위 상위 N개를 `uncertain` 후보로 반환 (`0`이면 기본 게이트) |
 
 ### 선택 기능: 판정 모델 재순위 (기본 꺼짐)
 
@@ -216,6 +218,25 @@ uv run skill-rag restore                              # 전부 원래 위치로
 - 판정 모델이 전체 스킬을 훑는 방식(`SKILL_RAG_RERANK_SCAN_MAX`)은 정답을 더 자주 찾지만 엉뚱한 스킬도
   더 많이 줘서 기본으로 꺼져 있음.
 - 검색당 입력 토큰: `jev` 약 3,400, `openai` 약 5,100.
+
+**애매한 후보는 에이전트가 고른다.** 0.9에 못 미쳐도 0.7 이상인 스킬이 있으면 가장 높은 하나를
+`status: "uncertain"`으로 돌려줌 (점수 없이 `"confidence": "low"` 표시, 설명 120자). 읽을지는 호출한
+에이전트가 정함. 에이전트 역할을 하는 모델을 세워 "실제로 읽기로 한 스킬"을 센 결과 (새 테스트셋,
+맞는 스킬 있음 194, 없음 97):
+
+| | 쓸모 있는 스킬을 읽음 | 맞는 스킬이 없는데 엉뚱한 스킬을 읽음 | 맞는 스킬이 있는데 엉뚱한 스킬을 읽음 |
+| --- | ---: | ---: | ---: |
+| `jev`, 0.9 이상만 | 60.3% | 4.1% | 3.1% |
+| `jev` + 애매한 후보 (기본값) | 67.0% | 8.2% | 2.1% |
+| 판정 모델 없음, 게이트 결과를 에이전트가 판단 | 69.6% | 14.4% | 4.1% |
+| 판정 모델 없음, `SKILL_RAG_LOCAL_CANDIDATES=3` | 62.9% | 7.2% | 4.6% |
+
+- 쓸모 있는 스킬을 읽는 비율이 6.7점 오르는 대신, 맞는 스킬이 없는 요청에서 엉뚱한 스킬을 읽는 경우가
+  97건 중 4건에서 8건으로 늘어남. 끄려면 `SKILL_RAG_RERANK_UNCERTAIN_FROM=0.9`.
+- 판정 모델이 없어도 에이전트가 게이트 결과를 직접 걸러 내면 쓸모 있는 스킬을 읽는 비율은 비슷함.
+  판정 모델이 주는 것은 엉뚱한 스킬을 덜 읽는 것(8% 대 14%)과 검색당 메타데이터 양(약 110자 대 1,210자).
+- 한계: 에이전트는 빈 컨텍스트의 단발 모델 호출로 흉내 낸 것이고, 실제 하네스의 모델이 아님.
+  `jev`로만 측정함. 자세한 내용: `docs/benchmarks/2026-11-25-agent2-results.md`.
 
 전체 표·선택 과정·한계: `docs/benchmarks/2026-11-24-precision-results.md`. 코퍼스 크기별(50~350)
 결과는 `docs/benchmarks/2026-11-24-scale-results.md` (임계값 0.5 시절 측정). 직접 쓴 질의로 잰 초기 수치

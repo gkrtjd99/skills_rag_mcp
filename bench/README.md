@@ -139,3 +139,8 @@ experiment (`docs/benchmarks/2026-11-24-retrieval-protocol.md`, results in
 (`docs/benchmarks/2026-11-25-agent-protocol.md`): a model plays the caller and
 decides what to load. Not adopted; results in
 `docs/benchmarks/2026-11-25-agent-results.md`.
+
+`bench/scale/agent2.py` holds the second agent-in-the-loop experiment on new
+requests (`docs/benchmarks/2026-11-25-agent2-protocol.md`, results in
+`docs/benchmarks/2026-11-25-agent2-results.md`): the uncertain band was
+adopted, local candidates without a judge were not.
