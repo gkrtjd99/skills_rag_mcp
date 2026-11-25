@@ -1,6 +1,6 @@
 # MCP Interface
 
-Two tools. Four terminal statuses across them.
+Two tools. Five terminal statuses across them.
 
 ## `search_skills(query: str, k: int = 5, agent: str | None = None) -> dict`
 
@@ -28,6 +28,19 @@ sync or retrieval; an `ok` response always contains at least one hit.
   ]
 }
 
+// status: "uncertain"
+{
+  "status": "uncertain",
+  "hits": [
+    {
+      "name": "code-review",
+      "description": "Review code changes for bugs...",
+      "confidence": "low"
+    }
+  ],
+  "message": "No skill was confirmed for this request. These are uncertain candidates: load one only if its description clearly covers the task; otherwise proceed without a skill."
+}
+
 // status: "no_match"
 {
   "status": "no_match",
@@ -45,8 +58,26 @@ sync or retrieval; an `ok` response always contains at least one hit.
 }
 ```
 
-`no_match` covers an empty query, empty corpus, or candidates failing both
-retrieval thresholds.
+`uncertain` hands the decision to the caller. Its hits carry no `score` and
+no `agent`, only `"confidence": "low"`. It is returned in two cases:
+
+- No judge is configured (the default), or the judge failed: the top
+  `SKILL_RAG_LOCAL_CANDIDATES` (default 3, capped by `k`) of the local
+  ranking, descriptions capped at 300 characters. An install without a judge
+  therefore answers `uncertain` for any non-empty query on a non-empty corpus;
+  `SKILL_RAG_LOCAL_CANDIDATES=0` restores the threshold gate below and its
+  `ok` / `no_match` answers.
+- A judge is configured and no skill reaches its threshold: the single best
+  skill at or above `SKILL_RAG_RERANK_UNCERTAIN_FROM` (default 0.7),
+  description capped at 120 characters. A value at or above the rerank
+  threshold turns this off.
+
+The wording and shape were measured with a model acting as the caller
+(`docs/benchmarks/2026-11-25-agent2-results.md`).
+
+`no_match` covers an empty query, an empty corpus, the local gate when
+candidates fail both retrieval thresholds, and a judge that puts no skill at
+or above the uncertain bound.
 
 `skip` is returned **before** sync or embedding when the trimmed query is a bare
 interactive-flow reply: a single alphabetic character (`A`/`B`/`C`/`D`), an
@@ -95,8 +126,9 @@ top `SKILL_RAG_RERANK_CANDIDATES` (default 16) by fused rank, with no
 thresholds, are each judged by the configured model for fit to the query.
 Candidates with probability >= `SKILL_RAG_RERANK_THRESHOLD` (default 0.9) are
 kept in order of probability and at most `SKILL_RAG_RERANK_MAX_HITS` (default
-1) are returned; none qualifying is `no_match`. An `ok` response under rerank
-therefore usually carries a single hit, and `no_match` is common by design. Statuses and
+1) are returned; none qualifying is `uncertain` (see above) or `no_match`. An
+`ok` response under rerank therefore usually carries a single hit, and
+`no_match` is common by design. Statuses and
 hit fields are unchanged, with two differences in content: `score` is that
 probability (comparable across queries, and no longer 1.0 for the first hit by
 construction), and `description` is capped at

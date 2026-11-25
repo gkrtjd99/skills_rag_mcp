@@ -85,6 +85,37 @@ def no_match_response() -> dict:
     return {"status": "no_match", "hits": [], "message": _NO_MATCH}
 
 
+# Text of an ``uncertain`` response. This exact wording is what the
+# agent-in-the-loop benchmark measured
+# (docs/benchmarks/2026-11-25-agent2-results.md); a stricter wording lost
+# right skills without removing wrong ones.
+_UNCERTAIN = (
+    "No skill was confirmed for this request. These are uncertain candidates: load "
+    "one only if its description clearly covers the task; otherwise proceed without a skill."
+)
+
+
+def uncertain_response(rows: list[dict], max_chars: int) -> dict:
+    """Unconfirmed candidates for the calling agent to accept or decline.
+
+    ``rows`` are ``{name, description, ...}``. The hits carry no score: they
+    are marked ``"confidence": "low"`` instead, and the agent decides from the
+    name and description.
+    """
+    return {
+        "status": "uncertain",
+        "hits": [
+            {
+                "name": row["name"],
+                "description": _compact_description(row["description"], max_chars),
+                "confidence": "low",
+            }
+            for row in rows
+        ],
+        "message": _UNCERTAIN,
+    }
+
+
 def format_hit(
     name: str, description: str, score: float, agent: str, max_chars: int | None = None
 ) -> dict:

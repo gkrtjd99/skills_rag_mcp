@@ -50,6 +50,14 @@ parent already framed, skip.
   - If none of the descriptions actually fit despite being returned,
     proceed without a skill. Do not refetch with reworded queries.
 
+- `{status: "uncertain", hits: [{name, description, confidence: "low"}, ...], message: ...}`
+  - The search could not confirm any skill; these are candidates only, and
+    often none of them fits.
+  - Load **at most one**, and only if its name and description clearly cover
+    this specific task on the same product, platform, or technology.
+    Otherwise proceed without a skill. Do not search again with a reworded
+    query.
+
 - `{status: "no_match", hits: [], message: ...}`
   - No skill applies. Respond directly. **DO NOT call `search_skills` again
     for this turn with a rephrased query.**

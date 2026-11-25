@@ -41,7 +41,7 @@ def test_search_and_load_are_logged_without_request_text(tmp_path):
     mcp_server.get_skill("tdd")
     mcp_server.get_skill("missing-skill")
     search, load, miss = _events()
-    assert search["event"] == "search" and search["status"] == "ok" and search["provider"] == "gate"
+    assert search["event"] == "search" and search["status"] == "uncertain" and search["provider"] == "gate"
     assert [h["name"] for h in search["hits"]] == ["tdd"]
     assert "query" not in search and "parser" not in json.dumps(search)
     assert load == {**load, "event": "load", "name": "tdd", "found": True, "suggested": True}

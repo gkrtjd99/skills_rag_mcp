@@ -74,7 +74,7 @@ class FakeJudge:
 # --- policy: off by default, thresholds, ordering, response shape -----------
 
 
-def test_disabled_by_default_matches_local_search(monkeypatch):
+def test_disabled_by_default_uses_the_local_path(monkeypatch):
     monkeypatch.setattr(retrieve, "SCORE_THRESHOLD", 0.0)
     _seed()
     monkeypatch.setattr(
@@ -82,7 +82,7 @@ def test_disabled_by_default_matches_local_search(monkeypatch):
     )
     assert not rerank.enabled()
     assert rerank.readiness() == "off"
-    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
+    assert rerank.search("write failing tests") == _local("write failing tests")
 
 
 def test_unknown_provider_value_stays_disabled(monkeypatch):
@@ -110,15 +110,48 @@ def test_shortlist_empty_for_empty_query_or_corpus():
     assert retrieve.shortlist("   ", 5) == []
 
 
+def _local(query: str, k: int = 5) -> dict:
+    """What a search returns when no judge decides: uncertain local candidates."""
+    rows = retrieve.shortlist(query, min(k, rerank.LOCAL_CANDIDATES))
+    return retrieve.uncertain_response(rows, rerank.LOCAL_DESCRIPTION_CHARS)
+
+
 def test_defaults_are_precision_first(monkeypatch):
     _seed()
     assert rerank.RERANK_THRESHOLD == 0.9 and rerank.RERANK_MAX_HITS == 1
     assert rerank.RERANK_SCAN_MAX == 0
-    _enable(monkeypatch, {"tdd": 0.89, "deploy": 0.6})
+    _enable(monkeypatch, {"tdd": 0.69, "deploy": 0.6})
     assert rerank.search("ship it") == retrieve.no_match_response()  # likely is not enough
     _enable(monkeypatch, {"tdd": 0.95, "deploy": 0.97, "brainstorming": 0.92})
     res = rerank.search("ship it", k=5)
     assert [h["name"] for h in res["hits"]] == ["deploy"]  # only the best one
+
+
+def test_best_skill_below_the_threshold_is_offered_as_uncertain(monkeypatch):
+    _seed()
+    assert rerank.RERANK_UNCERTAIN_FROM == 0.7
+    _enable(monkeypatch, {"tdd": 0.89, "deploy": 0.75, "brainstorming": 0.6})
+    res = rerank.search("ship it")
+    # The exact shape and wording the benchmark measured (bench/scale/agent2.py).
+    assert res["status"] == "uncertain"
+    assert [set(h) for h in res["hits"]] == [{"name", "description", "confidence"}]
+    assert res["hits"][0]["name"] == "tdd" and res["hits"][0]["confidence"] == "low"
+    assert res["message"] == (
+        "No skill was confirmed for this request. These are uncertain candidates: load "
+        "one only if its description clearly covers the task; otherwise proceed without a skill."
+    )
+    monkeypatch.setattr(rerank, "RERANK_UNCERTAIN_FROM", 0.9)  # at the threshold: off
+    assert rerank.search("ship it") == retrieve.no_match_response()
+
+
+def test_without_a_judge_the_local_top_three_are_uncertain_candidates(monkeypatch):
+    _seed()
+    res = rerank.search("write failing tests")
+    assert res["status"] == "uncertain" and len(res["hits"]) == 3
+    assert all(h["confidence"] == "low" and "score" not in h for h in res["hits"])
+    assert len(rerank.search("write failing tests", k=2)["hits"]) == 2
+    monkeypatch.setattr(rerank, "LOCAL_CANDIDATES", 0)  # the old local gate
+    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
 
 
 def test_max_hits_zero_returns_up_to_k(monkeypatch):
@@ -278,7 +311,7 @@ def test_scan_failure_falls_back_to_local_gate(monkeypatch, scan_on):
         raise RuntimeError("scan failed")
 
     monkeypatch.setattr(rerank, "scan", boom)
-    assert rerank.search("does thing number 1") == retrieve.search("does thing number 1")
+    assert rerank.search("does thing number 1") == _local("does thing number 1")
 
 
 def test_jev_scan_uses_the_short_wording_in_batches(monkeypatch):
@@ -349,7 +382,7 @@ def test_judge_failure_falls_back_to_local_gate(monkeypatch):
         raise RuntimeError("network down")
 
     monkeypatch.setattr(rerank, "judge", boom)
-    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
+    assert rerank.search("write failing tests") == _local("write failing tests")
 
 
 def test_failure_starts_a_cooldown_that_skips_the_judge(monkeypatch):
@@ -368,7 +401,7 @@ def test_failure_starts_a_cooldown_that_skips_the_judge(monkeypatch):
         return [0.9 if c["name"] == "deploy" else 0.0 for c in candidates]
 
     monkeypatch.setattr(rerank, "judge", flaky)
-    local = retrieve.search("write failing tests")
+    local = _local("write failing tests")
     assert rerank.search("write failing tests") == local  # failure -> local gate
     clock["now"] = 159.0
     assert rerank.search("write failing tests") == local  # cooling down
@@ -386,7 +419,7 @@ def test_provider_that_cannot_be_built_falls_back(monkeypatch):
     monkeypatch.setattr(rerank, "RERANK_PROVIDER", "no_such_package.mod:Factory")
     assert rerank.enabled()
     assert "unavailable: ModuleNotFoundError" in rerank.readiness()
-    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
+    assert rerank.search("write failing tests") == _local("write failing tests")
 
 
 @pytest.mark.parametrize("bad", [[0.9], [0.9, 0.1, 0.2, 0.3], [1.7, 0.0, 0.0], ["x", 0, 0]])
@@ -400,7 +433,7 @@ def test_malformed_judge_output_falls_back(monkeypatch, bad):
             return bad
 
     monkeypatch.setattr(rerank, "current_judge", lambda: Broken(None))
-    assert rerank.search("write failing tests") == retrieve.search("write failing tests")
+    assert rerank.search("write failing tests") == _local("write failing tests")
 
 
 # --- swapping the model ----------------------------------------------------

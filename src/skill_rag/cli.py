@@ -77,8 +77,11 @@ def query(
     if res["status"] == "no_match":
         typer.echo(f"(no match — {res['message']})")
         return
+    if res["status"] == "uncertain":
+        typer.echo(f"(uncertain — {res['message']})")
     for rank, h in enumerate(res["hits"], start=1):
-        typer.echo(f"{rank}. [{h['score']:.3f}] {h['name']}")
+        score = f"{h['score']:.3f}" if "score" in h else "  ?  "
+        typer.echo(f"{rank}. [{score}] {h['name']}")
         typer.echo(f"   {h['description'][:140]}")
 
 
@@ -158,6 +161,8 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "rerank_threshold": rerank_mod.RERANK_THRESHOLD,
         "rerank_max_hits": rerank_mod.RERANK_MAX_HITS,
         "rerank_scan_max": rerank_mod.RERANK_SCAN_MAX,
+        "rerank_uncertain_from": rerank_mod.RERANK_UNCERTAIN_FROM,
+        "local_candidates": rerank_mod.LOCAL_CANDIDATES,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
     }
     if json_out:

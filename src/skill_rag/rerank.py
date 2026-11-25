@@ -1,7 +1,9 @@
 """Opt-in second-stage fit judgment by a swappable model.
 
-Off by default: without ``SKILL_RAG_RERANK`` every search is the local hybrid
-gate in ``retrieve.py`` and nothing leaves the machine.
+Off by default: without ``SKILL_RAG_RERANK`` nothing leaves the machine and no
+judge runs. The top few skills of the local ranking are then returned as
+``uncertain`` candidates and the calling agent decides (see
+``LOCAL_CANDIDATES``).
 
 When enabled, the local hybrid ranking only proposes a shortlist. A judge
 (``skill_rag.judges``: ``jev``, ``openai``, or your own ``module:factory``)
@@ -10,7 +12,10 @@ policy is precision first: a wrong skill costs the agent a skill body's worth
 of tokens and can steer it wrong, while no skill costs only the help it would
 have given. So only a skill at or above ``RERANK_THRESHOLD`` (0.9) is
 returned, and by default only the single best one; its probability is the hit
-``score``. The built-in judges are cloud calls: they send the query text and
+``score``. When nothing reaches the threshold, the single best skill at or
+above ``RERANK_UNCERTAIN_FROM`` (0.7) is returned as an ``uncertain``
+candidate for the calling agent to accept or decline. The built-in judges are
+cloud calls: they send the query text and
 the shortlisted skills' names and descriptions to the provider. Skill bodies,
 paths, and the rest of the corpus are never sent.
 
@@ -19,7 +24,7 @@ build the shortlist. It finds the right skill more often but also returns more
 skills that do not fit, so it is off by default.
 
 Any failure (unknown provider, missing package or key, no API credits, timeout,
-API error, malformed answer) falls back to the local gate, so enabling this can
+API error, malformed answer) falls back to the local path, so enabling this can
 never make search unavailable. After a failure the judge is skipped for a short
 cooldown so a persistent outage does not add a failed round trip to every
 search.
@@ -75,6 +80,20 @@ RERANK_DESCRIPTION_CHARS = int(os.environ.get("SKILL_RAG_RERANK_DESCRIPTION_CHAR
 # threshold it also returned more skills that do not fit, so it lost the
 # precision-first selection. A scan costs about 51 input tokens per skill.
 RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "0"))
+
+# Below the threshold the judge cannot tell right from wrong, but the calling
+# agent can. On a dev set and a fresh test set
+# (docs/benchmarks/2026-11-25-agent2-results.md) showing the best skill in
+# [0.7, 0.9) as an uncertain candidate raised the share of requests where the
+# agent loaded a useful skill without raising wrong loads. A value at or above
+# the threshold turns this off.
+RERANK_UNCERTAIN_FROM = float(os.environ.get("SKILL_RAG_RERANK_UNCERTAIN_FROM", "0.7"))
+# Without a judge: how many skills of the local ranking to return as uncertain
+# candidates, with up to LOCAL_DESCRIPTION_CHARS of description each. In the
+# same benchmark this halved wrong loads compared with returning the local
+# gate's hits. 0 restores the local gate (``retrieve.search``).
+LOCAL_CANDIDATES = int(os.environ.get("SKILL_RAG_LOCAL_CANDIDATES", "3"))
+LOCAL_DESCRIPTION_CHARS = 300
 
 _retry_after: float = 0.0  # monotonic deadline of the current cooldown
 
@@ -155,7 +174,14 @@ def search_traced(
 ) -> tuple[dict, str]:
     """``search`` plus what actually produced the result: the judge's provider
     name, or ``""`` when the local gate did (rerank off, cooldown, failure)."""
-    local = lambda: (retrieve.search(query, k=k, agent=agent, exclude=exclude), "")
+    def local() -> tuple[dict, str]:
+        if LOCAL_CANDIDATES > 0 and query.strip() and retrieve.corpus_size() > 0:
+            rows = retrieve.shortlist(query, min(k, LOCAL_CANDIDATES), exclude=exclude)
+            if rows:
+                return retrieve.uncertain_response(rows, LOCAL_DESCRIPTION_CHARS), ""
+            return retrieve.no_match_response(), ""
+        return retrieve.search(query, k=k, agent=agent, exclude=exclude), ""
+
     if not enabled():
         return local()
     global _retry_after
@@ -185,7 +211,12 @@ def search_traced(
 
     kept = [(c, p) for c, p in zip(candidates, fits) if p >= RERANK_THRESHOLD]
     if not kept:
-        return retrieve.no_match_response(), RERANK_PROVIDER
+        band = [(c, p) for c, p in zip(candidates, fits) if p >= RERANK_UNCERTAIN_FROM]
+        if not band:
+            return retrieve.no_match_response(), RERANK_PROVIDER
+        # max keeps the first on ties, so equal probabilities keep the hybrid order.
+        best = max(band, key=lambda pair: pair[1])[0]
+        return retrieve.uncertain_response([best], RERANK_DESCRIPTION_CHARS), RERANK_PROVIDER
     # Stable sort: equal probabilities keep the hybrid order.
     kept.sort(key=lambda pair: pair[1], reverse=True)
     hits = [

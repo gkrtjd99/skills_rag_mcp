@@ -41,7 +41,7 @@ def test_full_flow(tmp_path, monkeypatch):
 
     # 1. search finds something
     res = mcp_server.search_skills("how do I find a bug", k=5)
-    assert res["status"] == "ok"
+    assert res["status"] == "uncertain"  # no judge configured
     names = [h["name"] for h in res["hits"]]
     assert "debugging" in names
 

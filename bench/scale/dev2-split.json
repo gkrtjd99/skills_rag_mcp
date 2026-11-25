@@ -1,0 +1,242 @@
+{
+ "seed": 20261128,
+ "targets": [
+  "funnel-platform-picker",
+  "lark-wiki",
+  "claude-api",
+  "elevenlabs-music-generation",
+  "debugging-and-error-recovery",
+  "ai-seo",
+  "convex-quickstart",
+  "prisma-driver-adapter-implementation",
+  "xcode-project-setup",
+  "google-agents-cli-publish",
+  "neon-auth",
+  "flux-kontext",
+  "frontend-design",
+  "content-strategy",
+  "higgsfield-product-photoshoot",
+  "spec-driven-development",
+  "convex-migrate",
+  "improve-animations",
+  "gsap-plugins",
+  "azure-compliance",
+  "convex-launch-readiness",
+  "sandbox-stable",
+  "tdd",
+  "face-swap",
+  "solana-dev",
+  "browser-act",
+  "lark-workflow-standup-report",
+  "caveman-learn",
+  "caveman-optimize",
+  "review-animations",
+  "prisma-upgrade-v7",
+  "copywriting",
+  "neon",
+  "slideshow",
+  "convex-authz",
+  "ask-sonner",
+  "research",
+  "mcp-builder",
+  "prisma-compute",
+  "ask-emil",
+  "amazon-product-research",
+  "surgical-patch",
+  "git-workflow-and-versioning",
+  "lark-task",
+  "lark-base",
+  "diagnosing-bugs",
+  "neon-postgres",
+  "obsidian-markdown",
+  "obsidian-bases",
+  "server-side-conversion-tracking"
+ ],
+ "negatives": [
+  {
+   "name": "migrate-to-shoehorn",
+   "source": "mattpocock/skills",
+   "blob_sha": "ae4f965e204fc93cedbc4e2c306e92829d93f800"
+  },
+  {
+   "name": "free-tools",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "cfef9eaf83f07b1ace96f9e8726399703ad24e56"
+  },
+  {
+   "name": "setup-ts-deep-modules",
+   "source": "mattpocock/skills",
+   "blob_sha": "7e30047eaeda175de5d93886596a37baf365bb90"
+  },
+  {
+   "name": "marketing-loops",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "245ff38a155371c41cce935198b0d4d2e80d5082"
+  },
+  {
+   "name": "wizard",
+   "source": "mattpocock/skills",
+   "blob_sha": "c4294ad8298b9b95fc727496b1b802b1f7363fba"
+  },
+  {
+   "name": "convex-backup",
+   "source": "convex/agent-skills",
+   "blob_sha": "74d60d6bf02a0b4b8fb195eb3ce4c7816b7bdbc0"
+  },
+  {
+   "name": "convex-bundle-size",
+   "source": "convex/agent-skills",
+   "blob_sha": "4819d23fc47e9eeff6611d656bb480c2e504f1cb"
+  },
+  {
+   "name": "cloudflare-app-bootstrap",
+   "source": "cloudflare/skills",
+   "blob_sha": "6700314e6d5855ccc9bab4735022bd492b82916a"
+  },
+  {
+   "name": "lark-approval",
+   "source": "larksuite/cli",
+   "blob_sha": "3ebd27929be731ebe9153c2d431424039e1f5ab9"
+  },
+  {
+   "name": "attribution",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "620b0076a343392c910a5601579c4f373459b90f"
+  },
+  {
+   "name": "site-architecture",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "870d187c42ab3c5d748fcae46284583e62ad0dfe"
+  },
+  {
+   "name": "referrals",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "eef4b57f69213999ebe75018efabe8f5e5fb5194"
+  },
+  {
+   "name": "convex-add",
+   "source": "convex/agent-skills",
+   "blob_sha": "07eb73d86bf623248e136885f40af9d283578486"
+  },
+  {
+   "name": "observability-and-instrumentation",
+   "source": "addyosmani/agent-skills",
+   "blob_sha": "7cfd593d226bf66bdd557a2f248e6f95780d618e"
+  },
+  {
+   "name": "paywalls",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "8657cf7629334c4da577771aaf8ec858030a54b5"
+  },
+  {
+   "name": "public-relations",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "e3d2e5f480f90213916ae74c7d1fddf5d10ec609"
+  },
+  {
+   "name": "convex-explain-app",
+   "source": "convex/agent-skills",
+   "blob_sha": "bde1ed646db37fcdef0e918aa894ec8bc385b851"
+  },
+  {
+   "name": "marketing-ideas",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "9a92873fa727672af794eb268a28a401ac3f79fb"
+  },
+  {
+   "name": "lark-skill-maker",
+   "source": "larksuite/cli",
+   "blob_sha": "cdb3f566a8c098d638d3d5031f34d4ac8aed02b7"
+  },
+  {
+   "name": "gateway-workers",
+   "source": "cloudflare/skills",
+   "blob_sha": "186698948bf711f3ca12c516e4fec6715ad14c77"
+  },
+  {
+   "name": "azure-storage",
+   "source": "microsoft/azure-skills",
+   "blob_sha": "09ab9126fcb8418d1fe34db1937ec51ee03eda60"
+  },
+  {
+   "name": "relight",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "blob_sha": "86ef31dd00cc3b806cf98d4e8c5b6c71350644f2"
+  },
+  {
+   "name": "to-questionnaire",
+   "source": "mattpocock/skills",
+   "blob_sha": "dadd0c00d6a350acaa15bb9ca1b96b20ead684ca"
+  },
+  {
+   "name": "azure-messaging",
+   "source": "microsoft/azure-skills",
+   "blob_sha": "9a92df2d9548d268548d22d3f4b2cfd705c96a4c"
+  },
+  {
+   "name": "convex-migrate-rehearse",
+   "source": "convex/agent-skills",
+   "blob_sha": "85c881c07a72a19d7f4fc879d91b016e41d6a281"
+  },
+  {
+   "name": "convex-improve-convex-plugin",
+   "source": "convex/agent-skills",
+   "blob_sha": "f3d38e762c5fa76db14ae9107475f0d1b6979c8a"
+  },
+  {
+   "name": "churn-prevention",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "7ba340c10a5301fb544dbc8d163afba569e7ef50"
+  },
+  {
+   "name": "using-agent-skills",
+   "source": "addyosmani/agent-skills",
+   "blob_sha": "30e644445003bb0a73cd38965ca8f11166333734"
+  },
+  {
+   "name": "ace-step",
+   "source": "prime-skills/runcomfy-agent-skills",
+   "blob_sha": "2b355f313b400cbb519f0190714a8cc318c853c6"
+  },
+  {
+   "name": "competitor-profiling",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "c3bd80ad7cb4773820ffcec48009fe1c6607329c"
+  },
+  {
+   "name": "loop-me",
+   "source": "mattpocock/skills",
+   "blob_sha": "e58a474ca80feffdeb28842bc3bdee37da6510e7"
+  },
+  {
+   "name": "events",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "7399c0f70682c0a9be42f396602f212aa34d4dc2"
+  },
+  {
+   "name": "ci-cd-and-automation",
+   "source": "addyosmani/agent-skills",
+   "blob_sha": "eab42601b1d0d780cdf3b998e11c48773b75a436"
+  },
+  {
+   "name": "popups",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "700a3c5d3862ae234abfb7817bb58158a363a7ca"
+  },
+  {
+   "name": "writing-shape",
+   "source": "mattpocock/skills",
+   "blob_sha": "02f2866d13e72504e010f2ad3458eb9b36b876db"
+  },
+  {
+   "name": "convex-agent",
+   "source": "convex/agent-skills",
+   "blob_sha": "dd3be813f6ad1e3bde2890cc9c5072b3648696b5"
+  },
+  {
+   "name": "aso",
+   "source": "coreyhaines31/marketingskills",
+   "blob_sha": "03f29428631056f44b5a9474523e380d13b47e5f"
+  }
+ ]
+}

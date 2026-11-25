@@ -5,6 +5,7 @@ get_skill:     full SKILL.md body for a single skill.
 
 Response shapes (mirrored in bootstrap-skill/using-skill-rag/SKILL.md):
   search_skills -> {"status": "ok", "hits": [...]}
+                or {"status": "uncertain", "hits": [...], "message": "..."}
                 or {"status": "no_match", "hits": [], "message": "..."}
                 or {"status": "skip", "hits": [], "message": "..."}
   get_skill     -> {"status": "ok", "body": "...", "path": "<skill directory>"}
@@ -45,6 +46,8 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     """Search skill metadata for a new task or materially changed topic.
 
     Search once per task; call ``get_skill`` only for a clearly relevant hit.
+    Status ``uncertain`` lists unconfirmed candidates (``"confidence": "low"``):
+    load one only if its description clearly covers the task, else none.
     """
     if isinstance(k, bool) or not isinstance(k, int) or not MIN_SEARCH_K <= k <= MAX_SEARCH_K:
         raise ValueError(f"k must be an integer between {MIN_SEARCH_K} and {MAX_SEARCH_K}")
@@ -53,7 +56,7 @@ def search_skills(query: str, k: int = 5, agent: str | None = None) -> dict:
     if retrieve.is_conversational(query):
         return retrieve.skip_response()
     sync_mod.sync_if_stale()
-    # Local hybrid gate by default; opt-in Jev fit judgment (SKILL_RAG_RERANK).
+    # Local candidates by default; opt-in fit judgment by a model (SKILL_RAG_RERANK).
     result, provider = rerank.search_traced(
         query, k=k, agent=agent, exclude=usage.loaded_this_session()
     )

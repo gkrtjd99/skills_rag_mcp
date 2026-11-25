@@ -68,6 +68,12 @@ package-managed index write.
 7. Kept candidates are ordered by reciprocal rank fusion (`RRF_K`, default 60).
 8. Returns `{status: "ok", hits}` or `{status: "no_match", hits: [], message}`.
 
+Steps 6-8 are the threshold gate. The MCP tool uses it only when
+`SKILL_RAG_LOCAL_CANDIDATES=0`. By default, with no judge configured, the
+tool returns the top 3 of the fused ranking (no thresholds) as
+`{status: "uncertain", hits, message}` and the calling agent decides whether
+to load one.
+
 With `SKILL_RAG_RERANK` set (`jev`, `openai`, or `package.module:factory`),
 steps 6-7 are replaced after sync: `retrieve.shortlist` returns the top 16 by
 fused rank with no thresholds, the configured `judges.Judge` returns one fit
@@ -196,6 +202,7 @@ The bootstrap skill and server response shapes jointly prevent retry loops:
 | `search_skills` | Empty query, empty corpus, or no candidate above thresholds | `no_match` | Respond directly. No reworded retry. |
 | `get_skill` | Missing skill after forced sync | `not_found` | Do not retry this name this turn. |
 | `search_skills` | Hits returned, none actually fit | `ok` (agent judges) | Proceed without a skill. |
+| `search_skills` | No skill confirmed; candidates offered | `uncertain` | Load at most one that clearly fits, else none. No reworded retry. |
 
 ## Constraints
 
