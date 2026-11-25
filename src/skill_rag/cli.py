@@ -77,8 +77,8 @@ def query(
     if res["status"] == "no_match":
         typer.echo(f"(no match — {res['message']})")
         return
-    if res["status"] == "uncertain":
-        typer.echo(f"(uncertain — {res['message']})")
+    if res["status"] in ("uncertain", "candidates"):
+        typer.echo(f"({res['status']} — {res['message']})")
     for rank, h in enumerate(res["hits"], start=1):
         score = f"{h['score']:.3f}" if "score" in h else "  ?  "
         typer.echo(f"{rank}. [{score}] {h['name']}")
@@ -161,6 +161,9 @@ def status(json_out: bool = typer.Option(False, "--json")):
         "rerank_threshold": rerank_mod.RERANK_THRESHOLD,
         "rerank_max_hits": rerank_mod.RERANK_MAX_HITS,
         "rerank_scan_max": rerank_mod.RERANK_SCAN_MAX,
+        "rerank_style": rerank_mod.RERANK_STYLE,
+        "rerank_floor": rerank_mod.RERANK_FLOOR,
+        "rerank_shown": rerank_mod.RERANK_SHOWN,
         "rerank_uncertain_from": rerank_mod.RERANK_UNCERTAIN_FROM,
         "local_candidates": rerank_mod.LOCAL_CANDIDATES,
         "sync_ttl_seconds": corpus_mod.SYNC_TTL_SECONDS,
@@ -187,10 +190,11 @@ def status(json_out: bool = typer.Option(False, "--json")):
     typer.echo(f"translation     : {payload['translation_enabled']}")
     typer.echo(f"rerank          : {payload['rerank']}")
     if rerank_mod.enabled():
-        typer.echo(
-            f"rerank shortlist: {payload['rerank_candidates']} / fit >= {payload['rerank_threshold']}"
-            f" / returns at most {payload['rerank_max_hits'] or 'k'}"
-        )
+        if payload["rerank_style"] == "single":
+            policy = f"fit >= {payload['rerank_threshold']} / returns at most {payload['rerank_max_hits'] or 'k'}"
+        else:
+            policy = f"shows up to {payload['rerank_shown']} candidates with fit >= {payload['rerank_floor']}"
+        typer.echo(f"rerank shortlist: {payload['rerank_candidates']} / {policy}")
         scan = payload["rerank_scan_max"]
         typer.echo(f"rerank scan     : {'off' if scan <= 0 else f'whole corpus up to {scan} skills'}")
     typer.echo(f"sync TTL (s)    : {payload['sync_ttl_seconds']}")

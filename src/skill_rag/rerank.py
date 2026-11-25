@@ -5,21 +5,30 @@ gate in ``retrieve.py`` and nothing leaves the machine.
 
 When enabled, the local hybrid ranking only proposes a shortlist. A judge
 (``skill_rag.judges``: ``jev``, ``openai``, or your own ``module:factory``)
-returns, per shortlisted skill, the probability that it fits the query. The
-policy is precision first: a wrong skill costs the agent a skill body's worth
-of tokens and can steer it wrong, while no skill costs only the help it would
-have given. So only a skill at or above ``RERANK_THRESHOLD`` (0.9) is
-returned, and by default only the single best one; its probability is the hit
-``score``. When nothing reaches the threshold, the single best skill at or
-above ``RERANK_UNCERTAIN_FROM`` (0.7) is returned as an ``uncertain``
-candidate for the calling agent to accept or decline. The built-in judges are
-cloud calls: they send the query text and
+returns, per shortlisted skill, the probability that it fits the query.
+
+Two styles decide what is returned (``RERANK_STYLE``):
+
+- ``candidates`` (default): every shortlisted skill at or above
+  ``RERANK_FLOOR`` (0.5), best first, at most ``RERANK_SHOWN`` (8), as a
+  ``candidates`` response with a short description each. The calling agent,
+  a stronger selector than the judge once it can see the candidates, picks
+  one or none. Measured, this loads the right skill about as often as putting
+  every description in the agent's context, with a fraction of the wrong
+  loads and of the context.
+- ``single``: precision first. Only a skill at or above ``RERANK_THRESHOLD``
+  (0.9) is returned, by default the single best one; below it, the best skill
+  at or above ``RERANK_UNCERTAIN_FROM`` (0.7) is returned as ``uncertain``.
+
+The built-in judges are cloud calls: they send the query text and
 the shortlisted skills' names and descriptions to the provider. Skill bodies,
 paths, and the rest of the corpus are never sent.
 
-``RERANK_SCAN_MAX`` > 0 additionally lets the judge scan the whole corpus to
-build the shortlist. It finds the right skill more often but also returns more
-skills that do not fit, so it is off by default.
+Up to ``RERANK_SCAN_MAX`` skills (default 500) the judge also scans the whole
+corpus to build the shortlist, which puts the right skill among the
+candidates far more often than the local ranking does, above all for Korean
+requests. The scan sends every skill's name and the first 120 characters of
+its description on every search. 0 turns it off.
 
 Any failure (unknown provider, missing package or key, no API credits, timeout,
 API error, malformed answer) falls back to the local gate, so enabling this can
@@ -72,16 +81,22 @@ RERANK_COOLDOWN_SECONDS = float(os.environ.get("SKILL_RAG_RERANK_COOLDOWN", "60"
 # A judged hit no longer needs its description to be re-judged by the agent,
 # only recognized, so it is returned shorter than a local-gate hit (280).
 RERANK_DESCRIPTION_CHARS = int(os.environ.get("SKILL_RAG_RERANK_DESCRIPTION_CHARS", "120"))
-# Largest corpus the judge scans whole to build the shortlist; 0 (default)
-# turns the scan off. On the dev set a scan put the right skill in the top 16
-# for 97% of queries against 74% for the local shortlist, but at every
-# threshold it also returned more skills that do not fit, so it lost the
-# precision-first selection. A scan costs about 51 input tokens per skill.
-# Measured again with an agent deciding what to load
-# (docs/benchmarks/2026-11-25-scan-results.md) the scan raised useful loads
-# from 77% to 82%, all of it on Korean requests, with wrong loads inside the
-# limits, but missed the adoption bar by one request; it stays opt-in.
-RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "0"))
+# Largest corpus the judge scans whole to build the shortlist; 0 turns the
+# scan off. A scan put the right skill in the top 16 for 95 to 97% of requests
+# against 74 to 79% for the local shortlist. Under the ``single`` style that
+# gain was small (docs/benchmarks/2026-11-25-scan-results.md); under
+# ``candidates`` it is most of the result
+# (docs/benchmarks/2026-11-25-candidates-results.md). A scan costs about 51
+# input tokens per skill and was measured at 350 skills; the default covers
+# corpora up to 500.
+RERANK_SCAN_MAX = int(os.environ.get("SKILL_RAG_RERANK_SCAN_MAX", "500"))
+# ``candidates`` or ``single``; see the module docstring.
+RERANK_STYLE = os.environ.get("SKILL_RAG_RERANK_STYLE", "candidates").strip() or "candidates"
+# ``candidates`` style: lowest probability shown, and how many skills at most.
+# Chosen on a dev set and confirmed on a fresh test set; a floor of 0.1 or 8
+# candidates without a floor raised wrong loads.
+RERANK_FLOOR = float(os.environ.get("SKILL_RAG_RERANK_FLOOR", "0.5"))
+RERANK_SHOWN = int(os.environ.get("SKILL_RAG_RERANK_SHOWN", "8"))
 
 # Below the threshold the judge cannot tell right from wrong, but the calling
 # agent can. On a fresh test set
@@ -232,6 +247,18 @@ def search_traced(
             RERANK_COOLDOWN_SECONDS,
         )
         return local()
+
+    if RERANK_STYLE != "single":
+        # ``k`` widens the shortlist above; it does not cap what is shown,
+        # because callers pass a ``k`` chosen for the local gate.
+        shown = sorted(
+            ((c, p) for c, p in zip(candidates, fits) if p >= RERANK_FLOOR),
+            key=lambda pair: pair[1],
+            reverse=True,  # stable: equal probabilities keep the shortlist order
+        )[: max(1, RERANK_SHOWN)]
+        if not shown:
+            return retrieve.no_match_response(), RERANK_PROVIDER
+        return retrieve.candidates_response(shown, RERANK_DESCRIPTION_CHARS), RERANK_PROVIDER
 
     kept = [(c, p) for c, p in zip(candidates, fits) if p >= RERANK_THRESHOLD]
     if not kept:

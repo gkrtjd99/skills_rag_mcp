@@ -10,6 +10,35 @@ skills are searched per new task via MCP, and only matching bodies are fetched.
 The native skill-loader settings of Claude/Codex are independent and remain
 available as a fallback.
 
+## Compared with loading every skill (read this first)
+
+At 350 skills, with a model acting as the agent and counting what it chose to
+load. The configuration was chosen first and then run once on a test set it
+had not seen (191 requests with a matching skill, 96 without):
+
+| | Useful skill loaded | Wrong skill loaded when none matches | Skill metadata in context |
+| --- | ---: | ---: | --- |
+| **Search + `jev` (this project's default)** | 91.1% | 9.4% | about 650 characters per search (about 160 tokens) |
+| Search + `jev`, one candidate only (`STYLE=single`) | 74.9% | 0.0% | about 90 characters per search |
+| No search, all 350 descriptions in context | 94.8% | 54.2% | about 33,750 tokens, always |
+
+- With `jev` on, the default loads a useful skill 3.7 points less often than
+  loading every description, loads far fewer wrong ones, and uses about 1/200
+  of the context. Korean requests 89.7%, English 92.6%.
+- **Without a judge (a plain install) these numbers do not hold.** On another
+  test set search without a judge scored 69.6% / 14.4%, and loading every
+  description scored 93.8% / 34.0% on the same requests. If you will not use
+  a judge, loading your skills natively finds the right one far more often.
+- Cost: about 21,000 `jev` input tokens (about $0.0009) and 0.55 s per
+  search. Every search sends the query and **every skill's name and first 120
+  characters of description** to TypeSafe (never a body).
+- With a few dozen skills the full list is about 2,000 tokens and search has
+  little to offer.
+- The agent is one model call with an empty context and may differ from a
+  real harness; requests are model-written. Details:
+  `docs/benchmarks/2026-11-25-candidates-results.md`,
+  `docs/benchmarks/2026-11-25-native-baseline-results.md`.
+
 ## How it works
 
 ```
@@ -65,7 +94,7 @@ After restarting the harness, in a fresh session:
 
 - Confirm the `using-skill-rag` meta-skill auto-loads at start
 - Confirm the `mcp__skill-rag__search_skills` tool is visible in any message
-- Try it directly: `search_skills(query="...", k=5)` → `{status: "ok"|"uncertain"|"no_match", hits, ...}`
+- Try it directly: `search_skills(query="...", k=5)` → `{status: "ok"|"candidates"|"uncertain"|"no_match", hits, ...}`
 
 You can also verify the same search from the CLI:
 
@@ -193,24 +222,33 @@ MCP server process) is not suggested again.
 | `SKILL_RAG_EXPLICIT` | `1` | When the request names a skill outright (`/name`, `name skill`), return it without a judgment (`0` turns it off) |
 | `SKILL_RAG_RERANK` | (off) | Second-stage fit judge: `jev`, `openai`, or your own `package.module:factory` (cloud call, see below) |
 | `SKILL_RAG_RERANK_CANDIDATES` | `16` | Candidate skills shown to the judge |
-| `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | Minimum fit probability for a skill to be returned (chosen with `jev`) |
-| `SKILL_RAG_RERANK_MAX_HITS` | `1` | Most skills returned per search (`0` means up to `k`) |
-| `SKILL_RAG_RERANK_SCAN_MAX` | `0` | Largest corpus the judge scans whole to build the shortlist (`0` disables) |
+| `SKILL_RAG_RERANK_STYLE` | `candidates` | `candidates`: return several candidates at or above the floor and let the agent choose. `single`: only the one sure skill (uses the threshold below) |
+| `SKILL_RAG_RERANK_FLOOR` | `0.5` | `candidates` style: lowest fit probability shown |
+| `SKILL_RAG_RERANK_SHOWN` | `8` | `candidates` style: most candidates shown |
+| `SKILL_RAG_RERANK_SCAN_MAX` | `500` | Largest corpus the judge scans whole to build the shortlist (`0` disables; the local ranking picks the shortlist) |
+| `SKILL_RAG_RERANK_THRESHOLD` | `0.9` | `single` style: minimum fit probability for a skill to be returned (chosen with `jev`) |
+| `SKILL_RAG_RERANK_MAX_HITS` | `1` | `single` style: most skills returned per search (`0` means up to `k`) |
 | `SKILL_RAG_RERANK_MODEL` | (provider default) | Pin the judge model id (for example `jev-1.14.0`, `gpt-6-luna`) |
 | `SKILL_RAG_RERANK_TIMEOUT` | `5` | Judge request timeout (seconds) |
 | `SKILL_RAG_RERANK_COOLDOWN` | `60` | Seconds to stay on the local gate after a failed judge call |
 | `SKILL_RAG_RERANK_DESCRIPTION_CHARS` | `120` | Description cap for judged hits (`0` disables the cap) |
-| `SKILL_RAG_RERANK_UNCERTAIN_FROM` | `0.7` | Below the threshold, return the single best skill at or above this probability as an `uncertain` candidate (a value at or above the threshold turns it off) |
+| `SKILL_RAG_RERANK_UNCERTAIN_FROM` | `0.7` | `single` style: below the threshold, return the single best skill at or above this probability as an `uncertain` candidate (a value at or above the threshold turns it off) |
 | `SKILL_RAG_LOCAL_CANDIDATES` | `0` | Without a judge, return the top N of the local ranking as `uncertain` candidates (`0` keeps the default gate) |
 
 ### Optional: judge rerank (off by default)
 
 The default thresholds are calibrated on the public fixture and lose accuracy
-on other corpora. When enabled, local hybrid search only proposes 16 candidates
-and a judge model returns, per candidate, the probability that it fits the
-query. The rule is **only when sure**: the single skill at or above 0.9 is
-returned, otherwise nothing. A skill that does not fit costs the agent a skill
-body's worth of tokens and can steer it wrong.
+on other corpora. When enabled, the judge scans every skill to pick 16
+candidates and returns, per candidate, the probability that it fits the
+query. The default style (`candidates`) returns the candidates at or above
+0.5, best first, at most 8, with 120-character descriptions, as
+`status: "candidates"`, and **the agent chooses**: with the candidates in
+view the agent selects better than the judge. Results are in the table at the
+top.
+
+What follows records the `single` style, the earlier default (only the one
+skill at or above 0.9). It hardly ever returns a wrong skill and returns a
+useful one much less often. Use it with `SKILL_RAG_RERANK_STYLE=single`.
 
 **Benchmark (rules and configuration committed first, then one run on a test
 set nobody had seen).** A 350-skill corpus from skills.sh and 293 queries
@@ -233,19 +271,16 @@ does not actually fit, as judged by a separate model.
   wrong skill for 22% of no-match requests at a threshold of 0.999. Use `jev`
   when avoiding wrong skills matters.
 - Korean requests are weaker than English (`jev` useful rate 58% against 78%).
-- Letting the judge scan the whole corpus (`SKILL_RAG_RERANK_SCAN_MAX`) is off
-  by default. Measured again with an agent deciding what to load, it raised
-  useful loads from 77.2% to 82.1% (Korean requests 71.0% to 80.6%, English
-  unchanged) with wrong loads inside the limits, but it missed the adoption
-  bar set in advance (+5 points) by one request and was not confirmed on a
-  test set. Worth trying with `SKILL_RAG_RERANK_SCAN_MAX=500` if many requests
-  are Korean. Cost at 350 skills: about 17,800 more input tokens and 0.37 s
-  per search, and every skill's name and first 120 characters of description
-  are sent to the provider on every search. Details:
-  `docs/benchmarks/2026-11-25-scan-results.md`.
+- Letting the judge scan the whole corpus (`SKILL_RAG_RERANK_SCAN_MAX`) is now
+  on by default (up to 500 skills). Under the `single` style its gain was
+  small (77.2% to 82.1%, `docs/benchmarks/2026-11-25-scan-results.md`); under
+  `candidates` it is most of the result. Cost at 350 skills: about 17,800
+  input tokens and 0.37 s per search, and every skill's name and first 120
+  characters of description are sent to the provider on every search. With
+  `0` only the 16 shortlisted names and descriptions are sent.
 - Input tokens per search: about 3,400 for `jev`, 5,100 for `openai`.
 
-**The agent decides the uncertain cases.** When no skill reaches 0.9 but one
+**(`single` style) The agent decides the uncertain cases.** When no skill reaches 0.9 but one
 is at or above 0.7, the best one is returned as `status: "uncertain"` (no
 score, `"confidence": "low"`, a 120-character description) and the calling
 agent decides whether to load it. Measured with a model acting as the agent,
@@ -255,7 +290,7 @@ requests):
 | | Useful skill loaded | Wrong skill loaded when none matches | Wrong skill loaded when one matches |
 | --- | ---: | ---: | ---: |
 | `jev`, 0.9 and above only | 60.3% | 4.1% | 3.1% |
-| `jev` plus the uncertain candidate (default) | 67.0% | 8.2% | 2.1% |
+| `jev` plus the uncertain candidate (`single` style default) | 67.0% | 8.2% | 2.1% |
 | No judge, agent reads the gate's result | 69.6% | 14.4% | 4.1% |
 | No judge, `SKILL_RAG_LOCAL_CANDIDATES=3` | 62.9% | 7.2% | 4.6% |
 
