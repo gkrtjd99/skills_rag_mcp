@@ -52,6 +52,9 @@ def _enable(monkeypatch, fits_by_name):
 
     monkeypatch.setattr(rerank, "RERANK_PROVIDER", "jev")
     monkeypatch.setattr(rerank, "judge", fake_judge)
+    # Most tests below are about the precision-first style; the default
+    # ``candidates`` style has its own tests.
+    monkeypatch.setattr(rerank, "RERANK_STYLE", "single")
     return calls
 
 
@@ -115,10 +118,31 @@ def _local(query: str, k: int = 5) -> dict:
     return retrieve.search(query, k=k)
 
 
-def test_defaults_are_precision_first(monkeypatch):
+def test_default_style_shows_the_agent_several_candidates(monkeypatch):
+    _seed()
+    assert (rerank.RERANK_STYLE, rerank.RERANK_FLOOR, rerank.RERANK_SHOWN) == ("candidates", 0.5, 8)
+    assert rerank.RERANK_SCAN_MAX == 500
+    _enable(monkeypatch, {"tdd": 0.62, "deploy": 0.93, "brainstorming": 0.49})
+    monkeypatch.setattr(rerank, "RERANK_STYLE", "candidates")
+    res = rerank.search("ship it", k=1)  # k does not cap what is shown
+    # The exact shape and wording the benchmark measured (bench/scale/candidates_agent.py).
+    assert res["status"] == "candidates"
+    assert [(h["name"], h["score"]) for h in res["hits"]] == [("deploy", 0.93), ("tdd", 0.62)]
+    assert all(set(h) == {"name", "description", "score"} for h in res["hits"])
+    assert res["message"] == (
+        "These are the closest skills, best first. Often none of them fits: load one only if "
+        "its name and description clearly cover this task; otherwise proceed without a skill."
+    )
+    monkeypatch.setattr(rerank, "RERANK_SHOWN", 1)
+    assert [h["name"] for h in rerank.search("ship it")["hits"]] == ["deploy"]
+    _enable(monkeypatch, {"tdd": 0.49})
+    monkeypatch.setattr(rerank, "RERANK_STYLE", "candidates")
+    assert rerank.search("ship it") == retrieve.no_match_response()  # nothing at the floor
+
+
+def test_single_style_is_precision_first(monkeypatch):
     _seed()
     assert rerank.RERANK_THRESHOLD == 0.9 and rerank.RERANK_MAX_HITS == 1
-    assert rerank.RERANK_SCAN_MAX == 0
     _enable(monkeypatch, {"tdd": 0.69, "deploy": 0.6})
     assert rerank.search("ship it") == retrieve.no_match_response()  # likely is not enough
     _enable(monkeypatch, {"tdd": 0.95, "deploy": 0.97, "brainstorming": 0.92})

@@ -54,6 +54,14 @@ parent already framed, skip.
   - If none of the descriptions actually fit despite being returned,
     proceed without a skill. Do not refetch with reworded queries.
 
+- `{status: "candidates", hits: [{name, description, score}, ...], message: ...}`
+  - The closest skills, best first. `score` is an estimate that the skill
+    fits, not a verdict, and often none of them fits.
+  - Load **at most one**, and only if its name and description clearly cover
+    this specific task on the same product, platform, or technology.
+    Otherwise proceed without a skill. Do not search again with a reworded
+    query.
+
 - `{status: "uncertain", hits: [{name, description, confidence: "low"}, ...], message: ...}`
   - The search could not confirm any skill; these are candidates only, and
     often none of them fits.

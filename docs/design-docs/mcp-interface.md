@@ -1,6 +1,6 @@
 # MCP Interface
 
-Two tools. Five terminal statuses across them.
+Two tools. Six terminal statuses across them.
 
 ## `search_skills(query: str, k: int = 5, agent: str | None = None) -> dict`
 
@@ -128,6 +128,32 @@ Search is hybrid:
 
 With `SKILL_RAG_RERANK` set (`jev`, `openai`, or a custom
 `package.module:factory`) the keep rule and ordering above are replaced. The
+shortlist of `SKILL_RAG_RERANK_CANDIDATES` (default 16) is built by the
+judge's scan of every skill when the corpus has at most
+`SKILL_RAG_RERANK_SCAN_MAX` skills (default 500; `0` uses the fused rank
+instead), and each shortlisted skill is judged for fit to the query.
+
+In the default style (`SKILL_RAG_RERANK_STYLE=candidates`) every shortlisted
+skill with probability >= `SKILL_RAG_RERANK_FLOOR` (default 0.5) is returned,
+best first, at most `SKILL_RAG_RERANK_SHOWN` (default 8) of them:
+
+```json
+{
+  "status": "candidates",
+  "hits": [
+    {"name": "code-review", "description": "Review code changes for bugs...", "score": 0.83}
+  ],
+  "message": "These are the closest skills, best first. Often none of them fits: load one only if its name and description clearly cover this task; otherwise proceed without a skill."
+}
+```
+
+`score` is the judge's probability, descriptions are capped at
+`SKILL_RAG_RERANK_DESCRIPTION_CHARS` (default 120), and `k` does not cap the
+number shown. Nothing at or above the floor is `no_match`. The caller is
+expected to load at most one, or none
+(`docs/benchmarks/2026-11-25-candidates-results.md`).
+
+The rest of this section describes `SKILL_RAG_RERANK_STYLE=single`. The
 top `SKILL_RAG_RERANK_CANDIDATES` (default 16) by fused rank, with no
 thresholds, are each judged by the configured model for fit to the query.
 Candidates with probability >= `SKILL_RAG_RERANK_THRESHOLD` (default 0.9) are

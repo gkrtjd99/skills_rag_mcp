@@ -140,6 +140,32 @@ def explicit_matches(query: str) -> list[dict]:
     return [row for _, row in sorted(found, key=lambda pair: pair[0])]
 
 
+# Text of a ``candidates`` response; the wording the benchmark measured
+# (docs/benchmarks/2026-11-25-candidates-results.md).
+_CANDIDATES = (
+    "These are the closest skills, best first. Often none of them fits: load one only if "
+    "its name and description clearly cover this task; otherwise proceed without a skill."
+)
+
+
+def candidates_response(scored: list[tuple[dict, float]], max_chars: int) -> dict:
+    """Several judged candidates, best first, for the calling agent to choose
+    from or decline. ``scored`` pairs a ``{name, description, ...}`` row with
+    the judge's probability, which becomes the hit ``score``."""
+    return {
+        "status": "candidates",
+        "hits": [
+            {
+                "name": row["name"],
+                "description": _compact_description(row["description"], max_chars),
+                "score": round(p, 2),
+            }
+            for row, p in scored
+        ],
+        "message": _CANDIDATES,
+    }
+
+
 def uncertain_response(rows: list[dict], max_chars: int) -> dict:
     """Unconfirmed candidates for the calling agent to accept or decline.
 

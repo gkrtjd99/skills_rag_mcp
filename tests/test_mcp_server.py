@@ -160,7 +160,7 @@ def test_search_skills_uses_rerank_when_enabled(tmp_path, monkeypatch):
         lambda query, candidates: [0.9 if c["name"] == "tdd" else 0.1 for c in candidates],
     )
     res = mcp_server.search_skills("explore ideas", k=5)
-    assert res["status"] == "ok"
+    assert res["status"] == "candidates"  # the default style: the agent chooses
     assert [h["name"] for h in res["hits"]] == ["tdd"]
     assert res["hits"][0]["score"] == 0.9
 
